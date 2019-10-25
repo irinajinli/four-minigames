@@ -1,10 +1,10 @@
-package com.example.game1.Presentation;
+package com.example.game1.Presentation.AppleGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.game1.Domain.AppleGameView;
+import com.example.game1.Domain.AppleGame.AppleGameView;
 
 //public class AppleActivity extends AppCompatActivity {
 //

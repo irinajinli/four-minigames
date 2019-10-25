@@ -1,4 +1,4 @@
-package com.example.game1.Domain;
+package com.example.game1.Domain.AppleGame;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
