@@ -1,4 +1,4 @@
-package com.example.game1.Presentation.applegame;
+package com.example.game1.presentation.applegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
