@@ -8,6 +8,8 @@ import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.example.game1.Domain.Shared.GameManager;
+
 /**
  * The fish tank view.
  */
@@ -35,7 +37,7 @@ public class AppleGameView extends SurfaceView implements SurfaceHolder.Callback
     /**
      * The fish tank contents.
      */
-    public AppleGameManager tankManager;
+    public GameManager tankManager;
     /**
      * The part of the program that manages time.
      */
@@ -66,7 +68,7 @@ public class AppleGameView extends SurfaceView implements SurfaceHolder.Callback
         // Use the letter size and screen height to determine the size of the fish tank.
         tankManager = new AppleGameManager(
                 (int) (screenHeight / charHeight), (int) (screenWidth / charWidth));
-        tankManager.createTankItems();
+        tankManager.createGameItems();
 
         thread.setRunning(true);
         thread.start();

@@ -1,72 +1,60 @@
-package com.example.game1.Domain.AppleGame;
+package com.example.game1.Domain.Shared;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
 /**
- * An item which can be in a AppleGameManager.
+ * An item which can be in a GameManager.
  */
-
-abstract public class GameItem {
-    /**
-     * How this item appears on the screen.
-     */
+public abstract class GameItem {
+    /** How this item appears on the screen. */
     private String appearance;
 
-    /**
-     * The AppleGameManager this item is in.
-     */
-    private AppleGameManager tank;
+    /** The GameManager this item is in. */
+    private GameManager manager;
 
-    /**
-     * This item's x coordinate.
-     */
+    /** This item's x coordinate. */
     private int x;
 
-    /**
-     * This item's y coordinate.
-     */
+    /** This item's y coordinate. */
     private int y;
 
-    /**
-     * This item's Paint.
-     */
-    Paint paintText = new Paint();
-
+    /** This item's Paint. */
+    public Paint paintText = new Paint();
 
     /**
      * Constructs a GameItem with the specified appearance.
      *
      * @param appearance the appearance of this GameItem
      */
-    GameItem(String appearance) {
+    public GameItem(String appearance) {
         this.appearance = appearance;
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setTextSize(36);
     }
 
     /**
-     * Sets the location of this GameItem in the specified AppleGameManager.
+     * Sets the location of this GameItem in the specified GameManager.
      *
-     * @param tank the GameItem
-     * @param x    the x coordinate
-     * @param y    the y coordinate
+     * @param manager the GameItem
+     * @param x the x coordinate
+     * @param y the y coordinate
      */
-    void setLocation(AppleGameManager tank, int x, int y) {
+    public void setLocation(GameManager manager, int x, int y) {
         this.x = x;
         this.y = y;
-        this.tank = tank;
-        tank.place(this);
+        this.manager = manager;
+        manager.place(this);
     }
 
     /**
-     * Changes the location of this GameItem within its AppleGameManager.
+     * Changes the location of this GameItem within its GameManager.
      *
      * @param x the new x coordinate
      * @param y the new y coordinate
      */
-    void changeLocation(int x, int y) {
+    public void changeLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -76,7 +64,7 @@ abstract public class GameItem {
      *
      * @return the x coordinate of this GameItem
      */
-    int getX() {
+    public int getX() {
         return x;
     }
 
@@ -85,7 +73,7 @@ abstract public class GameItem {
      *
      * @return the y coordinate of this GameItem
      */
-    int getY() {
+    public int getY() {
         return y;
     }
 
@@ -94,7 +82,7 @@ abstract public class GameItem {
      *
      * @param appearance the appearance of this GameItem
      */
-    void setAppearance(String appearance) {
+    public void setAppearance(String appearance) {
         this.appearance = appearance;
     }
 
@@ -103,17 +91,17 @@ abstract public class GameItem {
      *
      * @return the appearance of this GameItem
      */
-    String getAppearance() {
+    public String getAppearance() {
         return appearance;
     }
 
     /**
-     * Returns the AppleGameManager this GameItem is inside.
+     * Returns the GameManager this GameItem is inside.
      *
-     * @return the AppleGameManager this GameItem is inside
+     * @return the GameManager this GameItem is inside
      */
-    AppleGameManager getTank() {
-        return tank;
+    public GameManager getManager() {
+        return manager;
     }
 
     /**
@@ -125,18 +113,16 @@ abstract public class GameItem {
         drawString(canvas, appearance, x, y);
     }
 
-    /**
-     * Moves this GameItem within its AppleGameManager.
-     */
-    abstract void move();
+    /** Moves this GameItem within its GameManager. */
+    public abstract void move();
 
     /**
      * Draws the GameItem at a location on the specified Canvas using a String.
      *
      * @param canvas the canvas on which to draw
-     * @param s      the String to draw
-     * @param x      the x coordinate at which to draw
-     * @param y      the y coordinate at which to draw
+     * @param s the String to draw
+     * @param x the x coordinate at which to draw
+     * @param y the y coordinate at which to draw
      */
-    abstract void drawString(Canvas canvas, String s, int x, int y);
+    public abstract void drawString(Canvas canvas, String s, int x, int y);
 }

@@ -3,23 +3,25 @@ package com.example.game1.Domain.AppleGame;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
+import com.example.game1.Domain.Shared.GameItem;
+
 public class Apple extends GameItem {
 
-    Apple() {
+    public Apple() {
         super("( )");
         paintText.setColor(Color.RED);
     }
 
     @Override
-    void move() {
+    public void move() {
         int newY = getY() + 1;
-//        if (newY > )
+        //        if (newY > )
         // TODO: later, decide what to do when apple goes off screen/gets to bottom
         changeLocation(getX(), getY() + 1);
     }
 
     @Override
-    void drawString(Canvas canvas, String s, int x, int y) {
+    public void drawString(Canvas canvas, String s, int x, int y) {
         canvas.drawText(s, x * AppleGameView.charWidth, y * AppleGameView.charHeight, super.paintText);
     }
 }
