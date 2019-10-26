@@ -1,4 +1,4 @@
-package com.example.game1.Presentation.AppleGame;
+package com.example.game1.Presentation.applegame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
