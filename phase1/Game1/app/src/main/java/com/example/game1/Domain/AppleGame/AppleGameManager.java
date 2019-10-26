@@ -4,11 +4,11 @@ import com.example.game1.Domain.Shared.GameManager;
 
 public class AppleGameManager extends GameManager {
 
-  AppleGameManager() {
+  public AppleGameManager() {
     super(10, 10);
   }
 
-  AppleGameManager(int height, int width) {
+  public AppleGameManager(int height, int width) {
     super(height, width);
   }
 

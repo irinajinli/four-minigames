@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 import com.example.game1.Domain.Shared.GameItem;
+import com.example.game1.Domain.Shared.GameView;
 
 public class Apple extends GameItem {
 
@@ -22,6 +23,6 @@ public class Apple extends GameItem {
 
     @Override
     public void drawString(Canvas canvas, String s, int x, int y) {
-        canvas.drawText(s, x * AppleGameView.charWidth, y * AppleGameView.charHeight, super.paintText);
+        canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
     }
 }

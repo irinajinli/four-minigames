@@ -3,6 +3,8 @@ package com.example.game1.Domain.AppleGame;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.example.game1.Domain.Shared.GameView;
+
 /**
  * Hacky way to manage threading and updates.
  */
@@ -15,7 +17,7 @@ public class MainThread extends Thread {
     /**
      * Where the fish tank items are drawn.
      */
-    private AppleGameView appleGameView;
+    private GameView gameView;
     /**
      * The canvas container.
      */
@@ -31,9 +33,9 @@ public class MainThread extends Thread {
      * @param surfaceHolder the canvas container.
      * @param view          where the fish tank items are drawn.
      */
-    public MainThread(SurfaceHolder surfaceHolder, AppleGameView view) {
+    public MainThread(SurfaceHolder surfaceHolder, GameView view) {
         this.surfaceHolder = surfaceHolder;
-        this.appleGameView = view;
+        this.gameView = view;
     }
 
     @Override
@@ -44,8 +46,8 @@ public class MainThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.appleGameView.update();
-                    this.appleGameView.draw(canvas);
+                    this.gameView.update();
+                    this.gameView.draw(canvas);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
