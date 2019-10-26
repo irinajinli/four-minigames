@@ -1,6 +1,6 @@
-package com.example.game1.Domain.applegame;
+package com.example.game1.domain.applegame;
 
-import com.example.game1.Domain.shared.GameManager;
+import com.example.game1.domain.shared.GameManager;
 
 public class AppleGameManager extends GameManager {
 

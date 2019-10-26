@@ -1,4 +1,4 @@
-package com.example.game1.Domain.shared;
+package com.example.game1.domain.shared;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.game1.Domain.applegame.MainThread;
+import com.example.game1.domain.applegame.MainThread;
 
 /**
  * The fish tank view.

@@ -1,4 +1,4 @@
-package com.example.game1.Domain.shared;
+package com.example.game1.domain.shared;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
