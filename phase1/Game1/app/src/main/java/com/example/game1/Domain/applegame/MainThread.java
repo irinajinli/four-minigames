@@ -1,9 +1,9 @@
-package com.example.game1.Domain.AppleGame;
+package com.example.game1.Domain.applegame;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.example.game1.Domain.Shared.GameView;
+import com.example.game1.Domain.shared.GameView;
 
 /**
  * Hacky way to manage threading and updates.

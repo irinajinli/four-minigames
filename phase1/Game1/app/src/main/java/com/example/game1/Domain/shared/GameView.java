@@ -1,15 +1,12 @@
-package com.example.game1.Domain.Shared;
+package com.example.game1.Domain.shared;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.game1.Domain.AppleGame.AppleGameManager;
-import com.example.game1.Domain.AppleGame.MainThread;
+import com.example.game1.Domain.applegame.MainThread;
 
 /**
  * The fish tank view.

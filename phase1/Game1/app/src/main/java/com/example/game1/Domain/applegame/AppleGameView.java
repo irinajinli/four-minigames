@@ -1,11 +1,11 @@
-package com.example.game1.Domain.AppleGame;
+package com.example.game1.Domain.applegame;
 
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 
-import com.example.game1.Domain.Shared.GameView;
+import com.example.game1.Domain.shared.GameView;
 
 public class AppleGameView extends GameView {
 

@@ -1,10 +1,10 @@
-package com.example.game1.Domain.AppleGame;
+package com.example.game1.Domain.applegame;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.Domain.Shared.GameItem;
-import com.example.game1.Domain.Shared.GameView;
+import com.example.game1.Domain.shared.GameItem;
+import com.example.game1.Domain.shared.GameView;
 
 public class Apple extends GameItem {
 

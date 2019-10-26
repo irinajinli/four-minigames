@@ -4,8 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.game1.Domain.AppleGame.AppleGameView;
-import com.example.game1.Domain.Shared.GameView;
+import com.example.game1.Domain.applegame.AppleGameView;
 
 // public class AppleActivity extends AppCompatActivity {
 //
