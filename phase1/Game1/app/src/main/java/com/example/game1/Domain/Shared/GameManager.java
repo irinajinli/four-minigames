@@ -24,15 +24,6 @@ public abstract class GameManager {
      */
     private int gridHeight;
 
-
-    int getGridWidth() {
-        return gridWidth;
-    }
-
-    int getGridHeight() {
-        return gridHeight;
-    }
-
     /**
      * Constructs a GameManager with the specified height and width.
      *
@@ -42,6 +33,14 @@ public abstract class GameManager {
     public GameManager(int height, int width) {
         gridHeight = height;
         gridWidth = width;
+    }
+
+    int getGridWidth() {
+        return gridWidth;
+    }
+
+    int getGridHeight() {
+        return gridHeight;
     }
 
     /**
@@ -78,8 +77,7 @@ public abstract class GameManager {
      * Updates this GameManager by moving all GameItems in it.
      */
     public void update() {
-        for (int i = 0; i < gameItems.size(); i++)
-            gameItems.get(i).move();
+        for (int i = 0; i < gameItems.size(); i++) gameItems.get(i).move();
     }
 
     /**

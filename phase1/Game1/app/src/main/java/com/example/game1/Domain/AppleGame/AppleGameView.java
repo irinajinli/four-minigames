@@ -17,15 +17,6 @@ public class AppleGameView extends SurfaceView implements SurfaceHolder.Callback
 
     // TODO: make variables private where possible
     /**
-     * Screen width.
-     */
-    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-    /**
-     * Screen height.
-     */
-    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-
-    /**
      * The width of a character.
      */
     public static float charWidth;
@@ -33,11 +24,18 @@ public class AppleGameView extends SurfaceView implements SurfaceHolder.Callback
      * The height of a character.
      */
     public static float charHeight;
-
     /**
      * The fish tank contents.
      */
     public GameManager tankManager;
+    /**
+     * Screen width.
+     */
+    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+    /**
+     * Screen height.
+     */
+    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
     /**
      * The part of the program that manages time.
      */
@@ -55,6 +53,14 @@ public class AppleGameView extends SurfaceView implements SurfaceHolder.Callback
         setFocusable(true);
     }
 
+    public static float getCharWidth() {
+        return charWidth;
+    }
+
+    public static float getCharHeight() {
+        return charHeight;
+    }
+
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
@@ -66,8 +72,8 @@ public class AppleGameView extends SurfaceView implements SurfaceHolder.Callback
         charHeight = -paintText.ascent() + paintText.descent();
 
         // Use the letter size and screen height to determine the size of the fish tank.
-        tankManager = new AppleGameManager(
-                (int) (screenHeight / charHeight), (int) (screenWidth / charWidth));
+        tankManager =
+                new AppleGameManager((int) (screenHeight / charHeight), (int) (screenWidth / charWidth));
         tankManager.createGameItems();
 
         thread.setRunning(true);
@@ -106,23 +112,5 @@ public class AppleGameView extends SurfaceView implements SurfaceHolder.Callback
         if (canvas != null) {
             tankManager.draw(canvas);
         }
-
     }
-
-    public static float getCharWidth() {
-        return charWidth;
-    }
-
-    public static float getCharHeight() {
-        return charHeight;
-    }
-
-
 }
-
-
-
-
-
-
-

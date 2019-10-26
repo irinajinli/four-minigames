@@ -9,6 +9,10 @@ import android.view.SurfaceHolder;
 public class MainThread extends Thread {
 
     /**
+     * The canvas on which to draw the fish tank.
+     */
+    public static Canvas canvas;
+    /**
      * Where the fish tank items are drawn.
      */
     private AppleGameView appleGameView;
@@ -20,10 +24,6 @@ public class MainThread extends Thread {
      * Whether the thread is running.
      */
     private boolean isRunning;
-    /**
-     * The canvas on which to draw the fish tank.
-     */
-    public static Canvas canvas;
 
     /**
      * Construct the thread.
@@ -69,5 +69,5 @@ public class MainThread extends Thread {
 
     public void setRunning(boolean isRunning) {
         this.isRunning = isRunning;
-    }
+  }
 }
