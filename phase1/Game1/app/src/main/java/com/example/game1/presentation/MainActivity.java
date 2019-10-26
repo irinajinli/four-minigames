@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
      * Called when the user taps the Register button
      */
     public void goToRegistration(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 }
