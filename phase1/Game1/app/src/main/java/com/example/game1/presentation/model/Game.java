@@ -20,6 +20,9 @@ public class Game {
 
     /**
      * Create a new game with default customization choices
+     *
+     @param name the Game's name
+     @param level the Game's level
      */
     public Game (String name, int level) {
         this.name = name;
