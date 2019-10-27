@@ -1,28 +1,27 @@
-package com.example.game1.presentation;
+package com.example.game1.presentation.view.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 
 import com.example.game1.R;
-import com.example.game1.presentation.applegame.AppleActivity;
+import com.example.game1.presentation.view.applegame.AppleActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registration);
     }
 
     /**
-     * Called when the user taps the Login button
+     * Called when the user taps the Register button
      */
-    public void sendLoginCredentials(View view) {
-        /* TODO: This method should send the login credentials to another class to validate it.
+    public void sendRegistrationInput(View view) {
+        /* TODO: This method should send the registration input to another class to validate it.
             For now, its just redirects the user to a game*/
         Intent intent = new Intent(this, AppleActivity.class);
 //        EditText editText = (EditText) findViewById(R.id.editText);
