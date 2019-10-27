@@ -1,13 +1,14 @@
-package com.example.game1.domain.tappinggame;
+package com.example.game1.presentation.model.common;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.domain.shared.GameItem;
-import com.example.game1.domain.shared.GameView;
+import com.example.game1.presentation.presenter.common.GameView;
+
 
 public class Character extends GameItem {
-    Character(){
+
+    public Character(){
         super("/\\--/\\@@");
         paintText.setColor(Color.YELLOW);
     }

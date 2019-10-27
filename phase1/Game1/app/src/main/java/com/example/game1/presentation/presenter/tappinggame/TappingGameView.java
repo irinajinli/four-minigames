@@ -1,12 +1,12 @@
-package com.example.game1.domain.tappinggame;
+package com.example.game1.presentation.presenter.tappinggame;
 
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 
-import com.example.game1.domain.applegame.AppleGameManager;
-import com.example.game1.domain.shared.GameView;
+import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.presenter.common.GameView;
 
 public class TappingGameView extends GameView {
     public TappingGameView(Context context) {

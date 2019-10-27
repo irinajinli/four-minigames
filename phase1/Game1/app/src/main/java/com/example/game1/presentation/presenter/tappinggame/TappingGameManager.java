@@ -1,6 +1,8 @@
-package com.example.game1.domain.tappinggame;
+package com.example.game1.presentation.presenter.tappinggame;
 
-import com.example.game1.domain.shared.GameManager;
+import com.example.game1.presentation.presenter.common.GameManager;
+import com.example.game1.presentation.model.common.Character;
+import com.example.game1.presentation.model.common.Star;
 
 public class TappingGameManager extends GameManager {
     public TappingGameManager() {
@@ -15,8 +17,8 @@ public class TappingGameManager extends GameManager {
         Character c1 = new Character();
         Star s1 = new Star();
 
-        c1.setLocation(this, 0, 0);
-        s1.setLocation(this, 10, 0);
+        c1.setLocation(0, 0);
+        s1.setLocation(10, 0);
 //        a3.setLocation(this, 20, 0);
     }
 }

@@ -1,9 +1,9 @@
-package com.example.game1.domain.tappinggame;
+package com.example.game1.presentation.view.tappinggame;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.example.game1.domain.shared.GameView;
+import com.example.game1.presentation.presenter.common.GameView;
 
 public class MainThread extends Thread{
     /**

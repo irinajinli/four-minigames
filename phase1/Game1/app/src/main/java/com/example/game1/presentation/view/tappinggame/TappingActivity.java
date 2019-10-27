@@ -1,11 +1,11 @@
-package com.example.game1.presentation.tappinggame;
+package com.example.game1.presentation.view.tappinggame;
 
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.game1.domain.tappinggame.TappingGameView;
+import com.example.game1.presentation.presenter.tappinggame.TappingGameView;
 
 public class TappingActivity extends AppCompatActivity {
     @Override
