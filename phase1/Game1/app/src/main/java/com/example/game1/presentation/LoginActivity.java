@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.example.game1.R;
 import com.example.game1.presentation.applegame.AppleActivity;
+import com.example.game1.presentation.tappinggame.TappingActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

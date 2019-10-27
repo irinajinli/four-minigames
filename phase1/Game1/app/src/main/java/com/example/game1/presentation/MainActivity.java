@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
      * Called when the user taps the Login button
      */
     public void goToLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class
+        );
         startActivity(intent);
     }
 
