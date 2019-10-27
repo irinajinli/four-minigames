@@ -1,4 +1,4 @@
-package com.example.game1.domain.shared;
+package com.example.game1.presentation.model.common;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -16,10 +16,7 @@ public abstract class GameItem {
      * How this item appears on the screen.
      */
     private String appearance;
-    /**
-     * The GameManager this item is in.
-     */
-    private GameManager manager;
+
     /**
      * This item's x coordinate.
      */
@@ -43,15 +40,13 @@ public abstract class GameItem {
     /**
      * Sets the location of this GameItem in the specified GameManager.
      *
-     * @param manager the GameItem
      * @param x       the x coordinate
      * @param y       the y coordinate
      */
-    public void setLocation(GameManager manager, int x, int y) {
+    public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
-        this.manager = manager;
-        manager.place(this);
+
     }
 
     /**
@@ -99,15 +94,6 @@ public abstract class GameItem {
      */
     public void setAppearance(String appearance) {
         this.appearance = appearance;
-    }
-
-    /**
-     * Returns the GameManager this GameItem is inside.
-     *
-     * @return the GameManager this GameItem is inside
-     */
-    public GameManager getManager() {
-        return manager;
     }
 
     /**

@@ -1,6 +1,7 @@
-package com.example.game1.domain.applegame;
+package com.example.game1.presentation.presenter.applegame;
 
-import com.example.game1.domain.shared.GameManager;
+import com.example.game1.presentation.model.applegame.Apple;
+import com.example.game1.presentation.presenter.common.GameManager;
 
 public class AppleGameManager extends GameManager {
 
@@ -16,8 +17,11 @@ public class AppleGameManager extends GameManager {
     Apple a1 = new Apple();
     Apple a2 = new Apple();
     Apple a3 = new Apple();
-    a1.setLocation(this, 0, 0);
-    a2.setLocation(this, 10, 0);
-    a3.setLocation(this, 20, 0);
+    place(a1);
+    a1.setLocation(0, 0);
+    place(a2);
+    a2.setLocation(10, 0);
+    place(a3);
+    a3.setLocation(20, 0);
   }
 }
