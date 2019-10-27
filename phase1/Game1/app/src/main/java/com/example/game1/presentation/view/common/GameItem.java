@@ -1,4 +1,4 @@
-package com.example.game1.presentation.model.common;
+package com.example.game1.presentation.view.common;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

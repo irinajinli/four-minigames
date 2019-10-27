@@ -1,7 +1,7 @@
 package com.example.game1.presentation.presenter.common;
 
 import android.graphics.Canvas;
-import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.view.common.GameItem;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,10 @@
-package com.example.game1.presentation.model.applegame;
+package com.example.game1.presentation.view.applegame;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.GameView;
+import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameView;
 
 public class Apple extends GameItem {
 

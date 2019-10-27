@@ -1,4 +1,4 @@
-package com.example.game1.presentation.presenter.tappinggame;
+package com.example.game1.presentation.view.tappinggame;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -6,7 +6,7 @@ import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
-import com.example.game1.presentation.presenter.common.GameView;
+import com.example.game1.presentation.view.common.GameView;
 
 public class TappingGameView extends GameView {
     public TappingGameView(Context context) {

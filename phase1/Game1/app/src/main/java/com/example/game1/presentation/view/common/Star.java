@@ -1,23 +1,20 @@
-package com.example.game1.presentation.model.common;
+package com.example.game1.presentation.view.common;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.presentation.presenter.common.GameView;
+public class Star extends GameItem {
 
-
-public class Character extends GameItem {
-
-    public Character(){
-        super("/\\--/\\@@");
-        paintText.setColor(Color.YELLOW);
+    public Star(){
+        super("*");
+        paintText.setColor(Color.CYAN);
     }
 
     @Override
     public void move(){
         // moving forward
-        int newX = getX() + 1;
-        changeLocation(newX, getY());
+        int newY = getY() + 1;
+        changeLocation(getX(), newY);
     }
 
     @Override

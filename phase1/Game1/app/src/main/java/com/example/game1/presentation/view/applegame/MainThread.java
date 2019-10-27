@@ -3,7 +3,7 @@ package com.example.game1.presentation.view.applegame;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.example.game1.presentation.presenter.common.GameView;
+import com.example.game1.presentation.view.common.GameView;
 
 /**
  * Hacky way to manage threading and updates.

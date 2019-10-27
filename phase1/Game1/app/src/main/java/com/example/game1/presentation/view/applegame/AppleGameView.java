@@ -1,11 +1,12 @@
-package com.example.game1.presentation.presenter.applegame;
+package com.example.game1.presentation.view.applegame;
 
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 
-import com.example.game1.presentation.presenter.common.GameView;
+import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.view.common.GameView;
 
 public class AppleGameView extends GameView {
 

@@ -1,8 +1,8 @@
 package com.example.game1.presentation.presenter.tappinggame;
 
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.model.common.Character;
-import com.example.game1.presentation.model.common.Star;
+import com.example.game1.presentation.view.common.Character;
+import com.example.game1.presentation.view.common.Star;
 
 public class TappingGameManager extends GameManager {
     public TappingGameManager() {

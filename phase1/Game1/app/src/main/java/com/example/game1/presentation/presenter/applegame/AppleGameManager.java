@@ -1,6 +1,6 @@
 package com.example.game1.presentation.presenter.applegame;
 
-import com.example.game1.presentation.model.applegame.Apple;
+import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.presenter.common.GameManager;
 
 public class AppleGameManager extends GameManager {

@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.game1.presentation.presenter.applegame.AppleGameView;
-
 // public class AppleActivity extends AppCompatActivity {
 //
 //    @Override

@@ -1,4 +1,4 @@
-package com.example.game1.presentation.presenter.common;
+package com.example.game1.presentation.view.common;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.MainThread;
 
 /**

@@ -5,7 +5,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.game1.presentation.presenter.tappinggame.TappingGameView;
 
 public class TappingActivity extends AppCompatActivity {
     @Override
