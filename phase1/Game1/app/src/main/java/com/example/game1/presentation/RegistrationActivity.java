@@ -20,8 +20,8 @@ public class RegistrationActivity extends AppCompatActivity {
     /**
      * Called when the user taps the Register button
      */
-    public void sendRegistrationCredentials(View view) {
-        /* TODO: This method should send the login credentials to another class to validate it.
+    public void sendRegistrationInput(View view) {
+        /* TODO: This method should send the registration input to another class to validate it.
             For now, its just redirects the user to a game*/
         Intent intent = new Intent(this, AppleActivity.class);
 //        EditText editText = (EditText) findViewById(R.id.editText);
