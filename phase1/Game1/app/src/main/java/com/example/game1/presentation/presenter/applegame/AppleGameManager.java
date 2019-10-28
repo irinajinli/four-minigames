@@ -43,11 +43,10 @@ public class AppleGameManager extends GameManager {
     int randint = randItem.nextInt(100);
     if (randint < 1) {
       // spawn new Star
-        Star nextItem = new Star();
-        place(nextItem);
-        nextItem.setLocation(spawnCoordinate, 0);
-    }
-    else if (randint < 15) {
+      Star nextItem = new Star();
+      place(nextItem);
+      nextItem.setLocation(spawnCoordinate, 0);
+    } else if (randint < 15) {
       // spawn new Apple
       Apple nextItem = new Apple();
       place(nextItem);
