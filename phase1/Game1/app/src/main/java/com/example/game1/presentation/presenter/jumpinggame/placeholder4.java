@@ -1,4 +1,3 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
-public class placeholder4 {
-}
+public class placeholder4 {}

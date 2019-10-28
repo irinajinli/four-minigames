@@ -11,27 +11,28 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class AppleGameView extends GameView {
 
-    public AppleGameView(Context context) {
-        super(context);
-    }
+  public AppleGameView(Context context) {
+    super(context);
+  }
 
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
+  @Override
+  public void surfaceCreated(SurfaceHolder holder) {
 
-        // Figure out the size of a letter.
-        Paint paintText = new Paint();
-        paintText.setTextSize(36);
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        charWidth = paintText.measureText("W");
-        charHeight = -paintText.ascent() + paintText.descent();
+    // Figure out the size of a letter.
+    Paint paintText = new Paint();
+    paintText.setTextSize(36);
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    charWidth = paintText.measureText("W");
+    charHeight = -paintText.ascent() + paintText.descent();
 
-        // Use the letter size and screen height to determine the size of the GameManager.
-        gameManager = AppManager.getInstance().getAppleGameManager((int) (getScreenHeight() / charHeight),
-                        (int) (getScreenWidth() / charWidth));
-        gameManager.createGameItems();
+    // Use the letter size and screen height to determine the size of the GameManager.
+    gameManager =
+        AppManager.getInstance()
+            .getAppleGameManager(
+                (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+    gameManager.createGameItems();
 
-        thread.setRunning(true);
-        thread.start();
-    }
-    }
-
+    thread.setRunning(true);
+    thread.start();
+  }
+}
