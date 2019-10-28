@@ -24,4 +24,8 @@ public class AppleGameManager extends GameManager {
     place(a3);
     a3.setLocation(20, 0);
   }
+
+  public void update() {
+    for (int i = 0; i < getGameItems().size(); i++) getGameItems().get(i).move();
+  }
 }

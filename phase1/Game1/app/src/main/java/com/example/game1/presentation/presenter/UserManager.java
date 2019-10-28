@@ -5,15 +5,14 @@ import com.example.game1.domain.UserService;
 
 public class UserManager {
 
-    UserService userService;
+  UserService userService;
 
-    public UserManager(){
-        userService = new UserService();
-    }
+  public UserManager() {
+    userService = new UserService();
+  }
 
-    public void registerUser(String userName, String password) {
-        User user = new User(userName, password);
-        userService.registerUser(user);
-    }
-
+  public void registerUser(String userName, String password) {
+    User user = new User(userName, password);
+    userService.registerUser(user);
+  }
 }

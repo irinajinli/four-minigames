@@ -1,51 +1,50 @@
 package com.example.game1.presentation.model;
 
-
-/**
- * The customization choices.
- */
+/** The customization choices. */
 public class Customization {
 
-    public enum CharacterColour {
-        BLUE, RED, YELLOW
-    }
+  private CharacterColour characterColour;
+  private ColourScheme colourScheme;
+  private MusicPath musicPath;
 
-    public enum ColourScheme {
-        DARK, LIGHT
-    }
+  public CharacterColour getCharacterColour() {
+    return characterColour;
+  }
 
-    public enum MusicPath {
-        SONG1, SONG2, SONG3
-    }
+  public void setCharacterColour(CharacterColour characterColour) {
+    this.characterColour = characterColour;
+  }
 
-    private CharacterColour characterColour;
-    private ColourScheme colourScheme;
+  public ColourScheme getColourScheme() {
+    return colourScheme;
+  }
 
-    public CharacterColour getCharacterColour() {
-        return characterColour;
-    }
+  public void setColourScheme(ColourScheme colourScheme) {
+    this.colourScheme = colourScheme;
+  }
 
-    public void setCharacterColour(CharacterColour characterColour) {
-        this.characterColour = characterColour;
-    }
+  public MusicPath getMusicPath() {
+    return musicPath;
+  }
 
-    public ColourScheme getColourScheme() {
-        return colourScheme;
-    }
+  public void setMusicPath(MusicPath musicPath) {
+    this.musicPath = musicPath;
+  }
 
-    public void setColourScheme(ColourScheme colourScheme) {
-        this.colourScheme = colourScheme;
-    }
+  public enum CharacterColour {
+    BLUE,
+    RED,
+    YELLOW
+  }
 
-    public MusicPath getMusicPath() {
-        return musicPath;
-    }
+  public enum ColourScheme {
+    DARK,
+    LIGHT
+  }
 
-    public void setMusicPath(MusicPath musicPath) {
-        this.musicPath = musicPath;
-    }
-
-    private MusicPath musicPath;
-
-
+  public enum MusicPath {
+    SONG1,
+    SONG2,
+    SONG3
+  }
 }
