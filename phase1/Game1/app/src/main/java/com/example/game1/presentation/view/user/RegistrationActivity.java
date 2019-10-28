@@ -5,28 +5,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.game1.R;
+import com.example.game1.presentation.model.User;
+import com.example.game1.presentation.presenter.UserManager;
 import com.example.game1.presentation.view.applegame.AppleActivity;
 
 public class RegistrationActivity extends AppCompatActivity {
+
+    private UserManager userManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        userManager = new UserManager();
     }
 
     /**
      * Called when the user taps the Register button
      */
     public void sendRegistrationInput(View view) {
-        /* TODO: This method should send the registration input to another class to validate it.
-            For now, its just redirects the user to a game*/
         Intent intent = new Intent(this, AppleActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message); // store as many key value pairs in intent as you want
+
+        EditText userNameText = findViewById(R.id.userNameText);
+        String userName = userNameText.getText().toString();
+        EditText passwordText = findViewById(R.id.passwordText);
+        String password = passwordText.getText().toString();
+        EditText confirmPasswordText = findViewById(R.id.confirmPasswordText);
+        String confirmPassword = confirmPasswordText.getText().toString();
+
+        if (password.equals(confirmPassword)){
+            System.out.println("reg passwords match");
+
+            userManager.registerUser(this, userName, password);
+        } else {
+            // TODO: password don't match, display message
+            System.out.println("reg passwords dont match");
+
+        }
+
         startActivity(intent);
     }
 }

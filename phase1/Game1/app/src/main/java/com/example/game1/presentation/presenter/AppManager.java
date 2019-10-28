@@ -1,5 +1,7 @@
 package com.example.game1.presentation.presenter;
 
+import android.content.Context;
+
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 
@@ -19,6 +21,8 @@ public class AppManager {
      * The factory that creates GameManager objects
      */
     private GameManagerFactory gameManagerFactory = new GameManagerFactory();
+
+    Context context = null;
 
 
     private AppManager() {
@@ -47,5 +51,13 @@ public class AppManager {
             instance = new AppManager();
         }
         return instance;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }
