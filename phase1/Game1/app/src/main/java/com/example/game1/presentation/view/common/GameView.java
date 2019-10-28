@@ -19,12 +19,12 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public static float charHeight;
   /** The fish tank contents. */
   public GameManager gameManager;
-  /** The part of the program that manages time. */
-  public MainThread thread;
   /** Screen width. */
   private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
   /** Screen height. */
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+  /** The part of the program that manages time. */
+  public MainThread thread;
 
   /**
    * Create a new fish tank in the context environment.
@@ -34,7 +34,6 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public GameView(Context context) {
     super(context);
     getHolder().addCallback(this);
-    thread = new MainThread(getHolder(), this);
     setFocusable(true);
   }
 
