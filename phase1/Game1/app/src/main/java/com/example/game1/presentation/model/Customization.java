@@ -3,6 +3,23 @@ package com.example.game1.presentation.model;
 /** The customization choices. */
 public class Customization {
 
+  public enum CharacterColour {
+    BLUE,
+    RED,
+    YELLOW
+  }
+
+  public enum ColourScheme {
+    DARK,
+    LIGHT
+  }
+
+  public enum MusicPath {
+    SONG1,
+    SONG2,
+    SONG3
+  }
+
   private CharacterColour characterColour;
   private ColourScheme colourScheme;
   private MusicPath musicPath;
@@ -31,20 +48,4 @@ public class Customization {
     this.musicPath = musicPath;
   }
 
-  public enum CharacterColour {
-    BLUE,
-    RED,
-    YELLOW
-  }
-
-  public enum ColourScheme {
-    DARK,
-    LIGHT
-  }
-
-  public enum MusicPath {
-    SONG1,
-    SONG2,
-    SONG3
-  }
 }

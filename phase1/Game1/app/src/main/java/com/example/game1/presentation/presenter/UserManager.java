@@ -15,10 +15,17 @@ public class UserManager {
         userService = new UserService();
     }
 
+    /**
+     * Register a new user
+     * @param context the context of the application
+     * @param userName the user's username
+     * @param password the user's password
+     */
     public void registerUser(Context context, String userName, String password) {
         this.context = context;
         System.out.println("user manager register user");
         User user = new User(userName, password);
         userService.registerUser(user);
     }
+
 }
