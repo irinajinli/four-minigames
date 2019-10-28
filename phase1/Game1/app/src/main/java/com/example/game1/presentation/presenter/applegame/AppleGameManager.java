@@ -2,11 +2,14 @@ package com.example.game1.presentation.presenter.applegame;
 
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.presenter.common.GameManager;
+import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.common.Star;
 
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
+
+  Basket basket;
 
   public AppleGameManager() {
     super(10, 10);
@@ -26,6 +29,10 @@ public class AppleGameManager extends GameManager {
     a2.setLocation(10, 0);
     place(a3);
     a3.setLocation(20, 8);
+
+    basket = new Basket();
+    place(basket);
+    basket.setLocation(getGridWidth() / 2 + 1,  getGridHeight() - 5);
   }
 
   public void update() {
@@ -54,5 +61,13 @@ public class AppleGameManager extends GameManager {
     }
 
     // else do nothing
+  }
+
+  /**
+   * Move this AppleGameManager's Basket to the specified x coordinate.
+   * @param x
+   */
+  public void moveBasket(int x) {
+    basket.move(x);
   }
 }
