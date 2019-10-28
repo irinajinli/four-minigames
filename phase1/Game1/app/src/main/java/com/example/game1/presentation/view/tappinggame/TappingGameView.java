@@ -7,11 +7,14 @@ import android.view.SurfaceHolder;
 
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.view.applegame.MainThread;
 import com.example.game1.presentation.view.common.GameView;
 
 public class TappingGameView extends GameView {
+
   public TappingGameView(Context context) {
     super(context);
+    thread = new MainThread(getHolder(), this);
   }
 
   @Override
