@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 
+import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.view.common.GameView;
 
@@ -25,8 +26,7 @@ public class AppleGameView extends GameView {
         charHeight = -paintText.ascent() + paintText.descent();
 
         // Use the letter size and screen height to determine the size of the GameManager.
-        gameManager =
-                new AppleGameManager((int) (getScreenHeight() / charHeight),
+        gameManager = AppManager.getInstance().getAppleGameManager((int) (getScreenHeight() / charHeight),
                         (int) (getScreenWidth() / charWidth));
         gameManager.createGameItems();
 

@@ -1,4 +1,4 @@
 package com.example.game1.data;
 
-public class placeholder {
+public class UserEntity {
 }
