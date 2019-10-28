@@ -2,6 +2,7 @@ package com.example.game1.presentation.presenter.applegame;
 
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.presenter.common.GameManager;
+import com.example.game1.presentation.view.common.Star;
 
 import java.util.Random;
 
@@ -34,17 +35,23 @@ public class AppleGameManager extends GameManager {
 
   private void spawnNew() {
     // get a random x-coordinate to spawn the new Apple/Star at
-    double r = Math.random();
-    Random rand = new Random();
-    int randint = rand.nextInt(getGridWidth());
+    Random randCoordinate = new Random();
+    int spawnCoordinate = randCoordinate.nextInt(getGridWidth());
 
     // decide whether to spawn an Apple or a Star or nothing
-    // TODO: add if (r < ...) ... spawn Star
-    if (r < 0.1) {
+    Random randItem = new Random();
+    int randint = randItem.nextInt(100);
+    if (randint < 1) {
+      // spawn new Star
+        Star nextItem = new Star();
+        place(nextItem);
+        nextItem.setLocation(spawnCoordinate, 0);
+    }
+    else if (randint < 15) {
       // spawn new Apple
-      Apple nextApple = new Apple();
-      place(nextApple);
-      nextApple.setLocation(randint, 0);
+      Apple nextItem = new Apple();
+      place(nextItem);
+      nextItem.setLocation(spawnCoordinate, 0);
     }
 
     // else do nothing
