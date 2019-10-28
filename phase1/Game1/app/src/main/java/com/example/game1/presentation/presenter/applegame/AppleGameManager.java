@@ -32,7 +32,7 @@ public class AppleGameManager extends GameManager {
 
     basket = new Basket();
     place(basket);
-    basket.setLocation(getGridWidth() / 2 + 1,  getGridHeight() - 5);
+    basket.setLocation(getGridWidth() / 2 + 1, getGridHeight() - 5);
   }
 
   public void update() {
@@ -65,6 +65,7 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Move this AppleGameManager's Basket to the specified x coordinate.
+   *
    * @param x
    */
   public void moveBasket(int x) {
