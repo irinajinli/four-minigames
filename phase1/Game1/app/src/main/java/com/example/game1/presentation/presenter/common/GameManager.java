@@ -28,11 +28,11 @@ public abstract class GameManager {
     gridWidth = width;
   }
 
-  int getGridWidth() {
+  public int getGridWidth() {
     return gridWidth;
   }
 
-  int getGridHeight() {
+  public int getGridHeight() {
     return gridHeight;
   }
 
