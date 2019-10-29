@@ -7,15 +7,20 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.game1.R;
+import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.view.user.LoginActivity;
 import com.example.game1.presentation.view.user.RegistrationActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+  private AppManager appManager;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    appManager = AppManager.getInstance();
+    appManager.setContext(this);
   }
 
   /** Called when the user taps the Login button */

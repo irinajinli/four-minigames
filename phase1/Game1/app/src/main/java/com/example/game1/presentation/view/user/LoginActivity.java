@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     /** TODO: This method should send the login credentials to another class to validate it.
      *     In order to compile + run the app now, just register the user as a new user
      */
-    userManager.registerUser(this, userName, password);
+    userManager.registerUser(userName, password);
 
     startActivity(intent);
   }

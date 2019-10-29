@@ -2,6 +2,7 @@ package com.example.game1.data;
 
 import android.util.Log;
 import com.example.game1.presentation.model.User;
+import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 
 import java.io.File;
@@ -41,7 +42,7 @@ public class DataManager {
         PrintWriter out = null;
 
         try {
-            String filePath = UserManager.context.getFilesDir().getPath().toString() + DATA_FILE;
+            String filePath = AppManager.getInstance().getContext().getFilesDir().getPath() + DATA_FILE;
             System.out.println("*****************************************");
             System.out.println("*****************************************");
             System.out.println("*****************************************");
@@ -87,7 +88,7 @@ public class DataManager {
      */
     private String readFromFile() {
         StringBuffer buffer = new StringBuffer(); //can also use StringBuilder
-        String filePath = UserManager.context.getFilesDir().getPath().toString() + DATA_FILE;
+        String filePath = AppManager.getInstance().getContext().getFilesDir().getPath() + DATA_FILE;
         try (Scanner scanner = new Scanner(new FileInputStream(filePath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

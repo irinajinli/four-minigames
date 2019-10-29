@@ -9,8 +9,6 @@ public class UserManager {
 
     private UserService userService;
 
-    public static Context context;
-
     // The current user logged in
     private static User currentUser;
 
@@ -19,14 +17,8 @@ public class UserManager {
         userService = new UserService();
     }
 
-    /**
-     * Register a new user
-     * @param context the context of the application
-     * @param userName the user's username
-     * @param password the user's password
-     */
-    public void registerUser(Context context, String userName, String password) {
-        this.context = context;
+    /** Register a new user */
+    public void registerUser(String userName, String password) {
         System.out.println("user manager register user");
         User user = new User(userName, password);
         userService.registerUser(user);

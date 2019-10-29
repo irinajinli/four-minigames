@@ -40,7 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
         String confirmPassword = confirmPasswordText.getText().toString();
 
         if (password.equals(confirmPassword)){
-            userManager.registerUser(this, userName, password);
+            userManager.registerUser(userName, password);
         } else {
 //            outputText.setText("Passwords don't match");
         }
