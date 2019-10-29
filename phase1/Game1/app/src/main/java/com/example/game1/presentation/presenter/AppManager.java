@@ -17,7 +17,7 @@ public class AppManager {
 
     private static AppManager instance = null;
 
-    private UserManager userManager;
+    private UserManager userManager ;
 
     /** The factory that creates GameManager objects */
     private GameManagerFactory gameManagerFactory = new GameManagerFactory();
@@ -27,6 +27,10 @@ public class AppManager {
 
 
     private AppManager() {
+    }
+
+    public void init(Context context) {
+        setContext(context);
         userManager = new UserManager();
     }
 
