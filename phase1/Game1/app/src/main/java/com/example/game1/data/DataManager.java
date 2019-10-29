@@ -11,7 +11,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -26,14 +30,14 @@ public class DataManager {
     /** The  file to write and read. */
     private static final String DATA_FILE = "game_data.txt";
 
-    private List<User> users = new ArrayList<>();
-
+    /** The map that stores all the users. */
+    Map<String, User> userMap = new HashMap<>();
 
     public void init() {}
 
 
     /** Create a file and write a line of text to it. */
-    private void writeToFile() {
+    private void writeToFile(Collection<User> users) {
         PrintWriter out = null;
 
         try {
@@ -42,6 +46,8 @@ public class DataManager {
             System.out.println("*****************************************");
             System.out.println("*****************************************");
             System.out.println("*****************************************");
+            System.out.println("*****************************************");
+
             System.out.println(filePath);
 
             File file = new File(filePath);
@@ -54,7 +60,21 @@ public class DataManager {
         }
 
 //        out.print(userEntities.get(0).toString());
-        out.write("hello i am testing writing to file");
+//        out.write("hello i am testing writing to file");
+
+        Iterator<User> iter = users.iterator();
+        while(iter.hasNext()){
+            User user = iter.next();
+            out.print("UserName:" + user.getUserName());
+            out.print("Password:" + user.getPassword());
+            out.print("CharacterColour:" + user.getCustomization().getCharacterColour());
+            out.print("ColourScheme:" + user.getCustomization().getColourScheme());
+            out.print("Music:" + user.getCustomization().getMusicPath());
+            out.print("Points:" + user.getTotalPoints());
+            out.print("Stars:" + user.getTotalStars());
+            out.print("Taps:" + user.getTotalTaps());
+        }
+
         out.close();
     }
 
@@ -76,10 +96,11 @@ public class DataManager {
             e.printStackTrace();
             Log.e(TAG, "Error encountered trying to open file for reading: " + DATA_FILE);
         }
-        System.out.println("----------------------------------");
-        System.out.println("----------------------------------");
-        System.out.println("----------------------------------");
-        System.out.println("----------------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("----------------------------------------");
         System.out.println(buffer.toString());
         return buffer.toString();
     }
@@ -87,13 +108,14 @@ public class DataManager {
 
     public void createUser(User user) {
         System.out.println("data manager create user");
-        users.add(user);
-        writeToFile();
+        userMap.put(user.getUserName(), user);
+        Collection<User> users = userMap.values();
+        writeToFile(users);
         readFromFile();
     }
 
     public User getUser(String userName) {
-        return null;
+        return userMap.get(userName);
     }
 
 
