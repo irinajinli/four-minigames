@@ -7,6 +7,7 @@ public class User {
   private int totalPoints;
   private int totalStars;
   private int totalTaps;
+  private int lastCompletedLevel = 0;
 
   public User(String userName, String password) {
     this.userName = userName;
@@ -15,6 +16,7 @@ public class User {
     totalPoints = 0;
     totalStars = 0;
     totalTaps = 0;
+    lastCompletedLevel = 0;
   }
 
   public String getUserName() {
@@ -63,5 +65,13 @@ public class User {
 
   public void setTotalTaps(int totalTaps) {
     this.totalTaps = totalTaps;
+  }
+
+  public int getLastCompletedLevel() {
+    return lastCompletedLevel;
+  }
+
+  public void setLastCompletedLevel(int lastCompletedLevel) {
+    this.lastCompletedLevel = lastCompletedLevel;
   }
 }

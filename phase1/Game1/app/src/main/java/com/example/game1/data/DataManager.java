@@ -73,6 +73,7 @@ public class DataManager {
             out.print("Points:" + user.getTotalPoints());
             out.print("Stars:" + user.getTotalStars());
             out.print("Taps:" + user.getTotalTaps());
+            out.print("LastCompletedLevel:" + user.getLastCompletedLevel());
         }
 
         out.close();
