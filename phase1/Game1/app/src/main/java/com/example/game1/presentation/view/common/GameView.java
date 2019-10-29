@@ -83,6 +83,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
+      super.draw(canvas);
       gameManager.draw(canvas);
     }
   }
