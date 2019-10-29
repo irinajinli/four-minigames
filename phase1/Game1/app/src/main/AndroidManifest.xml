@@ -12,17 +12,11 @@
         <activity
             android:name=".presentation.view.jumpinggame.JumpingActivity"
             android:parentActivityName=".presentation.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name=".presentation.view.applegame.AppleActivity"
             android:parentActivityName=".presentation.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
         </activity>
         <activity android:name=".presentation.view.user.UserMenuActivity" />
         <activity android:name=".presentation.view.user.CustomizationActivity" />
