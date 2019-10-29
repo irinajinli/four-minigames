@@ -1,5 +1,6 @@
 package com.example.game1.presentation.presenter.applegame;
 
+import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
@@ -20,6 +21,7 @@ public class AppleGameManager extends GameManager {
 
   public AppleGameManager(int height, int width) {
     super(height, width);
+    this.game = new Game(Game.GameName.APPLE);
   }
 
   public void createGameItems() {

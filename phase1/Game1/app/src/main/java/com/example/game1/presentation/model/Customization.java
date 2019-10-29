@@ -1,6 +1,6 @@
 package com.example.game1.presentation.model;
 
-/** The customization choices. */
+/** The customization choices of a Game. */
 public class Customization {
 
   public enum CharacterColour {
@@ -23,6 +23,15 @@ public class Customization {
   private CharacterColour characterColour;
   private ColourScheme colourScheme;
   private MusicPath musicPath;
+
+  /**
+   * Create a default Customization.
+   */
+  public Customization(){
+    characterColour = CharacterColour.BLUE;
+    colourScheme = ColourScheme.DARK;
+    musicPath = MusicPath.SONG1;
+  }
 
   public CharacterColour getCharacterColour() {
     return characterColour;

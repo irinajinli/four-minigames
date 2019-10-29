@@ -11,6 +11,10 @@ public class UserManager {
 
     public static Context context;
 
+    // The current user logged in
+    private static User currentUser;
+
+
     public UserManager(){
         userService = new UserService();
     }
@@ -26,6 +30,15 @@ public class UserManager {
         System.out.println("user manager register user");
         User user = new User(userName, password);
         userService.registerUser(user);
+
+        setCurrentUser(user);
     }
 
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        UserManager.currentUser = currentUser;
+    }
 }

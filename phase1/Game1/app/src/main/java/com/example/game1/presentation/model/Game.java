@@ -3,43 +3,53 @@ package com.example.game1.presentation.model;
 import com.example.game1.presentation.model.Customization;
 
 /**
- * The model object for a game. If needed, it can serve as a parent class for the model object of a
- * specific game.
- *
- * <p>This object will be used by the domain layer and maps to the data objects in the data layer.
+ * The model object for a game.
+ * This object will be used by the domain layer and maps to the data objects in the data layer.
  */
 public class Game {
-  String name;
-  int level;
-  int numPoints;
-  int numStars;
-  int numTaps;
-  Customization.CharacterColour characterColour;
-  Customization.ColourScheme colourScheme;
-  Customization.MusicPath musicPath;
+
+  public enum GameName {APPLE, TAPPING, JUMPING}
+
+  private GameName name;
+  private int level;
+  private int numPoints;
+  private int numStars;
+  private int numTaps;
+  private Customization customization;
 
   /**
-   * Create a new game with default customization choices
-   *
-   * @param name the Game's name
-   * @param level the Game's level
+   * Create a new game with default customization choice.
    */
-  public Game(String name, int level) {
+  public Game(GameName name) {
     this.name = name;
-    this.level = level;
+    setLevel();
     numPoints = 0;
     numStars = 0;
     numTaps = 0;
-    characterColour = Customization.CharacterColour.BLUE;
-    colourScheme = Customization.ColourScheme.DARK;
-    musicPath = Customization.MusicPath.SONG1;
+    this.customization = new Customization();
   }
 
-  public String getName() {
+  private void setLevel() {
+    switch(name) {
+      case APPLE:
+        setLevel(1);
+        break;
+      case JUMPING:
+        setLevel(2);
+        break;
+      case TAPPING:
+        setLevel(3);
+        break;
+      default:
+      setLevel(0);
+    }
+  }
+
+  public GameName getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(GameName name) {
     this.name = name;
   }
 
@@ -75,27 +85,11 @@ public class Game {
     this.numTaps = numTaps;
   }
 
-  public Customization.CharacterColour getCharacterColour() {
-    return characterColour;
+  public Customization getCustomization() {
+    return customization;
   }
 
-  public void setCharacterColour(Customization.CharacterColour characterColour) {
-    this.characterColour = characterColour;
-  }
-
-  public Customization.ColourScheme getColourScheme() {
-    return colourScheme;
-  }
-
-  public void setColourScheme(Customization.ColourScheme colourScheme) {
-    this.colourScheme = colourScheme;
-  }
-
-  public Customization.MusicPath getMusicPath() {
-    return musicPath;
-  }
-
-  public void setMusicPath(Customization.MusicPath musicPath) {
-    this.musicPath = musicPath;
+  public void setCustomization(Customization customizaiton) {
+    this.customization = customizaiton;
   }
 }

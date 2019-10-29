@@ -1,6 +1,8 @@
 package com.example.game1.presentation.presenter.common;
 
 import android.graphics.Canvas;
+
+import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.view.common.GameItem;
 
 import java.util.ArrayList;
@@ -16,6 +18,9 @@ public abstract class GameManager {
 
   /** The height of this GameManager. */
   private int gridHeight;
+
+  /** The Game that this GameManager manages */
+  public Game game;
 
   /**
    * Constructs a GameManager with the specified height and width.
@@ -83,4 +88,12 @@ public abstract class GameManager {
 
   /** Creates some GameItems and adds them to this GameManager. */
   public abstract void createGameItems();
+
+  public Game getGame() {
+    return game;
+  }
+
+  public void setGame(Game game) {
+    this.game = game;
+  }
 }

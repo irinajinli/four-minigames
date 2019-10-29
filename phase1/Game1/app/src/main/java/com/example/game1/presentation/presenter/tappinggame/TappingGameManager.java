@@ -1,5 +1,6 @@
 package com.example.game1.presentation.presenter.tappinggame;
 
+import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.common.Character;
 import com.example.game1.presentation.view.common.Star;
@@ -11,6 +12,7 @@ public class TappingGameManager extends GameManager {
 
   public TappingGameManager(int height, int width) {
     super(height, width);
+    this.game = new Game(Game.GameName.TAPPING);
   }
 
   public void createGameItems() {

@@ -9,18 +9,18 @@ import android.widget.EditText;
 
 import com.example.game1.R;
 import com.example.game1.presentation.model.User;
+import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 import com.example.game1.presentation.view.applegame.AppleActivity;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private UserManager userManager;
+    private UserManager userManager = AppManager.getInstance().getUserManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        userManager = new UserManager();
     }
 
     /**

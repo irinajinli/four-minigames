@@ -14,7 +14,7 @@ public class GameManagerFactory {
    * @param height the height of the game manager
    * @param width the width of the game manager
    */
-  GameManager getGameManager(Game game, int height, int width) {
+  GameManager getGameManager(GameName game, int height, int width) {
     switch (game) {
       case APPLE:
         return new AppleGameManager(height, width);
@@ -23,7 +23,7 @@ public class GameManagerFactory {
       case JUMPING:
         // TODO: return new JumpingGameManager once that class is created. Temporarily, this just
         // creates and returns a AppleGameManager
-        //                return newJumpingGameManager(height, width);
+        // return newJumpingGameManager(height, width);
         return new AppleGameManager(height, width);
       default:
         return null;
@@ -31,7 +31,7 @@ public class GameManagerFactory {
   }
 
   /** The games that this factory can create game managers for */
-  enum Game {
+  enum GameName {
     APPLE,
     TAPPING,
     JUMPING
