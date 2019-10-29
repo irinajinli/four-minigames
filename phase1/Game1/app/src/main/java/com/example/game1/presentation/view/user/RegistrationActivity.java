@@ -27,7 +27,7 @@ public class RegistrationActivity extends AppCompatActivity {
      * Called when the user taps the Register button
      */
     public void sendRegistrationInput(View view) {
-        Intent intent = new Intent(this, AppleActivity.class);
+        Intent intent = new Intent(this, UserMenuActivity.class);
 
 //        EditText outputText = (EditText) findViewById(R.id.outputText);
 //        outputText.setText("");
