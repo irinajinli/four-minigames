@@ -59,8 +59,15 @@ public class AppleGameManager extends GameManager {
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
           removeItem(currItem);
           // TODO: figure out how to use res value for points values
-          if (currItem instanceof Apple) points.addPoints(1);
-          else if (currItem instanceof Star) points.addPoints(10);
+          if (currItem instanceof Apple) {
+            points.addPoints(1);
+            game.setNumPoints(game.getNumPoints() + 1);
+          }
+          else if (currItem instanceof Star) {
+            points.addPoints(10);
+            game.setNumPoints(game.getNumPoints() + 10);
+            game.setNumStars(game.getNumStars() + 1);
+          }
         }
       }
     }
