@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
+import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.view.common.GameView;
@@ -41,6 +42,10 @@ public class AppleGameView extends GameView {
 
   @Override
   public boolean onTouchEvent(MotionEvent event) {
+    // count tap in game's numTaps
+    Game game = gameManager.getGame();
+    game.setNumTaps(game.getNumTaps() + 1);
+
     double touchX = event.getX() / charWidth;
     ((AppleGameManager) gameManager).moveBasket((int) touchX);
 
