@@ -14,30 +14,30 @@ import com.example.game1.presentation.view.applegame.AppleActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-  private UserManager userManager = AppManager.getInstance().getUserManager();
+    private UserManager userManager = AppManager.getInstance().getUserManager();
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_login);
-  }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+    }
 
-  /** Called when the user taps the Login button */
-  public void sendLoginCredentials(View view) {
-    Intent intent = new Intent(this, AppleActivity.class);
+    /** Called when the user taps the Login button */
+    public void sendLoginCredentials(View view) {
+        Intent intent = new Intent(this, AppleActivity.class);
 
-    EditText userNameText = findViewById(R.id.userNameText);
-    String userName = userNameText.getText().toString();
-    EditText passwordText = findViewById(R.id.passwordText);
-    String password = passwordText.getText().toString();
+        EditText userNameText = findViewById(R.id.userNameText);
+        String userName = userNameText.getText().toString();
+        EditText passwordText = findViewById(R.id.passwordText);
+        String password = passwordText.getText().toString();
 
-    /** TODO: This method should send the login credentials to another class to validate it.
-     *     In order to compile + run the app now, just register the user as a new user
-     */
-    userManager.registerUser(userName, password);
+        if (userManager.loginUser(userName.toLowerCase(), password)) {
+            // Login successful - username and password were correct
+            startActivity(intent);
+        } else {
+            // TODO: Display message that username or password is incorrect
+        }
 
-    startActivity(intent);
-  }
-
+    }
 
 }

@@ -44,6 +44,7 @@ public class DataManager {
      */
     private static final String DATA_FILE = "game_data.txt";
 
+
     /**
      * The map that stores all the users.
      */
@@ -56,7 +57,7 @@ public class DataManager {
 
 
     /**
-     * Create a file and write to it.
+     * Create all the users to DATA_FILE.
      */
     private void writeToFile(Collection<User> users) {
         PrintWriter out = null;
@@ -108,53 +109,68 @@ public class DataManager {
         try (Scanner scanner = new Scanner(new FileInputStream(filePath))) {
             User user = null;
             while (scanner.hasNextLine()) {
-                String[] line = scanner.nextLine().split(":");
-                String key = line[0];
-                String value = line[1];
-                buffer.append(key + ": " + value).append('\n');  // TESTING PURPOSES
-                if (USERNAME_KEY.equals(key)) {
-                    user = new User(value, "");
-                    userMap.put(value, user);
-                } else if (PASSWORD_KEY.equals(key)) {
-                    user.setPassword(value);
-                } else if (CHARAC_COLOUR_KEY.equals(key)) {
-                    String characColour = value;
-                    if (characColour.equals(Customization.CharacterColour.RED.toString())) {
-                        user.getCustomization().setCharacterColour(Customization.CharacterColour.RED);
-                    } else if (characColour.equals(Customization.CharacterColour.YELLOW.toString())) {
-                        user.getCustomization().setCharacterColour(Customization.CharacterColour.YELLOW);
-                    } else {
-                        user.getCustomization().setCharacterColour(Customization.CharacterColour.BLUE);
+                String str = scanner.nextLine();
+                if (str != null && str.trim().length() > 0 && str.split(":").length > 1) {
+//                    System.out.println("?????????????????????????????????????????");
+//                    System.out.println(str); // TESTING PURPOSES
+                    String[] line = str.split(":");
+                    String key = line[0];
+//                    String value = line[1];
+                    String value;
+                    if (USERNAME_KEY.equals(key)) {
+                        if (line.length > 1) {
+                            value = line[1];
+                            buffer.append(key + ": " + value).append('\n');  // TESTING PURPOSES
+                            user = new User(value, "");
+                            userMap.put(value.toLowerCase(), user);
+                        } else {
+                            user = null;
+                        }
+                    } else if (user != null && line.length > 1) {
+                        value = line[1];
+                        buffer.append(key + ": " + value).append('\n');  // TESTING PURPOSES
+                        if (PASSWORD_KEY.equals(key)) {
+                            user.setPassword(value);
+                        } else if (CHARAC_COLOUR_KEY.equals(key)) {
+                            String characColour = value;
+                            if (characColour.equals(Customization.CharacterColour.RED.toString())) {
+                                user.getCustomization().setCharacterColour(Customization.CharacterColour.RED);
+                            } else if (characColour.equals(Customization.CharacterColour.YELLOW.toString())) {
+                                user.getCustomization().setCharacterColour(Customization.CharacterColour.YELLOW);
+                            } else {
+                                user.getCustomization().setCharacterColour(Customization.CharacterColour.BLUE);
+                            }
+                        } else if (COLOUR_SCHEME_KEY.equals(key)) {
+                            String colourScheme = value;
+                            if (colourScheme.equals(Customization.ColourScheme.LIGHT.toString())) {
+                                user.getCustomization().setColourScheme(Customization.ColourScheme.LIGHT);
+                            } else {
+                                user.getCustomization().setColourScheme(Customization.ColourScheme.DARK);
+                            }
+                        } else if (MUSIC_KEY.equals(key)) {
+                            String music = value;
+                            if (music.equals(Customization.MusicPath.SONG2)) {
+                                user.getCustomization().setMusicPath(Customization.MusicPath.SONG2);
+                            } else if (music.equals(Customization.MusicPath.SONG3)) {
+                                user.getCustomization().setMusicPath(Customization.MusicPath.SONG3);
+                            } else {
+                                user.getCustomization().setMusicPath(Customization.MusicPath.SONG1);
+                            }
+                        } else if (POINTS_KEY.equals(key)) {
+                            user.setTotalPoints(Integer.parseInt(value));
+                        } else if (STARS_KEY.equals(key)) {
+                            user.setTotalStars(Integer.parseInt(value));
+                        } else if (TAPS_KEY.equals(key)) {
+                            user.setTotalTaps(Integer.parseInt(value));
+                        } else if (LAST_COMP_LVL_KEY.equals(key)) {
+                            user.setLastCompletedLevel(Integer.parseInt(value));
+                        } else {
+                            Log.e(TAG, "Invalid key: " + DATA_FILE);
+                        }
                     }
-                } else if (COLOUR_SCHEME_KEY.equals(key)) {
-                    String colourScheme = value;
-                    if (colourScheme.equals(Customization.ColourScheme.LIGHT.toString())) {
-                        user.getCustomization().setColourScheme(Customization.ColourScheme.LIGHT);
-                    } else {
-                        user.getCustomization().setColourScheme(Customization.ColourScheme.DARK);
-                    }
-                } else if (MUSIC_KEY.equals(key)) {
-                    String music = value;
-                    if (music.equals(Customization.MusicPath.SONG2)) {
-                        user.getCustomization().setMusicPath(Customization.MusicPath.SONG2);
-                    } else if (music.equals(Customization.MusicPath.SONG3)) {
-                        user.getCustomization().setMusicPath(Customization.MusicPath.SONG3);
-                    } else {
-                        user.getCustomization().setMusicPath(Customization.MusicPath.SONG1);
-                    }
-                } else if (POINTS_KEY.equals(key)) {
-                    user.setTotalPoints(Integer.parseInt(value));
-                } else if (STARS_KEY.equals(key)) {
-                    user.setTotalStars(Integer.parseInt(value));
-                } else if (TAPS_KEY.equals(key)) {
-                    user.setTotalTaps(Integer.parseInt(value));
-                } else if (LAST_COMP_LVL_KEY.equals(key)) {
-                    user.setLastCompletedLevel(Integer.parseInt(value));
-                } else {
-                    Log.e(TAG, "Invalid key: " + DATA_FILE);
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Error encountered trying to open file for reading: " + DATA_FILE);
         }
@@ -168,20 +184,31 @@ public class DataManager {
     }
 
 
+    /**
+     * Add the user, user, to userMap and write the user's information file.
+     */
     public void createUser(User user) {
         System.out.println("data manager create user");
-        userMap.put(user.getUserName(), user);
+        userMap.put(user.getUserName().toLowerCase(), user);
         Collection<User> users = userMap.values();
         writeToFile(users);
+
+        // TESTING PURPOSES (to see if the user was actually added to userMap and written to file
+        // correctly
         readFromFile();
     }
 
 
+    /**
+     * Add user's updated information to userMap and write to file.
+     */
     public void updateUser(User user) {
         createUser(user);
     }
 
-
+    /**
+     * Return the user in userMap with username, userName. If no such user exists, return null.
+     */
     public User getUser(String userName) {
         return userMap.get(userName);
     }

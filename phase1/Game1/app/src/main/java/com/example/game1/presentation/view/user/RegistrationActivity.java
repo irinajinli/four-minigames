@@ -40,11 +40,17 @@ public class RegistrationActivity extends AppCompatActivity {
         String confirmPassword = confirmPasswordText.getText().toString();
 
         if (password.equals(confirmPassword)){
-            userManager.registerUser(userName, password);
+            if (userManager.registerUser(userName.toLowerCase(), password)) {
+                // Registration successful
+                startActivity(intent);
+            } else {
+                // Username already taken
+                // TODO: Display message that the username is already taken
+            }
         } else {
+            // TODO: Display message that the passwords don't match
 //            outputText.setText("Passwords don't match");
         }
 
-        startActivity(intent);
     }
 }

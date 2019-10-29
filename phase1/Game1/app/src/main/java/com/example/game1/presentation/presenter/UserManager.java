@@ -13,17 +13,31 @@ public class UserManager {
     private static User currentUser;
 
 
-    public UserManager(){
+    UserManager(){
         userService = new UserService();
     }
 
-    /** Register a new user */
-    public void registerUser(String userName, String password) {
+    /** Try to register a new User with username, userName, and password, password. If successful,
+     * return true. Otherwise, return false. */
+    public boolean registerUser(String userName, String password) {
         System.out.println("user manager register user");
         User user = new User(userName, password);
-        userService.registerUser(user);
+        if (userService.registerUser(user)) {
+            setCurrentUser(user);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        setCurrentUser(user);
+    /** Try to login a User with username, userName, and password, password. If successfull, return
+     * true. Otherwise, return false. */
+    public boolean loginUser(String userName, String password) {
+        User user = userService.getUser(userName, password);
+        if (user != null) {
+            setCurrentUser(user);
+        }
+        return user != null;
     }
 
     public static User getCurrentUser() {
