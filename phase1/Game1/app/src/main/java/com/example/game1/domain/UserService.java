@@ -17,7 +17,7 @@ public class UserService {
         if (dataManager.getUser(user.getUserName()) != null) {
             // TODO: send notification that username already exists
         } else {
-            dataManager.createUser(user.getUserName(), user.getPassword());
+            dataManager.createUser(user);
         }
     }
 

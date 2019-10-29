@@ -26,7 +26,7 @@ public class DataManager {
     /** The  file to write and read. */
     private static final String DATA_FILE = "game_data.txt";
 
-    private List<UserEntity> userEntities = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
 
     public void init() {}
@@ -85,10 +85,9 @@ public class DataManager {
     }
 
 
-    public void createUser(String userName, String password) {
+    public void createUser(User user) {
         System.out.println("data manager create user");
-        UserEntity userEntity = new UserEntity(userName, password);
-        userEntities.add(userEntity);
+        users.add(user);
         writeToFile();
         readFromFile();
     }
