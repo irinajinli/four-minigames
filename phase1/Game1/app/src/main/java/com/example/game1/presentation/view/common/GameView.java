@@ -81,7 +81,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
   @Override
   public void draw(Canvas canvas) {
-    super.draw(canvas);
+    //super.draw(canvas);   @@@@@@@@@@@@@@ caused bug in jumping game
     if (canvas != null) {
       gameManager.draw(canvas);
     }
