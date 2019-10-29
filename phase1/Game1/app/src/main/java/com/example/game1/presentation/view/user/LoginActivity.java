@@ -11,6 +11,7 @@ import com.example.game1.R;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 import com.example.game1.presentation.view.applegame.AppleActivity;
+import com.example.game1.presentation.view.jumpinggame.JumpingActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

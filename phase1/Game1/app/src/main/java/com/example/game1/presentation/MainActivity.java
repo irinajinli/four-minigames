@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.game1.R;
+import com.example.game1.presentation.view.applegame.AppleActivity;
+import com.example.game1.presentation.view.jumpinggame.JumpingActivity;
 import com.example.game1.presentation.view.user.LoginActivity;
 import com.example.game1.presentation.view.user.RegistrationActivity;
 
@@ -27,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
   /** Called when the user taps the Register button */
   public void goToRegistration(View view) {
     Intent intent = new Intent(this, RegistrationActivity.class);
+    startActivity(intent);
+  }
+
+  public void goToJumpingGame(View view) {
+    Intent intent = new Intent(this, AppleActivity.class);
     startActivity(intent);
   }
 }
