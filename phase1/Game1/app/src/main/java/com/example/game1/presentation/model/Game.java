@@ -16,6 +16,7 @@ public class Game {
   private int numStars;
   private int numTaps;
   private Customization customization;
+  private boolean finished;
 
   /**
    * Create a new game with default customization choice.
@@ -27,6 +28,7 @@ public class Game {
     numStars = 0;
     numTaps = 0;
     this.customization = new Customization();
+    finished = false;
   }
 
   private void setLevel() {
@@ -89,7 +91,15 @@ public class Game {
     return customization;
   }
 
-  public void setCustomization(Customization customizaiton) {
-    this.customization = customizaiton;
+  public void setCustomization(Customization customization) {
+    this.customization = customization;
+  }
+
+  public boolean finished() {
+    return finished;
+  }
+
+  public void setFinished(boolean finished) {
+    this.finished = finished;
   }
 }
