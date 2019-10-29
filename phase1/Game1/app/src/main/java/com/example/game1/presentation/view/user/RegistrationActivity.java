@@ -29,8 +29,8 @@ public class RegistrationActivity extends AppCompatActivity {
     public void sendRegistrationInput(View view) {
         Intent intent = new Intent(this, AppleActivity.class);
 
-        EditText outputText = findViewById(R.id.outputText);
-        outputText.setText("");
+//        EditText outputText = (EditText) findViewById(R.id.outputText);
+//        outputText.setText("");
 
         EditText userNameText = findViewById(R.id.userNameText);
         String userName = userNameText.getText().toString();
@@ -42,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (password.equals(confirmPassword)){
             userManager.registerUser(this, userName, password);
         } else {
-            outputText.setText("Passwords don't match");
+//            outputText.setText("Passwords don't match");
         }
 
         startActivity(intent);
