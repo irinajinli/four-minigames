@@ -23,6 +23,6 @@ public class JumpingActivity extends AppCompatActivity {
         getWindow()
                 .setFlags(
                         WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(new AppleGameView(this));
+        setContentView(new JumpingGameView(this));
     }
 }

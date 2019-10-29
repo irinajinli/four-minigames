@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
   /** Called when the user taps the Login button */
   public void sendLoginCredentials(View view) {
-    Intent intent = new Intent(this, AppleActivity.class);
+    Intent intent = new Intent(this, JumpingActivity.class);
 
     EditText userNameText = findViewById(R.id.userNameText);
     String userName = userNameText.getText().toString();
