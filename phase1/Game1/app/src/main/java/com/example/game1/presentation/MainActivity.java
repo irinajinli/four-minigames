@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     appManager = AppManager.getInstance();
-    appManager.setContext(this);
+    appManager.setContext(this.getApplicationContext());
   }
 
   /** Called when the user taps the Login button */
