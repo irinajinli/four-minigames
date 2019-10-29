@@ -11,7 +11,6 @@ import com.example.game1.R;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 import com.example.game1.presentation.view.applegame.AppleActivity;
-import com.example.game1.presentation.view.jumpinggame.JumpingActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
   /** Called when the user taps the Login button */
   public void sendLoginCredentials(View view) {
-    Intent intent = new Intent(this, JumpingActivity.class);
+    Intent intent = new Intent(this, AppleActivity.class);
 
     EditText userNameText = findViewById(R.id.userNameText);
     String userName = userNameText.getText().toString();
