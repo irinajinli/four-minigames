@@ -29,4 +29,8 @@ public class PointsCounter extends GameItem {
     numPoints += points;
     setAppearance(numPoints + ""); // concatenate to make String
   }
+
+  public int getNumPoints() {
+    return numPoints;
+  }
 }

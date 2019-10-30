@@ -17,9 +17,10 @@ public class AppleGameManager extends GameManager {
    * methods for handling Apples.
    */
   private Basket basket;
-
   private PointsCounter points;
+  private int numCaughtApples = 0;
   private int numDroppedApples = 0;
+  private int numCaughtStars = 0;
 
   /** Constructs an AppleGameManager with a height and width of 10. */
   public AppleGameManager() {
@@ -62,7 +63,7 @@ public class AppleGameManager extends GameManager {
 
     Star s1 = new Star();
     place(s1);
-    s1.setLocation(10, 40);
+    s1.setLocation(10, 35);
   }
 
   /**
@@ -77,6 +78,12 @@ public class AppleGameManager extends GameManager {
   /** Moves, removes, and catches GameItems. */
   public void update() {
 
+    // check if the game is over
+    if (numDroppedApples >= 1) {
+      MainThread.isRunning = false;
+      gameOver();
+    }
+
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
 
@@ -89,23 +96,19 @@ public class AppleGameManager extends GameManager {
           dropGameItem(currItem);
         }
 
-        // check if the game is over
-        if (numDroppedApples >= 1) {
-          MainThread.isRunning = false;
-          gameOver();
-        }
-
         // check if currItem has been caught; remove if necessary
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
           removeItem(currItem);
           // TODO: figure out how to use res value for points values
           if (currItem instanceof Apple) {
             points.addPoints(1);
-            game.setNumPoints(game.getNumPoints() + 1);
+            numCaughtApples += 1;
+//            game.setNumPoints(game.getNumPoints() + 1);
           } else if (currItem instanceof Star) {
-            points.addPoints(10);
-            game.setNumPoints(game.getNumPoints() + 10);
-            game.setNumStars(game.getNumStars() + 1);
+            points.addPoints(5);
+            numCaughtStars += 1;
+//            game.setNumPoints(game.getNumPoints() + 5);
+//            game.setNumStars(game.getNumStars() + 1);
           }
         }
       }
@@ -142,5 +145,11 @@ public class AppleGameManager extends GameManager {
     }
 
     // else do nothing
+  }
+
+  public void gameOver() {
+    game.setNumPoints(game.getNumPoints() + points.getNumPoints());
+    game.setNumStars(game.getNumStars() + numCaughtStars);
+    super.gameOver();
   }
 }
