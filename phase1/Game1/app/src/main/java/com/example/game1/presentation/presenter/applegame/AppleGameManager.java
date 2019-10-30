@@ -1,5 +1,6 @@
 package com.example.game1.presentation.presenter.applegame;
 
+import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
@@ -17,9 +18,11 @@ public class AppleGameManager extends GameManager {
    * methods for handling Apples.
    */
   private Basket basket;
-
-  private PointsCounter points;
+  private int numCaughtApples = 0;
   private int numDroppedApples = 0;
+  private int numCaughtStars = 0;
+  private PointsCounter points;
+
 
   /** Constructs an AppleGameManager with a height and width of 10. */
   public AppleGameManager() {
@@ -62,7 +65,7 @@ public class AppleGameManager extends GameManager {
 
     Star s1 = new Star();
     place(s1);
-    s1.setLocation(10, 40);
+    s1.setLocation(10, 35);
   }
 
   /**
@@ -84,8 +87,8 @@ public class AppleGameManager extends GameManager {
       currItem.move();
 
       if (!(currItem instanceof Basket)) {
-        // check if each non-Basket GameItem is off screen; remove if necessary
-        if (currItem.getY() > getGridHeight()) {
+        // check if each non-Basket GameItem is off screen; drop if necessary
+        if (currItem.getY() > basket.getY()) {
           dropGameItem(currItem);
         }
 
@@ -95,17 +98,20 @@ public class AppleGameManager extends GameManager {
           gameOver();
         }
 
-        // check if currItem has been caught; remove if necessary
+        // check if currItem has been caught; remove if caught
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
           removeItem(currItem);
           // TODO: figure out how to use res value for points values
           if (currItem instanceof Apple) {
+            numCaughtApples += 1;
             points.addPoints(1);
-            game.setNumPoints(game.getNumPoints() + 1);
+//            game.setNumPoints(game.getNumPoints() + pointsEarned);
+
           } else if (currItem instanceof Star) {
-            points.addPoints(10);
-            game.setNumPoints(game.getNumPoints() + 10);
-            game.setNumStars(game.getNumStars() + 1);
+            numCaughtStars += 1;
+//            points.addPoints(5);
+//            game.setNumPoints(game.getNumPoints() + 5);
+//            game.setNumStars(game.getNumStars() + 1);
           }
         }
       }
@@ -142,5 +148,14 @@ public class AppleGameManager extends GameManager {
     }
 
     // else do nothing
+  }
+
+  /**
+   * Ends this minigame, updates game's statistics, and returns to UserMenuActivity.
+   */
+  public void gameOver() {
+    game.setNumPoints(game.getNumPoints() + points.getNumPoints());
+    game.setNumStars(game.getNumStars()+ numCaughtStars);
+    super.gameOver();
   }
 }

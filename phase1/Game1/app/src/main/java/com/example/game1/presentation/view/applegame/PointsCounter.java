@@ -25,6 +25,10 @@ public class PointsCounter extends GameItem {
     canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
   }
 
+  public int getNumPoints() {
+    return numPoints;
+  }
+
   public void addPoints(int points) {
     numPoints += points;
     setAppearance(numPoints + ""); // concatenate to make String
