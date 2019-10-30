@@ -16,8 +16,8 @@ public class AppleGameManager extends GameManager {
    * A GameManager for the Apple minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling Apples.
    */
-
   Basket basket;
+
   PointsCounter points;
   private int numDroppedApples = 0;
 
@@ -38,19 +38,22 @@ public class AppleGameManager extends GameManager {
   }
 
   public void createGameItems() {
-    /** Creates GameItems required at the beginning of the minigame. *//**
+    /** Creates GameItems required at the beginning of the minigame. */
+    /**
      * Updates the GameItems in this GameManager. Moves GameItems and accounts for those that are
      * dropped and caught.
      */
     Apple a1 = new Apple();
     Apple a2 = new Apple();
     Apple a3 = new Apple();
+    Apple a4 = new Apple();
     place(a1);
     a1.setLocation(0, 15);
     place(a2);
     a2.setLocation(10, 0);
     place(a3);
     a3.setLocation(20, 8);
+    a4.setLocation(15, 30);
 
     basket = new Basket();
     place(basket);
@@ -62,10 +65,7 @@ public class AppleGameManager extends GameManager {
   }
 
   public void update() {
-    /**
-     * Moves, removes, and catches GameItems.
-     */
-
+    /** Moves, removes, and catches GameItems. */
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
 
@@ -74,13 +74,12 @@ public class AppleGameManager extends GameManager {
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItem is off screen; remove if necessary
-        if (currItem.getY() > getGridHeight()) {
-          removeItem(currItem);
-          numDroppedApples += 1;
+        if (currItem.getY() > getGridHeight() && currItem instanceof Apple) {
+          dropApple((Apple) currItem);
         }
 
         // check if the game is over
-        if (numDroppedApples >= 5) {
+        if (numDroppedApples >= 1) {
           MainThread.isRunning = false;
           gameOver();
         }
@@ -101,6 +100,12 @@ public class AppleGameManager extends GameManager {
       }
     }
     spawnNew();
+  }
+
+  private void dropApple(Apple currItem) {
+    /** Drops the specified Apple. */
+    removeItem(currItem);
+    numDroppedApples += 1;
   }
 
   private void spawnNew() {
