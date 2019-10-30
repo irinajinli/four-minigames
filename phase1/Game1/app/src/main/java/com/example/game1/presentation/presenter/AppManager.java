@@ -1,6 +1,9 @@
 package com.example.game1.presentation.presenter;
 
+import android.app.Activity;
 import android.content.Context;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
@@ -82,7 +85,8 @@ public class AppManager {
     /**
      * Record that the given Game is finished.
      */
-    public void finishGame(Game game) {
-
+    public void finishGame(Game game, AppCompatActivity activity) {
+        userManager.updateCurrentUsersGame(game);
+        userManager.goToUserMenu(activity);
     }
 }

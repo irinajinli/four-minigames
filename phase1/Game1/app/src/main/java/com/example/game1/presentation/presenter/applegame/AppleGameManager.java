@@ -68,6 +68,9 @@ public class AppleGameManager extends GameManager {
           // what happens when the game is over?
           // TODO: decide what to do next instead of skipping straight to the next game
           game.setName(Game.GameName.TAPPING);
+
+          //TESTING
+          gameOver();
         }
 
         // check if currItem has been caught; remove if necessary

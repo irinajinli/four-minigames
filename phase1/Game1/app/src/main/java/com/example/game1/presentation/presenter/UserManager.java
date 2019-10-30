@@ -1,8 +1,12 @@
 package com.example.game1.presentation.presenter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.User;
 import com.example.game1.domain.UserService;
 import com.example.game1.presentation.view.user.UserMenuActivity;
@@ -51,6 +55,13 @@ public class UserManager {
     }
 
     public void updateCurrentUsersCustomization(){
+    }
+
+    public void updateCurrentUsersGame(Game game) {}
+
+    public void goToUserMenu(AppCompatActivity activity) {
+        Intent intent = new Intent(activity, UserMenuActivity.class);
+        activity.startActivity(intent);
     }
 
 }

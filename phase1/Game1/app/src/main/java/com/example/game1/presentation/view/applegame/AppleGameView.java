@@ -34,6 +34,7 @@ public class AppleGameView extends GameView {
             .getAppleGameManager(
                 (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
     gameManager.createGameItems();
+    gameManager.setActivity(activity);
 
     thread.setRunning(true);
     thread.start();

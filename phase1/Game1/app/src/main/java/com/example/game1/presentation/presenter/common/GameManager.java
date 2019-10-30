@@ -1,8 +1,12 @@
 package com.example.game1.presentation.presenter.common;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.view.common.GameItem;
 
 import java.util.ArrayList;
@@ -18,6 +22,8 @@ public abstract class GameManager {
   private int gridWidth;
   /** The height of this GameManager. */
   private int gridHeight;
+  /** The Activity class of the game this GameManager manages. */
+  private AppCompatActivity activity;
 
   /**
    * Constructs a GameManager with the specified height and width.
@@ -89,5 +95,17 @@ public abstract class GameManager {
 
   public void setGame(Game game) {
     this.game = game;
+  }
+
+  public AppCompatActivity getActivity() {
+    return activity;
+  }
+
+  public void setActivity(AppCompatActivity activity) {
+    this.activity = activity;
+  }
+
+  public void gameOver(){
+    AppManager.getInstance().finishGame(game, activity);
   }
 }
