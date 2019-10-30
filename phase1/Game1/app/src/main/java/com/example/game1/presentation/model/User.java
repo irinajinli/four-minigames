@@ -1,77 +1,116 @@
 package com.example.game1.presentation.model;
 
 public class User {
-  private String userName;
-  private String password;
-  private Customization customization;
-  private int totalPoints;
-  private int totalStars;
-  private int totalTaps;
-  private int lastCompletedLevel = 0;
+    private String userName;
+    private String password;
+    private Customization customization;
 
-  public User(String userName, String password) {
-    this.userName = userName;
-    this.password = password;
-    this.customization = new Customization();
-    totalPoints = 0;
-    totalStars = 0;
-    totalTaps = 0;
-    lastCompletedLevel = 0;
-  }
+    /**
+     * The stats of the top game in this user's entire history (top points + stars)
+     */
+    private int topPoints;
+    private int topStars;
+    private int topTaps;
 
-  public String getUserName() {
-    return userName;
-  }
+    /**
+     * The stats of the current game
+     */
+    private int currentPoints;
+    private int currentStars;
+    private int currentTaps;
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    private int lastCompletedLevel;
 
-  public String getPassword() {
-    return password;
-  }
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+        this.customization = new Customization();
+        topPoints = 0;
+        topStars = 0;
+        topTaps = 0;
+        currentPoints = 0;
+        currentStars = 0;
+        currentTaps = 0;
+        lastCompletedLevel = 0;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public String getUserName() {
+        return userName;
+    }
 
-  public Customization getCustomization() {
-    return customization;
-  }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-  public void setCustomization(Customization customization) {
-    this.customization = customization;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public int getTotalPoints() {
-    return totalPoints;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public void setTotalPoints(int totalPoints) {
-    this.totalPoints = totalPoints;
-  }
+    public Customization getCustomization() {
+        return customization;
+    }
 
-  public int getTotalStars() {
-    return totalStars;
-  }
+    public void setCustomization(Customization customization) {
+        this.customization = customization;
+    }
 
-  public void setTotalStars(int totalStars) {
-    this.totalStars = totalStars;
-  }
+    public int getTotalPoints() {
+        return currentPoints;
+    }
 
-  public int getTotalTaps() {
-    return totalTaps;
-  }
+    public void setTotalPoints(int totalPoints) {
+        this.currentPoints = totalPoints;
+    }
 
-  public void setTotalTaps(int totalTaps) {
-    this.totalTaps = totalTaps;
-  }
+    public int getTotalStars() {
+        return currentStars;
+    }
 
-  public int getLastCompletedLevel() {
-    return lastCompletedLevel;
-  }
+    public void setTotalStars(int totalStars) {
+        this.currentStars = totalStars;
+    }
 
-  public void setLastCompletedLevel(int lastCompletedLevel) {
-    this.lastCompletedLevel = lastCompletedLevel;
-  }
+    public int getTotalTaps() {
+        return currentTaps;
+    }
+
+    public void setTotalTaps(int totalTaps) {
+        this.currentTaps = totalTaps;
+    }
+
+    public int getLastCompletedLevel() {
+        return lastCompletedLevel;
+    }
+
+    public void setLastCompletedLevel(int lastCompletedLevel) {
+        this.lastCompletedLevel = lastCompletedLevel;
+    }
+
+    public int getTopPoints() {
+        return topPoints;
+    }
+
+    public void setTopPoints(int topPoints) {
+        this.topPoints = topPoints;
+    }
+
+    public int getTopStars() {
+        return topStars;
+    }
+
+    public void setTopStars(int topStars) {
+        this.topStars = topStars;
+    }
+
+    public int getTopTaps() {
+        return topTaps;
+    }
+
+    public void setTopTaps(int topTaps) {
+        this.topTaps = topTaps;
+    }
 }

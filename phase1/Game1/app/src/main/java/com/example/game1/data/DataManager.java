@@ -29,9 +29,12 @@ public class DataManager {
     private static final String CHARAC_COLOUR_KEY = "CharacterColour";
     private static final String COLOUR_SCHEME_KEY = "ColourScheme";
     private static final String MUSIC_KEY = "Music";
-    private static final String POINTS_KEY = "Points";
-    private static final String STARS_KEY = "Stars";
-    private static final String TAPS_KEY = "Taps";
+    private static final String TOP_POINTS_KEY = "TopPoints";
+    private static final String TOP_STARS_KEY = "TopStars";
+    private static final String TOP_TAPS_KEY = "TopTaps";
+    private static final String CURR_POINTS_KEY = "CurrPoints";
+    private static final String CURR_STARS_KEY = "CurrStars";
+    private static final String CURR_TAPS_KEY = "CurrTaps";
     private static final String LAST_COMP_LVL_KEY = "LastCompletedLevel";
 
     /**
@@ -57,7 +60,7 @@ public class DataManager {
 
 
     /**
-     * Create all the users to DATA_FILE.
+     * Write all the users to DATA_FILE.
      */
     private void writeToFile(Collection<User> users) {
         PrintWriter out = null;
@@ -87,9 +90,12 @@ public class DataManager {
             out.println(CHARAC_COLOUR_KEY + ":" + user.getCustomization().getCharacterColour());
             out.println(COLOUR_SCHEME_KEY + ":" + user.getCustomization().getColourScheme());
             out.println(MUSIC_KEY + ":" + user.getCustomization().getMusicPath());
-            out.println(POINTS_KEY + ":" + user.getTotalPoints());
-            out.println(STARS_KEY + ":" + user.getTotalStars());
-            out.println(TAPS_KEY + ":" + user.getTotalTaps());
+            out.println(TOP_POINTS_KEY + ":" + user.getTopPoints());
+            out.println(TOP_STARS_KEY + ":" + user.getTopStars());
+            out.println(TOP_TAPS_KEY + ":" + user.getTopTaps());
+            out.println(CURR_POINTS_KEY + ":" + user.getTotalPoints());
+            out.println(CURR_STARS_KEY + ":" + user.getTotalStars());
+            out.println(CURR_TAPS_KEY + ":" + user.getTotalTaps());
             out.println(LAST_COMP_LVL_KEY + ":" + user.getLastCompletedLevel());
         }
 
@@ -156,11 +162,17 @@ public class DataManager {
                             } else {
                                 user.getCustomization().setMusicPath(Customization.MusicPath.SONG1);
                             }
-                        } else if (POINTS_KEY.equals(key)) {
+                        } else if (TOP_POINTS_KEY.equals(key)) {
+                            user.setTopPoints(Integer.parseInt(value));
+                        } else if (TOP_STARS_KEY.equals(key)) {
+                            user.setTopStars(Integer.parseInt(value));
+                        } else if (TOP_TAPS_KEY.equals(key)) {
+                            user.setTopTaps(Integer.parseInt(value));
+                        } else if (CURR_POINTS_KEY.equals(key)) {
                             user.setTotalPoints(Integer.parseInt(value));
-                        } else if (STARS_KEY.equals(key)) {
+                        } else if (CURR_STARS_KEY.equals(key)) {
                             user.setTotalStars(Integer.parseInt(value));
-                        } else if (TAPS_KEY.equals(key)) {
+                        } else if (CURR_TAPS_KEY.equals(key)) {
                             user.setTotalTaps(Integer.parseInt(value));
                         } else if (LAST_COMP_LVL_KEY.equals(key)) {
                             user.setLastCompletedLevel(Integer.parseInt(value));
@@ -212,5 +224,15 @@ public class DataManager {
     public User getUser(String userName) {
         return userMap.get(userName);
     }
+    
+    public User getTopUser() {
+//        Collection<User> users = userMap.values();
+//        Iterator<User> iter = users.iterator();
+//        while (iter.hasNext()) {
+//            
+//        }
+        return null;
+    }
+    
 
 }
