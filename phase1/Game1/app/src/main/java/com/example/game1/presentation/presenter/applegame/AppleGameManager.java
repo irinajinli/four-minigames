@@ -57,7 +57,12 @@ public class AppleGameManager extends GameManager {
     a2.setLocation(10, 0);
     place(a3);
     a3.setLocation(20, 8);
-    a4.setLocation(15, 40);
+    place(a4);
+    a4.setLocation(15, 30);
+
+    Star s1 = new Star();
+    place(s1);
+    s1.setLocation(10, 40);
   }
 
   /**
@@ -80,8 +85,8 @@ public class AppleGameManager extends GameManager {
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItem is off screen; remove if necessary
-        if (currItem.getY() > getGridHeight() && currItem instanceof Apple) {
-          dropApple((Apple) currItem);
+        if (currItem.getY() > getGridHeight()) {
+          dropGameItem(currItem);
         }
 
         // check if the game is over
@@ -109,9 +114,10 @@ public class AppleGameManager extends GameManager {
   }
 
   /** Drops the specified Apple. */
-  private void dropApple(Apple currItem) {
+  private void dropGameItem(GameItem currItem) {
     removeItem(currItem);
-    numDroppedApples += 1;
+    if (currItem instanceof Apple)
+      numDroppedApples += 1;
   }
 
   /** Spawns a new Apple or Star in a random location at the top of the screen. */
