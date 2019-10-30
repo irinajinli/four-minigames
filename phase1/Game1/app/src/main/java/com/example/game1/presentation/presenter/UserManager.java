@@ -85,14 +85,23 @@ public class UserManager {
         userService.updateUser(currentUser);
     }
 
-    public void updateCurrentUsersGame(Game game) {
+    void updateCurrentUsersGame(Game game) {
         currentUser.setCurrentPoints(game.getNumPoints());
         currentUser.setCurrentStars(game.getNumStars());
         currentUser.setCurrentTaps(game.getNumTaps());
+        currentUser.setLastCompletedLevel(game.getLevel());
         userService.updateUser(currentUser);
     }
 
-    public void goToUserMenu(AppCompatActivity activity) {
+    public void restartCurrentUsersGame() {
+        currentUser.setCurrentPoints(0);
+        currentUser.setCurrentStars(0);
+        currentUser.setCurrentTaps(0);
+        currentUser.setLastCompletedLevel(0);
+        userService.updateUser(currentUser);
+    }
+
+    void goToUserMenu(AppCompatActivity activity) {
         Intent intent = new Intent(activity, UserMenuActivity.class);
         activity.startActivity(intent);
     }

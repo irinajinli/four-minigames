@@ -1,6 +1,5 @@
 package com.example.game1.presentation.model;
 
-import com.example.game1.presentation.model.Customization;
 
 /**
  * The model object for a game.
@@ -9,6 +8,10 @@ import com.example.game1.presentation.model.Customization;
 public class Game {
 
   public enum GameName {APPLE, TAPPING, JUMPING}
+
+  private static final int APPLE_LEVEL = 1;
+  private static final int TAPPING_LEVEL = 2;
+  private static final int JUMPING_LEVEL = 3;
 
   private GameName name;
   private int level;
@@ -32,13 +35,13 @@ public class Game {
   private void setLevel() {
     switch(name) {
       case APPLE:
-        setLevel(1);
-        break;
-      case JUMPING:
-        setLevel(2);
+        setLevel(APPLE_LEVEL);
         break;
       case TAPPING:
-        setLevel(3);
+        setLevel(TAPPING_LEVEL);
+        break;
+      case JUMPING:
+        setLevel(JUMPING_LEVEL);
         break;
       default:
       setLevel(0);
@@ -57,7 +60,7 @@ public class Game {
     return level;
   }
 
-  public void setLevel(int level) {
+  private void setLevel(int level) {
     this.level = level;
   }
 

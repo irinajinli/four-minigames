@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.game1.R;
@@ -22,8 +23,44 @@ public class UserMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu);
+
         EditText userNameText = findViewById(R.id.userNameText);
         userNameText.setText(userManager.getCurrentUser().getUserName());
+
+        // Disable all Play buttons. Then enable the Play button corresponding to the user's next
+        // level.
+        Button playButton1 = findViewById(R.id.playButton1);
+        playButton1.setEnabled(false);
+        Button playButton2 = findViewById(R.id.playButton2);
+        playButton2.setEnabled(false);
+        Button playButton3 = findViewById(R.id.playButton3);
+        playButton3.setEnabled(false);
+
+
+        switch (userManager.getCurrentUser().getLastCompletedLevel()) {
+            case 0:
+                playButton1.setEnabled(true);
+                break;
+            case 1:
+                playButton2.setEnabled(true);
+                break;
+            case 2:
+                playButton3.setEnabled(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /** Called when the user taps the Restart button */
+    public void restartGame(View view) {
+        Button playButton1 = findViewById(R.id.playButton1);
+        playButton1.setEnabled(true);
+        Button playButton2 = findViewById(R.id.playButton2);
+        playButton2.setEnabled(false);
+        Button playButton3 = findViewById(R.id.playButton3);
+        playButton3.setEnabled(false);
+        userManager.restartCurrentUsersGame();
     }
 
     /** Called when the user taps the Logout button */

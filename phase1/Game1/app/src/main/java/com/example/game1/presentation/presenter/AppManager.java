@@ -2,10 +2,7 @@ package com.example.game1.presentation.presenter;
 
 import android.app.Activity;
 import android.content.Context;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
