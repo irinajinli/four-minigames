@@ -60,12 +60,9 @@ public class AppleGameManager extends GameManager {
     points.setLocation(getGridWidth() - 2, 2);
   }
 
-  /**
-   * Updates the GameItems in this GameManager. Moves GameItems and accounts for those that are
-   * dropped and caught.
-   */
+  /** Moves, removes, and catches GameItems. */
   public void update() {
-    /** Moves, removes, and catches GameItems. */
+
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
 
