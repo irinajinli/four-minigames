@@ -39,6 +39,14 @@ public class AppleGameManager extends GameManager {
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
+    basket = new Basket();
+    place(basket);
+    basket.setLocation(getGridWidth() / 2 + 1, getGridHeight() - 5);
+
+    points = new PointsCounter();
+    place(points);
+    points.setLocation(getGridWidth() - 2, 2);
+
     Apple a1 = new Apple();
     Apple a2 = new Apple();
     Apple a3 = new Apple();
@@ -49,15 +57,16 @@ public class AppleGameManager extends GameManager {
     a2.setLocation(10, 0);
     place(a3);
     a3.setLocation(20, 8);
-    a4.setLocation(15, 30);
+    a4.setLocation(15, 40);
+  }
 
-    basket = new Basket();
-    place(basket);
-    basket.setLocation(getGridWidth() / 2 + 1, getGridHeight() - 5);
-
-    points = new PointsCounter();
-    place(points);
-    points.setLocation(getGridWidth() - 2, 2);
+  /**
+   * Move this AppleGameManager's Basket to the specified x coordinate.
+   *
+   * @param x the x coordinate to move this Basket to
+   */
+  public void moveBasket(int x) {
+    basket.move(x);
   }
 
   /** Moves, removes, and catches GameItems. */
@@ -127,14 +136,5 @@ public class AppleGameManager extends GameManager {
     }
 
     // else do nothing
-  }
-
-  /**
-   * Move this AppleGameManager's Basket to the specified x coordinate.
-   *
-   * @param x the x coordinate to move this Basket to
-   */
-  public void moveBasket(int x) {
-    basket.move(x);
   }
 }
