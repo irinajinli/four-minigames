@@ -13,18 +13,19 @@ import com.example.game1.presentation.view.applegame.MainThread;
 public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
   // TODO: make variables private where possible
+
   /** The width of a character. */
   public static float charWidth;
   /** The height of a character. */
   public static float charHeight;
   /** The fish tank contents. */
   public GameManager gameManager;
+  /** The part of the program that manages time. */
+  public MainThread thread;
   /** Screen width. */
   private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
   /** Screen height. */
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-  /** The part of the program that manages time. */
-  public MainThread thread;
 
   /**
    * Create a new fish tank in the context environment.
@@ -74,7 +75,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-  /** Update the fish tank. */
+  /** Update this GameView's GameManager. */
   public void update() {
     gameManager.update();
   }

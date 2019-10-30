@@ -4,6 +4,7 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
+import com.example.game1.presentation.view.applegame.MainThread;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.common.Star;
@@ -60,10 +61,10 @@ public class AppleGameManager extends GameManager {
           numDroppedApples += 1;
         }
 
-        //        // check if the game is over
-        //        if (numDroppedApples >= 5) {
-        //          endGame();
-        //        }
+        // check if the game is over
+        if (numDroppedApples >= 5) {
+          MainThread.isRunning = false;
+        }
 
         // check if currItem has been caught; remove if necessary
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
