@@ -28,6 +28,11 @@ public class AppManager {
     /** The context of the application */
     Context context = null;
 
+    /**
+     * How many points 1 star is equivalent to when calculating a user's score
+     */
+    public static final int STAR_FACTOR = 5;
+
 
     private AppManager() {
     }

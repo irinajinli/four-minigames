@@ -93,9 +93,9 @@ public class DataManager {
             out.println(TOP_POINTS_KEY + ":" + user.getTopPoints());
             out.println(TOP_STARS_KEY + ":" + user.getTopStars());
             out.println(TOP_TAPS_KEY + ":" + user.getTopTaps());
-            out.println(CURR_POINTS_KEY + ":" + user.getTotalPoints());
-            out.println(CURR_STARS_KEY + ":" + user.getTotalStars());
-            out.println(CURR_TAPS_KEY + ":" + user.getTotalTaps());
+            out.println(CURR_POINTS_KEY + ":" + user.getCurrentPoints());
+            out.println(CURR_STARS_KEY + ":" + user.getCurrentStars());
+            out.println(CURR_TAPS_KEY + ":" + user.getCurrentTaps());
             out.println(LAST_COMP_LVL_KEY + ":" + user.getLastCompletedLevel());
         }
 
@@ -169,11 +169,11 @@ public class DataManager {
                         } else if (TOP_TAPS_KEY.equals(key)) {
                             user.setTopTaps(Integer.parseInt(value));
                         } else if (CURR_POINTS_KEY.equals(key)) {
-                            user.setTotalPoints(Integer.parseInt(value));
+                            user.setCurrentPoints(Integer.parseInt(value));
                         } else if (CURR_STARS_KEY.equals(key)) {
-                            user.setTotalStars(Integer.parseInt(value));
+                            user.setCurrentStars(Integer.parseInt(value));
                         } else if (CURR_TAPS_KEY.equals(key)) {
-                            user.setTotalTaps(Integer.parseInt(value));
+                            user.setCurrentTaps(Integer.parseInt(value));
                         } else if (LAST_COMP_LVL_KEY.equals(key)) {
                             user.setLastCompletedLevel(Integer.parseInt(value));
                         } else {
@@ -201,6 +201,15 @@ public class DataManager {
      */
     public void createUser(User user) {
         System.out.println("data manager create user");
+
+        // Update top score
+        if (calculateScore(user.getCurrentPoints(), user.getCurrentStars()) >
+                calculateScore(user.getTopPoints(), user.getTopStars())) {
+            user.setTopPoints(user.getCurrentPoints());
+            user.setTopStars(user.getCurrentStars());
+            user.setTopTaps(user.getCurrentTaps());
+        }
+
         userMap.put(user.getUserName().toLowerCase(), user);
         Collection<User> users = userMap.values();
         writeToFile(users);
@@ -209,7 +218,6 @@ public class DataManager {
         // correctly
         readFromFile();
     }
-
 
     /**
      * Add user's updated information to userMap and write to file.
@@ -224,15 +232,32 @@ public class DataManager {
     public User getUser(String userName) {
         return userMap.get(userName);
     }
-    
+
+    /**
+     * Return the user with the top score.
+     */
     public User getTopUser() {
-//        Collection<User> users = userMap.values();
-//        Iterator<User> iter = users.iterator();
-//        while (iter.hasNext()) {
-//            
-//        }
-        return null;
+        Collection<User> users = userMap.values();
+        Iterator<User> iter = users.iterator();
+
+        User topUser = null;
+        int topScore = 0;
+        while (iter.hasNext()) {
+            User user = iter.next();
+            int userScore = calculateScore(user.getTopPoints(), user.getTopStars());
+            if (userScore >= topScore) {
+                topUser = user;
+                topScore = userScore;
+            }
+        }
+        return topUser;
     }
-    
+
+    /**
+     * Return the "score" of the given number of points and stars.
+     */
+    private int calculateScore(int points, int stars) {
+        return points + (AppManager.STAR_FACTOR * stars);
+    }
 
 }

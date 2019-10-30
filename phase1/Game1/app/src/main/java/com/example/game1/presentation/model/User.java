@@ -58,28 +58,28 @@ public class User {
         this.customization = customization;
     }
 
-    public int getTotalPoints() {
+    public int getCurrentPoints() {
         return currentPoints;
     }
 
-    public void setTotalPoints(int totalPoints) {
-        this.currentPoints = totalPoints;
+    public void setCurrentPoints(int currentPoints) {
+        this.currentPoints = currentPoints;
     }
 
-    public int getTotalStars() {
+    public int getCurrentStars() {
         return currentStars;
     }
 
-    public void setTotalStars(int totalStars) {
-        this.currentStars = totalStars;
+    public void setCurrentStars(int currentStars) {
+        this.currentStars = currentStars;
     }
 
-    public int getTotalTaps() {
+    public int getCurrentTaps() {
         return currentTaps;
     }
 
-    public void setTotalTaps(int totalTaps) {
-        this.currentTaps = totalTaps;
+    public void setCurrentTaps(int currentTaps) {
+        this.currentTaps = currentTaps;
     }
 
     public int getLastCompletedLevel() {

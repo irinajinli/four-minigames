@@ -85,7 +85,12 @@ public class UserManager {
         userService.updateUser(currentUser);
     }
 
-    public void updateCurrentUsersGame(Game game) {}
+    public void updateCurrentUsersGame(Game game) {
+        currentUser.setCurrentPoints(game.getNumPoints());
+        currentUser.setCurrentStars(game.getNumStars());
+        currentUser.setCurrentTaps(game.getNumTaps());
+        userService.updateUser(currentUser);
+    }
 
     public void goToUserMenu(AppCompatActivity activity) {
         Intent intent = new Intent(activity, UserMenuActivity.class);
