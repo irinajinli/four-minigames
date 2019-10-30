@@ -39,7 +39,7 @@ public class PointsCounter extends GameItem {
   /**
    * Gets numPoints.
    *
-   * @return
+   * @return number of points
    */
   public int getNumPoints() {
     return numPoints;
@@ -48,7 +48,7 @@ public class PointsCounter extends GameItem {
   /**
    * Adds the specified number of points.
    *
-   * @param points
+   * @param points number of points to add
    */
   public void addPoints(int points) {
     numPoints += points;
