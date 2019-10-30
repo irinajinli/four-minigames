@@ -69,7 +69,6 @@ public class AppleGameManager extends GameManager {
           // TODO: decide what to do next instead of skipping straight to the next game
           game.setName(Game.GameName.TAPPING);
 
-          //TESTING
           gameOver();
         }
 
