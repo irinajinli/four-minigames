@@ -12,21 +12,36 @@ import com.example.game1.presentation.view.common.Star;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
+  /**
+   * A GameManager for the Apple minigame. Includes an extra variable numDroppedApples and extra
+   * methods for handling Apples.
+   */
 
   Basket basket;
   PointsCounter points;
   private int numDroppedApples = 0;
 
   public AppleGameManager() {
+    /** Constructs an AppleGameManager with a height and width of 10. */
     super(10, 10);
   }
 
   public AppleGameManager(int height, int width) {
+    /**
+     * Constructs an AppleGameManager with the specified height and width.
+     *
+     * @param height the height of the AppleGameManager
+     * @param width the width of the AppleGameManager
+     */
     super(height, width);
     this.game = new Game(Game.GameName.APPLE);
   }
 
   public void createGameItems() {
+    /** Creates GameItems required at the beginning of the minigame. *//**
+     * Updates the GameItems in this GameManager. Moves GameItems and accounts for those that are
+     * dropped and caught.
+     */
     Apple a1 = new Apple();
     Apple a2 = new Apple();
     Apple a3 = new Apple();
@@ -47,6 +62,9 @@ public class AppleGameManager extends GameManager {
   }
 
   public void update() {
+    /**
+     * Moves, removes, and catches GameItems.
+     */
 
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
@@ -86,6 +104,8 @@ public class AppleGameManager extends GameManager {
   }
 
   private void spawnNew() {
+    /** Spawns a new Apple or Star in a random location at the top of the screen. */
+
     // get a random x-coordinate to spawn the new Apple/Star at
     Random randCoordinate = new Random();
     int spawnCoordinate = randCoordinate.nextInt(getGridWidth());
@@ -114,6 +134,11 @@ public class AppleGameManager extends GameManager {
    * @param x
    */
   public void moveBasket(int x) {
+    /**
+     * Move this AppleGameManager's Basket to the specified x coordinate.
+     *
+     * @param x the x coordinate to move this Basket to
+     */
     basket.move(x);
   }
 }
