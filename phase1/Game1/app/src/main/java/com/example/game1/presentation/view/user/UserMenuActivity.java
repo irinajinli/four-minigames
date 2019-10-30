@@ -57,4 +57,10 @@ public class UserMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /** Called when the user taps the View Statistics button */
+    public void goToStatistics(View view) {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        startActivity(intent);
+    }
+
 }

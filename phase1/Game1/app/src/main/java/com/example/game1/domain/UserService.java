@@ -38,4 +38,8 @@ public class UserService {
     /** Update user's information */
     public void updateUser(User user) {dataManager.updateUser(user);}
 
+    public User getTopUser() {
+        return dataManager.getTopUser();
+    }
+
 }

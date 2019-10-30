@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.view.user.UserMenuActivity"></activity>
-        <activity android:name=".presentation.view.user.CustomizationActivity" /><activity
-        android:name=".presentation.view.user.RegistrationActivity"
-        android:parentActivityName=".presentation.MainActivity" />
+        <activity android:name=".presentation.view.user.StatisticsActivity"></activity>
+        <activity android:name=".presentation.view.user.UserMenuActivity" />
+        <activity android:name=".presentation.view.user.CustomizationActivity" />
+        <activity
+            android:name=".presentation.view.user.RegistrationActivity"
+            android:parentActivityName=".presentation.MainActivity" />
         <activity android:name=".presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

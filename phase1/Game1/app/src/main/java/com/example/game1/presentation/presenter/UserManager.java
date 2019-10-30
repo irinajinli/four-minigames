@@ -97,4 +97,8 @@ public class UserManager {
         activity.startActivity(intent);
     }
 
+    public User getTopUser(){
+        return userService.getTopUser();
+    }
+
 }

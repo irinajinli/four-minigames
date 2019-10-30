@@ -250,6 +250,12 @@ public class DataManager {
                 topScore = userScore;
             }
         }
+        System.out.println("+++++++++++++++++++++++++++++");
+        if (topUser != null) {
+            System.out.println(topUser.getUserName());
+        } else {
+            System.out.println("null");
+        }
         return topUser;
     }
 
