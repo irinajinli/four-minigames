@@ -1,9 +1,11 @@
 package com.example.game1.presentation.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.example.game1.presentation.model.User;
 import com.example.game1.domain.UserService;
+import com.example.game1.presentation.view.user.UserMenuActivity;
 
 public class UserManager {
 
@@ -47,4 +49,8 @@ public class UserManager {
     public static void setCurrentUser(User currentUser) {
         UserManager.currentUser = currentUser;
     }
+
+    public void updateCurrentUsersCustomization(){
+    }
+
 }

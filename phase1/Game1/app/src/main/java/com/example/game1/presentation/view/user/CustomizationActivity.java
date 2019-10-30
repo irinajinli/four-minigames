@@ -2,14 +2,20 @@ package com.example.game1.presentation.view.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.game1.R;
+import com.example.game1.presentation.model.Customization;
+import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.presentation.presenter.UserManager;
 
 public class CustomizationActivity extends AppCompatActivity {
+
+    private UserManager userManager = AppManager.getInstance().getUserManager();
 
     private final String[] characterColours = {"Blue", "Red", "Yellow"};
     private final String[] colourSchemes = {"Dark", "Light"};
@@ -45,6 +51,8 @@ public class CustomizationActivity extends AppCompatActivity {
 
     /** Called when the user taps the Done button */
     public void sendCustomizationChoices(View view) {
+        Intent intent = new Intent(this, UserMenuActivity.class);
+
         // Get the customization choices from the spinner
         Spinner characterColourSpinner = findViewById(R.id.characterColourSpinner);
         String characterColourChoice = characterColourSpinner.getSelectedItem().toString();
@@ -55,6 +63,10 @@ public class CustomizationActivity extends AppCompatActivity {
         Spinner musicSpinner = findViewById(R.id.musicSpinner);
         String musicChoice = musicSpinner.getSelectedItem().toString();
 
-        // TODO: send customization choices to UserManager
+        // TODO: Update the current user's customization choices
+//        userManager.updateCurrentUsersCustomization(characterColourChoice, colourSchemeChoice,
+//                musicChoice);
+
+        startActivity(intent);
     }
 }
