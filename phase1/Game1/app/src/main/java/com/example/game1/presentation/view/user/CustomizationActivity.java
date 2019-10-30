@@ -33,6 +33,15 @@ public class CustomizationActivity extends AppCompatActivity {
         characterColoursAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         characterColoursSpinner.setAdapter(characterColoursAdapter);
 
+        String userCharacColour = userManager.getCurrentUser().getCustomization().getCharacterColour().toString();
+        if (userCharacColour.equals("RED")) {
+            characterColoursSpinner.setSelection(1);
+        } else if (userCharacColour.equals("YELLOW")) {
+            characterColoursSpinner.setSelection(2);
+        } else {
+            characterColoursSpinner.setSelection(0);
+        }
+
         // Set up the colour scheme spinner.
         Spinner colourSchemeSpinner = findViewById(R.id.colourSchemeSpinner);
         ArrayAdapter colourSchemeAdapter = new ArrayAdapter(
@@ -40,12 +49,28 @@ public class CustomizationActivity extends AppCompatActivity {
         colourSchemeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colourSchemeSpinner.setAdapter(colourSchemeAdapter);
 
+        String userColourScheme = userManager.getCurrentUser().getCustomization().getColourScheme().toString();
+        if (userColourScheme.equals("LIGHT")) {
+            colourSchemeSpinner.setSelection(1);
+        } else {
+            colourSchemeSpinner.setSelection(0);
+        }
+
         // Set up the music choices spinner.
         Spinner musicSpinner = findViewById(R.id.musicSpinner);
         ArrayAdapter musicAdapter = new ArrayAdapter(
                 this, android.R.layout.simple_spinner_item, musicChoices);
         musicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         musicSpinner.setAdapter(musicAdapter);
+
+        String userMusic = userManager.getCurrentUser().getCustomization().getMusicPath().toString();
+        if (userMusic.equals("SONG2")) {
+            musicSpinner.setSelection(1);
+        } else if (userMusic.equals("SONG3")) {
+            musicSpinner.setSelection(2);
+        } else {
+            musicSpinner.setSelection(0);
+        }
     }
 
 
@@ -57,15 +82,15 @@ public class CustomizationActivity extends AppCompatActivity {
         Spinner characterColourSpinner = findViewById(R.id.characterColourSpinner);
         String characterColourChoice = characterColourSpinner.getSelectedItem().toString();
 
-        Spinner colourSchemeSpinner = findViewById(R.id.characterColourSpinner);
+        Spinner colourSchemeSpinner = findViewById(R.id.colourSchemeSpinner);
         String colourSchemeChoice = colourSchemeSpinner.getSelectedItem().toString();
 
         Spinner musicSpinner = findViewById(R.id.musicSpinner);
         String musicChoice = musicSpinner.getSelectedItem().toString();
 
         // TODO: Update the current user's customization choices
-//        userManager.updateCurrentUsersCustomization(characterColourChoice, colourSchemeChoice,
-//                musicChoice);
+        userManager.updateCurrentUsersCustomization(characterColourChoice, colourSchemeChoice,
+                musicChoice);
 
         startActivity(intent);
     }

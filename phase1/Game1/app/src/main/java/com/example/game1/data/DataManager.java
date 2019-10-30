@@ -149,9 +149,9 @@ public class DataManager {
                             }
                         } else if (MUSIC_KEY.equals(key)) {
                             String music = value;
-                            if (music.equals(Customization.MusicPath.SONG2)) {
+                            if (music.equals(Customization.MusicPath.SONG2.toString())) {
                                 user.getCustomization().setMusicPath(Customization.MusicPath.SONG2);
-                            } else if (music.equals(Customization.MusicPath.SONG3)) {
+                            } else if (music.equals(Customization.MusicPath.SONG3.toString())) {
                                 user.getCustomization().setMusicPath(Customization.MusicPath.SONG3);
                             } else {
                                 user.getCustomization().setMusicPath(Customization.MusicPath.SONG1);

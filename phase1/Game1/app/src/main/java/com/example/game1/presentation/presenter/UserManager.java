@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.User;
 import com.example.game1.domain.UserService;
@@ -54,7 +55,34 @@ public class UserManager {
         UserManager.currentUser = currentUser;
     }
 
-    public void updateCurrentUsersCustomization(){
+    public void updateCurrentUsersCustomization(String characterColour, String colourScheme,
+                                                String music){
+        Customization newCustomization = new Customization();
+
+        if ("Red".equals(characterColour)){
+            newCustomization.setCharacterColour(Customization.CharacterColour.RED);
+        } else if ("Yellow".equals(characterColour)){
+            newCustomization.setCharacterColour(Customization.CharacterColour.YELLOW);
+        } else {
+            newCustomization.setCharacterColour(Customization.CharacterColour.BLUE);
+        }
+
+        if ("Light".equals(colourScheme)) {
+            newCustomization.setColourScheme(Customization.ColourScheme.LIGHT);
+        } else {
+            newCustomization.setColourScheme(Customization.ColourScheme.DARK);
+        }
+
+        if ("Song2".equals(music)) {
+            newCustomization.setMusicPath(Customization.MusicPath.SONG2);
+        } else if ("Song3".equals(music)) {
+            newCustomization.setMusicPath(Customization.MusicPath.SONG3);
+        } else {
+            newCustomization.setMusicPath(Customization.MusicPath.SONG1);
+        }
+
+        currentUser.setCustomization(newCustomization);
+        userService.updateUser(currentUser);
     }
 
     public void updateCurrentUsersGame(Game game) {}

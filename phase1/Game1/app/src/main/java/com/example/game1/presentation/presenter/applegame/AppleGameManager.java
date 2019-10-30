@@ -64,11 +64,6 @@ public class AppleGameManager extends GameManager {
         // check if the game is over
         if (numDroppedApples >= 5) {
           MainThread.isRunning = false;
-
-          // what happens when the game is over?
-          // TODO: decide what to do next instead of skipping straight to the next game
-          game.setName(Game.GameName.TAPPING);
-
           gameOver();
         }
 
