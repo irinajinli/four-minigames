@@ -13,12 +13,12 @@ import java.util.Random;
 
 public class AppleGameManager extends GameManager {
   /**
-   * A GameManager for the Apple minigame. Includes an extra variable numDroppedApples and extra
+   * A GameManager for an Apple minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling Apples.
    */
   private Basket basket;
+
   private PointsCounter points;
-  private int numCaughtApples = 0;
   private int numDroppedApples = 0;
   private int numCaughtStars = 0;
 
@@ -99,11 +99,10 @@ public class AppleGameManager extends GameManager {
         // check if currItem has been caught; remove if necessary
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
           removeItem(currItem);
-          // TODO: figure out how to use res value for points values
           if (currItem instanceof Apple) {
-              catchApple();
+            catchApple();
           } else if (currItem instanceof Star) {
-              catchStar();
+            catchStar();
           }
         }
       }
@@ -111,21 +110,21 @@ public class AppleGameManager extends GameManager {
     spawnNew();
   }
 
+  /** Catches an Apple. */
   private void catchApple() {
-      points.addPoints(1);
-      numCaughtApples += 1;
+    points.addPoints(1);
   }
 
+  /** Catches a Star. */
   private void catchStar() {
-      points.addPoints(5);
-      numCaughtStars += 1;
+    points.addPoints(5);
+    numCaughtStars += 1;
   }
 
   /** Drops the specified Apple. */
   private void dropGameItem(GameItem currItem) {
     removeItem(currItem);
-    if (currItem instanceof Apple)
-      numDroppedApples += 1;
+    if (currItem instanceof Apple) numDroppedApples += 1;
   }
 
   /** Spawns a new Apple or Star in a random location at the top of the screen. */
@@ -152,6 +151,7 @@ public class AppleGameManager extends GameManager {
     // else do nothing
   }
 
+  /** Ends this minigame. */
   public void gameOver() {
     game.setNumPoints(game.getNumPoints() + points.getNumPoints());
     game.setNumStars(game.getNumStars() + numCaughtStars);
