@@ -8,7 +8,7 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class PointsCounter extends GameItem {
 
-  int numPoints = 0;
+  private int numPoints = 0;
 
   public PointsCounter() {
     super("0");

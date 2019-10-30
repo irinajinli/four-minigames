@@ -101,19 +101,24 @@ public class AppleGameManager extends GameManager {
           removeItem(currItem);
           // TODO: figure out how to use res value for points values
           if (currItem instanceof Apple) {
-            points.addPoints(1);
-            numCaughtApples += 1;
-//            game.setNumPoints(game.getNumPoints() + 1);
+              catchApple();
           } else if (currItem instanceof Star) {
-            points.addPoints(5);
-            numCaughtStars += 1;
-//            game.setNumPoints(game.getNumPoints() + 5);
-//            game.setNumStars(game.getNumStars() + 1);
+              catchStar();
           }
         }
       }
     }
     spawnNew();
+  }
+
+  private void catchApple() {
+      points.addPoints(1);
+      numCaughtApples += 1;
+  }
+
+  private void catchStar() {
+      points.addPoints(5);
+      numCaughtStars += 1;
   }
 
   /** Drops the specified Apple. */
