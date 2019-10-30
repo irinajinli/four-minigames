@@ -8,7 +8,7 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class PointsCounter extends GameItem {
 
-  int numPoints = 0;
+  private int numPoints = 0;
 
   public PointsCounter() {
     super("0");
@@ -23,6 +23,10 @@ public class PointsCounter extends GameItem {
   @Override
   public void drawString(Canvas canvas, String s, int x, int y) {
     canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
+  }
+
+  public int getNumPoints() {
+    return numPoints;
   }
 
   public void addPoints(int points) {
