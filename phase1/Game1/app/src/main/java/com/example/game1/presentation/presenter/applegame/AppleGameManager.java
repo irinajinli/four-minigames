@@ -16,33 +16,29 @@ public class AppleGameManager extends GameManager {
    * A GameManager for the Apple minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling Apples.
    */
-  Basket basket;
+  private Basket basket;
 
-  PointsCounter points;
+  private PointsCounter points;
   private int numDroppedApples = 0;
 
+  /** Constructs an AppleGameManager with a height and width of 10. */
   public AppleGameManager() {
-    /** Constructs an AppleGameManager with a height and width of 10. */
     super(10, 10);
   }
 
+  /**
+   * Constructs an AppleGameManager with the specified height and width.
+   *
+   * @param height the height of the AppleGameManager
+   * @param width the width of the AppleGameManager
+   */
   public AppleGameManager(int height, int width) {
-    /**
-     * Constructs an AppleGameManager with the specified height and width.
-     *
-     * @param height the height of the AppleGameManager
-     * @param width the width of the AppleGameManager
-     */
     super(height, width);
     this.game = new Game(Game.GameName.APPLE);
   }
 
+  /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    /** Creates GameItems required at the beginning of the minigame. */
-    /**
-     * Updates the GameItems in this GameManager. Moves GameItems and accounts for those that are
-     * dropped and caught.
-     */
     Apple a1 = new Apple();
     Apple a2 = new Apple();
     Apple a3 = new Apple();
@@ -64,6 +60,10 @@ public class AppleGameManager extends GameManager {
     points.setLocation(getGridWidth() - 2, 2);
   }
 
+  /**
+   * Updates the GameItems in this GameManager. Moves GameItems and accounts for those that are
+   * dropped and caught.
+   */
   public void update() {
     /** Moves, removes, and catches GameItems. */
     for (int i = 0; i < getGameItems().size(); i++) {
@@ -102,15 +102,14 @@ public class AppleGameManager extends GameManager {
     spawnNew();
   }
 
+  /** Drops the specified Apple. */
   private void dropApple(Apple currItem) {
-    /** Drops the specified Apple. */
     removeItem(currItem);
     numDroppedApples += 1;
   }
 
+  /** Spawns a new Apple or Star in a random location at the top of the screen. */
   private void spawnNew() {
-    /** Spawns a new Apple or Star in a random location at the top of the screen. */
-
     // get a random x-coordinate to spawn the new Apple/Star at
     Random randCoordinate = new Random();
     int spawnCoordinate = randCoordinate.nextInt(getGridWidth());
@@ -136,14 +135,9 @@ public class AppleGameManager extends GameManager {
   /**
    * Move this AppleGameManager's Basket to the specified x coordinate.
    *
-   * @param x
+   * @param x the x coordinate to move this Basket to
    */
   public void moveBasket(int x) {
-    /**
-     * Move this AppleGameManager's Basket to the specified x coordinate.
-     *
-     * @param x the x coordinate to move this Basket to
-     */
     basket.move(x);
   }
 }
