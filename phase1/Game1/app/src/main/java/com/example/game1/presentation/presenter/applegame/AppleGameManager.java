@@ -117,7 +117,6 @@ public class AppleGameManager extends GameManager {
 
   /** Catches a Star. */
   private void catchStar() {
-    points.addPoints(5);
     numCaughtStars += 1;
   }
 
