@@ -8,14 +8,15 @@ import com.example.game1.presentation.view.common.GameView;
 /** Hacky way to manage threading and updates. */
 public class MainThread extends Thread {
 
+  /** Whether the thread is running. */
+  public static boolean isRunning;
+
   /** The canvas on which to draw the fish tank. */
   public static Canvas canvas;
   /** Where the fish tank items are drawn. */
   private GameView gameView;
   /** The canvas container. */
   private SurfaceHolder surfaceHolder;
-  /** Whether the thread is running. */
-  private boolean isRunning;
 
   /**
    * Construct the thread.
@@ -60,6 +61,6 @@ public class MainThread extends Thread {
   }
 
   public void setRunning(boolean isRunning) {
-    this.isRunning = isRunning;
+    MainThread.isRunning = isRunning;
   }
 }

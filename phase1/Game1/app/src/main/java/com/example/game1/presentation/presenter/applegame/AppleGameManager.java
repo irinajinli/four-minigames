@@ -4,6 +4,7 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
+import com.example.game1.presentation.view.applegame.MainThread;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.common.Star;
@@ -14,6 +15,7 @@ public class AppleGameManager extends GameManager {
 
   Basket basket;
   PointsCounter points;
+  private int numDroppedApples = 0;
 
   public AppleGameManager() {
     super(10, 10);
@@ -54,13 +56,32 @@ public class AppleGameManager extends GameManager {
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItem is off screen; remove if necessary
-        if (currItem.getY() > getGridHeight()) removeItem(currItem);
+        if (currItem.getY() > getGridHeight()) {
+          removeItem(currItem);
+          numDroppedApples += 1;
+        }
+
+        // check if the game is over
+        if (numDroppedApples >= 5) {
+          MainThread.isRunning = false;
+
+          // what happens when the game is over?
+          // TODO: decide what to do next instead of skipping straight to the next game
+          game.setName(Game.GameName.TAPPING);
+        }
+
         // check if currItem has been caught; remove if necessary
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
           removeItem(currItem);
           // TODO: figure out how to use res value for points values
-          if (currItem instanceof Apple) points.addPoints(1);
-          else if (currItem instanceof Star) points.addPoints(10);
+          if (currItem instanceof Apple) {
+            points.addPoints(1);
+            game.setNumPoints(game.getNumPoints() + 1);
+          } else if (currItem instanceof Star) {
+            points.addPoints(10);
+            game.setNumPoints(game.getNumPoints() + 10);
+            game.setNumStars(game.getNumStars() + 1);
+          }
         }
       }
     }

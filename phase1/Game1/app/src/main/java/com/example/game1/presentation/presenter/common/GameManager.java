@@ -10,17 +10,14 @@ import java.util.ArrayList;
 /** A fish tank manager. */
 public abstract class GameManager {
 
-  /** A list of TankItems in this GameManager. */
-  private ArrayList<GameItem> gameItems = new ArrayList<>();
-
-  /** The width of this GameManager. */
-  private int gridWidth;
-
-  /** The height of this GameManager. */
-  private int gridHeight;
-
   /** The Game that this GameManager manages */
   public Game game;
+  /** A list of TankItems in this GameManager. */
+  private ArrayList<GameItem> gameItems = new ArrayList<>();
+  /** The width of this GameManager. */
+  private int gridWidth;
+  /** The height of this GameManager. */
+  private int gridHeight;
 
   /**
    * Constructs a GameManager with the specified height and width.
@@ -73,9 +70,6 @@ public abstract class GameManager {
 
   /** Updates this GameManager by moving all GameItems in it. */
   public abstract void update();
-  //    {
-  //        for (int i = 0; i < gameItems.size(); i++) gameItems.get(i).move();
-  //    }
 
   /**
    * Removes the specified item from gameItems.
