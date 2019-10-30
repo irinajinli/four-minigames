@@ -73,9 +73,6 @@ public abstract class GameManager {
 
   /** Updates this GameManager by moving all GameItems in it. */
   public abstract void update();
-  //    {
-  //        for (int i = 0; i < gameItems.size(); i++) gameItems.get(i).move();
-  //    }
 
   /**
    * Removes the specified item from gameItems.

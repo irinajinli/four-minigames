@@ -8,9 +8,12 @@ import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.common.Star;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
+
+    private int numDroppedApples = 0;
 
   Basket basket;
   PointsCounter points;
@@ -54,7 +57,16 @@ public class AppleGameManager extends GameManager {
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItem is off screen; remove if necessary
-        if (currItem.getY() > getGridHeight()) removeItem(currItem);
+        if (currItem.getY() > getGridHeight()) {
+          removeItem(currItem);
+          numDroppedApples += 1;
+        }
+
+//        // check if the game is over
+//        if (numDroppedApples >= 5) {
+//          endGame();
+//        }
+
         // check if currItem has been caught; remove if necessary
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
           removeItem(currItem);
