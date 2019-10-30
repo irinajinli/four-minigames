@@ -8,15 +8,13 @@ import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.common.Star;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
 
-    private int numDroppedApples = 0;
-
   Basket basket;
   PointsCounter points;
+  private int numDroppedApples = 0;
 
   public AppleGameManager() {
     super(10, 10);
@@ -62,10 +60,10 @@ public class AppleGameManager extends GameManager {
           numDroppedApples += 1;
         }
 
-//        // check if the game is over
-//        if (numDroppedApples >= 5) {
-//          endGame();
-//        }
+        //        // check if the game is over
+        //        if (numDroppedApples >= 5) {
+        //          endGame();
+        //        }
 
         // check if currItem has been caught; remove if necessary
         if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
@@ -74,8 +72,7 @@ public class AppleGameManager extends GameManager {
           if (currItem instanceof Apple) {
             points.addPoints(1);
             game.setNumPoints(game.getNumPoints() + 1);
-          }
-          else if (currItem instanceof Star) {
+          } else if (currItem instanceof Star) {
             points.addPoints(10);
             game.setNumPoints(game.getNumPoints() + 10);
             game.setNumStars(game.getNumStars() + 1);

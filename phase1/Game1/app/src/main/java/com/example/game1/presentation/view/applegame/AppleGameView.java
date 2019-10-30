@@ -13,7 +13,6 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class AppleGameView extends GameView {
 
-
   public AppleGameView(Context context) {
     super(context);
     thread = new MainThread(getHolder(), this);

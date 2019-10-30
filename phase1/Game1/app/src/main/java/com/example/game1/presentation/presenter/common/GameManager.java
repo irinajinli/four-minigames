@@ -10,17 +10,14 @@ import java.util.ArrayList;
 /** A fish tank manager. */
 public abstract class GameManager {
 
-  /** A list of TankItems in this GameManager. */
-  private ArrayList<GameItem> gameItems = new ArrayList<>();
-
-  /** The width of this GameManager. */
-  private int gridWidth;
-
-  /** The height of this GameManager. */
-  private int gridHeight;
-
   /** The Game that this GameManager manages */
   public Game game;
+  /** A list of TankItems in this GameManager. */
+  private ArrayList<GameItem> gameItems = new ArrayList<>();
+  /** The width of this GameManager. */
+  private int gridWidth;
+  /** The height of this GameManager. */
+  private int gridHeight;
 
   /**
    * Constructs a GameManager with the specified height and width.
