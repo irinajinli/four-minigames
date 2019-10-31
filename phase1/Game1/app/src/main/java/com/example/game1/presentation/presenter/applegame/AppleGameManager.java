@@ -51,11 +51,9 @@ public class AppleGameManager extends GameManager {
     Customization cust = game.getCustomization();
     if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
       basket.setColor(Color.BLUE);
-    }
-    else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
       basket.setColor(Color.RED);
-    }
-    else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
       basket.setColor(Color.YELLOW);
     }
 
