@@ -83,7 +83,10 @@ public class UserManager {
     }
 
     void updateCurrentUsersGame(Game game) {
-        updateGameInfo(game.getNumPoints(), game.getNumStars(), game.getNumTaps(), game.getLevel());
+        updateGameInfo(currentUser.getCurrentPoints() + game.getNumPoints(),
+                currentUser.getCurrentStars() + game.getNumStars(),
+                currentUser.getCurrentTaps() + game.getNumTaps(),
+                game.getLevel());
         updateUserInfo();
     }
 
