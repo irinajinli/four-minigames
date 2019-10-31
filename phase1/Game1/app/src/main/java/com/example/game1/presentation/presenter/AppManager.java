@@ -1,6 +1,5 @@
 package com.example.game1.presentation.presenter;
 
-import android.app.Activity;
 import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.presentation.model.Game;
@@ -8,10 +7,11 @@ import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 
 /**
- * The manager for the app.
+ * A singleton class that is created upon opening the app.
  * <p>
- * It acts like a facade for interactions between each game and the system. (e.g. creating an
- * instance of GameManager for a game)
+ * It acts like a facade for interactions between each game and the system. (e.g. Creates an
+ * instance of GameManagerFactory to provide a GameManager for a game. Creates an instance of
+ * UserManager to provide information about the current user to a game.)
  */
 public class AppManager {
 
@@ -20,23 +20,33 @@ public class AppManager {
     private UserManager userManager ;
 
     /** The factory that creates GameManager objects */
-    private GameManagerFactory gameManagerFactory = new GameManagerFactory();
+    private GameManagerFactory gameManagerFactory;
 
     /** The context of the application */
-    Context context = null;
+    private Context context = null;
 
-    /**
-     * How many points 1 star is equivalent to when calculating a user's score
-     */
+    /** The number of points that 1 star is equivalent to. Used by the data layer when calculating
+     * a user's score to record their top game statistics. Displayed by the ui. */
     public static final int STAR_FACTOR = 5;
 
 
     private AppManager() {
     }
 
+    /** Called upon opening the app. Sets the context of the application for file writing purposes.
+     * Creates an instance of userManager and gameManagerFactory. */
     public void init(Context context) {
         setContext(context);
         userManager = new UserManager();
+        gameManagerFactory = new GameManagerFactory();
+    }
+
+    /** Returns the single instance of AppManager */
+    public static AppManager getInstance() {
+        if (instance == null) {
+            instance = new AppManager();
+        }
+        return instance;
     }
 
     public UserManager getUserManager() {
@@ -69,13 +79,6 @@ public class AppManager {
         return gameManager;
     }
 
-    public static AppManager getInstance() {
-        if (instance == null) {
-            instance = new AppManager();
-        }
-        return instance;
-    }
-
     public Context getContext() {
         return context;
     }
@@ -84,9 +87,7 @@ public class AppManager {
         this.context = context;
     }
 
-    /**
-     * Record that the given Game is finished.
-     */
+    /** Tells the user manager record that the given game is finished. */
     public void finishGame(Game game, AppCompatActivity activity) {
         userManager.updateCurrentUsersGame(game);
         userManager.goToUserMenu(activity);

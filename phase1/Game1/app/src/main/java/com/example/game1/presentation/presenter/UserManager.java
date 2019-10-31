@@ -1,11 +1,7 @@
 package com.example.game1.presentation.presenter;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.User;
@@ -16,7 +12,7 @@ public class UserManager {
 
     private UserService userService;
 
-    // The current user logged in
+    // The current user that is logged in
     private static User currentUser;
 
 
@@ -27,8 +23,8 @@ public class UserManager {
     /** Try to register a new User with username, userName, and password, password. If successful,
      * return true. Otherwise, return false. */
     public boolean registerUser(String userName, String password) {
-        System.out.println("user manager register user");
         User user = new User(userName, password);
+        // Send the user to userService to check for duplicate user name
         if (userService.registerUser(user)) {
             setCurrentUser(user);
             return true;
@@ -37,9 +33,10 @@ public class UserManager {
         }
     }
 
-    /** Try to login a User with username, userName, and password, password. If successfull, return
+    /** Try to login a User with username, userName, and password, password. If successful, return
      * true. Otherwise, return false. */
     public boolean loginUser(String userName, String password) {
+        // Send the user to userService for user validation
         User user = userService.getUser(userName, password);
         if (user != null) {
             setCurrentUser(user);
@@ -82,22 +79,29 @@ public class UserManager {
         }
 
         currentUser.setCustomization(newCustomization);
-        userService.updateUser(currentUser);
+        updateUserInfo();
     }
 
     void updateCurrentUsersGame(Game game) {
-        currentUser.setCurrentPoints(game.getNumPoints());
-        currentUser.setCurrentStars(game.getNumStars());
-        currentUser.setCurrentTaps(game.getNumTaps());
-        currentUser.setLastCompletedLevel(game.getLevel());
-        userService.updateUser(currentUser);
+        updateGameInfo(game.getNumPoints(), game.getNumStars(), game.getNumTaps(), game.getLevel());
+        updateUserInfo();
     }
 
     public void restartCurrentUsersGame() {
-        currentUser.setCurrentPoints(0);
-        currentUser.setCurrentStars(0);
-        currentUser.setCurrentTaps(0);
-        currentUser.setLastCompletedLevel(0);
+        updateGameInfo(0 ,0, 0, 0);
+        updateUserInfo();
+    }
+
+    /** Updates any changes to the current user's game statistics and level*/
+    private void updateGameInfo(int points, int stars, int taps, int level) {
+        currentUser.setCurrentPoints(points);
+        currentUser.setCurrentStars(stars);
+        currentUser.setCurrentTaps(taps);
+        currentUser.setLastCompletedLevel(level);
+    }
+
+    /** Sends any changes to the current user's info to the backend through UserService */
+    private void updateUserInfo() {
         userService.updateUser(currentUser);
     }
 
