@@ -85,6 +85,10 @@ public abstract class GameItem {
     this.appearance = appearance;
   }
 
+  public void setColor(int color) {
+    paintText.setColor(color);
+  }
+
   /**
    * Draws this GameItem.
    *

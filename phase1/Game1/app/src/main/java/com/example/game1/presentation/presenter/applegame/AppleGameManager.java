@@ -1,5 +1,8 @@
 package com.example.game1.presentation.presenter.applegame;
 
+import android.graphics.Color;
+
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
@@ -43,6 +46,18 @@ public class AppleGameManager extends GameManager {
     basket = new Basket();
     place(basket);
     basket.setLocation(getGridWidth() / 2 + 1, getGridHeight() - 5);
+
+    // set colour of basket according to Customization
+    Customization cust = game.getCustomization();
+    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
+      basket.setColor(Color.BLUE);
+    }
+    else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
+      basket.setColor(Color.RED);
+    }
+    else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
+      basket.setColor(Color.YELLOW);
+    }
 
     points = new PointsCounter();
     place(points);
