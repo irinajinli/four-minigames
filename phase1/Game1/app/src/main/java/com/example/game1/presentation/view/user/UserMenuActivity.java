@@ -13,6 +13,7 @@ import com.example.game1.presentation.MainActivity;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 import com.example.game1.presentation.view.applegame.AppleActivity;
+import com.example.game1.presentation.view.jumpinggame.JumpingActivity;
 import com.example.game1.presentation.view.tappinggame.TappingActivity;
 
 public class UserMenuActivity extends AppCompatActivity {
@@ -97,6 +98,11 @@ public class UserMenuActivity extends AppCompatActivity {
     /** Called when the user taps the View Statistics button */
     public void goToStatistics(View view) {
         Intent intent = new Intent(this, StatisticsActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToJumpingGame(View view){
+        Intent intent = new Intent(this, JumpingActivity.class);
         startActivity(intent);
     }
 
