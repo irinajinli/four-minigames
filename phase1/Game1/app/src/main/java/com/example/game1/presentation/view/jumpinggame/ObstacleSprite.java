@@ -18,7 +18,7 @@ public class ObstacleSprite extends GameSprite {
     super.update();
     JumpingGameView jgv = (JumpingGameView)gameView;
     if (this.isOverlapping(jgv.jumperSprite)){
-      jgv.thread.setIsRunning(false);
+      jgv.gameOver();
     }
     else if (this.getPositionX() + this.getWidth() < 0){
       this.setPositionX(gameView.getScreenWidth() * 4 / 3);

@@ -15,7 +15,7 @@ public class CoinSprite extends GameSprite {
     super.update();
     JumpingGameView jgv = (JumpingGameView)gameView;
     if (this.isOverlapping(jgv.jumperSprite)){
-      jgv.coinsCollected += 1;
+      jgv.numCoins += 1;
       jgv.queueForRemoval(this);
     }
   }

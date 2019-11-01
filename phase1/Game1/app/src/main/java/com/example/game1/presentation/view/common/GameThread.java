@@ -3,6 +3,8 @@ package com.example.game1.presentation.view.common;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.example.game1.presentation.view.applegame.MainThread;
+
 public class GameThread extends Thread {
     private SurfaceHolder surfaceHolder;
     private GameView gameView;
@@ -69,7 +71,7 @@ public class GameThread extends Thread {
 
     }
 
-    public void setIsRunning(boolean isRunning) {
+    public void setRunning(boolean isRunning) {
         this.isRunning = isRunning;
     }
 }

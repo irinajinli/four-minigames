@@ -12,6 +12,7 @@ import com.example.game1.presentation.view.applegame.MainThread;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.common.Star;
+import com.example.game1.presentation.view.jumpinggame.JumpingGameView;
 
 import java.util.Random;
 
@@ -20,11 +21,8 @@ public class JumpingGameManager extends GameManager {
    * A GameManager for an Apple minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling Apples.
    */
-  private Basket basket;
 
-  private PointsCounter points;
-  private int numDroppedApples = 0;
-  private int numCaughtStars = 0;
+  JumpingGameView jgv;
 
   /** Constructs an AppleGameManager with a height and width of 10. */
   public JumpingGameManager() {
@@ -42,6 +40,9 @@ public class JumpingGameManager extends GameManager {
     this.game = new Game(Game.GameName.APPLE);
   }
 
+  public void setJumpingGameView (JumpingGameView jgv){
+    this.jgv = jgv;
+  }
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
     // create background according to Customization
@@ -52,129 +53,33 @@ public class JumpingGameManager extends GameManager {
       b.setLocation(0, 0);
     }
 
-    basket = new Basket();
-    place(basket);
-    basket.setLocation(getGridWidth() / 2 + 1, getGridHeight() - 5);
 
     // set colour of basket according to Customization
     if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      basket.setColor(Color.BLUE);
+      jgv.setJumperSprite("BLUE");
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-      basket.setColor(Color.RED);
+      jgv.setJumperSprite("ninja_idle_000");
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      basket.setColor(Color.YELLOW);
+      jgv.setJumperSprite("ninja_idle_000");
     }
 
-    points = new PointsCounter();
-    place(points);
-    points.setLocation(getGridWidth() - 2, 2);
 
-    Apple a1 = new Apple();
-    Apple a2 = new Apple();
-    Apple a3 = new Apple();
-    Apple a4 = new Apple();
-    place(a1);
-    a1.setLocation(0, 15);
-    place(a2);
-    a2.setLocation(10, 0);
-    place(a3);
-    a3.setLocation(20, 8);
-    place(a4);
-    a4.setLocation(15, 30);
-
-    Star s1 = new Star();
-    place(s1);
-    s1.setLocation(10, 35);
   }
 
-  /**
-   * Move this AppleGameManager's Basket to the specified x coordinate.
-   *
-   * @param x the x coordinate to move this Basket to
-   */
-  public void moveBasket(int x) {
-    basket.move(x);
-  }
 
   /** Moves, removes, and catches GameItems. */
   public void update() {
-
-    // check if the game is over
-    if (numDroppedApples >= 5) {
-      MainThread.isRunning = false;
-      gameOver();
-    }
-
-    for (int i = 0; i < getGameItems().size(); i++) {
-      GameItem currItem = getGameItems().get(i);
-
-      // move each GameItem
-      currItem.move();
-
-      if (!(currItem instanceof Basket)) {
-        // check if each non-Basket GameItem is off screen; remove if necessary
-        if (currItem.getY() > getGridHeight()) {
-          dropGameItem(currItem);
-        }
-
-        // check if currItem has been caught; remove if necessary
-        if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
-          removeItem(currItem);
-          if (currItem instanceof Apple) {
-            catchApple();
-          } else if (currItem instanceof Star) {
-            catchStar();
-          }
-        }
-      }
-    }
-    spawnNew();
   }
 
-  /** Catches an Apple. */
-  private void catchApple() {
-    points.addPoints(1);
-  }
 
-  /** Catches a Star. */
-  private void catchStar() {
-    numCaughtStars += 1;
-  }
-
-  /** Drops the specified Apple. */
-  private void dropGameItem(GameItem currItem) {
-    removeItem(currItem);
-    if (currItem instanceof Apple) numDroppedApples += 1;
-  }
-
-  /** Spawns a new Apple or Star in a random location at the top of the screen. */
-  private void spawnNew() {
-    // get a random x-coordinate to spawn the new Apple/Star at
-    Random randCoordinate = new Random();
-    int spawnCoordinate = randCoordinate.nextInt(getGridWidth());
-
-    // decide whether to spawn an Apple or a Star or nothing
-    Random randItem = new Random();
-    int randint = randItem.nextInt(100);
-    if (randint < 1) {
-      // spawn new Star
-      Star nextItem = new Star();
-      place(nextItem);
-      nextItem.setLocation(spawnCoordinate, 0);
-    } else if (randint < 15) {
-      // spawn new Apple
-      Apple nextItem = new Apple();
-      place(nextItem);
-      nextItem.setLocation(spawnCoordinate, 0);
-    }
-
-    // else do nothing
-  }
 
   /** Ends this minigame. */
   public void gameOver() {
-    game.setNumPoints(game.getNumPoints() + points.getNumPoints());
-    game.setNumStars(game.getNumStars() + numCaughtStars);
+    // set points here
+    game.setNumPoints(jgv.numJumped);
+    game.setNumStars(jgv.numCoins);
+    game.setNumPoints(jgv.numTaps);
+    System.out.println(jgv.numJumped + "  " + jgv.numCoins + "  " + jgv.numTaps);
     super.gameOver();
   }
 }

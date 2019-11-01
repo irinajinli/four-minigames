@@ -12,6 +12,7 @@ import android.view.SurfaceView;
 
 import com.example.game1.R;
 import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
@@ -26,9 +27,10 @@ public class JumpingGameView extends GameView {
   TerrainSprite terrainSprite;
   GameThread thread;
   public double cameraVelocityX = 450;
-  int numJumped, coinsCollected;
+  public int numJumped = 0, numCoins = 0, numTaps = 0;
   Paint textPaint;
-  private final int skyColor = Color.rgb(204, 255, 255);
+  private int skyColor = Color.rgb(204, 255, 255);
+  private String jumpingSpriteName;
 
   public JumpingGameView(Context context) {
     super(context);
@@ -40,6 +42,25 @@ public class JumpingGameView extends GameView {
   public void queueForRemoval(GameSprite sprite){
     queuedForRemoval.add(sprite);
     queuedForRemoval.add(sprite);
+  }
+
+  public void setJumperSprite(String nickName){
+    if (nickName.equals("BLUE")){
+      this.jumpingSpriteName = "ninja_idle_000";
+    }
+    else{
+      this.jumpingSpriteName = "ninja_idle_000";
+    }
+  }
+
+  public void createJumpingSprite(){
+    int resID = getResources().getIdentifier(jumpingSpriteName, "drawable", "com.example.game1.presentation");
+    jumperSprite =
+            new JumperSprite(
+                    BitmapFactory.decodeResource(getResources(), resID),
+                    100,
+                    200,
+                    this);
   }
 
   @Override
@@ -84,13 +105,17 @@ public class JumpingGameView extends GameView {
             AppManager.getInstance()
                     .getJumpingGameManager(
                             (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+    ((JumpingGameManager)gameManager).setJumpingGameView(this);
     gameManager.createGameItems();
     gameManager.setActivity(activity);
     ////
-    thread.setIsRunning(true);
+    thread.setRunning(true);
     thread.start();
   }
 
+  public void skyColor (int newColor){
+    this.skyColor = newColor;
+  }
   public void addCoin(int xp){
     CoinSprite coin = new CoinSprite(
             BitmapFactory.decodeResource(getResources(), R.drawable.gold_1),
@@ -164,6 +189,7 @@ public class JumpingGameView extends GameView {
       jumperSprite.setVelocityY(-2000);
       jumperSprite.setAccelerationY(5000);
     }
+    numTaps += 1;
     return super.onTouchEvent(event);
   }
 
@@ -173,5 +199,10 @@ public class JumpingGameView extends GameView {
 
   public int getScreenHeight() {
     return Resources.getSystem().getDisplayMetrics().heightPixels;
+  }
+
+  public void gameOver(){
+    thread.setRunning(false);
+    gameManager.gameOver();
   }
 }

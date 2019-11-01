@@ -36,7 +36,7 @@ public class AppleGameView extends GameView {
     gameManager.createGameItems();
     gameManager.setActivity(activity);
 
-    thread.setRunning(true);
+    ((MainThread)thread).setRunning(true);
     thread.start();
   }
 
