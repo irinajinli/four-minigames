@@ -6,6 +6,7 @@ import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
+import com.example.game1.presentation.view.applegame.Background;
 import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.applegame.MainThread;
 import com.example.game1.presentation.view.applegame.PointsCounter;
@@ -43,12 +44,19 @@ public class AppleGameManager extends GameManager {
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
+    // create background according to Customization
+    Customization cust = game.getCustomization();
+    if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+      Background b = new Background();
+      place(b);
+      b.setLocation(0, 0);
+    }
+
     basket = new Basket();
     place(basket);
     basket.setLocation(getGridWidth() / 2 + 1, getGridHeight() - 5);
 
     // set colour of basket according to Customization
-    Customization cust = game.getCustomization();
     if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
       basket.setColor(Color.BLUE);
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
@@ -92,7 +100,7 @@ public class AppleGameManager extends GameManager {
   public void update() {
 
     // check if the game is over
-    if (numDroppedApples >= 1) {
+    if (numDroppedApples >= 5) {
       MainThread.isRunning = false;
       gameOver();
     }
