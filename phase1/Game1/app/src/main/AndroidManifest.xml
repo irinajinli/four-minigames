@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.view.jumpinggame.JumpingActivity"></activity>
+        <activity android:name=".presentation.view.tappinggame.TappingActivity"></activity>
+        <activity android:name=".presentation.view.jumpinggame.JumpingActivity" />
         <activity android:name=".presentation.view.user.StatisticsActivity" />
         <activity android:name=".presentation.view.user.UserMenuActivity" />
         <activity android:name=".presentation.view.user.CustomizationActivity" />
