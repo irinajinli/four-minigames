@@ -82,7 +82,7 @@ public class JumpingGameView extends GameView {
     // TODO WHY THIS CODE
     gameManager =
             AppManager.getInstance()
-                    .getAppleGameManager(
+                    .getJumpingGameManager(
                             (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
     gameManager.createGameItems();
     gameManager.setActivity(activity);

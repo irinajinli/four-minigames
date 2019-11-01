@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 
 /**
@@ -68,13 +69,9 @@ public class AppManager {
     }
 
     // TODO change return type to JumpingGameManager once that class is created
-    public AppleGameManager getJumpingGameManager(int height, int width) {
-//        JumpingGameManager gameManager = (JumpingGameManager) gameManagerFactory.getGameManager(
-//                GameManagerFactory.GameName.JUMPING, height, width);
-//        gameManager.getGame().setCustomization(UserManager.getCurrentUser().getCustomization());
-//        return gameManager;
-        AppleGameManager gameManager = (AppleGameManager) gameManagerFactory.getGameManager(
-                GameManagerFactory.GameName.APPLE, height, width);
+    public JumpingGameManager getJumpingGameManager(int height, int width) {
+        JumpingGameManager gameManager = (JumpingGameManager) gameManagerFactory.getGameManager(
+                GameManagerFactory.GameName.JUMPING, height, width);
         gameManager.getGame().setCustomization(UserManager.getCurrentUser().getCustomization());
         return gameManager;
     }
