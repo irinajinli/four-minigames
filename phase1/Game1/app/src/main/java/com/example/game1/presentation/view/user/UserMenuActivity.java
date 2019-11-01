@@ -14,6 +14,7 @@ import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 import com.example.game1.presentation.view.applegame.AppleActivity;
 import com.example.game1.presentation.view.jumpinggame.JumpingActivity;
+import com.example.game1.presentation.view.tappinggame.TappingActivity;
 
 public class UserMenuActivity extends AppCompatActivity {
 
