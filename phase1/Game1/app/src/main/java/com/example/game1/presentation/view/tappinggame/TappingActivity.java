@@ -18,88 +18,56 @@ import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 
-/**
- * The Tapping Activity Class
- */
-
+/** The Tapping Activity Class */
 public class TappingActivity extends AppCompatActivity {
 
-    /**
-     * Taping Circle Image
-     */
-    ImageView iv_tap;
-    /**
-     * Runnning character Image
-     */
-//    ImageView iv_character;
+  /** Taping Circle Image */
+  ImageView iv_tap;
+  /** Runnning character Image */
+  //    ImageView iv_character;
 
-    /**
-     * TextView to display result
-     */
+  /** TextView to display result */
   TextView tv_result;
-    /**
-     * TextView to display Tapping info
-     */
+  /** TextView to display Tapping info */
   TextView tv_info;
 
-    /**
-     * TextView to display speed
-     */
+  /** TextView to display speed */
   TextView tv_speed;
 
-    /**
-     * TextView to display points
-     */
+  /** TextView to display points */
   TextView tv_points;
 
-    /**
-     * TextView to display star
-     */
+  /** TextView to display star */
   TextView tv_star;
 
-    /**
-     * current number of Taps
-     */
+  /** current number of Taps */
   int currentTaps = 0;
 
-    /**
-     * number of points earned
-     */
+  /** number of points earned */
   int points = 0;
 
-    /**
-     * boolean to check if the game is started
-     */
+  /** boolean to check if the game is started */
   boolean gameStarted = false;
 
-    /**
-     * Timer to count down seconds left
-     */
+  /** Timer to count down seconds left */
   CountDownTimer timer;
 
-    /**
-     * best result
-     */
+  /** best result */
   int bestResult = 0;
 
-    /**
-     * number of stars earnd.
-     */
+  /** number of stars earnd. */
   int star = 0;
 
-//  /** Screen width. */
-//  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-//  /** Screen height. */
-//  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-
+  //  /** Screen width. */
+  //  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+  //  /** Screen height. */
+  //  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
   /** The activity class corresponding this view */
 
-//  TappingGameView tappingGameView = new TappingGameView(this);
-//  GameManager gameManager =
-//      AppManager.getInstance().getTappingGameManager((int) (screenHeight), (int) (screenWidth));
-
-
+  //  TappingGameView tappingGameView = new TappingGameView(this);
+  //  GameManager gameManager =
+  //      AppManager.getInstance().getTappingGameManager((int) (screenHeight), (int) (screenWidth));
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -109,15 +77,15 @@ public class TappingActivity extends AppCompatActivity {
     // mainLayout = (RelativeLayout) findViewById(R.id.tapping);
 
     // Using code from https://www.youtube.com/watch?v=Kzv3oMK3PEg
-      // adding logic to generate points, stars speed, taps and updating statistics logic using
-      // TappingGameManager class.
-      // code is done but there is a problem when exit game. So I just comment the code for now.
-      // will use them later once the problem is fixed.
+    // adding logic to generate points, stars speed, taps and updating statistics logic using
+    // TappingGameManager class.
+    // code is done but there is a problem when exit game. So I just comment the code for now.
+    // will use them later once the problem is fixed.
 
-      //set image view for tapping cicle
+    // set image view for tapping cicle
     iv_tap = findViewById(R.id.iv_tap);
-    //iv_character = findViewById(R.id.iv_pug);
-      // set text view to the text view on the screen
+    // iv_character = findViewById(R.id.iv_pug);
+    // set text view to the text view on the screen
     tv_result = findViewById(R.id.tv_result);
     tv_info = findViewById(R.id.tv_info);
     tv_speed = findViewById(R.id.tv_speed);
@@ -128,7 +96,7 @@ public class TappingActivity extends AppCompatActivity {
     SharedPreferences preferences = getSharedPreferences("PREFS", 0);
     bestResult = preferences.getInt("hightScore", 0);
 
-    //display textview best result
+    // display textview best result
     tv_result.setText("Best Result: " + bestResult);
 
     // set onClinckListener to track number of taps and update points owned
@@ -216,8 +184,9 @@ public class TappingActivity extends AppCompatActivity {
                     2000);
 
             // using gameManager to trigger gameOver() and passing statistics
-//            ((TappingGameManager) gameManager).updateResult(points, star, currentTaps);
-//            gameManager.gameOver();
+            //            ((TappingGameManager) gameManager).updateResult(points, star,
+            // currentTaps);
+            //            gameManager.gameOver();
           }
         };
   }

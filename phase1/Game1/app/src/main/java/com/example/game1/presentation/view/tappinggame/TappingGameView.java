@@ -15,18 +15,18 @@ public class TappingGameView extends GameView {
   public TappingGameView(Context context) {
     super(context);
 
-    //thread = new MainThread(getHolder(), this);
+    // thread = new MainThread(getHolder(), this);
   }
 
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
 
     // Figure out the size of a letter.
-//    Paint paintText = new Paint();
-//    paintText.setTextSize(36);
-//    paintText.setTypeface(Typeface.DEFAULT_BOLD);
-//    charWidth = paintText.measureText("W");
-//    charHeight = -paintText.ascent() + paintText.descent();
+    //    Paint paintText = new Paint();
+    //    paintText.setTextSize(36);
+    //    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    //    charWidth = paintText.measureText("W");
+    //    charHeight = -paintText.ascent() + paintText.descent();
 
     // Use the letter size and screen height to determine the size of the GameManager.
     gameManager =
@@ -37,7 +37,7 @@ public class TappingGameView extends GameView {
 
     gameManager.setActivity(activity);
 
-//    thread.setRunning(true);
-//    thread.start();
+    //    thread.setRunning(true);
+    //    thread.start();
   }
 }
