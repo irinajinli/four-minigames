@@ -11,6 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.game1.R;
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
@@ -29,11 +30,14 @@ public class JumpingGameView extends GameView {
   public double cameraVelocityX = 450;
   public int numJumped = 0, numCoins = 0, numTaps = 0;
   Paint textPaint;
-  private int skyColor = Color.rgb(204, 255, 255);
+  private int skyColor;
   private String jumpingSpriteName;
+  private Context thisContext;
 
   public JumpingGameView(Context context) {
     super(context);
+    ////check if this line below may cause any bugs
+    thisContext = context;
     getHolder().addCallback(this);
     thread = new GameThread(getHolder(), this);
     setFocusable(true);
@@ -44,17 +48,34 @@ public class JumpingGameView extends GameView {
     queuedForRemoval.add(sprite);
   }
 
-  public void setJumperSprite(String nickName){
-    if (nickName.equals("BLUE")){
-      this.jumpingSpriteName = "ninja_idle_000";
+  public void setCharacterColor(Customization.CharacterColour characterColour){
+    if (characterColour.equals(Customization.CharacterColour.BLUE)){
+      this.jumpingSpriteName = "jumper_blue";
+    }
+    else if (characterColour.equals(Customization.CharacterColour.RED)){
+      this.jumpingSpriteName = "jumper_red";
+    }
+    else if (characterColour.equals(Customization.CharacterColour.YELLOW)){
+      this.jumpingSpriteName = "jumper_yellow";
     }
     else{
-      this.jumpingSpriteName = "ninja_idle_000";
+      this.jumpingSpriteName = "ninja_idle__000";
     }
   }
 
+  public void setTheme(Customization.ColourScheme theme){
+    if (theme.equals(Customization.ColourScheme.DARK)) {
+      skyColor = Color.rgb(83, 92, 104);
+    }
+    else if (theme.equals((Customization.ColourScheme.LIGHT))){
+      skyColor = Color.rgb(223,249,251);
+    }
+    else{
+      skyColor = Color.rgb(204, 255, 255);
+    }
+  }
   public void createJumpingSprite(){
-    int resID = getResources().getIdentifier(jumpingSpriteName, "drawable", "com.example.game1.presentation");
+    int resID = getResources().getIdentifier(jumpingSpriteName, "drawable", thisContext.getPackageName());
     jumperSprite =
             new JumperSprite(
                     BitmapFactory.decodeResource(getResources(), resID),
@@ -65,6 +86,14 @@ public class JumpingGameView extends GameView {
 
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
+    gameManager =
+            AppManager.getInstance()
+                    .getJumpingGameManager(
+                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+    ((JumpingGameManager)gameManager).setJumpingGameView(this);
+    gameManager.createGameItems();
+    gameManager.setActivity(activity);
+
     terrainSprite =
         new TerrainSprite(
             BitmapFactory.decodeResource(getResources(), R.drawable.grass),
@@ -74,12 +103,14 @@ public class JumpingGameView extends GameView {
     terrainSprite.setPositionX(0);
     terrainSprite.setPositionY(getScreenHeight() / 2);
 
-    jumperSprite =
+    /**jumperSprite =
         new JumperSprite(
             BitmapFactory.decodeResource(getResources(), R.drawable.ninja_idle__000),
             100,
             200,
-            this);
+            this);*/
+    createJumpingSprite();
+
     jumperSprite.setPositionY(terrainSprite.getPositionY() - jumperSprite.getHeight());
 
     obstacles = new ArrayList<>();
@@ -98,17 +129,6 @@ public class JumpingGameView extends GameView {
     textPaint.setAntiAlias(true);
     textPaint.setTextSize(30);
 
-
-    /////
-    // TODO WHY THIS CODE
-    gameManager =
-            AppManager.getInstance()
-                    .getJumpingGameManager(
-                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
-    ((JumpingGameManager)gameManager).setJumpingGameView(this);
-    gameManager.createGameItems();
-    gameManager.setActivity(activity);
-    ////
     thread.setRunning(true);
     thread.start();
   }

@@ -9,6 +9,7 @@ import android.view.SurfaceHolder;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
 public class AppleGameView extends GameView {
@@ -36,7 +37,7 @@ public class AppleGameView extends GameView {
     gameManager.createGameItems();
     gameManager.setActivity(activity);
 
-    ((MainThread)thread).setRunning(true);
+    thread.setRunning(true);
     thread.start();
   }
 

@@ -47,21 +47,9 @@ public class JumpingGameManager extends GameManager {
   public void createGameItems() {
     // create background according to Customization
     Customization cust = game.getCustomization();
-    if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-      Background b = new Background();
-      place(b);
-      b.setLocation(0, 0);
-    }
+    jgv.setTheme(cust.getColourScheme());
 
-
-    // set colour of basket according to Customization
-    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      jgv.setJumperSprite("BLUE");
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-      jgv.setJumperSprite("ninja_idle_000");
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      jgv.setJumperSprite("ninja_idle_000");
-    }
+   jgv.setCharacterColor(cust.getCharacterColour());
 
 
   }
