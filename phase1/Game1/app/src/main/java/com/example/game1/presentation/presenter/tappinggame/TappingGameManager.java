@@ -66,6 +66,12 @@ public class TappingGameManager extends GameManager {
 
   }
 
+  /**
+   *
+   * @param point number Of Points to be update
+   * @param stars number of stars to be update
+   * @param taps  number of taps to be update
+   */
   public void updateResult(int point, int stars, int taps){
     this.points = point;
     this.stars = stars;
