@@ -28,6 +28,7 @@ public class JumpingGameView extends GameView {
   public double cameraVelocityX = 450;
   int numJumped, coinsCollected;
   Paint textPaint;
+  private final int skyColor = Color.rgb(204, 255, 255);
 
   public JumpingGameView(Context context) {
     super(context);
@@ -138,7 +139,7 @@ public class JumpingGameView extends GameView {
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
-      canvas.drawColor(Color.WHITE);
+      canvas.drawColor(skyColor);
       // Paint paint = new Paint();
       // paint.setColor(Color.rgb(250, 0, 0));
       // canvas.drawRect(0, getScreenHeight() * 1 / 2, getScreenWidth(), getScreenHeight(), paint);
