@@ -133,5 +133,5 @@ public class TappingActivity extends AppCompatActivity {
                     }
                 };
     }
-    
+
 }
