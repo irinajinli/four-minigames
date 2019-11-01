@@ -21,18 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JumpingGameView extends GameView {
-  JumperSprite jumperSprite;
-  List<ObstacleSprite> obstacles;
-  List<CoinSprite> coins;
-  List<GameSprite> queuedForRemoval;
-  TerrainSprite terrainSprite;
+  GameSprite jumperSprite;
+  List<GameSprite> obstacleSprites;
+  List<Obstacle> obstacles;
+  List<GameSprite> starSprites;
+  List<Star> stars;
+  List<GameObject> queuedForRemoval;
+  GameSprite terrainSprite;
+  Terrain terrain;
+  Jumper jumper;
   GameThread thread;
-  public double cameraVelocityX = 450;
-  public int numJumped = 0, numCoins = 0, numTaps = 0;
-  Paint textPaint;
-  private int skyColor;
-  private String jumpingSpriteName;
   private Context thisContext;
+  private JumpingGameManager jgm;
+  String jumperSpriteFile;
 
   public JumpingGameView(Context context) {
     super(context);
@@ -43,44 +44,26 @@ public class JumpingGameView extends GameView {
     setFocusable(true);
   }
 
-  public void queueForRemoval(GameSprite sprite){
-    queuedForRemoval.add(sprite);
-    queuedForRemoval.add(sprite);
-  }
-
-  public void setCharacterColor(Customization.CharacterColour characterColour){
+  public void setJumperSpriteFile (Customization.CharacterColour characterColour){
     if (characterColour.equals(Customization.CharacterColour.BLUE)){
-      this.jumpingSpriteName = "jumper_blue";
+      this.jumperSpriteFile = "jumper_blue";
     }
     else if (characterColour.equals(Customization.CharacterColour.RED)){
-      this.jumpingSpriteName = "jumper_red";
+      this.jumperSpriteFile = "jumper_red";
     }
     else if (characterColour.equals(Customization.CharacterColour.YELLOW)){
-      this.jumpingSpriteName = "jumper_yellow";
+      this.jumperSpriteFile = "jumper_yellow";
     }
     else{
-      this.jumpingSpriteName = "ninja_idle__000";
+      this.jumperSpriteFile = "ninja_idle__000";
     }
   }
-
-  public void setTheme(Customization.ColourScheme theme){
-    if (theme.equals(Customization.ColourScheme.DARK)) {
-      skyColor = Color.rgb(83, 92, 104);
-    }
-    else if (theme.equals((Customization.ColourScheme.LIGHT))){
-      skyColor = Color.rgb(223,249,251);
-    }
-    else{
-      skyColor = Color.rgb(204, 255, 255);
-    }
-  }
-  public void createJumpingSprite(){
-    int resID = getResources().getIdentifier(jumpingSpriteName, "drawable", thisContext.getPackageName());
+  public void createJumpingSprite(String jumperSpriteFile){
+    int resID = getResources().getIdentifier(jumperSpriteFile, "drawable", thisContext.getPackageName());
     jumperSprite =
-            new JumperSprite(
+            new GameSprite(
                     BitmapFactory.decodeResource(getResources(), resID),
-                    100,
-                    200,
+                    jumper,
                     this);
   }
 
@@ -94,122 +77,98 @@ public class JumpingGameView extends GameView {
     gameManager.createGameItems();
     gameManager.setActivity(activity);
 
+    jgm = (JumpingGameManager)gameManager;
+
+    terrain = jgm.terrain;
+    jumper = jgm.jumper;
+    obstacles = jgm.obstacles;
+    stars = jgm.stars;
+    queuedForRemoval = jgm.queuedForRemoval;
     terrainSprite =
-        new TerrainSprite(
+        new GameSprite(
             BitmapFactory.decodeResource(getResources(), R.drawable.grass),
-            getScreenWidth(),
-            getScreenHeight() / 2,
+            terrain,
             this);
-    terrainSprite.setPositionX(0);
-    terrainSprite.setPositionY(getScreenHeight() / 2);
+    terrain.setPositionX(0);
+    terrain.setPositionY(getScreenHeight() / 2);
 
-    /**jumperSprite =
-        new JumperSprite(
-            BitmapFactory.decodeResource(getResources(), R.drawable.ninja_idle__000),
-            100,
-            200,
-            this);*/
-    createJumpingSprite();
 
-    jumperSprite.setPositionY(terrainSprite.getPositionY() - jumperSprite.getHeight());
+    setJumperSpriteFile(jgm.jumper.characterColour);
+    createJumpingSprite(jumperSpriteFile);
 
-    obstacles = new ArrayList<>();
-    obstacles.add(generateObstacle(getScreenWidth() * 8 / 5));
-    obstacles.add(generateObstacle(getScreenWidth() * 3 / 5));
-    obstacles.add(generateObstacle(getScreenWidth() * 6 / 5));
 
-    jumperSprite.setVelocityX(-cameraVelocityX + cameraVelocityX);
 
-    coins = new ArrayList<>();
-    queuedForRemoval = new ArrayList<>();
-    addCoin(getScreenWidth() * 3 /5);
-    textPaint = new Paint();
-    textPaint.setColor(Color.rgb(250, 250, 250));
-    textPaint.setStyle(Paint.Style.FILL);
-    textPaint.setAntiAlias(true);
-    textPaint.setTextSize(30);
+    obstacleSprites = new ArrayList<>();
+    for (Obstacle obstacle: obstacles){
+      obstacleSprites.add(generateObstacle(obstacle));
+    }
+
+    starSprites = new ArrayList<>();
+    for (Star star: stars){
+      addStarSprite(star);
+    }
 
     thread.setRunning(true);
     thread.start();
   }
 
-  public void skyColor (int newColor){
-    this.skyColor = newColor;
-  }
-  public void addCoin(int xp){
-    CoinSprite coin = new CoinSprite(
-            BitmapFactory.decodeResource(getResources(), R.drawable.gold_1),
-            80,
-            80,
+  public void addStarSprite(Star star){
+    GameSprite starSprite = new GameSprite(
+            BitmapFactory.decodeResource(getResources(), R.drawable.star_6),
+            star,
             this);
-    coin.setPositionY(terrainSprite.getPositionY() - 4* obstacles.get(0).getHeight());
-    coin.setPositionX(xp);
-    coin.setVelocityX(-cameraVelocityX);
-    coins.add(coin);
+    starSprites.add(starSprite);
   }
-  private ObstacleSprite generateObstacle(int px) {
-    ObstacleSprite obstacleSprite =
-        new ObstacleSprite(
+
+
+  private GameSprite generateObstacle(Obstacle obstacle) {
+    GameSprite obstacleSprite =
+        new GameSprite(
             BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1),
-            100,
-            100,
+            obstacle,
             this);
-    obstacleSprite.setPositionY(terrainSprite.getPositionY() - obstacleSprite.getHeight());
-    obstacleSprite.setPositionX(px);
-    obstacleSprite.setVelocityX(-cameraVelocityX);
-    return obstacleSprite;
+        return obstacleSprite;
   }
 
   @Override
   public void update() {
-    for(GameSprite sprite: queuedForRemoval){
-      coins.remove(sprite);
+    jgm.update();
+    List<GameSprite> spritesToRemove = new ArrayList<>();
+    // TODO right now, only stars need to be removed so this temporary solution simply regenerates
+    // the
+    // list of stars and removes the old ones (inefficient; will optimize later)
+    if (stars.size() != starSprites.size()) {
+      starSprites = new ArrayList<>();
+      for (Star star : stars) {
+        addStarSprite(star);
+      }
     }
-    queuedForRemoval = new ArrayList<>();
-    for (CoinSprite coin: coins){
-      coin.update();
-    }
-    jumperSprite.update();
-    for (ObstacleSprite obstacleSprite : obstacles) {
-      obstacleSprite.update();
-    }
-    terrainSprite.update();
-  }
 
-  public void displayJumps(Canvas canvas) {
-    canvas.drawText("" + numJumped, 100, 100, textPaint);
   }
 
   @Override
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
-      canvas.drawColor(skyColor);
-      // Paint paint = new Paint();
-      // paint.setColor(Color.rgb(250, 0, 0));
-      // canvas.drawRect(0, getScreenHeight() * 1 / 2, getScreenWidth(), getScreenHeight(), paint);
-
+      canvas.drawColor(jgm.getSkyColor());
       terrainSprite.draw(canvas);
 
-      for (ObstacleSprite obstacleSprite : obstacles) {
+      for (GameSprite obstacleSprite : obstacleSprites) {
         obstacleSprite.draw(canvas);
       }
-      for (CoinSprite coin: coins){
-        coin.draw(canvas);
+
+
+      for (GameSprite star: starSprites){
+        star.draw(canvas);
       }
       jumperSprite.draw(canvas);
 
-      //displayJumps(canvas);
     }
   }
 
   @Override
   public boolean onTouchEvent(MotionEvent event) {
-    if (jumperSprite.getVelocityY() == 0) {
-      jumperSprite.setVelocityY(-2000);
-      jumperSprite.setAccelerationY(5000);
-    }
-    numTaps += 1;
+    jgm.onScreenTap();
     return super.onTouchEvent(event);
   }
 

@@ -9,7 +9,7 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class JumperSprite extends GameSprite {
 
-    public JumperSprite(Bitmap image, int width, int height, GameView gameView) {
+   /** public JumperSprite(Bitmap image, int width, int height, GameView gameView) {
         super(image, width, height, gameView);
     }
 
@@ -22,5 +22,5 @@ public class JumperSprite extends GameSprite {
             this.setVelocityY(0);
             this.setAccelerationY(0);
         }
-    }
+    }*/
 }
