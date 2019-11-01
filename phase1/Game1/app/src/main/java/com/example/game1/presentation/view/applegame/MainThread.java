@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 import com.example.game1.presentation.view.common.GameView;
 
-/** Hacky way to manage threading and updates. */
+/** Hacky way to manage threading and updates. Based on Fish Tank's MainThread. */
 public class MainThread extends Thread {
 
   /** Whether the thread is running. */

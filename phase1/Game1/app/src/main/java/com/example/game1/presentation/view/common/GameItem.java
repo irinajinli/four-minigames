@@ -90,7 +90,7 @@ public abstract class GameItem {
   }
 
   /**
-   * Draws this GameItem.
+   * Draw this GameItem.
    *
    * @param canvas the canvas on which to draw this item.
    */
@@ -98,11 +98,11 @@ public abstract class GameItem {
     drawString(canvas, appearance, x, y);
   }
 
-  /** Moves this GameItem within its GameManager. */
+  /** Move this GameItem within its GameManager. */
   public abstract void move();
 
   /**
-   * Draws the GameItem at a location on the specified Canvas using a String.
+   * Draw the GameItem at a location on the specified Canvas using a String.
    *
    * @param canvas the canvas on which to draw
    * @param s the String to draw
