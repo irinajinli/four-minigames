@@ -1,29 +1,45 @@
 package com.example.game1.presentation.model;
 
+/**
+ * The model object for a user.
+ * This object is used by the domain and data layer.
+ */
 public class User {
     private String userName;
     private String password;
+
+    /**
+     * An instance of Customization, which stores the customization choices of the user
+     */
     private Customization customization;
 
     /**
-     * The stats of the top game in this user's entire history (top points + stars)
+     * The statistics of the top game in this user's history
      */
     private int topPoints;
     private int topStars;
     private int topTaps;
 
     /**
-     * The stats of the current game
+     * The stats of the user's current game
      */
     private int currentPoints;
     private int currentStars;
     private int currentTaps;
 
+    /**
+     * The last completed level in the user's current game
+     */
     private int lastCompletedLevel;
 
+    /**
+     * Constructs a new User with the given user name and password.
+     */
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
+        // Set default value for the user's customization choices, statistics, and last completed
+        // level
         this.customization = new Customization();
         topPoints = 0;
         topStars = 0;
@@ -46,7 +62,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPasssword(String password) {
         this.password = password;
     }
 
