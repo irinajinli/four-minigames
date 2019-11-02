@@ -1,54 +1,32 @@
 package com.example.game1.presentation.view.tappinggame;
 
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 
-import com.example.game1.presentation.view.common.GameItem;
-import com.example.game1.presentation.view.common.GameView;
+public class TapCounter extends TappingItem {
+    /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
+    private int numTaps;
 
-public class TapCounter extends GameItem {
-    /** How many points have been counted. */
-    private int numTaps = 0;
+    public TapCounter(int xCoordinate, int yCoordinate) {
+        // Call super() to set appearance, location (xCoordinate, yCoordinate), appearance and
+        // type face.
+        super("Number of Taps: ", xCoordinate, yCoordinate);
+        this.numTaps = 0;
 
-    /** Constructs a PointsCounter with white text. */
-    public TapCounter() {
-        super("0");
-        paintText.setColor(Color.BLACK);
+        paintText.setColor(Color.CYAN);
     }
 
-    @Override
-    public void move() {
-        // TODO: empty method? fix?
-    }
-
-    /**
-     * Draws this TapCounter.
-     *
-     * @param canvas the canvas on which to draw
-     * @param s the String to draw
-     * @param x the x coordinate at which to draw
-     * @param y the y coordinate at which to draw
-     */
-    @Override
-    public void drawString(Canvas canvas, String s, int x, int y) {
-        canvas.drawText(s, x , y, super.paintText);
-    }
-    /**
-     * Gets numPoints.
-     *
-     * @return number of points
-     */
-    public int getNumPoints() {
+    public int getNumTaps(){
         return numTaps;
     }
 
-    /**yes
-     * Adds the specified number of points.
-     *
-     * @param Taps number of points to add
-     */
-    public void addPoints(int Taps) {
-        numTaps += Taps;
-        setAppearance("Number of Taps: " + numTaps + ""); // concatenate to make String
+    public void incrementNumTaps(){
+        this.numTaps ++;
+    }
+
+    public void setNumTaps(int numTaps) {
+        this.numTaps = numTaps;
+        this.appearance = "Number of Taps: " + this.numTaps;
     }
 }
