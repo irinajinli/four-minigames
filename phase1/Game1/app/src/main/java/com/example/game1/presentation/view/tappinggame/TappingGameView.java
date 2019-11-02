@@ -89,53 +89,53 @@ public class TappingGameView extends GameView {
     tappingMainThread.start();
 
 
-//    CountDownTimer timer =
-//            new CountDownTimer(10000, 1000) {
-//
-//
-//              @Override
-//              public void onTick(long millisUntilFinished) {
-//                secondLeft--;
-//                tappingGameManager.timerDisplayer.setSecondsLeft(secondLeft);
-//                // display the remaining time
-//                long timeTillEnd = (millisUntilFinished / 1000) + 1;
-//                long secondsPassed = 10 - timeTillEnd;
-//
-//                // add logic to catch speed for the time passed.
-//                //double speed;
-//                //int star = 0;
-//
-//                if (0 == secondsPassed) {
-//                  speed = 0;
-//                  tappingGameManager.speedDisplayer.setSpeed(speed);
-//                } else {
-//                  speed = (int)(numTaps / secondsPassed);
-//                  tappingGameManager.speedDisplayer.setSpeed(speed);
-//                  // set star to be the maximum speed reached for now
-//                  if (numStars < speed) {
-//                    numStars = (int) speed;
-//                    tappingGameManager.starDisplayer.setNumStar(numStars);
-//                  }
-//                }
-//              }
-//
-//              @Override
-//              public void onFinish() {
-//                // the game is over
-//                //iv_tap.setEnabled(false);
-//                gameStarted = false;
-//                //tv_info.setText("Game Over!");
-//
-//                // check the high score and save the new result if better
-//                if (numTaps > bestResult) {
-//                  bestResult = numTaps;
-//                }
-//
-//                tappingGameManager.gameOver(numTaps, numStars);
-//
-//              }
-//            };
-//    timer.start();
+    CountDownTimer timer =
+            new CountDownTimer(10000, 1000) {
+
+
+              @Override
+              public void onTick(long millisUntilFinished) {
+                secondLeft--;
+                tappingGameManager.timerDisplayer.setSecondsLeft(secondLeft);
+                // display the remaining time
+                long timeTillEnd = (millisUntilFinished / 1000) + 1;
+                long secondsPassed = 10 - timeTillEnd;
+
+                // add logic to catch speed for the time passed.
+                //double speed;
+                //int star = 0;
+
+                if (0 == secondsPassed) {
+                  speed = 0;
+                  tappingGameManager.speedDisplayer.setSpeed(speed);
+                } else {
+                  speed = (int)(numTaps / secondsPassed);
+                  tappingGameManager.speedDisplayer.setSpeed(speed);
+                  // set star to be the maximum speed reached for now
+                  if (numStars < speed) {
+                    numStars = (int) speed;
+                    tappingGameManager.starDisplayer.setNumStar(numStars);
+                  }
+                }
+              }
+
+              @Override
+              public void onFinish() {
+                // the game is over
+                //iv_tap.setEnabled(false);
+                gameStarted = false;
+                //tv_info.setText("Game Over!");
+
+                // check the high score and save the new result if better
+                if (numTaps > bestResult) {
+                  bestResult = numTaps;
+                }
+
+                tappingGameManager.gameOver(numTaps, numStars);
+
+              }
+            };
+    timer.start();
 
     gameStarted = true;
   }
