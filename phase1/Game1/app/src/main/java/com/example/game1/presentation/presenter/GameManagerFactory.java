@@ -1,5 +1,6 @@
 package com.example.game1.presentation.presenter;
 
+import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
@@ -15,7 +16,7 @@ public class GameManagerFactory {
    * @param height the height of the game manager
    * @param width the width of the game manager
    */
-  GameManager getGameManager(GameName game, int height, int width) {
+  GameManager getGameManager(Game.GameName game, int height, int width) {
     switch (game) {
       case APPLE:
         return new AppleGameManager(height, width);
@@ -26,12 +27,5 @@ public class GameManagerFactory {
       default:
         return null;
     }
-  }
-
-  /** The games that this factory can create game managers for */
-  enum GameName {
-    APPLE,
-    TAPPING,
-    JUMPING
   }
 }

@@ -44,7 +44,7 @@ public class JumpingGameManager extends GameManager {
    */
   public JumpingGameManager(int height, int width) {
     super(height, width);
-    this.game = new Game(Game.GameName.APPLE);
+    this.game = new Game(Game.GameName.JUMPING);
   }
 
   public List<Obstacle> getObstacles(){
