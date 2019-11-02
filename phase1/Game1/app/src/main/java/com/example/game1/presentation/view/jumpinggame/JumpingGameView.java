@@ -4,11 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 
 import com.example.game1.R;
 import com.example.game1.presentation.model.Customization;
@@ -26,7 +23,6 @@ public class JumpingGameView extends GameView {
   List<Obstacle> obstacles;
   List<GameSprite> starSprites;
   List<Star> stars;
-  List<GameObject> queuedForRemoval;
   GameSprite terrainSprite;
   Terrain terrain;
   Jumper jumper;
@@ -37,74 +33,65 @@ public class JumpingGameView extends GameView {
 
   public JumpingGameView(Context context) {
     super(context);
-    ////check if this line below may cause any bugs
+    //// check if this line below may cause any bugs
     thisContext = context;
     getHolder().addCallback(this);
     thread = new GameThread(getHolder(), this);
     setFocusable(true);
   }
 
-  public void setJumperSpriteFile (Customization.CharacterColour characterColour){
-    if (characterColour.equals(Customization.CharacterColour.BLUE)){
+  public void setJumperSpriteFile(Customization.CharacterColour characterColour) {
+    if (characterColour.equals(Customization.CharacterColour.BLUE)) {
       this.jumperSpriteFile = "jumper_blue";
-    }
-    else if (characterColour.equals(Customization.CharacterColour.RED)){
+    } else if (characterColour.equals(Customization.CharacterColour.RED)) {
       this.jumperSpriteFile = "jumper_red";
-    }
-    else if (characterColour.equals(Customization.CharacterColour.YELLOW)){
+    } else if (characterColour.equals(Customization.CharacterColour.YELLOW)) {
       this.jumperSpriteFile = "jumper_yellow";
-    }
-    else{
+    } else {
       this.jumperSpriteFile = "ninja_idle__000";
     }
   }
-  public void createJumpingSprite(String jumperSpriteFile){
-    int resID = getResources().getIdentifier(jumperSpriteFile, "drawable", thisContext.getPackageName());
+
+  public void createJumpingSprite(String jumperSpriteFile) {
+    int resID =
+        getResources().getIdentifier(jumperSpriteFile, "drawable", thisContext.getPackageName());
     jumperSprite =
-            new GameSprite(
-                    BitmapFactory.decodeResource(getResources(), resID),
-                    jumper,
-                    this);
+        new GameSprite(BitmapFactory.decodeResource(getResources(), resID), jumper, this);
   }
 
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
     gameManager =
-            AppManager.getInstance()
-                    .getJumpingGameManager(
-                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
-    ((JumpingGameManager)gameManager).setJumpingGameView(this);
+        AppManager.getInstance()
+            .getJumpingGameManager(
+                (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+    ((JumpingGameManager) gameManager).setJumpingGameView(this);
     gameManager.createGameItems();
     gameManager.setActivity(activity);
 
-    jgm = (JumpingGameManager)gameManager;
+    jgm = (JumpingGameManager) gameManager;
 
-    terrain = jgm.terrain;
-    jumper = jgm.jumper;
-    obstacles = jgm.obstacles;
-    stars = jgm.stars;
-    queuedForRemoval = jgm.queuedForRemoval;
+    terrain = jgm.getTerrain();
+    jumper = jgm.getJumper();
+    obstacles = jgm.getObstacles();
+    stars = jgm.getStars();
+
     terrainSprite =
         new GameSprite(
-            BitmapFactory.decodeResource(getResources(), R.drawable.grass),
-            terrain,
-            this);
+            BitmapFactory.decodeResource(getResources(), R.drawable.grass), terrain, this);
     terrain.setPositionX(0);
     terrain.setPositionY(getScreenHeight() / 2);
-
 
     setJumperSpriteFile(jgm.jumper.characterColour);
     createJumpingSprite(jumperSpriteFile);
 
-
-
     obstacleSprites = new ArrayList<>();
-    for (Obstacle obstacle: obstacles){
+    for (Obstacle obstacle : obstacles) {
       obstacleSprites.add(generateObstacle(obstacle));
     }
 
     starSprites = new ArrayList<>();
-    for (Star star: stars){
+    for (Star star : stars) {
       addStarSprite(star);
     }
 
@@ -112,14 +99,11 @@ public class JumpingGameView extends GameView {
     thread.start();
   }
 
-  public void addStarSprite(Star star){
-    GameSprite starSprite = new GameSprite(
-            BitmapFactory.decodeResource(getResources(), R.drawable.star_6),
-            star,
-            this);
+  public void addStarSprite(Star star) {
+    GameSprite starSprite =
+        new GameSprite(BitmapFactory.decodeResource(getResources(), R.drawable.star_6), star, this);
     starSprites.add(starSprite);
   }
-
 
   private GameSprite generateObstacle(Obstacle obstacle) {
     GameSprite obstacleSprite =
@@ -127,13 +111,12 @@ public class JumpingGameView extends GameView {
             BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1),
             obstacle,
             this);
-        return obstacleSprite;
+    return obstacleSprite;
   }
 
   @Override
   public void update() {
     jgm.update();
-    List<GameSprite> spritesToRemove = new ArrayList<>();
     // TODO right now, only stars need to be removed so this temporary solution simply regenerates
     // the
     // list of stars and removes the old ones (inefficient; will optimize later)
@@ -143,7 +126,6 @@ public class JumpingGameView extends GameView {
         addStarSprite(star);
       }
     }
-
   }
 
   @Override
@@ -157,12 +139,10 @@ public class JumpingGameView extends GameView {
         obstacleSprite.draw(canvas);
       }
 
-
-      for (GameSprite star: starSprites){
+      for (GameSprite star : starSprites) {
         star.draw(canvas);
       }
       jumperSprite.draw(canvas);
-
     }
   }
 
@@ -180,7 +160,7 @@ public class JumpingGameView extends GameView {
     return Resources.getSystem().getDisplayMetrics().heightPixels;
   }
 
-  public void gameOver(){
+  public void gameOver() {
     thread.setRunning(false);
     gameManager.gameOver();
   }
