@@ -30,12 +30,13 @@ public class UserMenuActivity extends AppCompatActivity {
 
         // Disable all Play buttons. Then enable the Play button corresponding to the user's next
         // level.
+        //TODO uncomment later
         Button playButton1 = findViewById(R.id.playButton1);
-        playButton1.setEnabled(false);
+//        playButton1.setEnabled(false);
         Button playButton2 = findViewById(R.id.playButton2);
-        playButton2.setEnabled(false);
+//        playButton2.setEnabled(false);
         Button playButton3 = findViewById(R.id.playButton3);
-        playButton3.setEnabled(false);
+//        playButton3.setEnabled(false);
 
 
         switch (userManager.getCurrentUser().getLastCompletedLevel()) {
@@ -55,12 +56,13 @@ public class UserMenuActivity extends AppCompatActivity {
 
     /** Called when the user taps the Restart button */
     public void restartGame(View view) {
-        Button playButton1 = findViewById(R.id.playButton1);
-        playButton1.setEnabled(true);
-        Button playButton2 = findViewById(R.id.playButton2);
-        playButton2.setEnabled(false);
-        Button playButton3 = findViewById(R.id.playButton3);
-        playButton3.setEnabled(false);
+        //TODO uncomment later
+//        Button playButton1 = findViewById(R.id.playButton1);
+//        playButton1.setEnabled(true);
+//        Button playButton2 = findViewById(R.id.playButton2);
+//        playButton2.setEnabled(false);
+//        Button playButton3 = findViewById(R.id.playButton3);
+//        playButton3.setEnabled(false);
         userManager.restartCurrentUsersGame();
     }
 
@@ -85,8 +87,8 @@ public class UserMenuActivity extends AppCompatActivity {
 
     /** Called when the user taps the 3rd Play button */
     public void goToLevel3(View view) {
-//        Intent intent = new Intent(this, JumpingActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, JumpingActivity.class);
+        startActivity(intent);
     }
 
     /** Called when the user taps the Customize button */
@@ -100,10 +102,4 @@ public class UserMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
     }
-
-    public void goToJumpingGame(View view){
-        Intent intent = new Intent(this, JumpingActivity.class);
-        startActivity(intent);
-    }
-
 }
