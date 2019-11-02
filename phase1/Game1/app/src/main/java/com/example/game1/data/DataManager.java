@@ -1,16 +1,13 @@
 package com.example.game1.data;
 
-import android.util.Log;
-
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.User;
 import com.example.game1.presentation.presenter.AppManager;
-
+import android.util.Log;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,7 +17,7 @@ import java.util.Scanner;
 
 
 /**
- * Responsible for storing and retrieving data.
+ * Responsible for storing, retrieving, and loading data.
  */
 public class DataManager {
 
@@ -117,11 +114,8 @@ public class DataManager {
             while (scanner.hasNextLine()) {
                 String str = scanner.nextLine();
                 if (str != null && str.trim().length() > 0 && str.split(":").length > 1) {
-//                    System.out.println("?????????????????????????????????????????");
-//                    System.out.println(str); // TESTING PURPOSES
                     String[] line = str.split(":");
                     String key = line[0];
-//                    String value = line[1];
                     String value;
                     if (USERNAME_KEY.equals(key)) {
                         if (line.length > 1) {
