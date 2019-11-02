@@ -9,13 +9,11 @@ public class Star extends GameObject {
   }
 
   @Override
-  public void update(){
+  public void update() {
     super.update();
-    if (this.isOverlapping(jgm.jumper)){
+    if (this.isOverlapping(jgm.getJumper())) {
       jgm.setNumStars(jgm.getNumStars() + 1);
       jgm.queueForRemoval(this);
     }
   }
-
-
 }

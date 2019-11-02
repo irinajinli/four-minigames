@@ -17,20 +17,27 @@ import com.example.game1.presentation.view.common.GameView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The view of the jumping game presented to the user.
+ */
 public class JumpingGameView extends GameView {
-  GameSprite jumperSprite;
-  List<GameSprite> obstacleSprites;
-  List<Obstacle> obstacles;
-  List<GameSprite> starSprites;
-  List<Star> stars;
-  GameSprite terrainSprite;
-  Terrain terrain;
-  Jumper jumper;
-  GameThread thread;
+  private GameSprite jumperSprite;
+  private List<GameSprite> obstacleSprites;
+  private List<Obstacle> obstacles;
+  private List<GameSprite> starSprites;
+  private List<Star> stars;
+  private GameSprite terrainSprite;
+  private Terrain terrain;
+  private Jumper jumper;
+  private GameThread thread;
   private Context thisContext;
   private JumpingGameManager jgm;
-  String jumperSpriteFile;
+  private String jumperSpriteFile;
 
+  /** creates a new JumpingView
+   * *
+   * @param context the context in which to create the view
+   */
   public JumpingGameView(Context context) {
     super(context);
     //// check if this line below may cause any bugs
@@ -40,6 +47,10 @@ public class JumpingGameView extends GameView {
     setFocusable(true);
   }
 
+  /**
+   * sets the string of the filename with the intended jumper sprite
+   * @param characterColour the colour selected by the user
+   */
   public void setJumperSpriteFile(Customization.CharacterColour characterColour) {
     if (characterColour.equals(Customization.CharacterColour.BLUE)) {
       this.jumperSpriteFile = "jumper_blue";
@@ -52,6 +63,10 @@ public class JumpingGameView extends GameView {
     }
   }
 
+  /**
+   * Creates the jumping sprite.
+   * @param jumperSpriteFile the filename of the jumper sprite
+   */
   public void createJumpingSprite(String jumperSpriteFile) {
     int resID =
         getResources().getIdentifier(jumperSpriteFile, "drawable", thisContext.getPackageName());
@@ -59,13 +74,16 @@ public class JumpingGameView extends GameView {
         new GameSprite(BitmapFactory.decodeResource(getResources(), resID), jumper, this);
   }
 
+  /**
+   * initialiezes the game view when a surface is created
+   * @param holder the surface holder holding the view
+   */
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
     gameManager =
         AppManager.getInstance()
             .getJumpingGameManager(
                 (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
-    ((JumpingGameManager) gameManager).setJumpingGameView(this);
     gameManager.createGameItems();
     gameManager.setActivity(activity);
 
@@ -82,7 +100,7 @@ public class JumpingGameView extends GameView {
     terrain.setPositionX(0);
     terrain.setPositionY(getScreenHeight() / 2);
 
-    setJumperSpriteFile(jgm.jumper.characterColour);
+    setJumperSpriteFile(jgm.getJumper().characterColour);
     createJumpingSprite(jumperSpriteFile);
 
     obstacleSprites = new ArrayList<>();
@@ -99,35 +117,52 @@ public class JumpingGameView extends GameView {
     thread.start();
   }
 
+  /**
+   * Creates a new start sprite and adds it to this game view
+   * @param star the star for which to create the sprite
+   */
   public void addStarSprite(Star star) {
     GameSprite starSprite =
         new GameSprite(BitmapFactory.decodeResource(getResources(), R.drawable.star_6), star, this);
     starSprites.add(starSprite);
   }
 
+  /**
+   * Generates a new game obstacle sprite and returns it
+   * @param obstacle the obstacle for which to create a sprite
+   * @return a new game obstacle sprite
+   */
   private GameSprite generateObstacle(Obstacle obstacle) {
-    GameSprite obstacleSprite =
-        new GameSprite(
-            BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1),
-            obstacle,
-            this);
-    return obstacleSprite;
+    return new GameSprite(
+        BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1), obstacle, this);
   }
 
+  /**
+   * Updates this game view
+   */
   @Override
   public void update() {
-    jgm.update();
-    // TODO right now, only stars need to be removed so this temporary solution simply regenerates
-    // the
-    // list of stars and removes the old ones (inefficient; will optimize later)
-    if (stars.size() != starSprites.size()) {
-      starSprites = new ArrayList<>();
-      for (Star star : stars) {
-        addStarSprite(star);
+    if (jgm.getRunning() == false) {
+      gameOver();
+    } else {
+
+      jgm.update();
+      // TODO right now, only stars need to be removed so this temporary solution simply regenerates
+      // the
+      // list of stars and removes the old ones (inefficient; will optimize later)
+      if (stars.size() != starSprites.size()) {
+        starSprites = new ArrayList<>();
+        for (Star star : stars) {
+          addStarSprite(star);
+        }
       }
     }
   }
 
+  /**
+   * draws this game view on the canvas
+   * @param canvas the canvas on which to draw
+   */
   @Override
   public void draw(Canvas canvas) {
     super.draw(canvas);
@@ -146,20 +181,20 @@ public class JumpingGameView extends GameView {
     }
   }
 
+  /**
+   * Handles the jumper's jump when the user taps the screen
+   * @param event the event for the screen tap
+   * @return true or false depending on the implementation of the superclass
+   */
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     jgm.onScreenTap();
     return super.onTouchEvent(event);
   }
 
-  public int getScreenWidth() {
-    return Resources.getSystem().getDisplayMetrics().widthPixels;
-  }
-
-  public int getScreenHeight() {
-    return Resources.getSystem().getDisplayMetrics().heightPixels;
-  }
-
+  /**
+   * Ends the current jumping game being view
+   */
   public void gameOver() {
     thread.setRunning(false);
     gameManager.gameOver();

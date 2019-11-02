@@ -14,8 +14,8 @@ public class Jumper extends GameObject {
 
     public void update(){
         super.update();
-        if (this.isOverlapping(jgm.terrain)){
-            this.setPositionY(jgm.terrain.getPositionY() - this.getHeight());
+        if (this.isOverlapping(jgm.getTerrain())){
+            this.setPositionY(jgm.getTerrain().getPositionY() - this.getHeight());
             this.setVelocityY(0);
             this.setAccelerationY(0);
         }
