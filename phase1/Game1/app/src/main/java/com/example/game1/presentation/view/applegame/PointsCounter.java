@@ -12,19 +12,20 @@ public class PointsCounter extends GameItem {
   /** How many points have been counted. */
   private int numPoints = 0;
 
-  /** Constructs a PointsCounter with white text. */
+  /** Construct a PointsCounter with white text. */
   public PointsCounter() {
     super("0");
     paintText.setColor(Color.WHITE);
   }
 
+  /** Move this GameItem within its GameManager. */
   @Override
   public void move() {
     // TODO: empty method? fix?
   }
 
   /**
-   * Draws this PointsCounter.
+   * Draw this PointsCounter.
    *
    * @param canvas the canvas on which to draw
    * @param s the String to draw
@@ -37,7 +38,7 @@ public class PointsCounter extends GameItem {
   }
 
   /**
-   * Gets numPoints.
+   * Get numPoints.
    *
    * @return number of points
    */
@@ -46,7 +47,7 @@ public class PointsCounter extends GameItem {
   }
 
   /**
-   * Adds the specified number of points.
+   * Add the specified number of points to this PointsCounter.
    *
    * @param points number of points to add
    */

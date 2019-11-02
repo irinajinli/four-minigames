@@ -8,11 +8,13 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class Apple extends GameItem {
 
+  /** Construct a red apple. */
   public Apple() {
     super("( )");
     paintText.setColor(Color.RED);
   }
 
+  /** Move this GameItem within its GameManager. */
   @Override
   public void move() {
     int newY = getY() + 1;
@@ -20,6 +22,14 @@ public class Apple extends GameItem {
     changeLocation(getX(), getY() + 1);
   }
 
+  /**
+   * Draw this Apple.
+   *
+   * @param canvas the canvas on which to draw
+   * @param s the String to draw
+   * @param x the x coordinate at which to draw
+   * @param y the y coordinate at which to draw
+   */
   @Override
   public void drawString(Canvas canvas, String s, int x, int y) {
     canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
