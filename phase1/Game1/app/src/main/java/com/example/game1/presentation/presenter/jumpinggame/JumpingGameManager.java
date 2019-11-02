@@ -62,6 +62,22 @@ public class JumpingGameManager extends GameManager {
   public List<Star> getStars(){
       return stars;
     }
+  public int getNumJumped(){
+    return numJumped;
+  }
+
+  public void setNumJumped(int numJumped){
+    this.numJumped = numJumped;
+  }
+
+  public int getNumStars(){
+    return numStars;
+  }
+
+  public void setNumStars(int numStars){
+    this.numStars = numStars;
+  }
+
 
   public void setJumpingGameView(JumpingGameView jgv) {
     this.jgv = jgv;

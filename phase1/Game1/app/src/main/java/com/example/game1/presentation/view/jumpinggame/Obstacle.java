@@ -18,7 +18,7 @@ public class Obstacle extends GameObject {
         }
         else if (this.getPositionX() + this.getWidth() < 0){
             this.setPositionX(jgm.getScreenWidth() * 4 / 3);
-            jgm.numJumped += 1;
+            jgm.setNumJumped(jgm.getNumJumped() + 1);
             if (Math.random() > 0.7){
                 jgm.addStar(jgm.getScreenWidth() * 4 / 3 + this.getWidth() / 2 - 80/2); // 80 is the diameter of the coin
             }

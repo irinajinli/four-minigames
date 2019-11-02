@@ -12,7 +12,7 @@ public class Star extends GameObject {
   public void update(){
     super.update();
     if (this.isOverlapping(jgm.jumper)){
-      jgm.numStars += 1;
+      jgm.setNumStars(jgm.getNumStars() + 1);
       jgm.queueForRemoval(this);
     }
   }
