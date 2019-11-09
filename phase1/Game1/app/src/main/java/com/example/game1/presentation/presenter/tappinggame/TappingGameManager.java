@@ -116,17 +116,7 @@ public class TappingGameManager extends GameManager {
   }
 
 
-//@Override
-//  /**
-//   * draw each item in myFishTank on the canvas.
-//   *
-//   * @param canvas the graphics context in which to draw this item.
-//   */
-//  public void draw(Canvas canvas) {
-//    for (TappingItem item : myTappingItems) {
-//      item.draw(canvas);
-//    }
-//  }
+
 
 
 
@@ -148,7 +138,7 @@ public class TappingGameManager extends GameManager {
           canRun = ((Runner)item).move(getWidth());
         }
 //      //Use a FishTankItem[] of length 2 to store value to be returned.
-//      TappingItem[] result = item.animate(getWidth(), getHeight());
+//      GameItem[] result = item.animate(getWidth(), getHeight());
 //
 //      //result[0] stores the FishTankItem to be removed from myFishTank
 //      if (result[0] != null) {
