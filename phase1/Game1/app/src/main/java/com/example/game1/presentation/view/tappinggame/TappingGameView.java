@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import com.example.game1.R;
@@ -17,7 +18,7 @@ import com.example.game1.R;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameView;
 
-public class TappingGameView extends GameView {
+public class TappingGameView extends SurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
 
 
   /** Screen width. */
@@ -45,7 +46,7 @@ public class TappingGameView extends GameView {
   protected int secondLeft;
   protected int speed;
 
-
+  private OnClickListener listener;
 
   /**
    * Create a new fish tank in the context environment.
@@ -61,8 +62,19 @@ public class TappingGameView extends GameView {
     numStars = 0;
     gameStarted = false;
     bestResult = 0;
-    secondLeft = 10;
+    secondLeft = 1000;
     speed = 0;
+    this.listener = new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (gameStarted){
+          numTaps++;
+          tappingGameManager.tapCounter.setNumTaps(numTaps);
+        }
+      }
+};
+
+
   }
 
   @Override
@@ -84,13 +96,13 @@ public class TappingGameView extends GameView {
     //        tankManager.setTappingCircleImage(tappingCircleBMP);
     tappingGameManager.createTappingItems();
 
-    tappingGameManager.setActivity(activity);
+   // tappingGameManager.setActivity(activity);
     tappingMainThread.setRunning(true);
     tappingMainThread.start();
 
-
+    this.setOnClickListener(this.listener);
     CountDownTimer timer =
-            new CountDownTimer(10000, 1000) {
+            new CountDownTimer(1000000, 1000) {
 
 
               @Override
@@ -99,7 +111,7 @@ public class TappingGameView extends GameView {
                 tappingGameManager.timerDisplayer.setSecondsLeft(secondLeft);
                 // display the remaining time
                 long timeTillEnd = (millisUntilFinished / 1000) + 1;
-                long secondsPassed = 10 - timeTillEnd;
+                long secondsPassed = 1000 - timeTillEnd;
 
                 // add logic to catch speed for the time passed.
                 //double speed;
@@ -118,6 +130,9 @@ public class TappingGameView extends GameView {
                   }
                 }
               }
+
+
+
 
               @Override
               public void onFinish() {
@@ -166,31 +181,21 @@ public class TappingGameView extends GameView {
 
   @Override
   public void draw(Canvas canvas) {
-    //super.draw(canvas);
+    super.draw(canvas);
 
     if (canvas != null) {
       tappingGameManager.draw(canvas);
     }
   }
 
+
   @Override
-  public boolean onTouchEvent(MotionEvent event) {
-    // count tap in game's numTaps
-    //        Game game = gameManager.getGame();
-    //        game.setNumTaps(game.getNumTaps() + 1);
-    //
-    //        double touchX = event.getX() / charWidth;
-    //        ((AppleGameManager) gameManager).moveBasket((int) touchX);
-    //
-    //        return true;
+  public void onClick(View v){
+
     if (gameStarted){
       numTaps++;
       tappingGameManager.tapCounter.setNumTaps(numTaps);
     }
-
-    return true;
   }
-
-
 
 }

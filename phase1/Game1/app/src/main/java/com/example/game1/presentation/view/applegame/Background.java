@@ -30,6 +30,7 @@ public class Background extends GameItem {
    * @param y the y coordinate at which to draw
    */
   @Override
+
   public void drawString(Canvas canvas, String s, int x, int y) {
     Rect backgroundRect = new Rect(0, 0, 999999, 999999);
     Paint backgroundPaint = new Paint();
@@ -40,4 +41,5 @@ public class Background extends GameItem {
     backgroundPaint.setStyle(Paint.Style.FILL);
     canvas.drawRect(backgroundRect, backgroundPaint);
   }
+
 }

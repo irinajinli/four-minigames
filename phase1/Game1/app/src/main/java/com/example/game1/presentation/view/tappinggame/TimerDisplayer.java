@@ -9,8 +9,8 @@ public class TimerDisplayer extends TappingItem {
     public TimerDisplayer(int xCoordinate, int yCoordinate) {
         // Call super() to set appearance, location (xCoordinate, yCoordinate), appearance and
         // type face.
-        super("Your seconds left: " + 10, xCoordinate, yCoordinate);
-        this.secondsLeft = 10;
+        super("Your seconds left: " + 1000, xCoordinate, yCoordinate);
+        this.secondsLeft = 1000;
 
         paintText.setColor(Color.CYAN);
     }
@@ -25,4 +25,9 @@ public class TimerDisplayer extends TappingItem {
         this.secondsLeft = secondsLeft;
         this.appearance = "Your seconds left: " + this.secondsLeft;
     }
+
+//    @Override
+//    public  animate(){
+//
+//    }
 }

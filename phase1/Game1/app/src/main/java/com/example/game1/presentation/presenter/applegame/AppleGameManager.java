@@ -8,7 +8,7 @@ import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Background;
 import com.example.game1.presentation.view.applegame.Basket;
-import com.example.game1.presentation.view.applegame.MainThread;
+import com.example.game1.presentation.view.common.MainThread;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.common.Star;

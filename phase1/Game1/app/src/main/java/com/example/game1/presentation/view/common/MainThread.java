@@ -1,9 +1,7 @@
-package com.example.game1.presentation.view.applegame;
+package com.example.game1.presentation.view.common;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
-
-import com.example.game1.presentation.view.common.GameView;
 
 /** Hacky way to manage threading and updates. Based on Fish Tank's MainThread. */
 public class MainThread extends Thread {

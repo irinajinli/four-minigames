@@ -47,6 +47,9 @@ public class TappingGameManager extends GameManager {
   /**
    * The height of fish tank.
    */
+
+  public TappingCircle tappingCircle;
+
   private Bitmap runnerBMP;
 
   public TapCounter tapCounter;
@@ -83,7 +86,7 @@ public class TappingGameManager extends GameManager {
     this.tappingCircleBMP = tappingCircleBMP;
     this.runnerBMP = runnerBMP;
 
-    myTappingItems = new ArrayList<TappingItem>();
+    myTappingItems = new ArrayList<>();
 
   }
 
@@ -159,11 +162,14 @@ public class TappingGameManager extends GameManager {
 
   }
 
-  public void createGameItems() {}
+  public void createGameItems() {
+//    gameItems.add(new TappingCircle(tappingCircleBMP, 0, 0));
+
+  }
 
   public void createTappingItems() {
-
-    myTappingItems.add(new TappingCircle(tappingCircleBMP, 0, 0));
+    TappingCircle tappingCircle = new TappingCircle(tappingCircleBMP, 0, 0);
+    myTappingItems.add(tappingCircle);
     myTappingItems.add(new Runner(runnerBMP, 0, 35));
     this.tapCounter = new TapCounter(10, 30);
     myTappingItems.add(this.tapCounter);

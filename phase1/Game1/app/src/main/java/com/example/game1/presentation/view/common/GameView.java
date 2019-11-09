@@ -1,6 +1,5 @@
 package com.example.game1.presentation.view.common;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -10,7 +9,6 @@ import android.view.SurfaceView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.view.applegame.MainThread;
 
 /** The fish tank view. */
 public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
