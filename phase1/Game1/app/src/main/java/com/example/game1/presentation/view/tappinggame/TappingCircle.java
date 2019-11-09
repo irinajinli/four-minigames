@@ -3,14 +3,17 @@ package com.example.game1.presentation.view.tappinggame;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
+import com.example.game1.presentation.view.common.GameItem;
+
 /** a tapping circle */
-public class TappingCircle extends TappingItem {
-    /** construct a tapping circle at the specified cursor location (xCoordinate, yCoordinate). */
-    public TappingCircle(Bitmap appearance, int xCoordinate, int yCoordinate) {
-        // Call super() to set appearance, location (xCoordinate, yCoordinate), appearance and
+public class TappingCircle extends GameItem {
+    /** construct a tapping circle at the specified cursor location (x, y). */
+    public TappingCircle(Bitmap appearance, int x, int y) {
+        // Call super() to set appearance, location (x, y), appearance and
         // type face.
-        super(appearance, xCoordinate, yCoordinate);
-        this.appearance = getResizedBitmap(appearance, 1000, 1000);
+        super();
+        setLocation(x, y);
+        setAppearance(getResizedBitmap(appearance, 1000, 1000));
     }
 
     /**
@@ -36,4 +39,5 @@ public class TappingCircle extends TappingItem {
         bm.recycle();
         return resizedBitmap;
     }
+    public void move(){}
 }

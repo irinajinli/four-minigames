@@ -2,16 +2,18 @@ package com.example.game1.presentation.view.tappinggame;
 
 import android.graphics.Color;
 
-public class TimerDisplayer extends TappingItem {
+import com.example.game1.presentation.view.common.GameItem;
+
+public class TimerDisplayer extends GameItem {
     /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
     private int secondsLeft;
 
-    public TimerDisplayer(int xCoordinate, int yCoordinate) {
-        // Call super() to set appearance, location (xCoordinate, yCoordinate), appearance and
+    public TimerDisplayer(int x, int y) {
+        // Call super() to set appearance, location (x, y), appearance and
         // type face.
-        super("Your seconds left: " + 1000, xCoordinate, yCoordinate);
-        this.secondsLeft = 1000;
-
+        super("Your seconds left: 1000");
+        setLocation(x, y);
+        this.secondsLeft = 10;
         paintText.setColor(Color.CYAN);
     }
 
@@ -23,10 +25,15 @@ public class TimerDisplayer extends TappingItem {
 
     public void setSecondsLeft(int secondsLeft) {
         this.secondsLeft = secondsLeft;
-        this.appearance = "Your seconds left: " + this.secondsLeft;
+        setAppearance("Your seconds left: " + this.secondsLeft);
     }
 
-//    @Override
+    @Override
+    public void move() {
+
+    }
+
+    //    @Override
 //    public  animate(){
 //
 //    }

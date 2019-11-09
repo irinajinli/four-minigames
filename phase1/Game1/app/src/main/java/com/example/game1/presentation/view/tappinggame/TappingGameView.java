@@ -1,40 +1,37 @@
 package com.example.game1.presentation.view.tappinggame;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.CountDownTimer;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-
+import com.example.game1.presentation.view.common.MainThread;
 import com.example.game1.R;
 
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameView;
 
-public class TappingGameView extends SurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
+public class TappingGameView extends GameView implements View.OnClickListener{
 
 
-  /** Screen width. */
-  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-  /** Screen height. */
-  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+//  /** Screen width. */
+//  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+//  /** Screen height. */
+//  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-  /** The width of a character. */
-  public static float charWidth;
-  /** The height of a character. */
-  public static float charHeight;
+//  /** The width of a character. */
+//  public static float charWidth;
+//  /** The height of a character. */
+//  public static float charHeight;
 
-  /** The fish tank contents. */
-  public TappingGameManager tappingGameManager;
+//  /** The fish tank contents. */
+//  public TappingGameManager tappingGameManager;
   /** The part of the program that manages time. */
-  private TappingMainThread tappingMainThread;
+  private MainThread tappingMainThread;
 
   private Bitmap tappingCircleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
   private Bitmap runnerBMP = BitmapFactory.decodeResource(getResources(), R.drawable.pug);
@@ -45,7 +42,7 @@ public class TappingGameView extends SurfaceView implements SurfaceHolder.Callba
   protected int bestResult;
   protected int secondLeft;
   protected int speed;
-
+  private boolean reachDestination;
   private OnClickListener listener;
 
   /**
@@ -56,20 +53,21 @@ public class TappingGameView extends SurfaceView implements SurfaceHolder.Callba
   public TappingGameView(Context context) {
     super(context);
     getHolder().addCallback(this);
-    tappingMainThread = new TappingMainThread(getHolder(), this);
+    tappingMainThread = new MainThread(getHolder(), this);
     setFocusable(true);
     numTaps = 0;
     numStars = 0;
     gameStarted = false;
     bestResult = 0;
-    secondLeft = 1000;
+    secondLeft = 10;
     speed = 0;
+    reachDestination = false;
     this.listener = new OnClickListener() {
       @Override
       public void onClick(View v) {
         if (gameStarted){
           numTaps++;
-          tappingGameManager.tapCounter.setNumTaps(numTaps);
+          ((TappingGameManager)gameManager).tapCounter.setNumTaps(numTaps);
         }
       }
 };
@@ -87,72 +85,77 @@ public class TappingGameView extends SurfaceView implements SurfaceHolder.Callba
     charHeight = -paintText.ascent() + paintText.descent();
 
     // Use the letter size and screen height to determine the size of the GameManager.
-    tappingGameManager =
+    gameManager =
             new TappingGameManager(
-                    (int) (screenHeight / charHeight),
-                    (int) (screenWidth / charWidth),
+                    (int) (getScreenHeight() / charHeight),
+                    (int) (getScreenWidth() / charWidth),
                     tappingCircleBMP,
                     runnerBMP);
     //        tankManager.setTappingCircleImage(tappingCircleBMP);
-    tappingGameManager.createTappingItems();
+    gameManager.createGameItems();
 
-   // tappingGameManager.setActivity(activity);
+    gameManager.setActivity(activity);
     tappingMainThread.setRunning(true);
     tappingMainThread.start();
-
+    ((TappingGameManager) gameManager).setCanRun(false);
     this.setOnClickListener(this.listener);
     CountDownTimer timer =
-            new CountDownTimer(1000000, 1000) {
+        new CountDownTimer(10000, 1000) {
 
+          @Override
+          public void onTick(long millisUntilFinished) {
+            secondLeft--;
+            ((TappingGameManager) gameManager).timerDisplayer.setSecondsLeft(secondLeft);
+            // display the remaining time
+            long timeTillEnd = (millisUntilFinished / 1000) + 1;
+            long secondsPassed = 10 - timeTillEnd;
 
-              @Override
-              public void onTick(long millisUntilFinished) {
-                secondLeft--;
-                tappingGameManager.timerDisplayer.setSecondsLeft(secondLeft);
-                // display the remaining time
-                long timeTillEnd = (millisUntilFinished / 1000) + 1;
-                long secondsPassed = 1000 - timeTillEnd;
+            // add logic to catch speed for the time passed.
+            // double speed;
+            // int star = 0;
 
-                // add logic to catch speed for the time passed.
-                //double speed;
-                //int star = 0;
+              if (0 == secondsPassed) {
+                speed = 0;
+                ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
+              } else {
+                speed = (int) (numTaps / secondsPassed);
+                ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
+                ((TappingGameManager) gameManager).runner.setSpeed(speed);
 
-                if (0 == secondsPassed) {
-                  speed = 0;
-                  tappingGameManager.speedDisplayer.setSpeed(speed);
-                } else {
-                  speed = (int)(numTaps / secondsPassed);
-                  tappingGameManager.speedDisplayer.setSpeed(speed);
-                  // set star to be the maximum speed reached for now
-                  if (numStars < speed) {
-                    numStars = (int) speed;
-                    tappingGameManager.starDisplayer.setNumStar(numStars);
-                  }
+                // set star to be the maximum speed reached for now
+                if (numStars < speed) {
+                  numStars = (int) speed;
+                  ((TappingGameManager) gameManager).starDisplayer.setNumStar(numStars);
                 }
               }
 
+              reachDestination = !((TappingGameManager) gameManager).isCanRun();
 
 
+          }
 
-              @Override
-              public void onFinish() {
-                // the game is over
-                //iv_tap.setEnabled(false);
-                gameStarted = false;
-                //tv_info.setText("Game Over!");
+          @Override
+          public void onFinish() {
+            // the game is over
+            // iv_tap.setEnabled(false);
+            gameStarted = false;
+            // tv_info.setText("Game Over!");
 
-                // check the high score and save the new result if better
-                if (numTaps > bestResult) {
-                  bestResult = numTaps;
-                }
+            // check the high score and save the new result if better
+            if (numTaps > bestResult) {
+              bestResult = numTaps;
+            }
+            if (!gameStarted){
+              ((TappingGameManager) gameManager).gameOver(numTaps, numStars);
+            }
 
-                tappingGameManager.gameOver(numTaps, numStars);
-
-              }
-            };
+          }
+        };
     timer.start();
 
     gameStarted = true;
+
+
   }
 
 
@@ -176,7 +179,7 @@ public class TappingGameView extends SurfaceView implements SurfaceHolder.Callba
 
   /** Update the fish tank. */
   public void update() {
-    tappingGameManager.update();
+    gameManager.update();
   }
 
   @Override
@@ -184,7 +187,7 @@ public class TappingGameView extends SurfaceView implements SurfaceHolder.Callba
     super.draw(canvas);
 
     if (canvas != null) {
-      tappingGameManager.draw(canvas);
+      gameManager.draw(canvas);
     }
   }
 
@@ -194,7 +197,7 @@ public class TappingGameView extends SurfaceView implements SurfaceHolder.Callba
 
     if (gameStarted){
       numTaps++;
-      tappingGameManager.tapCounter.setNumTaps(numTaps);
+      ((TappingGameManager)gameManager).tapCounter.setNumTaps(numTaps);
     }
   }
 

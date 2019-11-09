@@ -2,16 +2,18 @@ package com.example.game1.presentation.view.tappinggame;
 
 import android.graphics.Color;
 
-public class StarDisplayer extends TappingItem {
+import com.example.game1.presentation.view.common.GameItem;
+
+public class StarDisplayer extends GameItem {
     /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
     private int numStar;
 
-    public StarDisplayer(int xCoordinate, int yCoordinate) {
-        // Call super() to set appearance, location (xCoordinate, yCoordinate), appearance and
+    public StarDisplayer(int x, int y) {
+        // Call super() to set appearance, location (x, y), appearance and
         // type face.
-        super("You current star number: ", xCoordinate, yCoordinate);
+        super("You current star number: ");
+        setLocation(x, y);
         this.numStar = 0;
-
         paintText.setColor(Color.CYAN);
     }
 
@@ -23,6 +25,11 @@ public class StarDisplayer extends TappingItem {
 
     public void setNumStar(int numStar) {
         this.numStar = numStar;
-        this.appearance = "You current star number: " + this.numStar;
+        setAppearance("You current star number: " + this.numStar);
+    }
+
+    @Override
+    public void move() {
+
     }
 }

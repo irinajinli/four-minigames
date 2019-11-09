@@ -1,21 +1,15 @@
 package com.example.game1.presentation.presenter.tappinggame;
 
-import android.content.SharedPreferences;
-
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.os.CountDownTimer;
 
-import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
+import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.tappinggame.Runner;
 import com.example.game1.presentation.view.tappinggame.SpeedDisplayer;
 import com.example.game1.presentation.view.tappinggame.StarDisplayer;
 import com.example.game1.presentation.view.tappinggame.TapCounter;
 import com.example.game1.presentation.view.tappinggame.TappingCircle;
-import com.example.game1.presentation.view.tappinggame.TappingItem;
 import com.example.game1.presentation.view.tappinggame.TimerDisplayer;
 
 import java.util.ArrayList;
@@ -29,7 +23,7 @@ public class TappingGameManager extends GameManager {
   /**
    * A list with all Tapping items.
    */
-  static List<TappingItem> myTappingItems;
+ // static List<GameItem> myTappingItems;
 
 
   /**
@@ -52,6 +46,8 @@ public class TappingGameManager extends GameManager {
 
   private Bitmap runnerBMP;
 
+  public Runner runner;
+
   public TapCounter tapCounter;
 
   public TimerDisplayer timerDisplayer;
@@ -59,6 +55,17 @@ public class TappingGameManager extends GameManager {
   public StarDisplayer starDisplayer;
 
   public SpeedDisplayer speedDisplayer;
+
+  public boolean isCanRun() {
+    return canRun;
+  }
+
+  public void setCanRun(boolean canRun) {
+    this.canRun = canRun;
+  }
+
+  private boolean canRun;
+
 
 
   /**
@@ -71,7 +78,7 @@ public class TappingGameManager extends GameManager {
     this.width = width;
 
 
-    myTappingItems = new ArrayList<TappingItem>();
+    //myTappingItems = new ArrayList<>();
 
   }
 
@@ -85,8 +92,8 @@ public class TappingGameManager extends GameManager {
     this.width = width;
     this.tappingCircleBMP = tappingCircleBMP;
     this.runnerBMP = runnerBMP;
-
-    myTappingItems = new ArrayList<>();
+    this.canRun = true;
+    //myTappingItems = new ArrayList<>();
 
   }
 
@@ -131,70 +138,54 @@ public class TappingGameManager extends GameManager {
    */
   public void update() {
     //newItems list stores FishTankItems to be added to myFishTank
-    List<TappingItem> newItems = new ArrayList<>();
+    List<GameItem> newItems = new ArrayList<>();
     // outItem list stores FishTankItem to be removed from myFishTank
-    List<TappingItem> outItems = new ArrayList<>();
+    List<GameItem> outItems = new ArrayList<>();
 
-    for (TappingItem item : myTappingItems) {
-
-      //Use a FishTankItem[] of length 2 to store value to be returned.
-      TappingItem[] result = item.animate(getWidth(), getHeight());
-
-      //result[0] stores the FishTankItem to be removed from myFishTank
-      if (result[0] != null) {
-        // Add the FishTankItem to the outItems so that it can be removed from myFishTank later
-        outItems.add( result[0]);
-      }
-      //result[1] stores the FishTankItem to be added to myFishTank
-      if (result[1] != null) {
-        // Add the FishTankItem to the newItems List so that it can be added to myFishTank later
-        newItems.add(result[1]);
-      }
+    List<GameItem> Items = getGameItems();
+    for (GameItem item : Items) {
+        if(item.getClass() == Runner.class){
+          canRun = ((Runner)item).move(getWidth());
+        }
+//      //Use a FishTankItem[] of length 2 to store value to be returned.
+//      TappingItem[] result = item.animate(getWidth(), getHeight());
+//
+//      //result[0] stores the FishTankItem to be removed from myFishTank
+//      if (result[0] != null) {
+//        // Add the FishTankItem to the outItems so that it can be removed from myFishTank later
+//        outItems.add( result[0]);
+//      }
+//      //result[1] stores the FishTankItem to be added to myFishTank
+//      if (result[1] != null) {
+//        // Add the FishTankItem to the newItems List so that it can be added to myFishTank later
+//        newItems.add(result[1]);
+//      }
     }
-    // Iterate all items in outItems List, remove it from myFishTank.
-    for (TappingItem outItem : outItems) {
-      myTappingItems.remove(outItem);
-    }
+//    // Iterate all items in outItems List, remove it from myFishTank.
+//    for (GameItem outItem : outItems) {
+//      items.remove(outItem);
+//    }
     //Iterate all items in newItems List, add them to myFishTank.
-    for (TappingItem newItem : newItems) {
-      myTappingItems.add(newItem);
+    for (GameItem newItem : newItems) {
+      place(newItem);
     }
 
   }
 
   public void createGameItems() {
 //    gameItems.add(new TappingCircle(tappingCircleBMP, 0, 0));
-
-  }
-
-  public void createTappingItems() {
-    TappingCircle tappingCircle = new TappingCircle(tappingCircleBMP, 0, 0);
-    myTappingItems.add(tappingCircle);
-    myTappingItems.add(new Runner(runnerBMP, 0, 35));
+    this.tappingCircle = new TappingCircle(tappingCircleBMP, 0, 0);
+    place(tappingCircle);
+    this.runner = new Runner(runnerBMP, 0, 35);
+    place(runner);
     this.tapCounter = new TapCounter(10, 30);
-    myTappingItems.add(this.tapCounter);
+    place(tapCounter);
     this.timerDisplayer = new TimerDisplayer(10, 31);
-    myTappingItems.add(timerDisplayer);
+    place(timerDisplayer);
     this.speedDisplayer = new SpeedDisplayer(10, 32);
-    myTappingItems.add(speedDisplayer);
+    place(speedDisplayer);
     this.starDisplayer = new StarDisplayer(10, 33);
-    myTappingItems.add(starDisplayer);
-
-
-
-  }
-
-
-  /**
-   * draw each item in myFishTank on the canvas.
-   *
-   * @param canvas the graphics context in which to draw this item.
-   */
-  public void draw(Canvas canvas) {
-    for (TappingItem item : myTappingItems) {
-
-      item.draw(canvas);
-    }
+    place(starDisplayer);
   }
 
   public void gameOver(int numTaps, int stars) {
