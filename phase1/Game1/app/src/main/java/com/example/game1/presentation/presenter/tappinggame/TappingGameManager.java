@@ -1,9 +1,13 @@
 package com.example.game1.presentation.presenter.tappinggame;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import com.example.game1.R;
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
+import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.tappinggame.Runner;
 import com.example.game1.presentation.view.tappinggame.SpeedDisplayer;
@@ -38,13 +42,21 @@ public class TappingGameManager extends GameManager {
    * The height of fish tank.
    */
   private Bitmap tappingCircleBMP;
+  private Bitmap runnerBMP;
+  private Bitmap yellowPug;
+  private Bitmap blueBird;
+  private Bitmap redFish;
   /**
    * The height of fish tank.
    */
 
   public TappingCircle tappingCircle;
 
-  private Bitmap runnerBMP;
+
+
+
+
+
 
   public Runner runner;
 
@@ -76,25 +88,33 @@ public class TappingGameManager extends GameManager {
     this.game = new Game(Game.GameName.TAPPING);
     this.height = height;
     this.width = width;
-
+    this.canRun = true;
 
     //myTappingItems = new ArrayList<>();
 
   }
 
-  /**
-   * The tapping game manager on a screen with height rows and width columns.
-   */
-  public TappingGameManager(int height, int width, Bitmap tappingCircleBMP, Bitmap runnerBMP) {
-    super(height, width);
-    this.game = new Game(Game.GameName.TAPPING);
-    this.height = height;
-    this.width = width;
-    this.tappingCircleBMP = tappingCircleBMP;
-    this.runnerBMP = runnerBMP;
-    this.canRun = true;
-    //myTappingItems = new ArrayList<>();
+//  /**
+//   * The tapping game manager on a screen with height rows and width columns.
+//   */
+//  public TappingGameManager(int height, int width, Bitmap tappingCircleBMP, Bitmap runnerBMP) {
+//    super(height, width);
+//    this.game = new Game(Game.GameName.TAPPING);
+////    this.height = height;
+////    this.width = width;
+////    this.tappingCircleBMP = tappingCircleBMP;
+////    this.runnerBMP = runnerBMP;
+//    this.canRun = true;
+//    //myTappingItems = new ArrayList<>();
+//
+//  }
 
+  public void setPictures(Bitmap tappingCircleBMP, Bitmap yellowPug, Bitmap blueBird, Bitmap redFish) {
+    this.tappingCircleBMP = tappingCircleBMP;
+    this.yellowPug = yellowPug;
+    this.blueBird = blueBird;
+    this.redFish = redFish;
+    this.runnerBMP = yellowPug;
   }
 
   /**
@@ -163,7 +183,20 @@ public class TappingGameManager extends GameManager {
   }
 
   public void createGameItems() {
-//    gameItems.add(new TappingCircle(tappingCircleBMP, 0, 0));
+
+    Customization cust = game.getCustomization();
+    if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+      Background b = new Background();
+      place(b);
+      b.setLocation(0, 0);
+    }
+    if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
+      this.runnerBMP = blueBird;
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
+      this.runnerBMP = redFish;
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
+      this.runnerBMP = yellowPug;
+    }
     this.tappingCircle = new TappingCircle(tappingCircleBMP, 0, 0);
     place(tappingCircle);
     this.runner = new Runner(runnerBMP, 0, 35);

@@ -9,6 +9,8 @@ import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.view.SurfaceHolder;
 import android.view.View;
+
+import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.view.common.MainThread;
 import com.example.game1.R;
 
@@ -34,7 +36,11 @@ public class TappingGameView extends GameView implements View.OnClickListener{
   private MainThread tappingMainThread;
 
   private Bitmap tappingCircleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-  private Bitmap runnerBMP = BitmapFactory.decodeResource(getResources(), R.drawable.pug);
+  private Bitmap runnerBMP;
+  private Bitmap yellowPug = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_pug);
+  private Bitmap blueBird = BitmapFactory.decodeResource(getResources(), R.drawable.blue_bird);
+  private Bitmap redFish = BitmapFactory.decodeResource(getResources(), R.drawable.red_fish);
+
 
   protected int numTaps;
   protected int numStars;
@@ -84,14 +90,24 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     charWidth = paintText.measureText("W");
     charHeight = -paintText.ascent() + paintText.descent();
 
-    // Use the letter size and screen height to determine the size of the GameManager.
+//    // Use the letter size and screen height to determine the size of the GameManager.
+//    gameManager =
+//            new TappingGameManager(
+//                    (int) (getScreenHeight() / charHeight),
+//                    (int) (getScreenWidth() / charWidth),
+//                    tappingCircleBMP,
+//                    runnerBMP);
+
     gameManager =
-            new TappingGameManager(
-                    (int) (getScreenHeight() / charHeight),
-                    (int) (getScreenWidth() / charWidth),
-                    tappingCircleBMP,
-                    runnerBMP);
+            AppManager.getInstance()
+                    .getTappingGameManager(
+                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
     //        tankManager.setTappingCircleImage(tappingCircleBMP);
+
+
+    ((TappingGameManager)gameManager).setPictures(tappingCircleBMP, yellowPug, blueBird, redFish);
+
+
     gameManager.createGameItems();
 
     gameManager.setActivity(activity);

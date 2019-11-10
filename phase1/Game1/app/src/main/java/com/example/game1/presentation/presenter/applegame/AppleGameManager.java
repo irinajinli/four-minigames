@@ -6,7 +6,7 @@ import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
-import com.example.game1.presentation.view.applegame.Background;
+import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.common.MainThread;
 import com.example.game1.presentation.view.applegame.PointsCounter;
