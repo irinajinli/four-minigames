@@ -10,6 +10,7 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.view.common.GameView;
+import com.example.game1.presentation.view.common.MainThread;
 
 /** Based on Fish Tank's FishTankView. */
 public class AppleGameView extends GameView {

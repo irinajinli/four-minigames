@@ -63,7 +63,7 @@
         android:layout_height="216dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="475dp"
-        app:srcCompat="@drawable/pug" />
+        app:srcCompat="@drawable/yellow_pug" />
 
     <TextView
         android:id="@+id/tv_points"

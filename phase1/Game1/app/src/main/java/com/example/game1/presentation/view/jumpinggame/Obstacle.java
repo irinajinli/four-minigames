@@ -12,9 +12,9 @@ public class Obstacle extends GameObject {
 
     public void update(){
         super.update();
-        if (this.isOverlapping(jgm.jumper)){
+        if (this.isOverlapping(jgm.getJumper())){
             //TODO coupling fix
-            jgm.jgv.gameOver();
+            jgm.gameOver();
         }
         else if (this.getPositionX() + this.getWidth() < 0){
             this.setPositionX(jgm.getScreenWidth() * 4 / 3);

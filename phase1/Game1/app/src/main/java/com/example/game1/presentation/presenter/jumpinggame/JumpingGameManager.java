@@ -1,14 +1,12 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
-import android.content.Context;
+
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Paint;
 
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.jumpinggame.GameObject;
 import com.example.game1.presentation.view.jumpinggame.Jumper;
 import com.example.game1.presentation.view.jumpinggame.JumpingGameView;
@@ -21,66 +19,110 @@ import java.util.List;
 
 public class JumpingGameManager extends GameManager {
   /**
-   * A GameManager for an Apple minigame. Includes an extra variable numDroppedApples and extra
-   * methods for handling Apples.
+   * A GameManager for a Jumping minigame. Includes an extra variable numDroppedApples and extra
+   * methods for handling GameObjects.
    */
-  public JumpingGameView jgv;
 
   // JumperSprite jumperSprite;
   private List<Obstacle> obstacles;
   private List<Star> stars;
   private List<GameObject> queuedForRemoval;
-  public Terrain terrain;
-  public Jumper jumper;
+  private Terrain terrain;
+  private Jumper jumper;
   private double cameraVelocityX = 450;
   private int numJumped = 0, numStars = 0, numTaps = 0;
   private int skyColor;
+  private boolean isRunning;
 
   /**
-   * Constructs an AppleGameManager with the specified height and width.
+   * Constructs a JumpingGameManager with the specified height and width.
    *
-   * @param height the height of the AppleGameManager
-   * @param width the width of the AppleGameManager
+   * @param height the height of the JumpingGameManager
+   * @param width the width of the JumpingGameManager
    */
   public JumpingGameManager(int height, int width) {
     super(height, width);
     this.game = new Game(Game.GameName.JUMPING);
   }
 
+  /**
+   * returns the obstacles in this jumping game
+   * @return the obstacles in this jumping game
+   */
   public List<Obstacle> getObstacles(){
       return obstacles;
   }
 
+  /**
+   * returns the terrain in this jumping game
+   * @return the terrain in this jumping game
+   */
   public Terrain getTerrain(){
       return terrain;
   }
 
+  /**
+   * Returns the jumper in this Jumping game
+   * @return the jumper in this Jumping game
+   */
   public Jumper getJumper(){
       return jumper;
   }
 
+  /**
+   * Returns the stars currently in this jumping game
+   * @return the stars currently in this jumping game
+   */
   public List<Star> getStars(){
       return stars;
     }
+
+  /**
+   * returns the number of successful jumps performed by the player.
+   * @return the number of obstacles jumped by the player
+   */
   public int getNumJumped(){
     return numJumped;
   }
 
+  /**
+   * Sets the number of successful jumps made by this user
+   * @param  numJumped the new number of jumps to set
+   */
   public void setNumJumped(int numJumped){
     this.numJumped = numJumped;
   }
 
+  /**
+   * returns the number of stars collected by the player in this game
+   * @return the number of stars collected by the player in this game
+   */
   public int getNumStars(){
     return numStars;
   }
 
+  /**
+   * sets the number of stars collected by this player
+   * @param numStars the new number to set
+   */
   public void setNumStars(int numStars){
     this.numStars = numStars;
   }
 
+  /**
+   * Sets whether or not this game is running
+   * @param isRunning whether or not this game is running
+   */
+  public void setRunning(boolean isRunning){
+    this.isRunning = isRunning;
+  }
 
-  public void setJumpingGameView(JumpingGameView jgv) {
-    this.jgv = jgv;
+  /**
+   * Returns whether this game is running
+   * @return whether this game is running
+   */
+  public boolean getRunning(){
+    return this.isRunning;
   }
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
@@ -88,7 +130,7 @@ public class JumpingGameManager extends GameManager {
     Customization cust = game.getCustomization();
     setTheme(cust.getColourScheme());
 
-    terrain = new Terrain(jgv.getScreenWidth(), getScreenHeight() / 2, this);
+    terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2, this);
     terrain.setPositionX(0);
     terrain.setPositionY(getScreenHeight() / 2);
 
@@ -105,18 +147,31 @@ public class JumpingGameManager extends GameManager {
     stars = new ArrayList<>();
     addStar(getScreenWidth() * 3 / 5);
     queuedForRemoval = new ArrayList<>();
+    setRunning(true);
   }
 
+  /**
+   * Queues this game object to be removed from the game
+   * @param gameObject the game object to be removed
+   */
   public void queueForRemoval(GameObject gameObject) {
     queuedForRemoval.add(gameObject);
     queuedForRemoval.add(gameObject);
   }
 
-  public void setCharacterColor(Customization.CharacterColour characterColour) {
+  /**
+   * Sets teh colour of the jumper
+   * @param characterColour the colour to set
+   */
+  private void setCharacterColor(Customization.CharacterColour characterColour) {
     this.jumper.characterColour = characterColour;
   }
 
-  public void setTheme(Customization.ColourScheme theme) {
+  /**
+   * Set the theme of this game
+   * @param theme the theme to set
+   */
+  private void setTheme(Customization.ColourScheme theme) {
     if (theme.equals(Customization.ColourScheme.DARK)) {
       skyColor = Color.rgb(83, 92, 104);
     } else if (theme.equals((Customization.ColourScheme.LIGHT))) {
@@ -126,10 +181,18 @@ public class JumpingGameManager extends GameManager {
     }
   }
 
+  /**
+   * Returns the colour of the sky
+   * @return the colour of the sky
+   */
   public int getSkyColor() {
     return this.skyColor;
   }
 
+  /**
+   * Adds the specified star to this game at the given position
+   * @param xp the position at which to add the star
+   */
   public void addStar(int xp) {
     Star star = new Star(80, 80, this);
     star.setPositionY(terrain.getPositionY() - 4 * obstacles.get(0).getHeight());
@@ -152,6 +215,9 @@ public class JumpingGameManager extends GameManager {
     return obstacle;
   }
 
+  /**
+   * updates all items in this game
+   */
   @Override
   public void update() {
     jumper.update();
@@ -173,6 +239,9 @@ public class JumpingGameManager extends GameManager {
     }
   }
 
+  /**
+   * Handles the jumper's jump when teh screen is tapped
+   */
   public void onScreenTap() {
     if (jumper.getVelocityY() == 0) {
       jumper.setVelocityY(-2000);
@@ -181,21 +250,32 @@ public class JumpingGameManager extends GameManager {
     numTaps += 1;
   }
 
+  /**
+   * returns the width of the screen
+   * @return the width of the screen
+   */
   public int getScreenWidth() {
     return Resources.getSystem().getDisplayMetrics().widthPixels;
   }
 
+  /**
+   * REturns the height of the screen
+   *
+   * @return the height of the screen
+   */
   public int getScreenHeight() {
     return Resources.getSystem().getDisplayMetrics().heightPixels;
   }
 
   /** Ends this minigame. */
   public void gameOver() {
+    setRunning(false);
     // set points here
     game.setNumPoints(numJumped);
     game.setNumStars(numStars);
     game.setNumTaps(numTaps);
     System.out.println(numJumped + "  " + numStars + "  " + numTaps);
+
     super.gameOver();
   }
 }

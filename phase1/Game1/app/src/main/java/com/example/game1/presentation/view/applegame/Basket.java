@@ -14,18 +14,18 @@ public class Basket extends GameItem {
     paintText.setColor(Color.LTGRAY);
   }
 
-  /**
-   * Draw this Basket.
-   *
-   * @param canvas the canvas on which to draw
-   * @param s the String to draw
-   * @param x the x coordinate at which to draw
-   * @param y the y coordinate at which to draw
-   */
-  @Override
-  public void drawString(Canvas canvas, String s, int x, int y) {
-    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
-  }
+//  /**
+//   * Draw this Basket.
+//   *
+//   * @param canvas the canvas on which to draw
+//   * @param s the String to draw
+//   * @param x the x coordinate at which to draw
+//   * @param y the y coordinate at which to draw
+//   */
+//  @Override
+//  public void drawString(Canvas canvas, String s, int x, int y) {
+//    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
+//  }
 
   /** Move this GameItem within its GameManager. */
   @Override
