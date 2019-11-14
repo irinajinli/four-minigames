@@ -50,6 +50,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
   protected int speed;
   private boolean reachDestination;
   private OnClickListener listener;
+  private CountDownTimer myTimer;
 
   /**
    * Create a new fish tank in the context environment.
@@ -167,6 +168,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
 
           }
         };
+    myTimer = timer;
     timer.start();
 
     gameStarted = true;
@@ -185,6 +187,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
       try {
         tappingMainThread.setRunning(false);
         tappingMainThread.join();
+        myTimer.cancel();
 
       } catch (InterruptedException e) {
         e.printStackTrace();
