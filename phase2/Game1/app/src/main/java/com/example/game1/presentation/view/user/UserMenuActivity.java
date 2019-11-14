@@ -1,0 +1,105 @@
+package com.example.game1.presentation.view.user;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.game1.R;
+import com.example.game1.presentation.MainActivity;
+import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.presentation.presenter.UserManager;
+import com.example.game1.presentation.view.applegame.AppleActivity;
+import com.example.game1.presentation.view.jumpinggame.JumpingActivity;
+import com.example.game1.presentation.view.tappinggame.TappingActivity;
+
+public class UserMenuActivity extends AppCompatActivity {
+
+    private UserManager userManager = AppManager.getInstance().getUserManager();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user_menu);
+
+        EditText userNameText = findViewById(R.id.userNameText);
+        userNameText.setText(userManager.getCurrentUser().getUserName());
+
+        // Disable all Play buttons. Then enable the Play button corresponding to the user's next
+        // level.
+        //TODO uncomment later
+        Button playButton1 = findViewById(R.id.playButton1);
+//        playButton1.setEnabled(false);
+        Button playButton2 = findViewById(R.id.playButton2);
+//        playButton2.setEnabled(false);
+        Button playButton3 = findViewById(R.id.playButton3);
+//        playButton3.setEnabled(false);
+
+
+        switch (userManager.getCurrentUser().getLastCompletedLevel()) {
+            case 0:
+                playButton1.setEnabled(true);
+                break;
+            case 1:
+                playButton2.setEnabled(true);
+                break;
+            case 2:
+                playButton3.setEnabled(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /** Called when the user taps the Restart button */
+    public void restartGame(View view) {
+        //TODO uncomment later
+//        Button playButton1 = findViewById(R.id.playButton1);
+//        playButton1.setEnabled(true);
+//        Button playButton2 = findViewById(R.id.playButton2);
+//        playButton2.setEnabled(false);
+//        Button playButton3 = findViewById(R.id.playButton3);
+//        playButton3.setEnabled(false);
+        userManager.restartCurrentUsersGame();
+    }
+
+    /** Called when the user taps the Logout button */
+    public void logout(View view) {
+        userManager.setCurrentUser(null);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user taps the 1st Play button */
+    public void goToLevel1(View view) {
+        Intent intent = new Intent(this, AppleActivity.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user taps the 2nd Play button */
+    public void goToLevel2(View view) {
+        Intent intent = new Intent(this, TappingActivity.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user taps the 3rd Play button */
+    public void goToLevel3(View view) {
+        Intent intent = new Intent(this, JumpingActivity.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user taps the Customize button */
+    public void goToCustomization(View view) {
+        Intent intent = new Intent(this, CustomizationActivity.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user taps the View Statistics button */
+    public void goToStatistics(View view) {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        startActivity(intent);
+    }
+}
