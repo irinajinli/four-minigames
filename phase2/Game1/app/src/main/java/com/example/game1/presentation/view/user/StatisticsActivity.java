@@ -36,7 +36,7 @@ public class StatisticsActivity extends AppCompatActivity {
         currTapsText.setText(String.valueOf(userManager.getCurrentUser().getCurrentTaps()));
 
         /*
-        Display the current statistics of the current user
+        Display the top statistics of the current user
          */
         EditText topPointsText = findViewById(R.id.topPointsText);
         topPointsText.setText(String.valueOf(userManager.getCurrentUser().getTopPoints()));
@@ -51,7 +51,7 @@ public class StatisticsActivity extends AppCompatActivity {
         Display the top statistics of the top user
          */
         if (userManager.getTopUser() != null) {
-            // If a top user exists, display the statistics of the top user
+            // If a top user exists, display the top statistics of the top user
             EditText topPlayerText = findViewById(R.id.topPlayerText);
             topPlayerText.setText("Top player: " + userManager.getTopUser().getUserName());
 
@@ -64,7 +64,7 @@ public class StatisticsActivity extends AppCompatActivity {
             EditText topPlayerTapsText = findViewById(R.id.topPlayerTapsText);
             topPlayerTapsText.setText(String.valueOf(userManager.getTopUser().getTopTaps()));
         } else {
-            // Else, the current user must be the only user, so display the statistics of the
+            // Else, the current user must be the only user, so display the top statistics of the
             // current user.
             EditText topPlayerText = findViewById(R.id.topPlayerText);
             topPlayerText.setText("Top player: " + userManager.getCurrentUser().getUserName());
