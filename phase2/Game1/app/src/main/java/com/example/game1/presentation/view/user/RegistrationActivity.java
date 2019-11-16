@@ -29,27 +29,27 @@ public class RegistrationActivity extends AppCompatActivity {
     public void sendRegistrationInput(View view) {
         Intent intent = new Intent(this, UserMenuActivity.class);
 
-//        EditText outputText = (EditText) findViewById(R.id.outputText);
-//        outputText.setText("");
+        EditText messageText = findViewById(R.id.messageText);
+        messageText.setText("");
 
         EditText userNameText = findViewById(R.id.userNameText);
         String userName = userNameText.getText().toString();
+
         EditText passwordText = findViewById(R.id.passwordText);
         String password = passwordText.getText().toString();
+
         EditText confirmPasswordText = findViewById(R.id.confirmPasswordText);
         String confirmPassword = confirmPasswordText.getText().toString();
 
         if (password.equals(confirmPassword)){
             if (userManager.registerUser(userName.toLowerCase(), password)) {
-                // Registration successful
+                // Registration successful. Go to the user menu.
                 startActivity(intent);
             } else {
-                // Username already taken
-                // TODO: Display message that the username is already taken
+                messageText.setText("This username is already taken");
             }
         } else {
-            // TODO: Display message that the passwords don't match
-//            outputText.setText("Passwords don't match");
+            messageText.setText("Passwords do not match");
         }
 
     }

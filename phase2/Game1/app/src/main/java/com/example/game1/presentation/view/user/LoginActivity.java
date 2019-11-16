@@ -26,16 +26,20 @@ public class LoginActivity extends AppCompatActivity {
     public void sendLoginCredentials(View view) {
         Intent intent = new Intent(this, UserMenuActivity.class);
 
+        EditText messageText = findViewById(R.id.messageText);
+        messageText.setText("");
+
         EditText userNameText = findViewById(R.id.userNameText);
         String userName = userNameText.getText().toString();
+
         EditText passwordText = findViewById(R.id.passwordText);
         String password = passwordText.getText().toString();
 
         if (userManager.loginUser(userName.toLowerCase(), password)) {
-            // Login successful - username and password were correct
+            // The username and password were correct. Go to the user menu.
             startActivity(intent);
         } else {
-            // TODO: Display message that username or password is incorrect
+            messageText.setText("Incorrect username or password");
         }
 
     }
