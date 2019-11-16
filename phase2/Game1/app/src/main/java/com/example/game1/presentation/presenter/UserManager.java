@@ -27,7 +27,7 @@ public class UserManager {
     private static User currentUser;
 
     /**
-     * Contructs a UserManager
+     * Constructs a UserManager
      */
     public UserManager() {
         userService = new UserService();
