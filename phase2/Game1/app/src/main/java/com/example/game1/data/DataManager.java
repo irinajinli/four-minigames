@@ -3,15 +3,22 @@ package com.example.game1.data;
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.User;
 import com.example.game1.presentation.presenter.AppManager;
+
 import android.util.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -34,30 +41,43 @@ public class DataManager {
     private static final String CURR_TAPS_KEY = "CurrTaps";
     private static final String LAST_COMP_LVL_KEY = "LastCompletedLevel";
 
-    /**
-     * For logging output.
-     */
+    /* For logging output. */
     private static final String TAG = "Data Manager"; //tag helps to easily identify
 
-    /**
-     * The file to write and read.
-     */
+    /* The file to write and read. */
     private static final String DATA_FILE = "game_data.txt";
 
-
-    /**
-     * The map that stores all the users.
-     */
+    /* The map that stores all the users. */
     private Map<String, User> userMap = new HashMap<>();
 
-
+    /**
+     * Constructs a DataManager
+     */
     public DataManager() {
         readFromFile();
+
+        //TODO: Delete these test prints later
+        System.out.println("------------------------ SORT BY POINTS ------------------------");
+        List<User> lst = sortUsersByPoints();
+        for (User user : lst) {
+            System.out.println("Username: " + user.getUserName() + " Points: " + user.getTopPoints());
+        }
+
+        System.out.println("------------------------ SORT BY STARS ------------------------");
+        lst = sortUsersByStars();
+        for (User user : lst) {
+            System.out.println("Username: " + user.getUserName() + " Stars: " + user.getTopStars());
+        }
+
+        System.out.println("------------------------ SORT BY TAPS ------------------------");
+        lst = sortUsersByTaps();
+        for (User user : lst) {
+            System.out.println("Username: " + user.getUserName() + " Taps: " + user.getTopTaps());
+        }
     }
 
-
     /**
-     * Write all the users to DATA_FILE.
+     * Writes all the users to DATA_FILE.
      */
     private void writeToFile(Collection<User> users) {
         PrintWriter out = null;
@@ -99,9 +119,8 @@ public class DataManager {
         out.close();
     }
 
-
     /**
-     * Read the information in DATA_FILE.
+     * Reads the information in DATA_FILE.
      */
     private void readFromFile() {
         StringBuffer buffer = new StringBuffer(); // TESTING PURPOSES
@@ -189,9 +208,8 @@ public class DataManager {
         System.out.println(buffer.toString());  // TESTING PURPOSES
     }
 
-
     /**
-     * Add the user, user, to userMap and write the user's information file.
+     * Add the given user to userMap and write the user's information to file.
      */
     public void createUser(User user) {
 
@@ -213,14 +231,14 @@ public class DataManager {
     }
 
     /**
-     * Add user's updated information to userMap and write to file.
+     * Add the given user's updated information to userMap and write to file.
      */
     public void updateUser(User user) {
         createUser(user);
     }
 
     /**
-     * Return the user in userMap with given username. If no such user exists, return null.
+     * Return the user in userMap with the given username. If no such user exists, return null.
      */
     public User getUser(String userName) {
         return userMap.get(userName);
@@ -247,10 +265,40 @@ public class DataManager {
     }
 
     /**
-     * Return the "score" calculated form the given number of points and stars.
+     * Return the score calculated form the given number of points and stars.
      */
     private int calculateScore(int points, int stars) {
         return points + (AppManager.STAR_FACTOR * stars);
+    }
+
+    /**
+     * Return a list of users sorted by number of points
+     */
+    public List sortUsersByPoints() {
+        return sortUsers(new PointsComparator());
+    }
+
+    /**
+     * Return a list of users sorted by number of stars
+     */
+    public List sortUsersByStars() {
+        return sortUsers(new StarsComparator());
+    }
+
+    /**
+     * Return a list of users sorted by number of taps
+     */
+    public List sortUsersByTaps() {
+        return sortUsers(new TapsComparator());
+    }
+
+    /**
+     * Return a list of users sorted using the given comparator
+     */
+    private List sortUsers(Comparator comparator) {
+        List<User> userList = new ArrayList(userMap.values());
+        Collections.sort(userList, comparator);
+        return userList;
     }
 
 }
