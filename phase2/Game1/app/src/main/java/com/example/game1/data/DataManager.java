@@ -40,7 +40,7 @@ public class DataManager {
     private static final String TAG = "Data Manager"; //tag helps to easily identify
 
     /**
-     * The  file to write and read.
+     * The file to write and read.
      */
     private static final String DATA_FILE = "game_data.txt";
 
@@ -194,7 +194,6 @@ public class DataManager {
      * Add the user, user, to userMap and write the user's information file.
      */
     public void createUser(User user) {
-        System.out.println("data manager create user");
 
         // Update top score
         if (calculateScore(user.getCurrentPoints(), user.getCurrentStars()) >
@@ -221,7 +220,7 @@ public class DataManager {
     }
 
     /**
-     * Return the user in userMap with username, userName. If no such user exists, return null.
+     * Return the user in userMap with given username. If no such user exists, return null.
      */
     public User getUser(String userName) {
         return userMap.get(userName);
@@ -244,17 +243,11 @@ public class DataManager {
                 topScore = userScore;
             }
         }
-        System.out.println("+++++++++++++++++++++++++++++");
-        if (topUser != null) {
-            System.out.println(topUser.getUserName());
-        } else {
-            System.out.println("null");
-        }
         return topUser;
     }
 
     /**
-     * Return the "score" of the given number of points and stars.
+     * Return the "score" calculated form the given number of points and stars.
      */
     private int calculateScore(int points, int stars) {
         return points + (AppManager.STAR_FACTOR * stars);

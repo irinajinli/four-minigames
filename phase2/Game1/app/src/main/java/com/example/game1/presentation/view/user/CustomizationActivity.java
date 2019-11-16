@@ -88,7 +88,6 @@ public class CustomizationActivity extends AppCompatActivity {
         Spinner musicSpinner = findViewById(R.id.musicSpinner);
         String musicChoice = musicSpinner.getSelectedItem().toString();
 
-        // TODO: Update the current user's customization choices
         userManager.updateCurrentUsersCustomization(characterColourChoice, colourSchemeChoice,
                 musicChoice);
 

@@ -42,9 +42,6 @@ public class StatisticsActivity extends AppCompatActivity {
         topTapsText.setText(String.valueOf(userManager.getCurrentUser().getTopTaps()));
 
         if (userManager.getTopUser() != null) {
-
-            System.out.println("=========================");
-            System.out.println(userManager.getTopUser().getUserName());
             EditText topPlayerText = findViewById(R.id.topPlayerText);
             topPlayerText.setText("Top player: " + userManager.getTopUser().getUserName());
 
@@ -71,7 +68,7 @@ public class StatisticsActivity extends AppCompatActivity {
         }
     }
 
-    /** Called when the user taps the Bac button */
+    /** Called when the user taps the Back button */
     public void goBack(View view) {
         Intent intent = new Intent(this, UserMenuActivity.class);
         startActivity(intent);

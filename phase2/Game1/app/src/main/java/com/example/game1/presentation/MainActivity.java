@@ -35,9 +35,4 @@ public class MainActivity extends AppCompatActivity {
     Intent intent = new Intent(this, RegistrationActivity.class);
     startActivity(intent);
   }
-
-  public void goToJumpingGame(View view){
-    Intent intent = new Intent(this, AppleActivity.class);
-    startActivity(intent);
-  }
 }
