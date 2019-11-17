@@ -21,7 +21,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
 
         EditText infoText = findViewById(R.id.infoText);
-        infoText.setText("Your score = points + (" + AppManager.STAR_FACTOR + " x stars)");
+        infoText.setText("Your score = points + stars + taps");
 
         /*
         Display the current statistics of the current user
