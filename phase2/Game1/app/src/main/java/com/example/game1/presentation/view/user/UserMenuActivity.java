@@ -102,4 +102,10 @@ public class UserMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
     }
+
+    /** Called when the user taps the Scoreboard button */
+    public void goToScoreboard(View view) {
+        Intent intent = new Intent(this, ScoreboardActivity.class);
+        startActivity(intent);
+    }
 }
