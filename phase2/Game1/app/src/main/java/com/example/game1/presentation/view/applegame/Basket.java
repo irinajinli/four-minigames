@@ -10,7 +10,7 @@ public class Basket extends GameItem {
 
   /** Construct a light gray basket. */
   public Basket() {
-    super("|_|");
+    super("|___|");
     paintText.setColor(Color.LTGRAY);
   }
 
