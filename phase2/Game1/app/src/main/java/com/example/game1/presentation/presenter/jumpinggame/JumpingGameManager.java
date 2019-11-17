@@ -219,7 +219,7 @@ public class JumpingGameManager extends GameManager {
    * updates all items in this game
    */
   @Override
-  public void update() {
+  public boolean update() {
     jumper.update();
     terrain.update();
 
@@ -237,6 +237,9 @@ public class JumpingGameManager extends GameManager {
     for (Obstacle obstacle : obstacles) {
       obstacle.update();
     }
+
+    // TODO: temporary return true; decide when you want to return true/false
+    return true;
   }
 
   /**

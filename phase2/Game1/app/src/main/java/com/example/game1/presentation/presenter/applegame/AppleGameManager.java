@@ -69,18 +69,18 @@ public class AppleGameManager extends GameManager {
     place(points);
     points.setLocation(getGridWidth() - 2, 2);
 
-    Apple a1 = new Apple();
-    Apple a2 = new Apple();
-    Apple a3 = new Apple();
-    Apple a4 = new Apple();
-    place(a1);
-    a1.setLocation(0, 15);
-    place(a2);
-    a2.setLocation(10, 0);
-    place(a3);
-    a3.setLocation(20, 8);
-    place(a4);
-    a4.setLocation(15, 30);
+//    Apple a1 = new Apple();
+//    Apple a2 = new Apple();
+//    Apple a3 = new Apple();
+//    Apple a4 = new Apple();
+//    place(a1);
+//    a1.setLocation(0, 15);
+//    place(a2);
+//    a2.setLocation(10, 0);
+//    place(a3);
+//    a3.setLocation(20, 8);
+//    place(a4);
+//    a4.setLocation(15, 30);
 
     Star s1 = new Star();
     place(s1);
@@ -97,12 +97,14 @@ public class AppleGameManager extends GameManager {
   }
 
   /** Moves, removes, and catches GameItems. */
-  public void update() {
+  public boolean update() {
 
     // check if the game is over
-    if (numDroppedApples >= 5) {
-      MainThread.isRunning = false;
+    if (numDroppedApples >= 15) {
+//      MainThread.isRunning = false;
+      // tell GameView to change GameView.thread.isRunning to false
       gameOver();
+      return false;
     }
 
     for (int i = 0; i < getGameItems().size(); i++) {
@@ -118,7 +120,9 @@ public class AppleGameManager extends GameManager {
         }
 
         // check if currItem has been caught; remove if necessary
-        if (currItem.getX() == basket.getX() && currItem.getY() == basket.getY()) {
+        if ((currItem.getX() == basket.getX() || currItem.getX() == basket.getX() - 1 ||
+                currItem.getX() == basket.getX() + 1) && currItem.getY() == basket.getY()) {
+            // if currItem is within +/- 1 of basket
           removeItem(currItem);
           if (currItem instanceof Apple) {
             catchApple();
@@ -129,6 +133,8 @@ public class AppleGameManager extends GameManager {
       }
     }
     spawnNew();
+
+    return true;
   }
 
   /** Catches an Apple. */
@@ -155,13 +161,13 @@ public class AppleGameManager extends GameManager {
 
     // decide whether to spawn an Apple or a Star or nothing
     Random randItem = new Random();
-    int randint = randItem.nextInt(100);
+    int randint = randItem.nextInt(200);
     if (randint < 1) {
       // spawn new Star
       Star nextItem = new Star();
       place(nextItem);
       nextItem.setLocation(spawnCoordinate, 0);
-    } else if (randint < 15) {
+    } else if (randint < 10) {
       // spawn new Apple
       Apple nextItem = new Apple();
       place(nextItem);

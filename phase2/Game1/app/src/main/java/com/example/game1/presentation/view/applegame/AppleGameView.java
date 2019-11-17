@@ -9,6 +9,7 @@ import android.view.SurfaceHolder;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 import com.example.game1.presentation.view.common.MainThread;
 
@@ -18,7 +19,7 @@ public class AppleGameView extends GameView {
   /** Construct an AppleGameView with the specified Context. */
   public AppleGameView(Context context) {
     super(context);
-    thread = new MainThread(getHolder(), this);
+    thread = new GameThread(getHolder(), this);
   }
 
   @Override
