@@ -20,7 +20,7 @@ public class PointsComparator implements Comparator<User> {
      */
     @Override
     public int compare(User user1, User user2) {
-        return user1.getTopPoints() - user2.getTopPoints();
+        return user1.getTopIndividualStats().getPoints() - user2.getTopIndividualStats().getPoints();
     }
 
 }

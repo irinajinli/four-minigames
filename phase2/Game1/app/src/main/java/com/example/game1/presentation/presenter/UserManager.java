@@ -117,9 +117,9 @@ public class UserManager {
      * @param game the Game object
      */
     void updateCurrentUsersGame(Game game) {
-        updateGameInfo(currentUser.getCurrentPoints() + game.getNumPoints(),
-                currentUser.getCurrentStars() + game.getNumStars(),
-                currentUser.getCurrentTaps() + game.getNumTaps(),
+        updateGameInfo(currentUser.getStatsOfCurrentGame().getPoints() + game.getNumPoints(),
+                currentUser.getStatsOfCurrentGame().getStars() + game.getNumStars(),
+                currentUser.getStatsOfCurrentGame().getTaps() + game.getNumTaps(),
                 game.getLevel());
         updateUserInfo();
     }
@@ -143,9 +143,9 @@ public class UserManager {
      * @param level  the game level
      */
     private void updateGameInfo(int points, int stars, int taps, int level) {
-        currentUser.setCurrentPoints(points);
-        currentUser.setCurrentStars(stars);
-        currentUser.setCurrentTaps(taps);
+        currentUser.getStatsOfCurrentGame().setPoints(points);
+        currentUser.getStatsOfCurrentGame().setStars(stars);
+        currentUser.getStatsOfCurrentGame().setTaps(taps);
         currentUser.setLastCompletedLevel(level);
     }
 

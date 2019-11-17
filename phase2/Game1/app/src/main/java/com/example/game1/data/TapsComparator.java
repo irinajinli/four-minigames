@@ -20,7 +20,7 @@ public class TapsComparator implements Comparator<User> {
      */
     @Override
     public int compare(User user1, User user2) {
-        return user1.getTopTaps() - user2.getTopTaps();
+        return user1.getTopIndividualStats().getTaps() - user2.getTopIndividualStats().getTaps();
     }
 
 }

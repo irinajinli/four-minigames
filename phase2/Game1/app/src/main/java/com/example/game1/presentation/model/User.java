@@ -14,21 +14,32 @@ public class User {
     private Customization customization;
 
     /**
-     * The statistics of the top game in this user's history
+     * The statistics of this user's current game
      */
-    private int topPoints;
-    private int topStars;
-    private int topTaps;
+//    private int currentPoints;
+//    private int currentStars;
+//    private int currentTaps;
+    private Statistics statsOfCurrentGame;
 
     /**
-     * The stats of the user's current game
+     * The statistics of the top game in this user's history (note: the top game is the game with
+     * the highest total points, stars, and taps)
      */
-    private int currentPoints;
-    private int currentStars;
-    private int currentTaps;
+//    private int topPoints;
+//    private int topStars;
+//    private int topTaps;
+    private Statistics statsOfTopGame;
 
     /**
-     * The last completed level in the user's current game
+     * The highest individual statistics in this user's history
+     */
+//    private int topIndPoints;
+//    private int topIndStars;
+//    private int topIndTaps;
+    private Statistics topIndividualStats;
+
+    /**
+     * The last completed level in this user's current game
      */
     private int lastCompletedLevel;
 
@@ -40,13 +51,16 @@ public class User {
         this.password = password;
         // Set default value for the user's customization choices, statistics, and last completed
         // level
-        this.customization = new Customization();
-        topPoints = 0;
-        topStars = 0;
-        topTaps = 0;
-        currentPoints = 0;
-        currentStars = 0;
-        currentTaps = 0;
+        customization = new Customization();
+        statsOfCurrentGame = new Statistics();
+//        currentPoints = 0;
+//        currentStars = 0;
+//        currentTaps = 0;
+        statsOfTopGame = new Statistics();
+//        topPoints = 0;
+//        topStars = 0;
+//        topTaps = 0;
+        topIndividualStats = new Statistics();
         lastCompletedLevel = 0;
     }
 
@@ -74,30 +88,54 @@ public class User {
         this.customization = customization;
     }
 
-    public int getCurrentPoints() {
-        return currentPoints;
+    public Statistics getStatsOfCurrentGame() {
+        return statsOfCurrentGame;
     }
 
-    public void setCurrentPoints(int currentPoints) {
-        this.currentPoints = currentPoints;
+    public void setStatsOfCurrentGame(Statistics statsOfCurrentGame) {
+        this.statsOfCurrentGame = statsOfCurrentGame;
     }
 
-    public int getCurrentStars() {
-        return currentStars;
+    public Statistics getStatsOfTopGame() {
+        return statsOfTopGame;
     }
 
-    public void setCurrentStars(int currentStars) {
-        this.currentStars = currentStars;
+    public void setStatsOfTopGame(Statistics statsOfTopGame) {
+        this.statsOfTopGame = statsOfTopGame;
     }
 
-    public int getCurrentTaps() {
-        return currentTaps;
+    public Statistics getTopIndividualStats() {
+        return topIndividualStats;
     }
 
-    public void setCurrentTaps(int currentTaps) {
-        this.currentTaps = currentTaps;
+    public void setTopIndividualStats(Statistics topIndividualStats) {
+        this.topIndividualStats = topIndividualStats;
     }
 
+    //    public int getCurrentPoints() {
+//        return currentPoints;
+//    }
+//
+//    public void setCurrentPoints(int currentPoints) {
+//        this.currentPoints = currentPoints;
+//    }
+//
+//    public int getCurrentStars() {
+//        return currentStars;
+//    }
+//
+//    public void setCurrentStars(int currentStars) {
+//        this.currentStars = currentStars;
+//    }
+//
+//    public int getCurrentTaps() {
+//        return currentTaps;
+//    }
+//
+//    public void setCurrentTaps(int currentTaps) {
+//        this.currentTaps = currentTaps;
+//    }
+//
     public int getLastCompletedLevel() {
         return lastCompletedLevel;
     }
@@ -105,28 +143,29 @@ public class User {
     public void setLastCompletedLevel(int lastCompletedLevel) {
         this.lastCompletedLevel = lastCompletedLevel;
     }
+//
+//    public int getTopPoints() {
+//        return topPoints;
+//    }
+//
+//    public void setTopPoints(int topPoints) {
+//        this.topPoints = topPoints;
+//    }
+//
+//    public int getTopStars() {
+//        return topStars;
+//    }
+//
+//    public void setTopStars(int topStars) {
+//        this.topStars = topStars;
+//    }
+//
+//    public int getTopTaps() {
+//        return topTaps;
+//    }
+//
+//    public void setTopTaps(int topTaps) {
+//        this.topTaps = topTaps;
+//    }
 
-    public int getTopPoints() {
-        return topPoints;
-    }
-
-    public void setTopPoints(int topPoints) {
-        this.topPoints = topPoints;
-    }
-
-    public int getTopStars() {
-        return topStars;
-    }
-
-    public void setTopStars(int topStars) {
-        this.topStars = topStars;
-    }
-
-    public int getTopTaps() {
-        return topTaps;
-    }
-
-    public void setTopTaps(int topTaps) {
-        this.topTaps = topTaps;
-    }
 }
