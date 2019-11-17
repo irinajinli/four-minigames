@@ -97,12 +97,14 @@ public class AppleGameManager extends GameManager {
   }
 
   /** Moves, removes, and catches GameItems. */
-  public void update() {
+  public boolean update() {
 
     // check if the game is over
-    if (numDroppedApples >= 5) {
-      MainThread.isRunning = false;
+    if (numDroppedApples >= 10) {
+//      MainThread.isRunning = false;
+      // tell GameView to change GameView.thread.isRunning to false
       gameOver();
+      return false;
     }
 
     for (int i = 0; i < getGameItems().size(); i++) {
@@ -129,6 +131,8 @@ public class AppleGameManager extends GameManager {
       }
     }
     spawnNew();
+
+    return true;
   }
 
   /** Catches an Apple. */
@@ -155,13 +159,13 @@ public class AppleGameManager extends GameManager {
 
     // decide whether to spawn an Apple or a Star or nothing
     Random randItem = new Random();
-    int randint = randItem.nextInt(100);
+    int randint = randItem.nextInt(150);
     if (randint < 1) {
       // spawn new Star
       Star nextItem = new Star();
       place(nextItem);
       nextItem.setLocation(spawnCoordinate, 0);
-    } else if (randint < 15) {
+    } else if (randint < 10) {
       // spawn new Apple
       Apple nextItem = new Apple();
       place(nextItem);

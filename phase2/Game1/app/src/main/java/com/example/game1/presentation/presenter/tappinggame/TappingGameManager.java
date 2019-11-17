@@ -146,7 +146,7 @@ public class TappingGameManager extends GameManager {
    * execute animation on each item in myFishTank and update myFishTank accordingly.
    *
    */
-  public void update() {
+  public boolean update() {
     //newItems list stores FishTankItems to be added to myFishTank
     List<GameItem> newItems = new ArrayList<>();
     // outItem list stores FishTankItem to be removed from myFishTank
@@ -180,6 +180,8 @@ public class TappingGameManager extends GameManager {
       place(newItem);
     }
 
+    // TODO: temporary return true; decide when you want to return true/false
+    return true;
   }
 
   public void createGameItems() {

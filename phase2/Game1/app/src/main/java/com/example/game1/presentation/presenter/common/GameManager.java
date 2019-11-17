@@ -75,7 +75,7 @@ public abstract class GameManager {
   }
 
   /** Updates this GameManager by moving all GameItems in it. */
-  public abstract void update();
+  public abstract boolean update();
 
   /**
    * Removes the specified item from gameItems.

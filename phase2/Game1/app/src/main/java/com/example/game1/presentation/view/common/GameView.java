@@ -22,7 +22,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   /** The fish tank contents. */
   public GameManager gameManager;
   /** The part of the program that manages time. */
-  public MainThread thread;
+  public GameThread thread;
   /** Screen width. */
   private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
   /** Screen height. */
@@ -81,7 +81,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
   /** Update this GameView's GameManager. */
   public void update() {
-    gameManager.update();
+    boolean updated = gameManager.update();
+    // stop thread if update fails
+    if (!updated) {
+      thread.setRunning(false);
+    }
   }
 
   @Override
