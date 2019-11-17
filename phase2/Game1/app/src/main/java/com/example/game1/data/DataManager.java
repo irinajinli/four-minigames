@@ -11,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,19 +27,7 @@ import java.util.Scanner;
  */
 public class DataManager {
 
-//    private static final String USERNAME = "UserName";
-//    private static final String PASSWORD = "Password";
-//    private static final String CHARAC_COLOUR = "CharacterColour";
-//    private static final String COLOUR_SCHEME = "ColourScheme";
-//    private static final String MUSIC = "Music";
-//    private static final String TOP_GAME_POINTS = "TopPoints";
-//    private static final String TOP_GAME_STARS = "TopStars";
-//    private static final String TOP_GAME_TAPS = "TopTaps";
-//    private static final String CURR_GAME_POINTS = "CurrPoints";
-//    private static final String CURR_GAME_STARS = "CurrStars";
-//    private static final String CURR_GAME_TAPS = "CurrTaps";
-//    private static final String LAST_COMP_LVL = "LastCompletedLevel";
-
+    /* For logging output. */
     private static final String USERNAME = "UserName";
     private static final String PASSWORD = "Password";
     private static final String CHARAC_COLOUR = "CharacterColour";
@@ -56,13 +43,12 @@ public class DataManager {
     private static final String TOP_IND_STARS = "TopStars";
     private static final String TOP_IND_TAPS = "TopTaps";
     private static final String LAST_COMP_LVL = "LastCompletedLevel";
-
-    /* For logging output. */
-    private static final String TAG = "Data Manager"; //tag helps to easily identify
+    private static final String TAG = "Data Manager";
 
     /* The file to write and read. */
     private static final String DATA_FILE = "game_data.txt";
 //    private static final String DATA_FILE = "migrationTest1.txt";
+//    private static final String DATA_FILE = "scoreboardTest1.txt";
 
     /* The map that stores all the users. */
     private Map<String, User> userMap = new HashMap<>();
@@ -72,6 +58,8 @@ public class DataManager {
      */
     public DataManager() {
         readFromFile();
+
+        correctIndValues();
 
         writeToFile(userMap.values());
 
@@ -94,6 +82,47 @@ public class DataManager {
         lst = sortUsersByTaps();
         for (User user : lst) {
             System.out.println("Username: " + user.getUserName() + " Taps: " + user.getTopIndividualStats().getTaps());
+        }
+        System.out.println("------------------------ SORT BY SCORE ------------------------");
+        lst = sortUsersByScore();
+        for (User user : lst) {
+            System.out.println("Username: " + user.getUserName() + " Score: " + calculateScore(
+                    user.getStatsOfTopGame().getPoints(),
+                    user.getStatsOfTopGame().getStars(),
+                    user.getStatsOfTopGame().getTaps()));
+        }
+    }
+
+    private void correctIndValues() { //TODO for Ashley - delete this method later
+        Collection<User> users = userMap.values();
+        Iterator<User> iter = users.iterator();
+        while (iter.hasNext()) {
+            User user = iter.next();
+            int currentPoints = user.getStatsOfCurrentGame().getPoints();
+            int currentStars = user.getStatsOfCurrentGame().getStars();
+            int currentTaps = user.getStatsOfCurrentGame().getTaps();
+            int topPoints = user.getStatsOfTopGame().getPoints();
+            int topStars = user.getStatsOfTopGame().getStars();
+            int topTaps = user.getStatsOfTopGame().getTaps();
+            // Update the user's top individual statistics
+            if (currentPoints > user.getTopIndividualStats().getPoints()) {
+                user.getTopIndividualStats().setPoints(currentPoints);
+            }
+            if (topPoints > user.getTopIndividualStats().getPoints()) {
+                user.getTopIndividualStats().setPoints(topPoints);
+            }
+            if (currentStars > user.getTopIndividualStats().getStars()) {
+                user.getTopIndividualStats().setStars(currentStars);
+            }
+            if (topStars > user.getTopIndividualStats().getStars()) {
+                user.getTopIndividualStats().setStars(topStars);
+            }
+            if (currentTaps > user.getTopIndividualStats().getTaps()) {
+                user.getTopIndividualStats().setTaps(currentTaps);
+            }
+            if (topTaps > user.getTopIndividualStats().getTaps()) {
+                user.getTopIndividualStats().setStars(topTaps);
+            }
         }
     }
 
@@ -198,24 +227,21 @@ public class DataManager {
                             } else {
                                 user.getCustomization().setMusicPath(Customization.MusicPath.SONG1);
                             }
-                        } else if (TOP_GAME_POINTS.equals(key) || "TopPoints".equals(key)) { //TODO: correct this line
+                        } else if (TOP_GAME_POINTS.equals(key)) {
                             user.getStatsOfTopGame().setPoints(Integer.parseInt(value));
-                            user.getTopIndividualStats().setPoints(Integer.parseInt(value)); //TODO: Delete this line
-                        } else if (TOP_GAME_STARS.equals(key) || "TopStars".equals(key)) { //TODO: correct this line
+                        } else if (TOP_GAME_STARS.equals(key)) {
                             user.getStatsOfTopGame().setStars(Integer.parseInt(value));
-                            user.getTopIndividualStats().setStars(Integer.parseInt(value)); //TODO: Delete this line
-                        } else if (TOP_GAME_TAPS.equals(key) || "TopTaps".equals(key)) { //TODO: correct this line
+                        } else if (TOP_GAME_TAPS.equals(key)) {
                             user.getStatsOfTopGame().setTaps(Integer.parseInt(value));
-                            user.getTopIndividualStats().setTaps(Integer.parseInt(value)); //TODO: Delete this line
-                        } else if (CURR_GAME_POINTS.equals(key) || "CurrPoints".equals(value)) { //TODO: correct this line
+                        } else if (CURR_GAME_POINTS.equals(key)) {
                             user.getStatsOfCurrentGame().setPoints(Integer.parseInt(value));
-                        } else if (CURR_GAME_STARS.equals(key) || "CurrStars".equals(value)) { //TODO: correct this line
+                        } else if (CURR_GAME_STARS.equals(key)) {
                             user.getStatsOfCurrentGame().setStars(Integer.parseInt(value));
-                        } else if (CURR_GAME_TAPS.equals(key) || "CurrTaps".equals(value)) { //TODO: correct this line
+                        } else if (CURR_GAME_TAPS.equals(key)) {
                             user.getStatsOfCurrentGame().setTaps(Integer.parseInt(value));
-                        }  else if (TOP_IND_POINTS.equals(key)){
+                        } else if (TOP_IND_POINTS.equals(key)) {
                             user.getTopIndividualStats().setPoints(Integer.parseInt(value));
-                        } else if (TOP_IND_STARS.equals(key)){
+                        } else if (TOP_IND_STARS.equals(key)) {
                             user.getTopIndividualStats().setStars(Integer.parseInt(value));
                         } else if (TOP_IND_TAPS.equals(key)) {
                             user.getTopIndividualStats().setTaps(Integer.parseInt(value));
@@ -298,9 +324,14 @@ public class DataManager {
     }
 
     /**
-     * Returns the user with the top score.
+     * Returns the user with the top score. If no such user exists, return null.
      */
     public User getTopUser() {
+//        return algorithm1();
+        return algorithm2();
+    }
+
+    private User algorithm1() {
         Collection<User> users = userMap.values();
         Iterator<User> iter = users.iterator();
 
@@ -320,12 +351,29 @@ public class DataManager {
         return topUser;
     }
 
+    private User algorithm2() {
+        User topUser;
+        List<User> usersSorted = sortUsersByScore();
+        if (usersSorted.size() < 1) {
+            topUser = null;
+        } else {
+            topUser = usersSorted.get(usersSorted.size() - 1);
+        }
+        return topUser;
+    }
+
     /**
-     * Returns the score calculated fromm the given number of points, stars, and taps.
+     * Returns the score calculated from the given number of points, stars, and taps.
      */
     private int calculateScore(int points, int stars, int taps) {
-//        return points + (AppManager.STAR_FACTOR * stars);
         return points + stars + taps;
+    }
+
+    /**
+     * Returns a list of users sorted by score
+     */
+    public List sortUsersByScore() {
+        return sortUsers(new ScoreComparator());
     }
 
     /**

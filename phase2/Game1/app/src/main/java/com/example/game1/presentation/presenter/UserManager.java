@@ -10,6 +10,8 @@ import com.example.game1.presentation.model.User;
 import com.example.game1.domain.UserService;
 import com.example.game1.presentation.view.user.UserMenuActivity;
 
+import java.util.List;
+
 /**
  * A controller class for managing user activity.
  * It is also a proxy to classes in the domain layer.
@@ -169,6 +171,13 @@ public class UserManager {
      */
     public User getTopUser() {
         return userService.getTopUser();
+    }
+
+    /**
+     * Returns the top x users based on the given criterion.
+     */
+    public List<User> getTopUsers(int x, String criterion) {
+        return userService.getTopUsers(x, criterion);
     }
 
 }
