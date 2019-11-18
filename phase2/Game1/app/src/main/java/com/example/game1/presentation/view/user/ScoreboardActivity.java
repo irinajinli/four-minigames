@@ -43,7 +43,7 @@ public class ScoreboardActivity extends AppCompatActivity {
                         // Update header 2
                         Object item = parent.getItemAtPosition(pos);
                         EditText header2 = findViewById(R.id.tableHeader2);
-                        header2.setText(item.toString());
+                        header2.setText(item.toString() + ":");
                         // Update the values displayed in the scoreboard
                         displayValues(item.toString());
                     }

@@ -24,7 +24,7 @@ public class StatisticsActivity extends AppCompatActivity {
         infoText.setText("Your score = points + stars + taps");
 
         /*
-        Display the current statistics of the current user
+        Display the current score of the current user
          */
         EditText currPointsText = findViewById(R.id.currPointsText);
         currPointsText.setText(String.valueOf(
@@ -38,8 +38,14 @@ public class StatisticsActivity extends AppCompatActivity {
         currTapsText.setText(String.valueOf(
                 userManager.getCurrentUser().getStatsOfCurrentGame().getTaps()));
 
+        EditText currScoreText = findViewById(R.id.currScoreText);
+        currScoreText.setText(String.valueOf(
+                userManager.getCurrentUser().getStatsOfCurrentGame().getPoints() +
+                userManager.getCurrentUser().getStatsOfCurrentGame().getStars() +
+                userManager.getCurrentUser().getStatsOfCurrentGame().getTaps()));
+
         /*
-        Display the top statistics of the current user
+        Display the top score of the current user
          */
         EditText topPointsText = findViewById(R.id.topPointsText);
         topPointsText.setText(String.valueOf(
@@ -53,43 +59,26 @@ public class StatisticsActivity extends AppCompatActivity {
         topTapsText.setText(String.valueOf(
                 userManager.getCurrentUser().getStatsOfTopGame().getTaps()));
 
+        EditText topScoreText = findViewById(R.id.topScoreText);
+        topScoreText.setText(String.valueOf(
+                userManager.getCurrentUser().getStatsOfTopGame().getPoints() +
+                        userManager.getCurrentUser().getStatsOfTopGame().getStars() +
+                        userManager.getCurrentUser().getStatsOfTopGame().getTaps()));
+
         /*
-        Display the top statistics of the top user
+        Display the top individual statistics of the current user
          */
-        if (userManager.getTopUser() != null) {
-            // If a top user exists, display the top statistics of the top user
-            EditText topPlayerText = findViewById(R.id.topPlayerText);
-            topPlayerText.setText("Top player: " + userManager.getTopUser().getUserName());
+        EditText topPlayerPointsText = findViewById(R.id.topIndPointsText);
+        topPlayerPointsText.setText(String.valueOf(
+                userManager.getCurrentUser().getTopIndividualStats().getPoints()));
 
-            EditText topPlayerPointsText = findViewById(R.id.topPlayerPointsText);
-            topPlayerPointsText.setText(String.valueOf(
-                    userManager.getTopUser().getStatsOfTopGame().getPoints()));
+        EditText topPlayerStarsText = findViewById(R.id.topIndStarsText);
+        topPlayerStarsText.setText(String.valueOf(
+                userManager.getCurrentUser().getTopIndividualStats().getStars()));
 
-            EditText topPlayerStarsText = findViewById(R.id.topPlayerStarsText);
-            topPlayerStarsText.setText(String.valueOf(
-                    userManager.getTopUser().getStatsOfTopGame().getStars()));
-
-            EditText topPlayerTapsText = findViewById(R.id.topPlayerTapsText);
-            topPlayerTapsText.setText(String.valueOf(
-                    userManager.getTopUser().getStatsOfTopGame().getTaps()));
-        } else {
-            // Else, the current user must be the only user, so display the top statistics of the
-            // current user.
-            EditText topPlayerText = findViewById(R.id.topPlayerText);
-            topPlayerText.setText("Top player: " + userManager.getCurrentUser().getUserName());
-
-            EditText topPlayerPointsText = findViewById(R.id.topPlayerPointsText);
-            topPlayerPointsText.setText(String.valueOf(
-                    userManager.getCurrentUser().getStatsOfTopGame().getPoints()));
-
-            EditText topPlayerStarsText = findViewById(R.id.topPlayerStarsText);
-            topPlayerStarsText.setText(String.valueOf(
-                    userManager.getCurrentUser().getStatsOfTopGame().getStars()));
-
-            EditText topPlayerTapsText = findViewById(R.id.topPlayerTapsText);
-            topPlayerTapsText.setText(String.valueOf(
-                    userManager.getCurrentUser().getStatsOfTopGame().getTaps()));
-        }
+        EditText topPlayerTapsText = findViewById(R.id.topIndTapsText);
+        topPlayerTapsText.setText(String.valueOf(
+                userManager.getCurrentUser().getTopIndividualStats().getTaps()));
     }
 
     /**

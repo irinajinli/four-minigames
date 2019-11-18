@@ -8,12 +8,13 @@
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="152dp"
+        android:layout_height="26dp"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
         android:text="Top 5 Players"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="@+id/textView17"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,9 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,23 +61,25 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="50dp" />
 
             <TextView
                 android:id="@+id/tablHeader1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:text="Username:" />
 
             <EditText
                 android:id="@+id/tableHeader2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -97,8 +100,9 @@
 
             <EditText
                 android:id="@+id/username1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -106,8 +110,9 @@
 
             <EditText
                 android:id="@+id/stat1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -127,8 +132,9 @@
 
             <EditText
                 android:id="@+id/username2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -136,8 +142,9 @@
 
             <EditText
                 android:id="@+id/stat2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -157,8 +164,9 @@
 
             <EditText
                 android:id="@+id/username3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -166,8 +174,9 @@
 
             <EditText
                 android:id="@+id/stat3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -186,8 +195,9 @@
 
             <EditText
                 android:id="@+id/username4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -195,8 +205,9 @@
 
             <EditText
                 android:id="@+id/stat4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -215,8 +226,9 @@
 
             <EditText
                 android:id="@+id/username5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
@@ -224,8 +236,9 @@
 
             <EditText
                 android:id="@+id/stat5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
                 android:inputType="none"
