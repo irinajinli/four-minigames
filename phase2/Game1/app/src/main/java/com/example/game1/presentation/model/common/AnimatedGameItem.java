@@ -1,10 +1,11 @@
-package com.example.game1.presentation.view.common;
+package com.example.game1.presentation.model.common;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
+import com.example.game1.presentation.view.common.GameView;
 
 public abstract class AnimatedGameItem extends GameItemStatic {
     /** This item's velocity for x coordinate. */
