@@ -31,9 +31,10 @@ public abstract class GameManager {
    * @param height the height of the GameManager
    * @param width the width of the GameManager
    */
-  public GameManager(int height, int width) {
+  public GameManager(int height, int width, Game game) {
     gridHeight = height;
     gridWidth = width;
+    this.game = game;
   }
 
   public int getGridWidth() {

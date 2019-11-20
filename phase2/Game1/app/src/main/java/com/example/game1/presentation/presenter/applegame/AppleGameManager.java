@@ -26,20 +26,14 @@ public class AppleGameManager extends GameManager {
   private int numDroppedApples = 0;
   private int numCaughtStars = 0;
 
-  /** Constructs an AppleGameManager with a height and width of 10. */
-  public AppleGameManager() {
-    super(10, 10);
-  }
-
   /**
    * Constructs an AppleGameManager with the specified height and width.
    *
    * @param height the height of the AppleGameManager
    * @param width the width of the AppleGameManager
    */
-  public AppleGameManager(int height, int width) {
-    super(height, width);
-    this.game = new Game(Game.GameName.APPLE);
+  public AppleGameManager(int height, int width, Game game) {
+    super(height, width, game);
   }
 
   /** Creates GameItems required at the beginning of the minigame. */

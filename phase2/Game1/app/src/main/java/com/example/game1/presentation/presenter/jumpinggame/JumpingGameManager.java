@@ -39,10 +39,10 @@ public class JumpingGameManager extends GameManager {
    *
    * @param height the height of the JumpingGameManager
    * @param width the width of the JumpingGameManager
+   * @param game the game that the JumpingGameManager manages
    */
-  public JumpingGameManager(int height, int width) {
-    super(height, width);
-    this.game = new Game(Game.GameName.JUMPING);
+  public JumpingGameManager(int height, int width, Game game) {
+    super(height, width, game);
   }
 
   /**

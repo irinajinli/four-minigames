@@ -33,11 +33,11 @@ public class TappingGameManager extends GameManager {
   /**
    * The width of the fish tank.
    */
-  private int width;
+//  private int width;
   /**
    * The height of fish tank.
    */
-  private int height;
+//  private int height;
   /**
    * The height of fish tank.
    */
@@ -83,11 +83,10 @@ public class TappingGameManager extends GameManager {
   /**
    * The tapping game manager on a screen with height rows and width columns.
    */
-  public TappingGameManager(int height, int width) {
-    super(height, width);
-    this.game = new Game(Game.GameName.TAPPING);
-    this.height = height;
-    this.width = width;
+  public TappingGameManager(int height, int width, Game game) {
+    super(height, width, game);
+//    this.height = height;
+//    this.width = width;
     this.canRun = true;
 
     //myTappingItems = new ArrayList<>();
@@ -122,18 +121,18 @@ public class TappingGameManager extends GameManager {
    *
    * @return the width of this fish tank.
    */
-  int getWidth() {
-    return width;
-  }
+//  int getWidth() {
+//    return width;
+//  }
 
   /**
    * Return the height of this fish tank.
    *
    * @return the height of this fish tank.
    */
-  int getHeight() {
-    return height;
-  }
+//  int getHeight() {
+//    return height;
+//  }
 
 
 
@@ -155,7 +154,7 @@ public class TappingGameManager extends GameManager {
     List<GameItem> Items = getGameItems();
     for (GameItem item : Items) {
         if(item.getClass() == Runner.class){
-          canRun = ((Runner)item).move(getWidth());
+          canRun = ((Runner)item).move(getGridWidth());
         }
 //      //Use a FishTankItem[] of length 2 to store value to be returned.
 //      GameItem[] result = item.animate(getWidth(), getHeight());
