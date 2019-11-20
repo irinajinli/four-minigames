@@ -11,7 +11,7 @@ import com.example.game1.presentation.view.common.GameItemOld;
 
 import java.util.ArrayList;
 
-/** A fish tank manager. */
+/** A game manager. */
 public abstract class GameManager {
 
   /** The Game that this GameManager manages */
@@ -71,7 +71,7 @@ public abstract class GameManager {
    * @param canvas the canvas on which to draw
    */
   public void draw(Canvas canvas) {
-    // iterate through GameItems in Fishies and draw them
+    // iterate through gameItems and draw them
     for (int i = 0; i < gameItems.size(); i++) {
       gameItems.get(i).draw(canvas);
     }

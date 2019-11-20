@@ -55,5 +55,7 @@ public class AppleGameView extends GameView {
     ((AppleGameManager) gameManager).moveBasket((int) touchX);
 
     return true;
+
+    // TODO: change game.numTaps when the game is over instead of adding 1 each time
   }
 }
