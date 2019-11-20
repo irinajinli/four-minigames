@@ -1,6 +1,5 @@
 package com.example.game1.presentation.presenter.common;
 
-import android.app.Activity;
 import android.graphics.Canvas;
 import android.media.MediaPlayer;
 
@@ -8,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.AppManager;
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 
 import java.util.ArrayList;
 
@@ -18,7 +17,7 @@ public abstract class GameManager {
   /** The Game that this GameManager manages */
   public Game game;
   /** A list of TankItems in this GameManager. */
-  private ArrayList<GameItem> gameItems = new ArrayList<>();
+  private ArrayList<GameItemOld> gameItems = new ArrayList<>();
   /** The width of this GameManager. */
   private int gridWidth;
   /** The height of this GameManager. */
@@ -53,7 +52,7 @@ public abstract class GameManager {
    *
    * @return gameItems
    */
-  public ArrayList<GameItem> getGameItems() {
+  public ArrayList<GameItemOld> getGameItems() {
     return gameItems;
   }
 
@@ -62,7 +61,7 @@ public abstract class GameManager {
    *
    * @param item the item to be placed in the GameManager
    */
-  public void place(GameItem item) {
+  public void place(GameItemOld item) {
     gameItems.add(item);
   }
 
@@ -86,7 +85,7 @@ public abstract class GameManager {
    *
    * @param item the item to be removed
    */
-  public void removeItem(GameItem item) {
+  public void removeItem(GameItemOld item) {
     gameItems.remove(item);
   }
 

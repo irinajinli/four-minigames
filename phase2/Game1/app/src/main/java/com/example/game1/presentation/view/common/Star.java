@@ -3,7 +3,7 @@ package com.example.game1.presentation.view.common;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-public class Star extends GameItem {
+public class Star extends GameItemOld {
 
   public Star() {
     super("*");

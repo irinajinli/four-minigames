@@ -3,10 +3,10 @@ package com.example.game1.presentation.view.tappinggame;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 
 /** Runner of the tapping game */
-public class Runner extends GameItem {
+public class Runner extends GameItemOld {
 
 
 

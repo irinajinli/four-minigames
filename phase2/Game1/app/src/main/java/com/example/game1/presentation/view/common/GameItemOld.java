@@ -8,7 +8,7 @@ import android.graphics.Typeface;
 import com.example.game1.presentation.view.tappinggame.TappingGameView;
 
 /** An item which can be in a GameManager. */
-public abstract class GameItem {
+public abstract class GameItemOld {
   /** This item's Paint. */
   public Paint paintText = new Paint();
 
@@ -23,27 +23,27 @@ public abstract class GameItem {
   private int y;
 
   /**
-   * Constructs a GameItem with the specified appearance.
+   * Constructs a GameItemOld with the specified appearance.
    *
-   * @param appearance the appearance of this GameItem
+   * @param appearance the appearance of this GameItemOld
    */
-  public GameItem(Object appearance) {
+  public GameItemOld(Object appearance) {
     this.appearance = appearance;
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
     paintText.setTextSize(36);
   }
   /**
-   * Constructs a GameItem.
+   * Constructs a GameItemOld.
    *
    */
-  public GameItem() {
+  public GameItemOld() {
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
     paintText.setTextSize(36);
   }
 
 
   /**
-   * Sets the location of this GameItem in the specified GameManager.
+   * Sets the location of this GameItemOld in the specified GameManager.
    *
    * @param x the x coordinate
    * @param y the y coordinate
@@ -54,7 +54,7 @@ public abstract class GameItem {
   }
 
   /**
-   * Changes the location of this GameItem within its GameManager.
+   * Changes the location of this GameItemOld within its GameManager.
    *
    * @param x the new x coordinate
    * @param y the new y coordinate
@@ -65,36 +65,36 @@ public abstract class GameItem {
   }
 
   /**
-   * Returns the current x coordinate of this GameItem.
+   * Returns the current x coordinate of this GameItemOld.
    *
-   * @return the x coordinate of this GameItem
+   * @return the x coordinate of this GameItemOld
    */
   public int getX() {
     return x;
   }
 
   /**
-   * Returns the current y coordinate of this GameItem.
+   * Returns the current y coordinate of this GameItemOld.
    *
-   * @return the y coordinate of this GameItem
+   * @return the y coordinate of this GameItemOld
    */
   public int getY() {
     return y;
   }
 
   /**
-   * Returns the appearance of this GameItem.
+   * Returns the appearance of this GameItemOld.
    *
-   * @return the appearance of this GameItem
+   * @return the appearance of this GameItemOld
    */
   public Object getAppearance() {
     return appearance;
   }
 
   /**
-   * Sets the appearance of this GameItem.
+   * Sets the appearance of this GameItemOld.
    *
-   * @param appearance the appearance of this GameItem
+   * @param appearance the appearance of this GameItemOld
    */
   public void setAppearance(Object appearance) {
     this.appearance = appearance;
@@ -105,7 +105,7 @@ public abstract class GameItem {
   }
 
   /**
-   * Draw this GameItem.
+   * Draw this GameItemOld.
    *
    * @param canvas the canvas on which to draw this item.
    */
@@ -120,11 +120,11 @@ public abstract class GameItem {
     }
   }
 
-  /** Move this GameItem within its GameManager. */
+  /** Move this GameItemOld within its GameManager. */
   public abstract void move();
 
   /**
-   * Draw the GameItem at a location on the specified Canvas using a String.
+   * Draw the GameItemOld at a location on the specified Canvas using a String.
    *
    * @param canvas the canvas on which to draw
    * @param s the String to draw

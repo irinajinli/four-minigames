@@ -2,9 +2,9 @@ package com.example.game1.presentation.view.tappinggame;
 
 import android.graphics.Color;
 
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 
-public class SpeedDisplayer extends GameItem {
+public class SpeedDisplayer extends GameItemOld {
     /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
     private int speed;
 

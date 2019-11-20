@@ -3,11 +3,11 @@ package com.example.game1.presentation.view.applegame;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 import com.example.game1.presentation.view.common.GameView;
 
 /** A counter for points earned. */
-public class PointsCounter extends GameItem {
+public class PointsCounter extends GameItemOld {
 
   /** How many points have been counted. */
   private int numPoints = 0;
@@ -18,7 +18,7 @@ public class PointsCounter extends GameItem {
     paintText.setColor(Color.WHITE);
   }
 
-  /** Move this GameItem within its GameManager. */
+  /** Move this GameItemOld within its GameManager. */
   @Override
   public void move() {
     // TODO: empty method? fix?

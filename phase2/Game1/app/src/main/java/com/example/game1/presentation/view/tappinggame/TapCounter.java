@@ -1,12 +1,10 @@
 package com.example.game1.presentation.view.tappinggame;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Typeface;
 
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 
-public class TapCounter extends GameItem {
+public class TapCounter extends GameItemOld {
     /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
     private int numTaps;
 

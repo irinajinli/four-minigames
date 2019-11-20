@@ -1,12 +1,10 @@
 package com.example.game1.presentation.view.applegame;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.presentation.view.common.GameItem;
-import com.example.game1.presentation.view.common.GameView;
+import com.example.game1.presentation.view.common.GameItemOld;
 
-public class Basket extends GameItem {
+public class Basket extends GameItemOld {
 
   /** Construct a light gray basket. */
   public Basket() {
@@ -27,7 +25,7 @@ public class Basket extends GameItem {
 //    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
 //  }
 
-  /** Move this GameItem within its GameManager. */
+  /** Move this GameItemOld within its GameManager. */
   @Override
   public void move() {
     // do nothing!

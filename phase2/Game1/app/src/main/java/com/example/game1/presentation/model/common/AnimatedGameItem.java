@@ -7,7 +7,7 @@ import android.graphics.Matrix;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.view.common.GameView;
 
-public abstract class AnimatedGameItem extends GameItemStatic {
+public abstract class AnimatedGameItem extends GameItem {
     /** This item's velocity for x coordinate. */
     private double xVelocity;
     /** This item's velocity for y coordinate. */
@@ -25,8 +25,8 @@ public abstract class AnimatedGameItem extends GameItemStatic {
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
      *
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
+     * @param height the height of this GameItemOld
+     * @param width the width of this GameItemOld
      */
     AnimatedGameItem(int height, int width, GameView gameView){
         super(height, width);
@@ -36,9 +36,9 @@ public abstract class AnimatedGameItem extends GameItemStatic {
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
      *
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
+     * @param height the height of this GameItemOld
+     * @param width the width of this GameItemOld
+     * @param appearance the appearance of this GameItemOld
      */
     AnimatedGameItem(int height, int width, Object appearance, GameView gameView){
         super(height, width, appearance);
@@ -48,8 +48,8 @@ public abstract class AnimatedGameItem extends GameItemStatic {
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
      *
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
+     * @param height the height of this GameItemOld
+     * @param width the width of this GameItemOld
      *  @param jpg
      *
      */
@@ -78,7 +78,7 @@ public abstract class AnimatedGameItem extends GameItemStatic {
 
     /**
      *
-     * @return velocity of this GameItem at x axis direction
+     * @return velocity of this GameItemOld at x axis direction
      */
     public double getxVelocity() {
         return this.xVelocity;
@@ -97,7 +97,7 @@ public abstract class AnimatedGameItem extends GameItemStatic {
 
     /**
      *
-     * @return velocity of this GameItem at y axis direction
+     * @return velocity of this GameItemOld at y axis direction
      */
     public double getyVelocity() {
         return yVelocity;
@@ -116,7 +116,7 @@ public abstract class AnimatedGameItem extends GameItemStatic {
 
     /**
      *
-     * @return acceleration of this GameItem at x axis direction
+     * @return acceleration of this GameItemOld at x axis direction
      */
     public double getxAcceleration() {
         return xAcceleration;
@@ -135,13 +135,13 @@ public abstract class AnimatedGameItem extends GameItemStatic {
 
     /**
      *
-     * @return acceleration of this GameItem at y axis direction
+     * @return acceleration of this GameItemOld at y axis direction
      */
     public double getyAcceleration() {
         return yAcceleration;
     }
 
-    /** Move this GameItem within its GameManager. */
+    /** Move this GameItemOld within its GameManager. */
     public abstract void move();
 
     /**

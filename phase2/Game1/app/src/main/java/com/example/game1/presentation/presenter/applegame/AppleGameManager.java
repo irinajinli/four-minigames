@@ -8,9 +8,8 @@ import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.applegame.Basket;
-import com.example.game1.presentation.view.common.MainThread;
+import com.example.game1.presentation.view.common.GameItemOld;
 import com.example.game1.presentation.view.applegame.PointsCounter;
-import com.example.game1.presentation.view.common.GameItem;
 import com.example.game1.presentation.view.common.Star;
 
 import java.util.Random;
@@ -102,13 +101,13 @@ public class AppleGameManager extends GameManager {
     }
 
     for (int i = 0; i < getGameItems().size(); i++) {
-      GameItem currItem = getGameItems().get(i);
+      GameItemOld currItem = getGameItems().get(i);
 
-      // move each GameItem
+      // move each GameItemOld
       currItem.move();
 
       if (!(currItem instanceof Basket)) {
-        // check if each non-Basket GameItem is off screen; remove if necessary
+        // check if each non-Basket GameItemOld is off screen; remove if necessary
         if (currItem.getY() > getGridHeight()) {
           dropGameItem(currItem);
         }
@@ -142,7 +141,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /** Drops the specified Apple. */
-  private void dropGameItem(GameItem currItem) {
+  private void dropGameItem(GameItemOld currItem) {
     removeItem(currItem);
     if (currItem instanceof Apple) numDroppedApples += 1;
   }

@@ -3,10 +3,10 @@ package com.example.game1.presentation.view.tappinggame;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 
 /** a tapping circle */
-public class TappingCircle extends GameItem {
+public class TappingCircle extends GameItemOld {
     /** construct a tapping circle at the specified cursor location (x, y). */
     public TappingCircle(Bitmap appearance, int x, int y) {
         // Call super() to set appearance, location (x, y), appearance and

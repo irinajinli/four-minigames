@@ -2,9 +2,9 @@ package com.example.game1.presentation.view.tappinggame;
 
 import android.graphics.Color;
 
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 
-public class StarDisplayer extends GameItem {
+public class StarDisplayer extends GameItemOld {
     /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
     private int numStar;
 

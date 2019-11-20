@@ -1,14 +1,12 @@
 package com.example.game1.presentation.presenter.tappinggame;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
-import com.example.game1.R;
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.common.Background;
-import com.example.game1.presentation.view.common.GameItem;
+import com.example.game1.presentation.view.common.GameItemOld;
 import com.example.game1.presentation.view.tappinggame.Runner;
 import com.example.game1.presentation.view.tappinggame.SpeedDisplayer;
 import com.example.game1.presentation.view.tappinggame.StarDisplayer;
@@ -27,7 +25,7 @@ public class TappingGameManager extends GameManager {
   /**
    * A list with all Tapping items.
    */
- // static List<GameItem> myTappingItems;
+ // static List<GameItemOld> myTappingItems;
 
 
   /**
@@ -147,17 +145,17 @@ public class TappingGameManager extends GameManager {
    */
   public boolean update() {
     //newItems list stores FishTankItems to be added to myFishTank
-    List<GameItem> newItems = new ArrayList<>();
+    List<GameItemOld> newItems = new ArrayList<>();
     // outItem list stores FishTankItem to be removed from myFishTank
-    List<GameItem> outItems = new ArrayList<>();
+    List<GameItemOld> outItems = new ArrayList<>();
 
-    List<GameItem> Items = getGameItems();
-    for (GameItem item : Items) {
+    List<GameItemOld> Items = getGameItems();
+    for (GameItemOld item : Items) {
         if(item.getClass() == Runner.class){
           canRun = ((Runner)item).move(getGridWidth());
         }
 //      //Use a FishTankItem[] of length 2 to store value to be returned.
-//      GameItem[] result = item.animate(getWidth(), getHeight());
+//      GameItemOld[] result = item.animate(getWidth(), getHeight());
 //
 //      //result[0] stores the FishTankItem to be removed from myFishTank
 //      if (result[0] != null) {
@@ -171,11 +169,11 @@ public class TappingGameManager extends GameManager {
 //      }
     }
 //    // Iterate all items in outItems List, remove it from myFishTank.
-//    for (GameItem outItem : outItems) {
+//    for (GameItemOld outItem : outItems) {
 //      items.remove(outItem);
 //    }
     //Iterate all items in newItems List, add them to myFishTank.
-    for (GameItem newItem : newItems) {
+    for (GameItemOld newItem : newItems) {
       place(newItem);
     }
 

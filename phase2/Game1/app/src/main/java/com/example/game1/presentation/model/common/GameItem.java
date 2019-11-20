@@ -12,7 +12,7 @@ import com.example.game1.presentation.view.tappinggame.TappingGameView;
 /**
  * An item which can be in a GameManager.
  */
-public abstract class GameItemStatic {
+public abstract class GameItem {
 
 
 
@@ -35,12 +35,12 @@ public abstract class GameItemStatic {
 
 
     /**
-     * Constructs a GameItem with the specified appearance.
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
+     * Constructs a GameItemOld with the specified appearance.
+     * @param height the height of this GameItemOld
+     * @param width the width of this GameItemOld
      *
      */
-    public GameItemStatic(int height, int width) {
+    public GameItem(int height, int width) {
         this.height = height;
         this.width = width;
         // to be deleted
@@ -50,12 +50,12 @@ public abstract class GameItemStatic {
 
 
     /**
-     * Constructs a GameItem with the specified appearance, height, width.
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
+     * Constructs a GameItemOld with the specified appearance, height, width.
+     * @param height the height of this GameItemOld
+     * @param width the width of this GameItemOld
+     * @param appearance the appearance of this GameItemOld
      */
-    public GameItemStatic(int height, int width, Object appearance) {
+    public GameItem(int height, int width, Object appearance) {
         this.height = height;
         this.width = width;
         this.appearance = appearance;
@@ -67,12 +67,12 @@ public abstract class GameItemStatic {
 
     // constructors to be deleted
     /**
-     * Constructs a GameItem with the specified appearance, height, width.
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
+     * Constructs a GameItemOld with the specified appearance, height, width.
+     * @param height the height of this GameItemOld
+     * @param width the width of this GameItemOld
+     * @param appearance the appearance of this GameItemOld
      */
-    public GameItemStatic(int height, int width, Object appearance, JumpingGameManager jgm) {
+    public GameItem(int height, int width, Object appearance, JumpingGameManager jgm) {
         this.height = height;
         this.width = width;
         this.appearance = appearance;
@@ -83,12 +83,12 @@ public abstract class GameItemStatic {
     }
 
     /**
-     * Constructs a GameItem with the specified height, width.
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
+     * Constructs a GameItemOld with the specified height, width.
+     * @param height the height of this GameItemOld
+     * @param width the width of this GameItemOld
      * @param jgm the JumpingGameManager that manages this object
      */
-    public GameItemStatic(int height, int width, JumpingGameManager jgm) {
+    public GameItem(int height, int width, JumpingGameManager jgm) {
         this.height = height;
         this.width = width;
         // to be deleted
@@ -103,25 +103,25 @@ public abstract class GameItemStatic {
 
 
     /**
-     * Sets the appearance of this GameItem.
+     * Sets the appearance of this GameItemOld.
      *
-     * @param appearance the appearance of this GameItem
+     * @param appearance the appearance of this GameItemOld
      */
     public void setAppearance(Object appearance) {
         this.appearance = appearance;
     }
 
     /**
-     * Get the appearance of this GameItem.
+     * Get the appearance of this GameItemOld.
      *
-     * @return the appearance of this GameItem
+     * @return the appearance of this GameItemOld
      */
     public Object getAppearance() {
         return appearance;
     }
 
     /**
-     * Sets the position of this GameItem.
+     * Sets the position of this GameItemOld.
      *
      * @param xCoordinate the x coordinate
      * @param yCoordinate the y coordinate
@@ -132,7 +132,7 @@ public abstract class GameItemStatic {
     }
 
     /**
-     *Set the xCoordinate of this GameItem
+     *Set the xCoordinate of this GameItemOld
      *
      * @param xCoordinate the x coordinate
      */
@@ -141,7 +141,7 @@ public abstract class GameItemStatic {
     }
 
     /**
-     *Set the yCoordinate of this GameItem
+     *Set the yCoordinate of this GameItemOld
      *
      * @param yCoordinate the y coordinate
      */
@@ -150,38 +150,38 @@ public abstract class GameItemStatic {
     }
 
     /**
-     * Get the xCoordinate of this GameItem
-     * @return the xCoordinate of this GameItem
+     * Get the xCoordinate of this GameItemOld
+     * @return the xCoordinate of this GameItemOld
      */
     public double getxCoordinate() {
         return this.xCoordinate;
     }
 
     /**
-     * Get the yCoordinate of this GameItem
-     * @return the yCoordinate of this GameItem
+     * Get the yCoordinate of this GameItemOld
+     * @return the yCoordinate of this GameItemOld
      */
     public double getyCoordinate() {
         return this.yCoordinate;
     }
 
     /**
-     * Get the width of this GameItem
-     * @return the width of this GameItem
+     * Get the width of this GameItemOld
+     * @return the width of this GameItemOld
      */
     public int getWidth() {
         return this.width;
     }
 
     /**
-     * Get the height of this GameItem
-     * @return the height of this GameItem
+     * Get the height of this GameItemOld
+     * @return the height of this GameItemOld
      */
     public int getHeight() {
         return this.height;
     }
 
-    public boolean isOverlapping(GameItemStatic other) {
+    public boolean isOverlapping(GameItem other) {
         double thisItemLeftBoundary = this.xCoordinate;
         double thisItemRightBoundary = this.xCoordinate + this.width;
         double otherItemLeftBoundary = other.getxCoordinate();
@@ -201,7 +201,7 @@ public abstract class GameItemStatic {
 
     // to be deleted
     /**
-     * Draw this GameItem.
+     * Draw this GameItemOld.
      *
      * @param canvas the canvas on which to draw this item.
      */
@@ -216,7 +216,7 @@ public abstract class GameItemStatic {
         }
     }
     /**
-     * Draw the GameItem at a location on the specified Canvas using a String.
+     * Draw the GameItemOld at a location on the specified Canvas using a String.
      *
      * @param canvas the canvas on which to draw
      * @param s the String to draw

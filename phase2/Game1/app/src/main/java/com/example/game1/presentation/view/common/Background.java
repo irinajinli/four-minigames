@@ -5,9 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import com.example.game1.presentation.view.common.GameItem;
-
-public class Background extends GameItem {
+public class Background extends GameItemOld {
 
   /** Construct a Background. */
   public Background() {
@@ -15,7 +13,7 @@ public class Background extends GameItem {
   }
 
   /**
-   * Move this GameItem within its GameManager. Note that this doesn't do anything because
+   * Move this GameItemOld within its GameManager. Note that this doesn't do anything because
    * Backgrounds don't need to move. Will think of a better solution for phase 2.
    */
   @Override

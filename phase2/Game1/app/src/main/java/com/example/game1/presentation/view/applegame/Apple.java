@@ -1,12 +1,10 @@
 package com.example.game1.presentation.view.applegame;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.presentation.view.common.GameItem;
-import com.example.game1.presentation.view.common.GameView;
+import com.example.game1.presentation.view.common.GameItemOld;
 
-public class Apple extends GameItem {
+public class Apple extends GameItemOld {
 
   /** Construct a red apple. */
   public Apple() {
@@ -14,7 +12,7 @@ public class Apple extends GameItem {
     paintText.setColor(Color.RED);
   }
 
-  /** Move this GameItem within its GameManager. */
+  /** Move this GameItemOld within its GameManager. */
   @Override
   public void move() {
     int newY = getY() + 1;
