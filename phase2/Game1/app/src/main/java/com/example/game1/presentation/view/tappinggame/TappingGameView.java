@@ -107,11 +107,10 @@ public class TappingGameView extends GameView implements View.OnClickListener{
 
 
     ((TappingGameManager)gameManager).setPictures(tappingCircleBMP, yellowPug, blueBird, redFish);
-
-
     gameManager.createGameItems();
-
     gameManager.setActivity(activity);
+    gameManager.startMusic();
+
     tappingMainThread.setRunning(true);
     tappingMainThread.start();
     ((TappingGameManager) gameManager).setCanRun(false);
@@ -187,6 +186,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
       try {
         tappingMainThread.setRunning(false);
         tappingMainThread.join();
+        gameManager.stopMusic();
         myTimer.cancel();
 
       } catch (InterruptedException e) {

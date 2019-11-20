@@ -71,6 +71,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
       try {
         thread.setRunning(false);
         thread.join();
+        gameManager.stopMusic();
 
       } catch (InterruptedException e) {
         e.printStackTrace();

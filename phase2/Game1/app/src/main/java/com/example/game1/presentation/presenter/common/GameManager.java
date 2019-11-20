@@ -2,6 +2,7 @@ package com.example.game1.presentation.presenter.common;
 
 import android.app.Activity;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +25,8 @@ public abstract class GameManager {
   private int gridHeight;
   /** The Activity class of the game this GameManager manages. */
   private AppCompatActivity activity;
+  /** The music player of the game that this GameManager manages. */
+  private MediaPlayer musicPlayer;
 
   /**
    * Constructs a GameManager with the specified height and width.
@@ -31,7 +34,7 @@ public abstract class GameManager {
    * @param height the height of the GameManager
    * @param width the width of the GameManager
    */
-  public GameManager(int height, int width, Game game) {
+  public GameManager(int height, int width, Game game ) {
     gridHeight = height;
     gridWidth = width;
     this.game = game;
@@ -106,7 +109,21 @@ public abstract class GameManager {
     this.activity = activity;
   }
 
+  public void setMusicPlayer(MediaPlayer musicPlayer) {
+    this.musicPlayer = musicPlayer;
+  }
+
+  public void startMusic() {
+    musicPlayer.start();
+  }
+
+  public void stopMusic() {
+    musicPlayer.stop();
+    musicPlayer.release();
+  }
+
   public void gameOver(){
+    stopMusic();
     AppManager.getInstance().finishGame(game, activity);
   }
 }

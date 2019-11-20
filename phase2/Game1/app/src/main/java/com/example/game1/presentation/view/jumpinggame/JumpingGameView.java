@@ -86,6 +86,7 @@ public class JumpingGameView extends GameView {
                 (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
     gameManager.createGameItems();
     gameManager.setActivity(activity);
+    gameManager.startMusic();
 
     jgm = (JumpingGameManager) gameManager;
 

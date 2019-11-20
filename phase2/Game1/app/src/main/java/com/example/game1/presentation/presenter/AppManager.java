@@ -1,14 +1,18 @@
 package com.example.game1.presentation.presenter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
+
+import static com.example.game1.presentation.model.Customization.MusicPath.SONG1;
 
 /**
  * A singleton class that is created upon opening the app.
@@ -75,6 +79,17 @@ public class AppManager {
     private GameManager getGameManager(Game.GameName game, int height, int width) {
         GameManager gameManager = gameManagerFactory.getGameManager(game, height, width);
         gameManager.getGame().setCustomization(UserManager.getCurrentUser().getCustomization());
+        switch (UserManager.getCurrentUser().getCustomization().getMusicPath()) {
+            case SONG1:
+                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.song1));
+                break;
+            case SONG2:
+                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.song1)); //TODO: update later to play a different song file
+                break;
+            case SONG3:
+                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.song1)); //TODO: update later to play a different song file
+                break;
+        }
         return gameManager;
     }
 
