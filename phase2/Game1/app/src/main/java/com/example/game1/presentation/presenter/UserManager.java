@@ -100,9 +100,9 @@ public class UserManager {
             newCustomization.setColourScheme(Customization.ColourScheme.DARK);
         }
 
-        if ("Song2".equals(music)) {
+        if ("Arpanauts".equals(music)) {
             newCustomization.setMusicPath(Customization.MusicPath.SONG2);
-        } else if ("Song3".equals(music)) {
+        } else if ("A Night Of Dizzy Spells".equals(music)) {
             newCustomization.setMusicPath(Customization.MusicPath.SONG3);
         } else {
             newCustomization.setMusicPath(Customization.MusicPath.SONG1);

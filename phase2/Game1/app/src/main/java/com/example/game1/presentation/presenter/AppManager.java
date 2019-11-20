@@ -79,17 +79,23 @@ public class AppManager {
     private GameManager getGameManager(Game.GameName game, int height, int width) {
         GameManager gameManager = gameManagerFactory.getGameManager(game, height, width);
         gameManager.getGame().setCustomization(UserManager.getCurrentUser().getCustomization());
+
+        /*
+         Music: Eric Skiff - Song Name - Resistor Anthems - Available at http://EricSkiff.com/music
+         */
         switch (UserManager.getCurrentUser().getCustomization().getMusicPath()) {
             case SONG1:
-                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.song1));
+                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.chibi_ninja));
                 break;
             case SONG2:
-                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.song1)); //TODO: update later to play a different song file
+                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.arpanauts));
                 break;
             case SONG3:
-                gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.song1)); //TODO: update later to play a different song file
+                gameManager.setMusicPlayer(MediaPlayer.create(getContext(),
+                        R.raw.a_night_of_dizzy_spells));
                 break;
         }
+
         return gameManager;
     }
 

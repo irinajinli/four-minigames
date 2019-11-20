@@ -20,7 +20,7 @@ public class CustomizationActivity extends AppCompatActivity {
     /* The customization choices that appear in the spinners */
     private final String[] characterColours = {"Blue", "Red", "Yellow"};
     private final String[] colourSchemes = {"Dark", "Light"};
-    private final String[] musicChoices = {"Song1", "Song2", "Song3"};
+    private final String[] musicChoices = {"Chibi Ninja", "Arpanauts", "A Night Of Dizzy Spells"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
