@@ -8,7 +8,7 @@ public class Statistics {
     private int stars;
     private int taps;
 
-    public Statistics() {
+    Statistics() {
         points = 0;
         stars = 0;
         taps = 0;

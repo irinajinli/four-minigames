@@ -59,11 +59,7 @@ public class DataManager {
     public DataManager() {
         readFromFile();
 
-        correctIndValues();
-
-        writeToFile(userMap.values());
-
-        testPrintTopIndividualStatistics();
+        testPrintTopIndividualStatistics(); // TESTING PURPOSES
     }
 
     private void testPrintTopIndividualStatistics() {
@@ -90,39 +86,6 @@ public class DataManager {
                     user.getStatsOfTopGame().getPoints(),
                     user.getStatsOfTopGame().getStars(),
                     user.getStatsOfTopGame().getTaps()));
-        }
-    }
-
-    private void correctIndValues() { //TODO for Ashley - delete this method later
-        Collection<User> users = userMap.values();
-        Iterator<User> iter = users.iterator();
-        while (iter.hasNext()) {
-            User user = iter.next();
-            int currentPoints = user.getStatsOfCurrentGame().getPoints();
-            int currentStars = user.getStatsOfCurrentGame().getStars();
-            int currentTaps = user.getStatsOfCurrentGame().getTaps();
-            int topPoints = user.getStatsOfTopGame().getPoints();
-            int topStars = user.getStatsOfTopGame().getStars();
-            int topTaps = user.getStatsOfTopGame().getTaps();
-            // Update the user's top individual statistics
-            if (currentPoints > user.getTopIndividualStats().getPoints()) {
-                user.getTopIndividualStats().setPoints(currentPoints);
-            }
-            if (topPoints > user.getTopIndividualStats().getPoints()) {
-                user.getTopIndividualStats().setPoints(topPoints);
-            }
-            if (currentStars > user.getTopIndividualStats().getStars()) {
-                user.getTopIndividualStats().setStars(currentStars);
-            }
-            if (topStars > user.getTopIndividualStats().getStars()) {
-                user.getTopIndividualStats().setStars(topStars);
-            }
-            if (currentTaps > user.getTopIndividualStats().getTaps()) {
-                user.getTopIndividualStats().setTaps(currentTaps);
-            }
-            if (topTaps > user.getTopIndividualStats().getTaps()) {
-                user.getTopIndividualStats().setStars(topTaps);
-            }
         }
     }
 
@@ -398,7 +361,7 @@ public class DataManager {
     }
 
     /**
-     * Returns a list of users sorted using the given comparator
+     * Returns a list of users sorted (in non-decreasing order) using the given comparator
      */
     private List sortUsers(Comparator comparator) {
         List<User> userList = new ArrayList(userMap.values());

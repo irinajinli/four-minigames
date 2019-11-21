@@ -61,7 +61,7 @@ public class UserService {
     }
 
     /**
-     * Returns the top x users based on the given criterion.
+     * Returns the top x users (sorted in non-increasing order) based on the given criterion.
      */
     public List<User> getTopUsers(int x, String criterion) {
         List<User> users;
@@ -76,14 +76,14 @@ public class UserService {
             // "Total Score".equals(criterion)
             users = dataManager.sortUsersByScore();
         }
-        return getLastXElements(users, x);
+        return getLastXElementsReversed(users, x);
     }
 
     /**
      * Return a new list containing the last x elements in the given list in reverse order.
      * If the given list has less than x elements, return a copy of the given list in reverse order.
      */
-    private List<User> getLastXElements(List<User> list, int x) {
+    private List<User> getLastXElementsReversed(List<User> list, int x) {
         List<User> newList = new ArrayList<>();
         int sizeOfNewList = Math.min(x, list.size());
 

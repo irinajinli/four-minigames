@@ -5,38 +5,32 @@ package com.example.game1.presentation.model;
  * This object is used by the domain and data layer.
  */
 public class User {
+    /**
+     * This user's username and password
+     */
     private String userName;
     private String password;
 
     /**
-     * An instance of Customization, which stores the customization choices of the user
+     * This user's customization choices
      */
     private Customization customization;
 
     /**
-     * The statistics of this user's current game
+     * The highest individual statistics in this user's history
      */
-//    private int currentPoints;
-//    private int currentStars;
-//    private int currentTaps;
-    private Statistics statsOfCurrentGame;
+    private Statistics topIndividualStats;
 
     /**
      * The statistics of the top game in this user's history (note: the top game is the game with
      * the highest total points, stars, and taps)
      */
-//    private int topPoints;
-//    private int topStars;
-//    private int topTaps;
     private Statistics statsOfTopGame;
 
     /**
-     * The highest individual statistics in this user's history
+     * The statistics of this user's current game
      */
-//    private int topIndPoints;
-//    private int topIndStars;
-//    private int topIndTaps;
-    private Statistics topIndividualStats;
+    private Statistics statsOfCurrentGame;
 
     /**
      * The last completed level in this user's current game
@@ -44,22 +38,16 @@ public class User {
     private int lastCompletedLevel;
 
     /**
-     * Constructs a new User with the given user name and password.
+     * Constructs a new User with the given username and password.
      */
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
-        // Set default value for the user's customization choices, statistics, and last completed
-        // level
+        /* Set default values for the user's customization choices, statistics, and last completed
+        level */
         customization = new Customization();
         statsOfCurrentGame = new Statistics();
-//        currentPoints = 0;
-//        currentStars = 0;
-//        currentTaps = 0;
         statsOfTopGame = new Statistics();
-//        topPoints = 0;
-//        topStars = 0;
-//        topTaps = 0;
         topIndividualStats = new Statistics();
         lastCompletedLevel = 0;
     }
@@ -112,30 +100,6 @@ public class User {
         this.topIndividualStats = topIndividualStats;
     }
 
-    //    public int getCurrentPoints() {
-//        return currentPoints;
-//    }
-//
-//    public void setCurrentPoints(int currentPoints) {
-//        this.currentPoints = currentPoints;
-//    }
-//
-//    public int getCurrentStars() {
-//        return currentStars;
-//    }
-//
-//    public void setCurrentStars(int currentStars) {
-//        this.currentStars = currentStars;
-//    }
-//
-//    public int getCurrentTaps() {
-//        return currentTaps;
-//    }
-//
-//    public void setCurrentTaps(int currentTaps) {
-//        this.currentTaps = currentTaps;
-//    }
-//
     public int getLastCompletedLevel() {
         return lastCompletedLevel;
     }
@@ -143,29 +107,4 @@ public class User {
     public void setLastCompletedLevel(int lastCompletedLevel) {
         this.lastCompletedLevel = lastCompletedLevel;
     }
-//
-//    public int getTopPoints() {
-//        return topPoints;
-//    }
-//
-//    public void setTopPoints(int topPoints) {
-//        this.topPoints = topPoints;
-//    }
-//
-//    public int getTopStars() {
-//        return topStars;
-//    }
-//
-//    public void setTopStars(int topStars) {
-//        this.topStars = topStars;
-//    }
-//
-//    public int getTopTaps() {
-//        return topTaps;
-//    }
-//
-//    public void setTopTaps(int topTaps) {
-//        this.topTaps = topTaps;
-//    }
-
 }

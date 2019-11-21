@@ -174,7 +174,7 @@ public class UserManager {
     }
 
     /**
-     * Returns the top x users based on the given criterion.
+     * Returns the top x users (sorted in non-increasing order) based on the given criterion.
      */
     public List<User> getTopUsers(int x, String criterion) {
         return userService.getTopUsers(x, criterion);
