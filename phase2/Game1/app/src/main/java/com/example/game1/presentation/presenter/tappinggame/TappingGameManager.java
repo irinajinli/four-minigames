@@ -19,42 +19,12 @@ import java.util.List;
 
 public class TappingGameManager extends GameManager {
 
-  //
-  //  protected TappingCircle tappingCircle;
-  //  protected Runner runner;
-  /**
-   * A list with all Tapping items.
-   */
-  // static List<GameItemOld> myTappingItems;
-
-
-  /**
-   * The width of the fish tank.
-   */
-//  private int width;
-  /**
-   * The height of fish tank.
-   */
-//  private int height;
-  /**
-   * The height of fish tank.
-   */
   private Bitmap tappingCircleBMP;
   private Bitmap runnerBMP;
   private Bitmap yellowPug;
   private Bitmap blueBird;
   private Bitmap redFish;
-  /**
-   * The height of fish tank.
-   */
-
   public TappingCircle tappingCircle;
-
-
-
-
-
-
 
   public Runner runner;
 
@@ -109,24 +79,9 @@ public class TappingGameManager extends GameManager {
       if(item.getClass() == Runner.class){
         canRun = ((Runner)item).move(getScreenWidth());
       }
-//      //Use a FishTankItem[] of length 2 to store value to be returned.
-//      GameItemOld[] result = item.animate(getWidth(), getHeight());
-//
-//      //result[0] stores the FishTankItem to be removed from myFishTank
-//      if (result[0] != null) {
-//        // Add the FishTankItem to the outItems so that it can be removed from myFishTank later
-//        outItems.add( result[0]);
-//      }
-//      //result[1] stores the FishTankItem to be added to myFishTank
-//      if (result[1] != null) {
-//        // Add the FishTankItem to the newItems List so that it can be added to myFishTank later
-//        newItems.add(result[1]);
-//      }
+
     }
-//    // Iterate all items in outItems List, remove it from myFishTank.
-//    for (GameItemOld outItem : outItems) {
-//      items.remove(outItem);
-//    }
+
     //Iterate all items in newItems List, add them to myFishTank.
     for (GameItem newItem : newItems) {
       place(newItem);

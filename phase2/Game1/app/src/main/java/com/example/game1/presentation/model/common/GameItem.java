@@ -79,37 +79,7 @@ public abstract class GameItem {
     }
 
 
-    // constructors to be deleted
-    /**
-     * Constructs a GameItem with the specified appearance, height, width.
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
-     */
-    public GameItem(int height, int width, Object appearance, JumpingGameManager jgm) {
-        this.height = height;
-        this.width = width;
-        this.appearance = appearance;
-        // to be deleted
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        paintText.setTextSize(36);
-        this.jgm = jgm;
-    }
 
-    /**
-     * Constructs a GameItem with the specified height, width.
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     * @param jgm the JumpingGameManager that manages this object
-     */
-    public GameItem(int height, int width, JumpingGameManager jgm) {
-        this.height = height;
-        this.width = width;
-        // to be deleted
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        paintText.setTextSize(36);
-        this.jgm = jgm;
-    }
 
 
 
