@@ -1,28 +1,61 @@
 package com.example.game1.presentation.model.jumpinggame;
 
+import android.graphics.Bitmap;
+import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingImportInfo;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
 
-import com.example.game1.presentation.model.Customization;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
-import com.example.game1.presentation.view.jumpinggame.GameObject;
+public class Obstacle extends AnimatedGameItem {
 
-public class Obstacle extends GameObject {
+    /** The Obstacle. */
 
-    public Obstacle(int width, int height, JumpingGameManager jgm) {
-        super(width, height, jgm);
+    /**
+     * Constructs a Obstacle with the specified height and width.
+     *
+     * @param height the height of this GameItem
+     * @param width the width of this GameItem
+     * @param appearance the appearance of this GameItem
+     */
+    public Obstacle(int height, int width, Bitmap appearance) {
+        super(height, width, appearance);
     }
 
-    public void update(){
-        super.update();
-        if (this.isOverlapping(jgm.getJumper())){
-            //TODO coupling fix
-            jgm.gameOver();
-        }
-        else if (this.getPositionX() + this.getWidth() < 0){
-            this.setPositionX(jgm.getScreenWidth() * 4 / 3);
-            jgm.setNumJumped(jgm.getNumJumped() + 1);
-            if (Math.random() > 0.7){
-                jgm.addStar(jgm.getScreenWidth() * 4 / 3 + this.getWidth() / 2 - 80/2); // 80 is the diameter of the coin
+    @Override
+    /**
+     * @param jumpingImportInfo: importInfo needed for this jumper to animate
+     * @return the info needed by game manager after the animation
+     */
+    public JumpingResult animate(ImportInfo jumpingImportInfo) {
+        updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
+        JumpingResult jumpingResult = new JumpingResult();
+
+        //Set gameover to be true in the jumping result if jumper touches the obstacle
+        Jumper jumper = ((JumpingImportInfo) jumpingImportInfo).getJumper();
+        if (this.isOverlapping(jumper)) {
+            jumpingResult.setGameOver(true);
+
+            // reset obstacle's xCoordinate if it is out of the screen
+        } else if (this.getxCoordinate() + this.getWidth() < 0) {
+            this.setxCoordinate(((JumpingImportInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
+            jumpingResult.setObstacleJumped(true);
+
+            // randomly add new star
+            if (Math.random() > 0.7) {
+                jumpingResult.setNeedNewStar(true);
             }
         }
+//    else{
+//      setxCoordinate(getxCoordinate() - 15);
+//    }
+        return jumpingResult;
+    }
+
+    @Override
+    public void move() {}
+
+    @Override
+    public JumpingResult update(ImportInfo importInfo) {
+        return (new JumpingResult());
     }
 }

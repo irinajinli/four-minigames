@@ -2,17 +2,20 @@ package com.example.game1.presentation.model.common;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.view.common.GameView;
 import com.example.game1.presentation.view.tappinggame.TappingGameView;
-
+import com.example.game1.presentation.presenter.common.Result;
 /**
  * An item which can be in a GameManager.
  */
 public abstract class GameItem {
+
 
 
 
@@ -32,15 +35,26 @@ public abstract class GameItem {
     public Paint paintText = new Paint();
     JumpingGameManager jgm;
 
-
-
     /**
      * Constructs a GameItemOld with the specified appearance.
-     * @param height the height of this GameItemOld
-     * @param width the width of this GameItemOld
+     *
+     * @param appearance the appearance of this GameItemOld
+     */
+    public GameItem(Object appearance) {
+        this.appearance = appearance;
+        paintText.setTypeface(Typeface.DEFAULT_BOLD);
+        paintText.setTextSize(36);
+    }
+    /**
+
+     /**
+     * Constructs a GameItem with the specified appearance.
+     * @param height the height of this GameItem
+     * @param width the width of this GameItem
      *
      */
     public GameItem(int height, int width) {
+
         this.height = height;
         this.width = width;
         // to be deleted
@@ -50,15 +64,15 @@ public abstract class GameItem {
 
 
     /**
-     * Constructs a GameItemOld with the specified appearance, height, width.
-     * @param height the height of this GameItemOld
-     * @param width the width of this GameItemOld
-     * @param appearance the appearance of this GameItemOld
+     * Constructs a GameItem with the specified appearance, height, width.
+     * @param height the height of this GameItem
+     * @param width the width of this GameItem
+     * @param appearance the appearance of this GameItem
      */
     public GameItem(int height, int width, Object appearance) {
+        this.appearance = appearance;
         this.height = height;
         this.width = width;
-        this.appearance = appearance;
         // to be deleted
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setTextSize(36);
@@ -67,10 +81,10 @@ public abstract class GameItem {
 
     // constructors to be deleted
     /**
-     * Constructs a GameItemOld with the specified appearance, height, width.
-     * @param height the height of this GameItemOld
-     * @param width the width of this GameItemOld
-     * @param appearance the appearance of this GameItemOld
+     * Constructs a GameItem with the specified appearance, height, width.
+     * @param height the height of this GameItem
+     * @param width the width of this GameItem
+     * @param appearance the appearance of this GameItem
      */
     public GameItem(int height, int width, Object appearance, JumpingGameManager jgm) {
         this.height = height;
@@ -83,9 +97,9 @@ public abstract class GameItem {
     }
 
     /**
-     * Constructs a GameItemOld with the specified height, width.
-     * @param height the height of this GameItemOld
-     * @param width the width of this GameItemOld
+     * Constructs a GameItem with the specified height, width.
+     * @param height the height of this GameItem
+     * @param width the width of this GameItem
      * @param jgm the JumpingGameManager that manages this object
      */
     public GameItem(int height, int width, JumpingGameManager jgm) {
@@ -103,25 +117,25 @@ public abstract class GameItem {
 
 
     /**
-     * Sets the appearance of this GameItemOld.
+     * Sets the appearance of this GameItem.
      *
-     * @param appearance the appearance of this GameItemOld
+     * @param appearance the appearance of this GameItem
      */
     public void setAppearance(Object appearance) {
         this.appearance = appearance;
     }
 
     /**
-     * Get the appearance of this GameItemOld.
+     * Get the appearance of this GameItem.
      *
-     * @return the appearance of this GameItemOld
+     * @return the appearance of this GameItem
      */
     public Object getAppearance() {
         return appearance;
     }
 
     /**
-     * Sets the position of this GameItemOld.
+     * Sets the position of this GameItem.
      *
      * @param xCoordinate the x coordinate
      * @param yCoordinate the y coordinate
@@ -132,7 +146,7 @@ public abstract class GameItem {
     }
 
     /**
-     *Set the xCoordinate of this GameItemOld
+     *Set the xCoordinate of this GameItem
      *
      * @param xCoordinate the x coordinate
      */
@@ -141,7 +155,7 @@ public abstract class GameItem {
     }
 
     /**
-     *Set the yCoordinate of this GameItemOld
+     *Set the yCoordinate of this GameItem
      *
      * @param yCoordinate the y coordinate
      */
@@ -150,32 +164,32 @@ public abstract class GameItem {
     }
 
     /**
-     * Get the xCoordinate of this GameItemOld
-     * @return the xCoordinate of this GameItemOld
+     * Get the xCoordinate of this GameItem
+     * @return the xCoordinate of this GameItem
      */
     public double getxCoordinate() {
         return this.xCoordinate;
     }
 
     /**
-     * Get the yCoordinate of this GameItemOld
-     * @return the yCoordinate of this GameItemOld
+     * Get the yCoordinate of this GameItem
+     * @return the yCoordinate of this GameItem
      */
     public double getyCoordinate() {
         return this.yCoordinate;
     }
 
     /**
-     * Get the width of this GameItemOld
-     * @return the width of this GameItemOld
+     * Get the width of this GameItem
+     * @return the width of this GameItem
      */
     public int getWidth() {
         return this.width;
     }
 
     /**
-     * Get the height of this GameItemOld
-     * @return the height of this GameItemOld
+     * Get the height of this GameItem
+     * @return the height of this GameItem
      */
     public int getHeight() {
         return this.height;
@@ -198,10 +212,12 @@ public abstract class GameItem {
                 || otherItemUpperBoundary < thisItemLowerBoundary);
     }
 
+    public abstract Result update(ImportInfo importInfo);
+
 
     // to be deleted
     /**
-     * Draw this GameItemOld.
+     * Draw this GameItem.
      *
      * @param canvas the canvas on which to draw this item.
      */
@@ -212,11 +228,11 @@ public abstract class GameItem {
             drawString(canvas, (String)appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate));
             //canvas.drawText((String) appearance, x * TappingGameView.charWidth, y * TappingGameView.charHeight, paintText);
         } else if (appearance.getClass() == Bitmap.class){
-            canvas.drawBitmap((Bitmap) appearance, (int)Math.round(xCoordinate)* TappingGameView.charWidth, (int)Math.round(yCoordinate)* TappingGameView.charHeight, paintText);
+            canvas.drawBitmap((Bitmap) appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate), paintText);
         }
     }
     /**
-     * Draw the GameItemOld at a location on the specified Canvas using a String.
+     * Draw the GameItem at a location on the specified Canvas using a String.
      *
      * @param canvas the canvas on which to draw
      * @param s the String to draw
@@ -230,5 +246,7 @@ public abstract class GameItem {
     public void setColor(int color) {
         paintText.setColor(color);
     }
+
+
 
 }

@@ -11,7 +11,6 @@ import com.example.game1.presentation.model.tappinggame.Runner;
 import com.example.game1.presentation.model.tappinggame.SpeedDisplayer;
 import com.example.game1.presentation.model.tappinggame.StarDisplayer;
 import com.example.game1.presentation.model.tappinggame.TapCounter;
-import com.example.game1.presentation.model.tappinggame.TappingCircle;
 import com.example.game1.presentation.model.tappinggame.TimerDisplayer;
 
 import java.util.ArrayList;

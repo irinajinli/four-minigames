@@ -2,9 +2,13 @@ package com.example.game1.presentation.model.tappinggame;
 
 import android.graphics.Color;
 
+import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.Result;
 import com.example.game1.presentation.view.common.GameItemOld;
 
-public class TapCounter extends GameItemOld {
+public class TapCounter extends GameItem {
     /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
     private int numTaps;
 
@@ -12,7 +16,7 @@ public class TapCounter extends GameItemOld {
         // Call super() to set appearance, location (x, yCoordinate), appearance and
         // type face.
         super("Number of Taps: ");
-        setLocation(x, y);
+        setPosition(x, y);
         this.numTaps = 0;
         paintText.setColor(Color.CYAN);
     }
@@ -30,5 +34,9 @@ public class TapCounter extends GameItemOld {
         setAppearance("Number of Taps: " + this.numTaps);
     }
 
-    public void move(){}
+    @Override
+    public Result update(ImportInfo jumpingImportInfo) {
+        return (new Result());
+    }
+
 }

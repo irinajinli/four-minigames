@@ -1,24 +1,50 @@
 package com.example.game1.presentation.model.jumpinggame;
 
+import android.graphics.Bitmap;
 
-import com.example.game1.presentation.model.Customization;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
-import com.example.game1.presentation.view.jumpinggame.GameObject;
 
-public class Jumper extends GameObject {
+import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingImportInfo;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
 
-    public Customization.CharacterColour characterColour;
+public class Jumper extends AnimatedGameItem {
+    /** The jumper. */
 
-    public Jumper(int width, int height, JumpingGameManager jgm) {
-        super(width, height, jgm);
+    /**
+     * Constructs a Jumper with the specified height, width, and appearance.
+     *
+     * @param height the height of this GameItem
+     * @param width the width of this GameItem
+     * @param appearance the appearance of this GameItem
+     */
+    public Jumper(int height, int width, Bitmap appearance) {
+        super(height, width, appearance);
     }
 
-    public void update(){
-        super.update();
-        if (this.isOverlapping(jgm.getTerrain())){
-            this.setPositionY(jgm.getTerrain().getPositionY() - this.getHeight());
-            this.setVelocityY(0);
-            this.setAccelerationY(0);
+    @Override
+    /**
+     * @param jumpingImportInfo: importInfo needed for this jumper to animate
+     * @return the info needed by game manager after the animation
+     */
+    public JumpingResult animate(ImportInfo jumpingImportInfo) {
+        JumpingResult jumpingResult = new JumpingResult();
+        // Jumper land on the terrain
+        Terrain terrain = ((JumpingImportInfo) jumpingImportInfo).getTerrian();
+        updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
+        if (this.isOverlapping(terrain)) {
+            this.setyCoordinate(terrain.getyCoordinate() - this.getHeight());
+            this.setyVelocity(0);
+            this.setyAcceleration(0);
         }
+        return jumpingResult;
+    }
+
+    @Override
+    public void move() {}
+
+    @Override
+    public JumpingResult update(ImportInfo jumpingImportInfo) {
+        return (new JumpingResult());
     }
 }

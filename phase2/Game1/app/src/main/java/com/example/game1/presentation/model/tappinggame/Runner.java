@@ -3,10 +3,13 @@ package com.example.game1.presentation.model.tappinggame;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
+import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.Result;
 import com.example.game1.presentation.view.common.GameItemOld;
 
 /** Runner of the tapping game */
-public class Runner extends GameItemOld {
+public class Runner extends AnimatedGameItem {
 
 
 
@@ -24,8 +27,8 @@ public class Runner extends GameItemOld {
 
   /** Constructs a runner at the specified cursor location (x, y). */
   public Runner(Bitmap appearance, int x, int y) {
-    super();
-    setLocation(x, y);
+    super(appearance);
+    setPosition(x, y);
     setAppearance(getResizedBitmap(appearance, 100, 100));
     canRun = true;
   }
@@ -61,15 +64,15 @@ public class Runner extends GameItemOld {
    * @return
    */
   public boolean move(int width) {
-    if (getX() + speed / 2 < width) {
-      int newX = getX() + speed / 2;
-      setLocation(newX, getY());
+    if (getxCoordinate() + speed  < width - 100) {
+      double newX = getxCoordinate() + speed ;
+      setPosition(newX, getyCoordinate());
       canRun = true;
       return canRun;
     }
     else{
       canRun = false;
-        return canRun;
+      return canRun;
     }
   }
 
@@ -81,4 +84,9 @@ public class Runner extends GameItemOld {
   public void setSpeed(int speed) {
     this.speed = speed;
   }
+
+  public Result update(ImportInfo jumpingImportInfo) {
+    return (new Result());
+  }
+  public Result animate(ImportInfo importInfo){return new Result();}
 }
