@@ -116,7 +116,7 @@ public class JumpingGameManager extends GameManager {
   }
 
   /**
-   * Sets the number of successful jumps made by this user
+   * Sets the number of successful jumps made by this user.
    *
    * @param numJumped the new number of jumps to set
    */
