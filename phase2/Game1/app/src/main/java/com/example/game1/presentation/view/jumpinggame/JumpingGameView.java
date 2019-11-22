@@ -10,34 +10,23 @@ import android.view.SurfaceHolder;
 import android.view.View;
 
 import com.example.game1.R;
-import com.example.game1.presentation.model.Customization;
-import com.example.game1.presentation.model.jumpinggame.Jumper;
-import com.example.game1.presentation.model.jumpinggame.Star;
+
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
-import com.example.game1.presentation.model.jumpinggame.Obstacle;
-import com.example.game1.presentation.model.jumpinggame.Terrain;
+
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /** The view of the jumping game presented to the user. */
 public class JumpingGameView extends GameView implements View.OnClickListener {
-  private GameSprite jumperSprite;
-  private List<GameSprite> obstacleSprites;
-  private List<Obstacle> obstacles;
-  private List<GameSprite> starSprites;
-  private List<Star> stars;
-  private GameSprite terrainSprite;
-  private Terrain terrain;
-  private Jumper jumper;
+
+
   private GameThread thread;
-  // private Context thisContext;
-  private JumpingGameManager jgm;
-  private String jumperSpriteFile;
+
+
   private OnClickListener listener;
   private int numTaps = 0;
   private Bitmap obstacleBMP =
@@ -59,8 +48,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
    */
   public JumpingGameView(Context context) {
     super(context);
-    //// check if this line below may cause any bugs
-    // thisContext = context;
+
     getHolder().addCallback(this);
     thread = new GameThread(getHolder(), this);
     setFocusable(true);
@@ -76,33 +64,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
             };
   }
 
-  //  /**
-  //   * sets the string of the filename with the intended jumper sprite
-  //   * @param characterColour the colour selected by the user
-  //   */
-  //  public void setJumperSpriteFile(Customization.CharacterColour characterColour) {
-  //    if (characterColour.equals(Customization.CharacterColour.BLUE)) {
-  //      this.jumperSpriteFile = "jumper_blue";
-  //    } else if (characterColour.equals(Customization.CharacterColour.RED)) {
-  //      this.jumperSpriteFile = "jumper_red";
-  //    } else if (characterColour.equals(Customization.CharacterColour.YELLOW)) {
-  //      this.jumperSpriteFile = "jumper_yellow";
-  //    } else {
-  //      this.jumperSpriteFile = "ninja_idle__000";
-  //    }
-  //  }
-
-  //  /**
-  //   * Creates the jumping sprite.
-  //   * @param jumperSpriteFile the filename of the jumper sprite
-  //   */
-  //  public void createJumpingSprite(String jumperSpriteFile) {
-  //    int resID =
-  //        getResources().getIdentifier(jumperSpriteFile, "drawable",
-  // thisContext.getPackageName());
-  //    jumperSprite =
-  //        new GameSprite(BitmapFactory.decodeResource(getResources(), resID), jumper, this);
-  //  }
 
   /**
    * initialiezes the game view when a surface is created
@@ -153,55 +114,11 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
     this.setOnClickListener(this.listener);
 
-    //    jgm = (JumpingGameManager) gameManager;
-    //
-    //    terrain = jgm.getTerrain();
-    //    jumper = jgm.getJumper();
-    //    obstacles = jgm.getObstacles();
-    //    stars = jgm.getStars();
 
-    //    terrainSprite =
-    //        new GameSprite(
-    //            BitmapFactory.decodeResource(getResources(), R.drawable.grass), terrain, this);
-    //    terrain.setPositionX(0);
-    //    terrain.setPositionY(getScreenHeight() / 2);
-
-    //    setJumperSpriteFile(jgm.getJumper().characterColour);
-    //    createJumpingSprite(jumperSpriteFile);
-
-    //    obstacleSprites = new ArrayList<>();
-    //    for (Obstacle obstacle : obstacles) {
-    //      obstacleSprites.add(generateObstacle(obstacle));
-    //    }
-
-    //    starSprites = new ArrayList<>();
-    //    for (Star star : stars) {
-    //      addStarSprite(star);
-    //    }
 
   }
 
-  //  /**
-  //   * Creates a new start sprite and adds it to this game view
-  //   * @param star the star for which to create the sprite
-  //   */
-  //  public void addStarSprite(Star star) {
-  //    GameSprite starSprite =
-  //        new GameSprite(BitmapFactory.decodeResource(getResources(), R.drawable.star_6), star,
-  // this);
-  //    starSprites.add(starSprite);
-  //  }
-  //
-  //  /**
-  //   * Generates a new game obstacle sprite and returns it
-  //   * @param obstacle the obstacle for which to create a sprite
-  //   * @return a new game obstacle sprite
-  //   */
-  //  private GameSprite generateObstacle(Obstacle obstacle) {
-  //    return new GameSprite(
-  //        BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1), obstacle,
-  // this);
-  //  }
+
 
   /** Updates this game view */
   @Override
@@ -214,24 +131,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
       thread.setRunning(false);
     }
 
-
-    //gameManager.update();
-    //    if (jgm.getRunning() == false) {
-    //      gameOver();
-    //    } else {
-    //
-    //      jgm.update();
-    //      // TODO right now, only stars need to be removed so this temporary solution simply
-    // regenerates
-    //      // the
-    //      // list of stars and removes the old ones (inefficient; will optimize later)
-    //      if (stars.size() != starSprites.size()) {
-    //        starSprites = new ArrayList<>();
-    //        for (Star star : stars) {
-    //          addStarSprite(star);
-    //        }
-    //      }
-    //    }
   }
 
   /**
@@ -245,16 +144,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     if (canvas != null) {
       canvas.drawColor(((JumpingGameManager) gameManager).getSkyColor());
       gameManager.draw(canvas);
-      //      terrainSprite.draw(canvas);
-      //
-      //      for (GameSprite obstacleSprite : obstacleSprites) {
-      //        obstacleSprite.draw(canvas);
-      //      }
-      //
-      //      for (GameSprite star : starSprites) {
-      //        star.draw(canvas);
-      //      }
-      //      jumperSprite.draw(canvas);
+
     }
   }
 
@@ -270,13 +160,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     return super.onTouchEvent(event);
   }
 
-  //  /**
-  //   * Ends the current jumping game being view
-  //   */
-  //  public void gameOver() {
-  //    thread.setRunning(false);
-  //    gameManager.gameOver();
-  //  }
+
 
   @Override
   public void surfaceDestroyed(SurfaceHolder holder) {

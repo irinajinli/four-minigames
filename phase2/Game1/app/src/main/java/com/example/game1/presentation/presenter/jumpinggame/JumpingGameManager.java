@@ -1,10 +1,8 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Matrix;
 
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
@@ -13,8 +11,6 @@ import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.jumpinggame.Obstacle;
 import com.example.game1.presentation.model.jumpinggame.Terrain;
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.presenter.common.ImportInfo;
-import com.example.game1.presentation.view.jumpinggame.GameObject;
 import com.example.game1.presentation.model.jumpinggame.Jumper;
 import com.example.game1.presentation.model.jumpinggame.Star;
 import com.example.game1.presentation.presenter.common.Result;
@@ -26,11 +22,6 @@ public class JumpingGameManager extends GameManager {
    * A GameManager for a Jumping minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling GameObjects.
    */
-
-  // JumperSprite jumperSprite;
-  //  private List<Obstacle> obstacles;
-  //  private List<Star> stars;
-  //  private List<GameObject> queuedForRemoval;
 
   private Terrain terrain;
 
@@ -70,14 +61,7 @@ public class JumpingGameManager extends GameManager {
     //this.game = new Game(Game.GameName.JUMPING);
   }
 
-  /**
-   * returns the obstacles in this jumping game
-   *
-   * @return the obstacles in this jumping game
-   */
-  //  public List<Obstacle2> getObstacles(){
-  //      return obstacles;
-  //  }
+
 
   /**
    * returns the terrain in this jumping game
@@ -97,14 +81,7 @@ public class JumpingGameManager extends GameManager {
     return jumper;
   }
 
-  /**
-   * Returns the stars currently in this jumping game
-   *
-   * @return the stars currently in this jumping game
-   */
-  //  public List<Star> getStars(){
-  //      return stars;
-  //    }
+
 
   /**
    * returns the number of successful jumps performed by the player.
@@ -181,17 +158,11 @@ public class JumpingGameManager extends GameManager {
     terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2, terrainBMP);
     setTerrainPosition(terrain);
     place(terrain);
-    //    terrain.setxCoordinate(0);
-    //    terrain.setyCoordinate(getScreenHeight() / 2);
+
 
     jumper = new Jumper(200, 100, jumperBMP);
     setJumperPosition(jumper);
     place(jumper);
-    // setCharacterColor(cust.getCharacterColour());
-    //    jumper.setPositionY(terrain.getPositionY() - jumper.getHeight());
-    //    jumper.setVelocityX(-cameraVelocityX + cameraVelocityX);
-
-    // obstacles = new ArrayList<>();
 
 
 
@@ -204,37 +175,19 @@ public class JumpingGameManager extends GameManager {
     obstacle3 = new Obstacle(100, 100, obstacleBMP);
     setObstaclePosition(obstacle3, getScreenWidth() * 6 / 5);
     place(obstacle3);
-    //    obstacles.add(generateObstacle(getScreenWidth() * 8 / 5));
-    //    obstacles.add(generateObstacle(getScreenWidth() * 3 / 5));
-    //    obstacles.add(generateObstacle(getScreenWidth() * 6 / 5));
+
 
     Star star = new Star(80, 80, starBMP);
-    // stars = new ArrayList<>();
+
     setStarPosition(star, getScreenWidth() * 3 / 5);
     place(star);
 
 
-    // queuedForRemoval = new ArrayList<>();
+
     setRunning(true);
   }
 
-  //  /**
-  //   * Queues this game object to be removed from the game
-  //   * @param gameObject the game object to be removed
-  //   */
-  //  public void queueForRemoval(GameObject gameObject) {
-  //    queuedForRemoval.add(gameObject);
-  //    queuedForRemoval.add(gameObject);
-  //  }
 
-//  /**
-//   * Sets teh colour of the jumper
-//   *
-//   * @param characterColour the colour to set
-//   */
-//  private void setCharacterColor(Customization.CharacterColour characterColour) {
-//    this.jumper.characterColour = characterColour;
-//  }
 
   /**
    * Set the theme of this game
@@ -273,18 +226,7 @@ public class JumpingGameManager extends GameManager {
     // stars.add(star);
   }
 
-  //  private Obstacle generateObstacle(int px) {
-  //    Obstacle2 obstacle = new Obstacle2(100, 100);
-  //    if (obstacleHeight == 0){
-  //      obstacleHeight = obstacle.getHeight();
-  //    }
 
-  //
-  //    obstacle.setPositionY(terrain.getPositionY() - obstacle.getHeight());
-  //    obstacle.setPositionX(px);
-  //    obstacle.setVelocityX(-cameraVelocityX);
-  //    return obstacle;
-  //  }
 
   /** updates all items in this game */
   @Override
@@ -341,16 +283,6 @@ public class JumpingGameManager extends GameManager {
       for (GameItem outItem : outItems) {
         removeItem(outItem);
       }
-
-      //    queuedForRemoval = new ArrayList<>();
-      //
-      //    for (Star star : stars) {
-      //      star.update();
-      //    }
-      //
-      //    for (Obstacle obstacle : obstacles) {
-      //      obstacle.update();
-      //    }
     }
     // TODO: temporary return true; decide when you want to return true/false
     return true;
@@ -365,22 +297,6 @@ public class JumpingGameManager extends GameManager {
     //numTaps += 1;
   }
 
-  //  /**
-  //   * returns the width of the screen
-  //   * @return the width of the screen
-  //   */
-  //  public int getScreenWidth() {
-  //    return Resources.getSystem().getDisplayMetrics().widthPixels;
-  //  }
-
-  //  /**
-  //   * REturns the height of the screen
-  //   *
-  //   * @return the height of the screen
-  //   */
-  //  public int getScreenHeight() {
-  //    return Resources.getSystem().getDisplayMetrics().heightPixels;
-  //  }
 
   /** Ends this minigame. */
   public void gameOver() {
@@ -417,10 +333,6 @@ public class JumpingGameManager extends GameManager {
     // Star star = new Star(80, 80, this);
     double yCoordinate = terrain.getyCoordinate() - 4 * obstacle1.getHeight();
     star.setyCoordinate(yCoordinate);
-    //                star.setPositionY(terrain.getPositionY() - 4 * obstacles.get(0).getHeight());
-    //        star.setPositionX(xp);
-
-    // stars.add(star);
     star.setxVelocity(-cameraVelocityX);
   }
 
@@ -436,11 +348,7 @@ public class JumpingGameManager extends GameManager {
   public void setNumTaps(int numTaps) {
     this.numTaps = numTaps;
   }
-  //  public void processResult(Result result){
-  //    if (result.getInItems() != null){
-  //
-  //    }
-  //  }
+
 
   public void setBMPfiles(Bitmap obstacleBMP, Bitmap starBMP, Bitmap terrainBMP,
                           Bitmap jumperBlueBMP, Bitmap jumperYellowBMP,

@@ -1,14 +1,7 @@
 package com.example.game1.presentation.model.common;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
-import com.example.game1.presentation.view.common.GameThread;
-import com.example.game1.presentation.view.common.GameView;
 
 public abstract class AnimatedGameItem extends GameItem {
     /** This item's velocity for x coordinate. */
@@ -21,9 +14,6 @@ public abstract class AnimatedGameItem extends GameItem {
     private double yAcceleration;
     /** This item's customization info passed by view. */
     private Object appearance;
-
-    //variable to be deleted
-    GameView gameView;
 
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
@@ -56,50 +46,6 @@ public abstract class AnimatedGameItem extends GameItem {
 
 
 
-    //construct to be deleted
-    /**
-     * Constructs a AnimatedGameItem with the specified height and width.
-     *
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
-     */
-    protected AnimatedGameItem(int height, int width, Object appearance, GameView gameView){
-        super(height, width, appearance);
-        this.gameView = gameView;
-    }
-
-    /**
-     * Constructs a AnimatedGameItem with the specified height and width.
-     *
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     *  @param jpg
-     *
-     */
-
-
-
-    AnimatedGameItem(int height, int width, JumpingGameManager jpg, GameView gameView){
-        super(height, width, jpg);
-        this.gameView = gameView;
-    }
-
-    AnimatedGameItem(int height, int width, Object appearance, JumpingGameManager jgm, GameView gameView){
-        super(height, width, appearance, jgm);
-        this.gameView = gameView;
-    }
-
-    /**
-     * Constructs a AnimatedGameItem with the specified height and width.
-     *
-     * @param height the height of this GameItem
-     * @param width the width of this GameItem
-     */
-    AnimatedGameItem(int height, int width, GameView gameView){
-        super(height, width);
-        this.gameView = gameView;
-    }
 
     /**
      *
@@ -205,9 +151,4 @@ public abstract class AnimatedGameItem extends GameItem {
 
     public abstract Result animate(ImportInfo importInfo);
 
-    // Methods to be deleted
-
-//    public void draw(Canvas canvas) {
-//        canvas.drawBitmap(((Bitmap)appearance), (int) getxCoordinate(), (int)getyCoordinate(), null);
-//    }
 }

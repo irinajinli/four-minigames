@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.view.common.GameThread;
-import com.example.game1.presentation.view.common.MainThread;
+
 import com.example.game1.R;
 
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
@@ -21,18 +21,6 @@ import com.example.game1.presentation.view.common.GameView;
 public class TappingGameView extends GameView implements View.OnClickListener{
 
 
-//  /** Screen width. */
-//  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-//  /** Screen height. */
-//  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-
-//  /** The width of a character. */
-//  public static float charWidth;
-//  /** The height of a character. */
-//  public static float charHeight;
-
-//  /** The fish tank contents. */
-//  public TappingGameManager tappingGameManager;
   /** The part of the program that manages time. */
   private GameThread tappingMainThread;
 
