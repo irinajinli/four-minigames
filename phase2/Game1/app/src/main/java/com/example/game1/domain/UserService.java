@@ -34,11 +34,11 @@ public class UserService {
     }
 
     /**
-     * Verifies if userName and password correspond to an existing user. If they do, return the
-     * the existing user. Otherwise, return null
+     * Verifies if the given username and password correspond to an existing user. If they do,
+     * return the existing user. Otherwise, return null
      */
-    public User getUser(String userName, String password) {
-        User user = dataManager.getUser(userName);
+    public User getUser(String username, String password) {
+        User user = dataManager.getUser(username);
         if (user != null && user.getPassword().equals(password)) {
             return user;
         } else {
@@ -47,7 +47,7 @@ public class UserService {
     }
 
     /**
-     * Updates user's information
+     * Updates the given user's information
      */
     public void updateUser(User user) {
         dataManager.updateUser(user);
@@ -58,6 +58,32 @@ public class UserService {
      */
     public User getTopUser() {
         return dataManager.getTopUser();
+    }
+
+    /**
+     * Return the top score of the user with the given username. If the user does not exist,
+     * return 0.
+     */
+    public int getTopScore(String username) {
+        User user = dataManager.getUser(username);
+        if (user != null) {
+            return dataManager.getTopScore(user);
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Return the current score of the user with the given username. If the user does not exist,
+     * return 0.
+     */
+    public int getCurrentScore(String username){
+        User user = dataManager.getUser(username);
+        if (user != null) {
+            return dataManager.getCurrentScore(user);
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -81,7 +107,8 @@ public class UserService {
 
     /**
      * Return a new list containing the last x elements in the given list in reverse order.
-     * If the given list has less than x elements, return a copy of the given list in reverse order.
+     * If the given list has less than x elements, simply return a copy of the given list in reverse
+     * order.
      */
     private List<User> getLastXElementsReversed(List<User> list, int x) {
         List<User> newList = new ArrayList<>();

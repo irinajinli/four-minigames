@@ -113,10 +113,8 @@ public class UserManager {
     }
 
     /**
-     * Sets the current user's game statistics and level to the information passed in the Game
-     * object, game.
-     *
-     * @param game the Game object
+     * Updates the current user's game statistics and level using the information in the given Game
+     * object.
      */
     void updateCurrentUsersGame(Game game) {
         updateGameInfo(currentUser.getStatsOfCurrentGame().getPoints() + game.getNumPoints(),
@@ -130,19 +128,13 @@ public class UserManager {
      * Restarts the current user's game
      */
     public void restartCurrentUsersGame() {
-
         // Set all the current statistics and the current game level to 0
         updateGameInfo(0, 0, 0, 0);
         updateUserInfo();
     }
 
     /**
-     * Sets the current user's game statistics and level to the given values
-     *
-     * @param points the number of points
-     * @param stars  the number of stars
-     * @param taps   the number of taps
-     * @param level  the game level
+     * Sets the current user's game statistics and level to the given values.
      */
     private void updateGameInfo(int points, int stars, int taps, int level) {
         currentUser.getStatsOfCurrentGame().setPoints(points);
@@ -171,6 +163,22 @@ public class UserManager {
      */
     public User getTopUser() {
         return userService.getTopUser();
+    }
+
+    /**
+     * Returns the current score of the user with the given username. If the user does not exist,
+     * this method returns 0.
+     */
+    public int getCurrentScore(String username){
+        return userService.getCurrentScore(username);
+    }
+
+    /**
+     * Returns the top score of the user with the given username. If the user does not exist,
+     * this method returns 0.
+     */
+    public int getTopScore(String username){
+        return userService.getTopScore(username);
     }
 
     /**

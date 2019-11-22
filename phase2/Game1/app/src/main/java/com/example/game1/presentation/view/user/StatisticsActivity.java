@@ -23,6 +23,8 @@ public class StatisticsActivity extends AppCompatActivity {
         EditText infoText = findViewById(R.id.infoText);
         infoText.setText("score = points + stars + taps");
 
+        String usernameOfCurrUser = userManager.getCurrentUser().getUserName();
+
         /*
         Display the current score of the current user
          */
@@ -39,10 +41,7 @@ public class StatisticsActivity extends AppCompatActivity {
                 userManager.getCurrentUser().getStatsOfCurrentGame().getTaps()));
 
         EditText currScoreText = findViewById(R.id.currScoreText);
-        currScoreText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfCurrentGame().getPoints() +
-                userManager.getCurrentUser().getStatsOfCurrentGame().getStars() +
-                userManager.getCurrentUser().getStatsOfCurrentGame().getTaps()));
+        currScoreText.setText(String.valueOf(userManager.getCurrentScore(usernameOfCurrUser)));
 
         /*
         Display the top score of the current user
@@ -60,10 +59,7 @@ public class StatisticsActivity extends AppCompatActivity {
                 userManager.getCurrentUser().getStatsOfTopGame().getTaps()));
 
         EditText topScoreText = findViewById(R.id.topScoreText);
-        topScoreText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfTopGame().getPoints() +
-                        userManager.getCurrentUser().getStatsOfTopGame().getStars() +
-                        userManager.getCurrentUser().getStatsOfTopGame().getTaps()));
+        topScoreText.setText(String.valueOf(userManager.getTopScore(usernameOfCurrUser)));
 
         /*
         Display the top individual statistics of the current user

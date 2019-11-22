@@ -39,6 +39,7 @@ public class ScoreboardActivity extends AppCompatActivity {
         // Create the spinner listener
         spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
+
                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                         // Update header 2
                         Object item = parent.getItemAtPosition(pos);
@@ -111,18 +112,12 @@ public class ScoreboardActivity extends AppCompatActivity {
                 usernameToStat.add(Pair.create(username, String.valueOf(taps)));
             }
         } else {
-            // Display total scores
+            // "Total Score".equals(selection)
             numUsers = userManager.getTopUsers(5, "Total Score").size();
             for (int i = 0; i < numUsers; i++) {
                 String username = userManager.getTopUsers(5,
                         "Points").get(i).getUserName();
-                int points = userManager.getTopUsers(5,
-                        "v").get(i).getStatsOfTopGame().getPoints();
-                int stars = userManager.getTopUsers(5,
-                        "v").get(i).getStatsOfTopGame().getStars();
-                int taps = userManager.getTopUsers(5,
-                        "v").get(i).getStatsOfTopGame().getTaps();
-                int score = points + stars + taps;
+                int score = userManager.getTopScore(username);
                 usernameToStat.add(Pair.create(username, String.valueOf(score)));
             }
         }

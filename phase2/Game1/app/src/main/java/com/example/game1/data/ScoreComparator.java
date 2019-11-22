@@ -19,19 +19,12 @@ public class ScoreComparator implements Comparator<User> {
      */
     @Override
     public int compare(User user1, User user2) {
-        int score1 = calculateScore(user1.getStatsOfTopGame().getPoints(),
+        int score1 = ScoreCalculator.calculateScore(user1.getStatsOfTopGame().getPoints(),
                 user1.getStatsOfTopGame().getStars(),
                 user1.getStatsOfTopGame().getTaps());
-        int score2 = calculateScore(user2.getStatsOfTopGame().getPoints(),
+        int score2 = ScoreCalculator.calculateScore(user2.getStatsOfTopGame().getPoints(),
                 user2.getStatsOfTopGame().getStars(),
                 user2.getStatsOfTopGame().getTaps());
         return score1 - score2;
-    }
-
-    /**
-     * Returns the score calculated from the given number of points, stars, and taps.
-     */
-    private int calculateScore(int points, int stars, int taps) {
-        return points + stars + taps;
     }
 }
