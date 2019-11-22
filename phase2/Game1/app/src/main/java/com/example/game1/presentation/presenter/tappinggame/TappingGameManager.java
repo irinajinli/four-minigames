@@ -7,12 +7,12 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.common.GameItemOld;
-import com.example.game1.presentation.view.tappinggame.Runner;
-import com.example.game1.presentation.view.tappinggame.SpeedDisplayer;
-import com.example.game1.presentation.view.tappinggame.StarDisplayer;
-import com.example.game1.presentation.view.tappinggame.TapCounter;
-import com.example.game1.presentation.view.tappinggame.TappingCircle;
-import com.example.game1.presentation.view.tappinggame.TimerDisplayer;
+import com.example.game1.presentation.model.tappinggame.Runner;
+import com.example.game1.presentation.model.tappinggame.SpeedDisplayer;
+import com.example.game1.presentation.model.tappinggame.StarDisplayer;
+import com.example.game1.presentation.model.tappinggame.TapCounter;
+import com.example.game1.presentation.model.tappinggame.TappingCircle;
+import com.example.game1.presentation.model.tappinggame.TimerDisplayer;
 
 import java.util.ArrayList;
 import java.util.List;

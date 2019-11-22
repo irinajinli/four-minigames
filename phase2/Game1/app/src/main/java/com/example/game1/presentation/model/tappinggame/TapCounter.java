@@ -1,4 +1,4 @@
-package com.example.game1.presentation.view.tappinggame;
+package com.example.game1.presentation.model.tappinggame;
 
 import android.graphics.Color;
 

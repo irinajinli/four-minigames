@@ -1,6 +1,7 @@
-package com.example.game1.presentation.view.jumpinggame;
+package com.example.game1.presentation.model.jumpinggame;
 
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
+import com.example.game1.presentation.view.jumpinggame.GameObject;
 
 public class Star extends GameObject {
 

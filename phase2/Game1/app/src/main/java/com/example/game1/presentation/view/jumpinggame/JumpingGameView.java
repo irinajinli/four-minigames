@@ -1,7 +1,6 @@
 package com.example.game1.presentation.view.jumpinggame;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -9,6 +8,10 @@ import android.view.SurfaceHolder;
 
 import com.example.game1.R;
 import com.example.game1.presentation.model.Customization;
+import com.example.game1.presentation.model.jumpinggame.Jumper;
+import com.example.game1.presentation.model.jumpinggame.Obstacle;
+import com.example.game1.presentation.model.jumpinggame.Star;
+import com.example.game1.presentation.model.jumpinggame.Terrain;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.view.common.GameThread;

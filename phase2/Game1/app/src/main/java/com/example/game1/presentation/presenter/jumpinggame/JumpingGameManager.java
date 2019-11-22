@@ -8,11 +8,10 @@ import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.jumpinggame.GameObject;
-import com.example.game1.presentation.view.jumpinggame.Jumper;
-import com.example.game1.presentation.view.jumpinggame.JumpingGameView;
-import com.example.game1.presentation.view.jumpinggame.Obstacle;
-import com.example.game1.presentation.view.jumpinggame.Star;
-import com.example.game1.presentation.view.jumpinggame.Terrain;
+import com.example.game1.presentation.model.jumpinggame.Jumper;
+import com.example.game1.presentation.model.jumpinggame.Obstacle;
+import com.example.game1.presentation.model.jumpinggame.Star;
+import com.example.game1.presentation.model.jumpinggame.Terrain;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,7 +11,7 @@ import com.example.game1.presentation.view.common.GameView;
 public class GameObject {
   private int width, height;
   private double px, py, vx, vy, ax, ay;
-  JumpingGameManager jgm;
+  public JumpingGameManager jgm;
 
   public GameObject(int width, int height, JumpingGameManager jgm) {
     this.width = width;
