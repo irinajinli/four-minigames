@@ -5,19 +5,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class Background extends GameItemOld {
+import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.Result;
+
+public class Background extends GameItem {
 
   /** Construct a Background. */
   public Background() {
     super("");
   }
 
-  /**
-   * Move this GameItemOld within its GameManager. Note that this doesn't do anything because
-   * Backgrounds don't need to move. Will think of a better solution for phase 2.
-   */
-  @Override
-  public void move() {}
+
 
   /**
    * Draw this Background.
@@ -39,5 +38,9 @@ public class Background extends GameItemOld {
     backgroundPaint.setStyle(Paint.Style.FILL);
     canvas.drawRect(backgroundRect, backgroundPaint);
   }
+  public Result update(ImportInfo jumpingImportInfo) {
+    return (new Result());
+  }
+  //public Result animate(ImportInfo importInfo){return new Result();}
 
 }

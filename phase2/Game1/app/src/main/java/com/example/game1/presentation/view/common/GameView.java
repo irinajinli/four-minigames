@@ -30,6 +30,8 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   /** The activity class corresponding this view */
   public AppCompatActivity activity;
 
+  private double numOfSecond;
+
   /**
    * Create a new fish tank in the context environment.
    *
@@ -96,4 +98,6 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
       gameManager.draw(canvas);
     }
   }
+
+
 }

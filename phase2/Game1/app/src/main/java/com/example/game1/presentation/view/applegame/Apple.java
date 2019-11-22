@@ -2,9 +2,14 @@ package com.example.game1.presentation.view.applegame;
 
 import android.graphics.Color;
 
+import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.Result;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
 import com.example.game1.presentation.view.common.GameItemOld;
 
-public class Apple extends GameItemOld {
+public class Apple extends AnimatedGameItem {
 
   /** Construct a red apple. */
   public Apple() {
@@ -15,10 +20,15 @@ public class Apple extends GameItemOld {
   /** Move this GameItemOld within its GameManager. */
   @Override
   public void move() {
-    int newY = getY() + 1;
+    double newY = getyCoordinate() + 1;
     // TODO: later, decide what to do when apple goes off screen/gets to bottom
-    changeLocation(getX(), getY() + 1);
+    setPosition(getxCoordinate(), getyCoordinate() + 1);
   }
+
+  public Result update(ImportInfo jumpingImportInfo) {
+    return (new Result());
+  }
+  public Result animate(ImportInfo importInfo){return new Result();}
 
 //  /**
 //   * Draw this Apple.

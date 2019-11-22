@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.view.common.GameItemOld;
 
@@ -17,15 +18,22 @@ public abstract class GameManager {
   /** The Game that this GameManager manages */
   public Game game;
   /** A list of TankItems in this GameManager. */
-  private ArrayList<GameItemOld> gameItems = new ArrayList<>();
+  private ArrayList<GameItem> gameItems = new ArrayList<>();
   /** The width of this GameManager. */
   private int gridWidth;
   /** The height of this GameManager. */
   private int gridHeight;
+
+  /** The width of this GameManager. */
+  private int screenWidth;
+  /** The height of this GameManager. */
+  private int screenHeight;
+
   /** The Activity class of the game this GameManager manages. */
   private AppCompatActivity activity;
   /** The music player of the game that this GameManager manages. */
   private MediaPlayer musicPlayer;
+
 
   /**
    * Constructs a GameManager with the specified height and width.
@@ -52,7 +60,7 @@ public abstract class GameManager {
    *
    * @return gameItems
    */
-  public ArrayList<GameItemOld> getGameItems() {
+  public ArrayList<GameItem> getGameItems() {
     return gameItems;
   }
 
@@ -61,7 +69,7 @@ public abstract class GameManager {
    *
    * @param item the item to be placed in the GameManager
    */
-  public void place(GameItemOld item) {
+  public void place(GameItem item) {
     gameItems.add(item);
   }
 
@@ -85,7 +93,7 @@ public abstract class GameManager {
    *
    * @param item the item to be removed
    */
-  public void removeItem(GameItemOld item) {
+  public void removeItem(GameItem item) {
     gameItems.remove(item);
   }
 
@@ -124,5 +132,21 @@ public abstract class GameManager {
   public void gameOver(){
     stopMusic();
     AppManager.getInstance().finishGame(game, activity);
+  }
+
+  public int getScreenWidth() {
+    return screenWidth;
+  }
+
+  public void setScreenWidth(int screenWidth) {
+    this.screenWidth = screenWidth;
+  }
+
+  public int getScreenHeight() {
+    return screenHeight;
+  }
+
+  public void setScreenHeight(int screenHeight) {
+    this.screenHeight = screenHeight;
   }
 }

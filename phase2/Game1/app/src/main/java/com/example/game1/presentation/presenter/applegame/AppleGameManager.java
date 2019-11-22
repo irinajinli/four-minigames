@@ -1,6 +1,8 @@
 package com.example.game1.presentation.presenter.applegame;
 
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
@@ -69,22 +71,26 @@ public class AppleGameManager extends GameManager {
     }
 
     for (int i = 0; i < getGameItems().size(); i++) {
-      GameItemOld currItem = getGameItems().get(i);
+      GameItem currItem = getGameItems().get(i);
+      if (currItem instanceof AnimatedGameItem) {
+        //AnimatedGameItem currItem = (AnimatedGameItem) currItem2;
+        // move each GameItemOld
+        ((AnimatedGameItem)currItem).move();
+      } else {
 
-      // move each GameItemOld
-      currItem.move();
+      }
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItemOld is off screen; remove if necessary
-        if (currItem.getY() > getGridHeight()) {
+        if (currItem.getyCoordinate() > getGridHeight()) {
           dropGameItem(currItem);
         }
 
         // check if currItem has been caught; remove if necessary
-        if ((currItem.getX() == basket.getX()
-                || currItem.getX() == basket.getX() - 1
-                || currItem.getX() == basket.getX() + 1)
-            && currItem.getY() == basket.getY()) {
+        if ((currItem.getxCoordinate() == basket.getxCoordinate()
+                || currItem.getxCoordinate() == basket.getxCoordinate() - 1
+                || currItem.getxCoordinate() == basket.getxCoordinate() + 1)
+                && currItem.getyCoordinate() == basket.getyCoordinate()) {
           // if currItem is within +/- 1 of basket
           removeItem(currItem);
           if (currItem instanceof Apple) {
@@ -111,7 +117,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /** Drops the specified Apple. */
-  private void dropGameItem(GameItemOld currItem) {
+  private void dropGameItem(GameItem currItem) {
     removeItem(currItem);
     if (currItem instanceof Apple) numDroppedApples += 1;
   }
@@ -129,12 +135,12 @@ public class AppleGameManager extends GameManager {
       // spawn new Star
       Star nextItem = new Star();
       place(nextItem);
-      nextItem.setLocation(spawnCoordinate, 0);
+      nextItem.setPosition(spawnCoordinate, 0);
     } else if (randint < 10) {
       // spawn new Apple
       Apple nextItem = new Apple();
       place(nextItem);
-      nextItem.setLocation(spawnCoordinate, 0);
+      nextItem.setPosition(spawnCoordinate, 0);
     }
 
     // else do nothing

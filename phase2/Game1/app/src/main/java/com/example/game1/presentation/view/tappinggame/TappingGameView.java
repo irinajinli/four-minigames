@@ -11,6 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.View;
 
 import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.MainThread;
 import com.example.game1.R;
 
@@ -33,7 +34,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
 //  /** The fish tank contents. */
 //  public TappingGameManager tappingGameManager;
   /** The part of the program that manages time. */
-  private MainThread tappingMainThread;
+  private GameThread tappingMainThread;
 
   private Bitmap tappingCircleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
   private Bitmap runnerBMP;
@@ -60,7 +61,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
   public TappingGameView(Context context) {
     super(context);
     getHolder().addCallback(this);
-    tappingMainThread = new MainThread(getHolder(), this);
+    tappingMainThread = new GameThread(getHolder(), this);
     setFocusable(true);
     numTaps = 0;
     numStars = 0;
@@ -77,7 +78,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
           ((TappingGameManager)gameManager).tapCounter.setNumTaps(numTaps);
         }
       }
-};
+    };
 
 
   }
@@ -91,20 +92,14 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     charWidth = paintText.measureText("W");
     charHeight = -paintText.ascent() + paintText.descent();
 
-//    // Use the letter size and screen height to determine the size of the GameManager.
-//    gameManager =
-//            new TappingGameManager(
-//                    (int) (getScreenHeight() / charHeight),
-//                    (int) (getScreenWidth() / charWidth),
-//                    tappingCircleBMP,
-//                    runnerBMP);
-
     gameManager =
             AppManager.getInstance()
                     .getTappingGameManager(
                             (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
-    //        tankManager.setTappingCircleImage(tappingCircleBMP);
 
+
+    gameManager.setScreenHeight(this.getScreenHeight());
+    gameManager.setScreenWidth(this.getScreenWidth());
 
     ((TappingGameManager)gameManager).setPictures(tappingCircleBMP, yellowPug, blueBird, redFish);
     gameManager.createGameItems();
@@ -116,57 +111,57 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     ((TappingGameManager) gameManager).setCanRun(false);
     this.setOnClickListener(this.listener);
     CountDownTimer timer =
-        new CountDownTimer(10000, 1000) {
+            new CountDownTimer(10000, 1000) {
 
-          @Override
-          public void onTick(long millisUntilFinished) {
-            secondLeft--;
-            ((TappingGameManager) gameManager).timerDisplayer.setSecondsLeft(secondLeft);
-            // display the remaining time
-            long timeTillEnd = (millisUntilFinished / 1000) + 1;
-            long secondsPassed = 10 - timeTillEnd;
+              @Override
+              public void onTick(long millisUntilFinished) {
+                secondLeft--;
+                ((TappingGameManager) gameManager).timerDisplayer.setSecondsLeft(secondLeft);
+                // display the remaining time
+                long timeTillEnd = (millisUntilFinished / 1000) + 1;
+                long secondsPassed = 10 - timeTillEnd;
 
-            // add logic to catch speed for the time passed.
-            // double speed;
-            // int star = 0;
+                // add logic to catch speed for the time passed.
+                // double speed;
+                // int star = 0;
 
-              if (0 == secondsPassed) {
-                speed = 0;
-                ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
-              } else {
-                speed = (int) (numTaps / secondsPassed);
-                ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
-                ((TappingGameManager) gameManager).runner.setSpeed(speed);
+                if (0 == secondsPassed) {
+                  speed = 0;
+                  ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
+                } else {
+                  speed = (int) (numTaps / secondsPassed);
+                  ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
+                  ((TappingGameManager) gameManager).runner.setSpeed(speed);
 
-                // set star to be the maximum speed reached for now
-                if (numStars < speed) {
-                  numStars = (int) speed;
-                  ((TappingGameManager) gameManager).starDisplayer.setNumStar(numStars);
+                  // set star to be the maximum speed reached for now
+                  if (numStars < speed) {
+                    numStars = (int) speed;
+                    ((TappingGameManager) gameManager).starDisplayer.setNumStar(numStars);
+                  }
                 }
+
+                reachDestination = !((TappingGameManager) gameManager).isCanRun();
+
+
               }
 
-              reachDestination = !((TappingGameManager) gameManager).isCanRun();
+              @Override
+              public void onFinish() {
+                // the game is over
+                // iv_tap.setEnabled(false);
+                gameStarted = false;
+                // tv_info.setText("Game Over!");
 
+                // check the high score and save the new result if better
+                if (numTaps > bestResult) {
+                  bestResult = numTaps;
+                }
+                if (!gameStarted){
+                  ((TappingGameManager) gameManager).gameOver(numTaps, numStars);
+                }
 
-          }
-
-          @Override
-          public void onFinish() {
-            // the game is over
-            // iv_tap.setEnabled(false);
-            gameStarted = false;
-            // tv_info.setText("Game Over!");
-
-            // check the high score and save the new result if better
-            if (numTaps > bestResult) {
-              bestResult = numTaps;
-            }
-            if (!gameStarted){
-              ((TappingGameManager) gameManager).gameOver(numTaps, numStars);
-            }
-
-          }
-        };
+              }
+            };
     myTimer = timer;
     timer.start();
 

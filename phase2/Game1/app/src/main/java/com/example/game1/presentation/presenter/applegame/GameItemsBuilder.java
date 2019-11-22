@@ -50,18 +50,18 @@ public class GameItemsBuilder {
     // background
     if (background instanceof Background) {
       appleGameManager.place(background);
-      background.setLocation(0, 0);
+      background.setPosition(0, 0);
     }
 
     // basket
     appleGameManager.setBasket(basket);
     appleGameManager.place(basket);
-    basket.setLocation(
-        appleGameManager.getGridWidth() / 2 + 1, appleGameManager.getGridHeight() - 5);
+    basket.setPosition(
+            appleGameManager.getGridWidth() / 2 + 1, appleGameManager.getGridHeight() - 5);
 
     // pointsCounter
     appleGameManager.setPointsCounter(pointsCounter);
     appleGameManager.place(pointsCounter);
-    pointsCounter.setLocation(appleGameManager.getGridWidth() - 2, 2);
+    pointsCounter.setPosition(appleGameManager.getGridWidth() - 2, 2);
   }
 }

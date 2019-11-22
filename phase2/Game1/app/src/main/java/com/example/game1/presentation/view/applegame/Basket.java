@@ -2,9 +2,12 @@ package com.example.game1.presentation.view.applegame;
 
 import android.graphics.Color;
 
+import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.Result;
 import com.example.game1.presentation.view.common.GameItemOld;
 
-public class Basket extends GameItemOld {
+public class Basket extends AnimatedGameItem {
 
   /** Construct a light gray basket. */
   public Basket() {
@@ -39,6 +42,12 @@ public class Basket extends GameItemOld {
    * @param x the x coordinate to move this Basket to
    */
   public void move(int x) {
-    changeLocation(x, getY());
+    setPosition(x, getyCoordinate());
   }
+
+  public Result update(ImportInfo jumpingImportInfo) {
+    return (new Result());
+  }
+  public Result animate(ImportInfo importInfo){return new Result();}
+
 }

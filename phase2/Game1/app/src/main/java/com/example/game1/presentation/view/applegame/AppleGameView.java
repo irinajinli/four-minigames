@@ -34,9 +34,9 @@ public class AppleGameView extends GameView {
 
     // Use the letter size and screen height to determine the size of the GameManager.
     gameManager =
-        AppManager.getInstance()
-            .getAppleGameManager(
-                (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+            AppManager.getInstance()
+                    .getAppleGameManager(
+                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
     gameManager.createGameItems();
     gameManager.setActivity(activity);
     gameManager.startMusic();
