@@ -1,5 +1,7 @@
 package com.example.game1.presentation.presenter.applegame;
 
+import android.graphics.Bitmap;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
@@ -24,9 +26,18 @@ public class AppleGameManager extends GameManager {
   private int numDroppedApples = 0;
   private int numCaughtStars = 0;
 
+  // TODO: new
+  private Bitmap appleBMP;
+
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
+  }
+
+
+  // TODO: new
+  public void setBMPFiles(Bitmap appleBMP) {
+    this.appleBMP = appleBMP;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -37,6 +48,23 @@ public class AppleGameManager extends GameManager {
     gib.createBasket();
     gib.createPointsCounter();
     gib.placeItems(this);
+
+    // TODO: new for testing coordinates
+//    Apple testApple = new Apple(3, 3, appleBMP);
+//    place(testApple);
+//    testApple.setPosition(30, 3);
+//
+//    Apple testApple2 = new Apple(3, 3, appleBMP);
+//    place(testApple2);
+//    testApple2.setPosition(8, 10);
+//
+//    Apple testApple3 = new Apple(3, 3, appleBMP);
+//    place(testApple3);
+//    testApple3.setPosition(20, 20);
+//
+//    Apple testApple4 = new Apple(3, 3, appleBMP);
+//    place(testApple4);
+//    testApple4.setPosition(15, 30);
   }
 
   public void setBasket(Basket basket) {
@@ -59,7 +87,7 @@ public class AppleGameManager extends GameManager {
   public boolean update() {
 
     // check if the game is over
-    if (numDroppedApples >= 10) {
+    if (numDroppedApples >= 20) {
       gameOver();
       return false;
     }
@@ -70,9 +98,7 @@ public class AppleGameManager extends GameManager {
         // AnimatedGameItem currItem = (AnimatedGameItem) currItem2;
         // move each GameItemOld
         ((AnimatedGameItem) currItem).move();
-      } else {
-
-      }
+      } else {}
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItemOld is off screen; remove if necessary
@@ -138,9 +164,12 @@ public class AppleGameManager extends GameManager {
       nextItem.setPosition(spawnCoordinate, 0);
     } else if (randint < 10) {
       // spawn new Apple
-      Apple nextItem = new Apple();
+      // TODO: new constructor call; uncomment out when done testing
+      Apple nextItem = new Apple(3, 3, appleBMP);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
+
+      System.out.println("spawned apple at x " + spawnCoordinate);
     }
 
     // else do nothing

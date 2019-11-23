@@ -1,5 +1,6 @@
 package com.example.game1.presentation.view.applegame;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
@@ -17,12 +18,15 @@ public class Apple extends AnimatedGameItem {
     paintText.setColor(Color.RED);
   }
 
+  public Apple(int width, int height, Bitmap appearance) {
+    super(width, height, appearance);
+  }
+
   /** Move this GameItemOld within its GameManager. */
   @Override
   public void move() {
-    double newY = getyCoordinate() + 1;
-    // TODO: later, decide what to do when apple goes off screen/gets to bottom
-    setPosition(getxCoordinate(), getyCoordinate() + 1);
+    double newY = getyCoordinate() + 10;
+    setPosition(getxCoordinate(), newY);
   }
 
   public Result update(ImportInfo jumpingImportInfo) {
