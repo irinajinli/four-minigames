@@ -9,7 +9,6 @@ import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.applegame.PointsCounter;
-import com.example.game1.presentation.view.common.GameItemOld;
 import com.example.game1.presentation.view.common.Star;
 
 import java.util.Random;
@@ -25,9 +24,7 @@ public class AppleGameManager extends GameManager {
   private int numDroppedApples = 0;
   private int numCaughtStars = 0;
 
-  /**
-   * Constructs an AppleGameManager with the specified height, width, game, and activity.
-   */
+  /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
   }
@@ -62,9 +59,7 @@ public class AppleGameManager extends GameManager {
   public boolean update() {
 
     // check if the game is over
-    if (numDroppedApples >= 15) {
-      //      MainThread.isRunning = false;
-      // tell GameView to change GameView.thread.isRunning to false
+    if (numDroppedApples >= 10) {
       gameOver();
       return false;
     }
@@ -72,9 +67,9 @@ public class AppleGameManager extends GameManager {
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
       if (currItem instanceof AnimatedGameItem) {
-        //AnimatedGameItem currItem = (AnimatedGameItem) currItem2;
+        // AnimatedGameItem currItem = (AnimatedGameItem) currItem2;
         // move each GameItemOld
-        ((AnimatedGameItem)currItem).move();
+        ((AnimatedGameItem) currItem).move();
       } else {
 
       }
@@ -85,12 +80,8 @@ public class AppleGameManager extends GameManager {
           dropGameItem(currItem);
         }
 
-        // check if currItem has been caught; remove if necessary
-        if ((currItem.getxCoordinate() == basket.getxCoordinate()
-                || currItem.getxCoordinate() == basket.getxCoordinate() - 1
-                || currItem.getxCoordinate() == basket.getxCoordinate() + 1)
-                && currItem.getyCoordinate() == basket.getyCoordinate()) {
-          // if currItem is within +/- 1 of basket
+        // if currItem is within +/- 1 of basket
+        if (checkIfCaught(currItem)) {
           removeItem(currItem);
           if (currItem instanceof Apple) {
             catchApple();
@@ -119,6 +110,16 @@ public class AppleGameManager extends GameManager {
   private void dropGameItem(GameItem currItem) {
     removeItem(currItem);
     if (currItem instanceof Apple) numDroppedApples += 1;
+  }
+
+  /**
+   * Checks if the specified GameItem should be caught (i.e., if it's within +/- 1 x of the basket).
+   */
+  private boolean checkIfCaught(GameItem gameItem) {
+    return ((gameItem.getxCoordinate() == basket.getxCoordinate()
+            || gameItem.getxCoordinate() == basket.getxCoordinate() - 1
+            || gameItem.getxCoordinate() == basket.getxCoordinate() + 1)
+        && gameItem.getyCoordinate() == basket.getyCoordinate());
   }
 
   /** Spawns a new Apple or Star in a random location at the top of the screen. */
