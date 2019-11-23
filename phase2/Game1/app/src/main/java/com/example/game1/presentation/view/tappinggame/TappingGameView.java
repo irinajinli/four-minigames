@@ -4,13 +4,17 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.view.SurfaceHolder;
 import android.view.View;
 
+import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.common.GameThread;
 
 import com.example.game1.R;
@@ -184,14 +188,14 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     gameManager.update();
   }
 
-  @Override
-  public void draw(Canvas canvas) {
-    super.draw(canvas);
-
-    if (canvas != null) {
-      gameManager.draw(canvas);
-    }
-  }
+//  @Override
+//  public void draw(Canvas canvas) {
+//    super.draw(canvas);
+//
+//    if (canvas != null) {
+//      gameManager.draw(canvas);
+//    }
+//  }
 
 
   @Override
@@ -203,4 +207,46 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     }
   }
 
+  @Override
+  /**
+   * Draw this GameItem.
+   *
+   * @param canvas the canvas on which to draw this item.
+   */
+  public void drawItem(Canvas canvas, GameItem item) {
+    if (item instanceof Background) {
+      Rect backgroundRect = new Rect(0, 0, 999999, 999999);
+      Paint backgroundPaint = new Paint();
+      backgroundPaint.setStyle(Paint.Style.STROKE);
+      backgroundPaint.setStrokeWidth(5);
+      backgroundPaint.setAntiAlias(true);
+      backgroundPaint.setColor(Color.DKGRAY);
+      backgroundPaint.setStyle(Paint.Style.FILL);
+      canvas.drawRect(backgroundRect, backgroundPaint);
+    } else {
+      paintText = new Paint();
+      paintText.setTypeface(Typeface.DEFAULT_BOLD);
+      paintText.setTextSize(36);
+      Object appearance = item.getAppearance();
+      double xCoordinate = item.getxCoordinate();
+      double yCoordinate = item.getyCoordinate();
+      if (appearance.getClass() == String.class) {
+        paintText.setColor(Color.WHITE);
+        canvas.drawText(
+                (String) appearance,
+                (float) xCoordinate * GameView.charWidth,
+                (float) yCoordinate * GameView.charHeight,
+                paintText);
+
+        // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
+        // TappingGameView.charHeight, paintText);
+      } else if (appearance.getClass() == Bitmap.class) {
+        canvas.drawBitmap(
+                (Bitmap) appearance,
+                (int) Math.round(xCoordinate),
+                (int) Math.round(yCoordinate),
+                paintText);
+      }
+    }
+  }
 }

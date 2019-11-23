@@ -28,13 +28,13 @@ public class GameItemsBuilder {
   public void createBasket() {
     this.basket = new Basket();
     // set color of basket
-    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      basket.setColor(Color.BLUE);
-    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-      basket.setColor(Color.RED);
-    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      basket.setColor(Color.YELLOW);
-    }
+//    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
+//      basket.setColor(Color.BLUE);
+//    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.RED)) {
+//      basket.setColor(Color.RED);
+//    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
+//      basket.setColor(Color.YELLOW);
+//    }
   }
 
   public void createPointsCounter() {

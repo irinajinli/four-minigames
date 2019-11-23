@@ -73,17 +73,17 @@ public abstract class GameManager {
     gameItems.add(item);
   }
 
-  /**
-   * Draws all GameItems in gameItems.
-   *
-   * @param canvas the canvas on which to draw
-   */
-  public void draw(Canvas canvas) {
-    // iterate through gameItems and draw them
-    for (int i = 0; i < gameItems.size(); i++) {
-      gameItems.get(i).draw(canvas);
-    }
-  }
+//  /**
+//   * Draws all GameItems in gameItems.
+//   *
+//   * @param canvas the canvas on which to draw
+//   */
+//  public void draw(Canvas canvas) {
+//    // iterate through gameItems and draw them
+//    for (int i = 0; i < gameItems.size(); i++) {
+//      gameItems.get(i).draw(canvas);
+//    }
+//  }
 
   /** Updates this GameManager by moving all GameItems in it. */
   public abstract boolean update();

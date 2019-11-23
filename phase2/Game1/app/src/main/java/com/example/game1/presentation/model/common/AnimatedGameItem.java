@@ -13,7 +13,7 @@ public abstract class AnimatedGameItem extends GameItem {
     /** This item's acceleration for y coordinate. */
     private double yAcceleration;
     /** This item's customization info passed by view. */
-    private Object appearance;
+    //private Object appearance;
 
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
@@ -126,12 +126,11 @@ public abstract class AnimatedGameItem extends GameItem {
 
     /**
      *
-     * @param numOfSeconds number of seconds used to calculate new xCoordinate, yCoordinate,
+     * @param numOfSeconds number of seconds used to refresh new xCoordinate, yCoordinate,
      *                     xVelocity, yVelocity based on current xAcceleration and yAcceleration.
+     *                     Currently numOfSeconds = GameThread.FRAME_DURATION_NS / 1000000000.
      */
     public void updatePositionAndVelocity(double numOfSeconds) {
-//        double numOfSeconds = GameThread.FRAME_DURATION_NS / 1000000000.; // get amount of time in seconds
-
         double newXCoordinate = getxCoordinate()
                 + (0.5 * getxAcceleration() * numOfSeconds * numOfSeconds
                 + getxVelocity() * numOfSeconds);

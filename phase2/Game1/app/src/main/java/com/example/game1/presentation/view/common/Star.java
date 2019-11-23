@@ -21,10 +21,10 @@ public class Star extends AnimatedGameItem {
     setPosition(getxCoordinate(), newY);
   }
 
-  @Override
-  public void drawString(Canvas canvas, String s, int x, int y) {
-    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
-  }
+//  @Override
+//  public void drawString(Canvas canvas, String s, int x, int y) {
+//    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
+//  }
 
   public Result update(ImportInfo jumpingImportInfo) {
     return (new Result());

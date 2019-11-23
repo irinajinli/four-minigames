@@ -186,32 +186,32 @@ public abstract class GameItem {
 
 
     // to be deleted
-    /**
-     * Draw this GameItem.
-     *
-     * @param canvas the canvas on which to draw this item.
-     */
-    public void draw(Canvas canvas) {
-
-
-        if(appearance.getClass() == String.class) {
-            drawString(canvas, (String)appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate));
-            //canvas.drawText((String) appearance, x * TappingGameView.charWidth, y * TappingGameView.charHeight, paintText);
-        } else if (appearance.getClass() == Bitmap.class){
-            canvas.drawBitmap((Bitmap) appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate), paintText);
-        }
-    }
-    /**
-     * Draw the GameItem at a location on the specified Canvas using a String.
-     *
-     * @param canvas the canvas on which to draw
-     * @param s the String to draw
-     * @param x the x coordinate at which to draw
-     * @param y the y coordinate at which to draw
-     */
-    public void drawString(Canvas canvas, String s, int x, int y){
-        canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, paintText);
-    }
+//    /**
+//     * Draw this GameItem.
+//     *
+//     * @param canvas the canvas on which to draw this item.
+//     */
+//    public void draw(Canvas canvas) {
+//
+//
+//        if(appearance.getClass() == String.class) {
+//            drawString(canvas, (String)appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate));
+//            //canvas.drawText((String) appearance, x * TappingGameView.charWidth, y * TappingGameView.charHeight, paintText);
+//        } else if (appearance.getClass() == Bitmap.class){
+//            canvas.drawBitmap((Bitmap) appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate), paintText);
+//        }
+//    }
+//    /**
+//     * Draw the GameItem at a location on the specified Canvas using a String.
+//     *
+//     * @param canvas the canvas on which to draw
+//     * @param s the String to draw
+//     * @param x the x coordinate at which to draw
+//     * @param y the y coordinate at which to draw
+//     */
+//    public void drawString(Canvas canvas, String s, int x, int y){
+//        canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, paintText);
+//    }
 
     public void setColor(int color) {
         paintText.setColor(color);

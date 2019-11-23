@@ -2,13 +2,22 @@ package com.example.game1.presentation.view.common;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.graphics.Paint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
+
+import java.util.List;
 
 /** The fish tank view. */
 public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
@@ -29,8 +38,8 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
   /** The activity class corresponding this view */
   public AppCompatActivity activity;
-
-  private double numOfSecond;
+  /** This item's Paint. */
+  public Paint paintText = new Paint();
 
   /**
    * Create a new fish tank in the context environment.
@@ -95,9 +104,47 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
-      gameManager.draw(canvas);
+      if (gameManager instanceof JumpingGameManager){
+        canvas.drawColor(((JumpingGameManager) gameManager).getSkyColor());}
+      // gameManager.draw(canvas);
+      List<GameItem> items = gameManager.getGameItems();
+      for (GameItem item : items) {
+
+        drawItem(canvas, item);
+      }
     }
   }
 
+  /**
+   * Draw this GameItem.
+   *
+   * @param canvas the canvas on which to draw this item.
+   */
+  public void drawItem(Canvas canvas, GameItem item) {
 
+    paintText = new Paint();
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    paintText.setTextSize(36);
+    Object appearance = item.getAppearance();
+    double xCoordinate = item.getxCoordinate();
+    double yCoordinate = item.getyCoordinate();
+    if (appearance.getClass() == String.class) {
+
+      canvas.drawText(
+              (String) appearance,
+              (float) xCoordinate * GameView.charWidth,
+              (float) yCoordinate * GameView.charHeight,
+              paintText);
+
+      // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
+      // TappingGameView.charHeight, paintText);
+    } else if (appearance.getClass() == Bitmap.class) {
+      canvas.drawBitmap(
+              (Bitmap) appearance,
+              (int) Math.round(xCoordinate),
+              (int) Math.round(yCoordinate),
+              paintText);
+    }
+  }
+//  }
 }

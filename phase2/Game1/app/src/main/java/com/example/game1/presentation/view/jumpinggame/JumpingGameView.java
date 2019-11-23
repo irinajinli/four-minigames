@@ -5,12 +5,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 
 import com.example.game1.R;
 
+import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 
@@ -133,20 +136,20 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
   }
 
-  /**
-   * draws this game view on the canvas
-   *
-   * @param canvas the canvas on which to draw
-   */
-  @Override
-  public void draw(Canvas canvas) {
-    super.draw(canvas);
-    if (canvas != null) {
-      canvas.drawColor(((JumpingGameManager) gameManager).getSkyColor());
-      gameManager.draw(canvas);
-
-    }
-  }
+//  /**
+//   * draws this game view on the canvas
+//   *
+//   * @param canvas the canvas on which to draw
+//   */
+//  @Override
+//  public void draw(Canvas canvas) {
+//    super.draw(canvas);
+//    if (canvas != null) {
+//      canvas.drawColor(((JumpingGameManager) gameManager).getSkyColor());
+//      gameManager.draw(canvas);
+//
+//    }
+//  }
 
   /**
    * Handles the jumper's jump when the user taps the screen
@@ -214,4 +217,36 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
   }
 
+  @Override
+  /**
+   * Draw this GameItem.
+   *
+   * @param canvas the canvas on which to draw this item.
+   */
+  public void drawItem(Canvas canvas, GameItem item) {
+
+    paintText = new Paint();
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    paintText.setTextSize(36);
+    Object appearance = item.getAppearance();
+    double xCoordinate = item.getxCoordinate();
+    double yCoordinate = item.getyCoordinate();
+    if (appearance.getClass() == String.class) {
+
+      canvas.drawText(
+              (String) appearance,
+              (float) xCoordinate * GameView.charWidth,
+              (float) yCoordinate * GameView.charHeight,
+              paintText);
+
+      // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
+      // TappingGameView.charHeight, paintText);
+    } else if (appearance.getClass() == Bitmap.class) {
+      canvas.drawBitmap(
+              (Bitmap) appearance,
+              (int) Math.round(xCoordinate),
+              (int) Math.round(yCoordinate),
+              paintText);
+    }
+  }
 }
