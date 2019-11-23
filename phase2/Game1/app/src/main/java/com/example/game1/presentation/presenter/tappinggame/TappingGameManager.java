@@ -2,6 +2,8 @@ package com.example.game1.presentation.presenter.tappinggame;
 
 import android.graphics.Bitmap;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
@@ -49,10 +51,10 @@ public class TappingGameManager extends GameManager {
 
 
   /**
-   * The tapping game manager on a screen with height rows and width columns.
+   * Constructs a TappingGameManager with the specified height, width, game, and activity.
    */
-  public TappingGameManager(int height, int width, Game game) {
-    super(height, width, game);
+  public TappingGameManager(int height, int width, Game game, AppCompatActivity activity) {
+    super(height, width, game, activity);
     this.canRun = true;
   }
 

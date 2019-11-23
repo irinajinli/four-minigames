@@ -1,5 +1,7 @@
 package com.example.game1.presentation.presenter;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
 import com.example.game1.presentation.presenter.common.GameManager;
@@ -20,16 +22,16 @@ public class GameManagerFactory {
      * @param height the height of the game manager
      * @param width  the width of the game manager
      */
-    GameManager getGameManager(Game.GameName game, int height, int width) {
+    GameManager getGameManager(Game.GameName game, int height, int width, AppCompatActivity activity) {
         switch (game) {
             case APPLE:
-                return new AppleGameManager(height, width, new Game(Game.GameName.APPLE));
+                return new AppleGameManager(height, width, new Game(Game.GameName.APPLE), activity);
             case TAPPING:
-                return new TappingGameManager(height, width, new Game(Game.GameName.TAPPING));
+                return new TappingGameManager(height, width, new Game(Game.GameName.TAPPING), activity);
             case JUMPING:
-                return new JumpingGameManager(height, width, new Game(Game.GameName.JUMPING));
+                return new JumpingGameManager(height, width, new Game(Game.GameName.JUMPING), activity);
             case BRICK:
-                return new BrickGameManager(height, width, new Game(Game.GameName.JUMPING));
+                return new BrickGameManager(height, width, new Game(Game.GameName.JUMPING), activity);
             default:
                 return null;
         }

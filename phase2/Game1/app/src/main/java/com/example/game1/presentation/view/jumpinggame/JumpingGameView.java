@@ -78,7 +78,9 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     gameManager =
             AppManager.getInstance()
                     .getJumpingGameManager(
-                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+                            (int) (getScreenHeight() / charHeight),
+                            (int) (getScreenWidth() / charWidth),
+                            activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
     ((JumpingGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
@@ -111,7 +113,8 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
                     jumperRedBMP,
                     jumperNinjaBMP);
     gameManager.createGameItems();
-    gameManager.setActivity(activity);
+    gameManager.startMusic();
+
     thread.setRunning(true);
     thread.start();
 

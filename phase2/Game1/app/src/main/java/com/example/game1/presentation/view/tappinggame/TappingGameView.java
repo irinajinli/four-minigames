@@ -87,7 +87,9 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     gameManager =
             AppManager.getInstance()
                     .getTappingGameManager(
-                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+                            (int) (getScreenHeight() / charHeight),
+                            (int) (getScreenWidth() / charWidth),
+                            activity);
 
 
     gameManager.setScreenHeight(this.getScreenHeight());
@@ -95,7 +97,6 @@ public class TappingGameView extends GameView implements View.OnClickListener{
 
     ((TappingGameManager)gameManager).setPictures(tappingCircleBMP, yellowPug, blueBird, redFish);
     gameManager.createGameItems();
-    gameManager.setActivity(activity);
     gameManager.startMusic();
 
     tappingMainThread.setRunning(true);

@@ -36,15 +36,13 @@ public abstract class GameManager {
 
 
   /**
-   * Constructs a GameManager with the specified height and width.
-   *
-   * @param height the height of the GameManager
-   * @param width the width of the GameManager
+   * Constructs a GameManager with the specified height, width, game, and activity.
    */
-  public GameManager(int height, int width, Game game ) {
+  public GameManager(int height, int width, Game game, AppCompatActivity activity) {
     gridHeight = height;
     gridWidth = width;
     this.game = game;
+    this.activity = activity;
   }
 
   public int getGridWidth() {

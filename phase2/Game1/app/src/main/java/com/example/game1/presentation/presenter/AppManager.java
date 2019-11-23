@@ -13,7 +13,6 @@ import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 
-import static com.example.game1.presentation.model.Customization.MusicPath.SONG1;
 
 /**
  * A singleton class that is created upon opening the app.
@@ -25,20 +24,10 @@ public class AppManager {
 
     private UserManager userManager;
 
-    /**
-     * The factory that creates GameManager objects
-     */
     private GameManagerFactory gameManagerFactory;
 
-    /**
-     * The context of the application
-     */
+    /* The context of the application */
     private Context context = null;
-
-    /**
-     * The number of points that 1 star is equivalent to. It is used to calculate user's score.
-     */
-    public static final int STAR_FACTOR = 5;
 
     /**
      * Constructs an AppManager
@@ -49,7 +38,7 @@ public class AppManager {
     /**
      * Called upon opening the app.
      * Sets the context of the application.
-     * Creates an instance of userManager and gameManagerFactory.
+     * Creates an instance of UserManager and GameManagerFactory.
      */
     public void init(Context context) {
         setContext(context);
@@ -75,10 +64,11 @@ public class AppManager {
     }
 
     /**
-     * Returns a GameManager for the game, game
+     * Returns a GameManager with the specified game, height, width, and activity.
      */
-    private GameManager getGameManager(Game.GameName game, int height, int width) {
-        GameManager gameManager = gameManagerFactory.getGameManager(game, height, width);
+    private GameManager getGameManager(Game.GameName game, int height, int width,
+                                       AppCompatActivity activity) {
+        GameManager gameManager = gameManagerFactory.getGameManager(game, height, width, activity);
         gameManager.getGame().setCustomization(userManager.getCurrentUser().getCustomization());
         switch (userManager.getCurrentUser().getCustomization().getMusicPath()) {
             case SONG1:
@@ -98,29 +88,33 @@ public class AppManager {
     /**
      * Returns an AppleGameManager. It calls the generic method, getGameManager.
      */
-    public AppleGameManager getAppleGameManager(int height, int width) {
-        return (AppleGameManager) getGameManager(Game.GameName.APPLE, height, width);
+    public AppleGameManager getAppleGameManager(int height, int width,
+                                                AppCompatActivity activity) {
+        return (AppleGameManager) getGameManager(Game.GameName.APPLE, height, width, activity);
     }
 
     /**
      * Returns an TappingGameManger. It calls the generic method, getGameManager.
      */
-    public TappingGameManager getTappingGameManager(int height, int width) {
-        return (TappingGameManager) getGameManager(Game.GameName.TAPPING, height, width);
+    public TappingGameManager getTappingGameManager(int height, int width,
+                                                    AppCompatActivity activity) {
+        return (TappingGameManager) getGameManager(Game.GameName.TAPPING, height, width, activity);
     }
 
     /**
      * Returns an JumpingGameManager. It calls the generic method, getGameManager.
      */
-    public JumpingGameManager getJumpingGameManager(int height, int width) {
-        return (JumpingGameManager) getGameManager(Game.GameName.JUMPING, height, width);
+    public JumpingGameManager getJumpingGameManager(int height, int width,
+                                                    AppCompatActivity activity) {
+        return (JumpingGameManager) getGameManager(Game.GameName.JUMPING, height, width, activity);
     }
 
     /**
      * Returns a BrickGameManager. It calls the generic method, getGameManager.
      */
-    public BrickGameManager getBrickGameManager(int height, int width) {
-        return (BrickGameManager) getGameManager(Game.GameName.BRICK, height, width);
+    public BrickGameManager getBrickGameManager(int height, int width,
+                                                AppCompatActivity activity) {
+        return (BrickGameManager) getGameManager(Game.GameName.BRICK, height, width, activity);
     }
 
     /**

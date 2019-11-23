@@ -73,7 +73,9 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     gameManager =
             AppManager.getInstance()
                     .getBrickGameManager(
-                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+                            (int) (getScreenHeight() / charHeight),
+                            (int) (getScreenWidth() / charWidth),
+                            activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
     ((BrickGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
@@ -103,7 +105,8 @@ public class BrickGameView extends GameView implements View.OnClickListener {
                     paddleRedBMP,
                     paddleYellowBMP);
     gameManager.createGameItems();
-    gameManager.setActivity(activity);
+    gameManager.startMusic();
+
     thread.setRunning(true);
     thread.start();
 

@@ -1,5 +1,7 @@
 package com.example.game1.presentation.presenter.applegame;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
@@ -24,13 +26,10 @@ public class AppleGameManager extends GameManager {
   private int numCaughtStars = 0;
 
   /**
-   * Constructs an AppleGameManager with the specified height and width.
-   *
-   * @param height the height of the AppleGameManager
-   * @param width the width of the AppleGameManager
+   * Constructs an AppleGameManager with the specified height, width, game, and activity.
    */
-  public AppleGameManager(int height, int width, Game game) {
-    super(height, width, game);
+  public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
+    super(height, width, game, activity);
   }
 
   /** Creates GameItems required at the beginning of the minigame. */

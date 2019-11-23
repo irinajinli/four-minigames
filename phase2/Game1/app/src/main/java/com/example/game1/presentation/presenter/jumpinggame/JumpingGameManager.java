@@ -4,6 +4,8 @@ package com.example.game1.presentation.presenter.jumpinggame;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
@@ -51,13 +53,10 @@ public class JumpingGameManager extends GameManager {
   private double numOfSeconds;
 
   /**
-   * Constructs a JumpingGameManager with the specified height and width.
-   *
-   * @param height the height of the JumpingGameManager
-   * @param width the width of the JumpingGameManager
+   * Constructs a JumpingGameManager with the specified height, width, game, and activity.
    */
-  public JumpingGameManager(int height, int width, Game game) {
-    super(height, width, game);
+  public JumpingGameManager(int height, int width, Game game, AppCompatActivity activity) {
+    super(height, width, game, activity);
     //this.game = new Game(Game.GameName.JUMPING);
   }
 

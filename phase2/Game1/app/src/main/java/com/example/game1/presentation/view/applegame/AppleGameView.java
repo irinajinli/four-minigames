@@ -42,9 +42,10 @@ public class AppleGameView extends GameView {
     gameManager =
             AppManager.getInstance()
                     .getAppleGameManager(
-                            (int) (getScreenHeight() / charHeight), (int) (getScreenWidth() / charWidth));
+                            (int) (getScreenHeight() / charHeight),
+                            (int) (getScreenWidth() / charWidth),
+                            activity);
     gameManager.createGameItems();
-    gameManager.setActivity(activity);
     gameManager.startMusic();
 
     thread.setRunning(true);
