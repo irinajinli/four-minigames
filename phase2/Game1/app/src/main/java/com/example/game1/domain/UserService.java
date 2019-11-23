@@ -54,13 +54,6 @@ public class UserService {
     }
 
     /**
-     * Returns the user with the top score
-     */
-    public User getTopUser() {
-        return dataManager.getTopUser();
-    }
-
-    /**
      * Return the top score of the user with the given username. If the user does not exist,
      * return 0.
      */

@@ -159,13 +159,6 @@ public class UserManager {
     }
 
     /**
-     * Returns the user with the top score
-     */
-    public User getTopUser() {
-        return userService.getTopUser();
-    }
-
-    /**
      * Returns the current score of the user with the given username. If the user does not exist,
      * this method returns 0.
      */

@@ -246,15 +246,14 @@ public class DataManager {
      * Adds the given user's updated information to userMap and write userMap to file.
      */
     public void updateUser(User user) {
-        // Calculate the user's current score and top score
+        // Get the user's current statistics
         int currentPoints = user.getStatsOfCurrentGame().getPoints();
         int currentStars = user.getStatsOfCurrentGame().getStars();
         int currentTaps = user.getStatsOfCurrentGame().getTaps();
-        int currentScore = ScoreCalculator.calculateScore(currentPoints, currentStars, currentTaps);
-        int topScore = ScoreCalculator.calculateScore(
-                user.getStatsOfTopGame().getPoints(),
-                user.getStatsOfTopGame().getStars(),
-                user.getStatsOfTopGame().getTaps());
+
+        // Calculate the user's current score and top score
+        int currentScore = getCurrentScore(user);
+        int topScore = getTopScore(user);
 
         // If the user's current score is higher than their top score, update the statistics of
         // their top game
@@ -287,45 +286,6 @@ public class DataManager {
     }
 
     /**
-     * Returns the user with the top score. If no such user exists, return null.
-     */
-    public User getTopUser() {
-//        return algorithm1();
-        return algorithm2();
-    }
-
-//    private User algorithm1() {
-//        Collection<User> users = userMap.values();
-//        Iterator<User> iter = users.iterator();
-//
-//        User topUser = null;
-//        int topScore = 0;
-//        while (iter.hasNext()) {
-//            User user = iter.next();
-//            int userScore = ScoreCalculator.calculateScore(
-//                    user.getStatsOfTopGame().getPoints(),
-//                    user.getStatsOfTopGame().getStars(),
-//                    user.getStatsOfTopGame().getTaps());
-//            if (userScore >= topScore) {
-//                topUser = user;
-//                topScore = userScore;
-//            }
-//        }
-//        return topUser;
-//    }
-
-    private User algorithm2() {
-        User topUser;
-        List<User> usersSorted = sortUsersByScore();
-        if (usersSorted.size() < 1) {
-            topUser = null;
-        } else {
-            topUser = usersSorted.get(usersSorted.size() - 1);
-        }
-        return topUser;
-    }
-
-    /**
      * Returns the given's user's top score.
      */
     public int getTopScore(User user) {
@@ -346,28 +306,28 @@ public class DataManager {
     }
 
     /**
-     * Returns a list of users sorted by score
+     * Returns a list of users sorted (in non-decreasing order) by score
      */
     public List sortUsersByScore() {
         return sortUsers(new ScoreComparator());
     }
 
     /**
-     * Returns a list of users sorted by number of points
+     * Returns a list of users sorted (in non-decreasing order) by number of points
      */
     public List sortUsersByPoints() {
         return sortUsers(new PointsComparator());
     }
 
     /**
-     * Returns a list of users sorted by number of stars
+     * Returns a list of users sorted (in non-decreasing order) by number of stars
      */
     public List sortUsersByStars() {
         return sortUsers(new StarsComparator());
     }
 
     /**
-     * Returns a list of users sorted by number of taps
+     * Returns a list of users sorted (in non-decreasing order) by number of taps
      */
     public List sortUsersByTaps() {
         return sortUsers(new TapsComparator());
