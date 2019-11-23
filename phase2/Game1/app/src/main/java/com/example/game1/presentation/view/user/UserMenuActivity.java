@@ -13,6 +13,7 @@ import com.example.game1.presentation.MainActivity;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 import com.example.game1.presentation.view.applegame.AppleActivity;
+import com.example.game1.presentation.view.brickgame.BrickActivity;
 import com.example.game1.presentation.view.jumpinggame.JumpingActivity;
 import com.example.game1.presentation.view.tappinggame.TappingActivity;
 
@@ -37,6 +38,8 @@ public class UserMenuActivity extends AppCompatActivity {
 //        playButton2.setEnabled(false);
         Button playButton3 = findViewById(R.id.playButton3);
 //        playButton3.setEnabled(false);
+        Button playButton4 = findViewById(R.id.playButton4);
+//        playButton4.setEnabled(false);
 
 
         switch (userManager.getCurrentUser().getLastCompletedLevel()) {
@@ -48,6 +51,9 @@ public class UserMenuActivity extends AppCompatActivity {
                 break;
             case 2:
                 playButton3.setEnabled(true);
+                break;
+            case 3:
+                playButton4.setEnabled(true);
                 break;
             default:
                 break;
@@ -63,6 +69,8 @@ public class UserMenuActivity extends AppCompatActivity {
 //        playButton2.setEnabled(false);
 //        Button playButton3 = findViewById(R.id.playButton3);
 //        playButton3.setEnabled(false);
+//        Button playButton4 = findViewById(R.id.playButton4);
+//        playButton4.setEnabled(false);
         userManager.restartCurrentUsersGame();
     }
 
@@ -88,6 +96,12 @@ public class UserMenuActivity extends AppCompatActivity {
     /** Called when the user taps the 3rd Play button */
     public void goToLevel3(View view) {
         Intent intent = new Intent(this, JumpingActivity.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user taps the 4th Play button */
+    public void goToLevel4(View view) {
+        Intent intent = new Intent(this, BrickActivity.class);
         startActivity(intent);
     }
 

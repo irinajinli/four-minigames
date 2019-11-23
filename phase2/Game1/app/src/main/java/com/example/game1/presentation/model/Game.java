@@ -8,7 +8,7 @@ public class Game {
     /**
      * The game types
      */
-    public enum GameName {APPLE, TAPPING, JUMPING}
+    public enum GameName {APPLE, TAPPING, JUMPING, BRICK}
 
     /**
      * The levels that each game type corresponds to
@@ -16,6 +16,7 @@ public class Game {
     private static final int APPLE_LEVEL = 1;
     private static final int TAPPING_LEVEL = 2;
     private static final int JUMPING_LEVEL = 3;
+    private static final int BRICK_LEVEL = 4;
 
     private GameName name;
     private int level;
@@ -50,6 +51,9 @@ public class Game {
                 break;
             case JUMPING:
                 setLevel(JUMPING_LEVEL);
+                break;
+            case BRICK:
+                setLevel(BRICK_LEVEL);
                 break;
             default:
                 setLevel(0);

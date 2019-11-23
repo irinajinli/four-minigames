@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
@@ -113,6 +114,13 @@ public class AppManager {
      */
     public JumpingGameManager getJumpingGameManager(int height, int width) {
         return (JumpingGameManager) getGameManager(Game.GameName.JUMPING, height, width);
+    }
+
+    /**
+     * Returns a BrickGameManager. It calls the generic method, getGameManager.
+     */
+    public BrickGameManager getBrickGameManager(int height, int width) {
+        return (BrickGameManager) getGameManager(Game.GameName.BRICK, height, width);
     }
 
     /**

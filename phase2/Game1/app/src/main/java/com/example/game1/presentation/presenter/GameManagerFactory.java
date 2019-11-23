@@ -1,6 +1,7 @@
 package com.example.game1.presentation.presenter;
 
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
@@ -27,6 +28,8 @@ public class GameManagerFactory {
                 return new TappingGameManager(height, width, new Game(Game.GameName.TAPPING));
             case JUMPING:
                 return new JumpingGameManager(height, width, new Game(Game.GameName.JUMPING));
+            case BRICK:
+                return new BrickGameManager(height, width, new Game(Game.GameName.JUMPING));
             default:
                 return null;
         }
