@@ -79,8 +79,8 @@ public class AppManager {
      */
     private GameManager getGameManager(Game.GameName game, int height, int width) {
         GameManager gameManager = gameManagerFactory.getGameManager(game, height, width);
-        gameManager.getGame().setCustomization(UserManager.getCurrentUser().getCustomization());
-        switch (UserManager.getCurrentUser().getCustomization().getMusicPath()) {
+        gameManager.getGame().setCustomization(userManager.getCurrentUser().getCustomization());
+        switch (userManager.getCurrentUser().getCustomization().getMusicPath()) {
             case SONG1:
                 gameManager.setMusicPlayer(MediaPlayer.create(getContext(), R.raw.chibi_ninja));
                 break;

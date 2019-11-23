@@ -26,7 +26,7 @@ public class UserManager {
     /**
      * The current user that is logged in.
      */
-    private static User currentUser;
+    private User currentUser;
 
     /**
      * Constructs a UserManager
@@ -68,15 +68,15 @@ public class UserManager {
     /**
      * Returns the current user
      */
-    public static User getCurrentUser() {
+    public User getCurrentUser() {
         return currentUser;
     }
 
     /**
      * Sets the current user
      */
-    public static void setCurrentUser(User currentUser) {
-        UserManager.currentUser = currentUser;
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     /**
