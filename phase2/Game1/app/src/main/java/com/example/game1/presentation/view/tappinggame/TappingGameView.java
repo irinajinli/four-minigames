@@ -24,16 +24,11 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class TappingGameView extends GameView implements View.OnClickListener{
 
-
-  /** The part of the program that manages time. */
-  private GameThread tappingMainThread;
-
   private Bitmap tappingCircleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
   private Bitmap runnerBMP;
   private Bitmap yellowPug = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_pug);
   private Bitmap blueBird = BitmapFactory.decodeResource(getResources(), R.drawable.blue_bird);
   private Bitmap redFish = BitmapFactory.decodeResource(getResources(), R.drawable.red_fish);
-
 
   protected int numTaps;
   protected int numStars;
@@ -53,7 +48,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
   public TappingGameView(Context context) {
     super(context);
     getHolder().addCallback(this);
-    tappingMainThread = new GameThread(getHolder(), this);
+    thread = new GameThread(getHolder(), this);
     setFocusable(true);
     numTaps = 0;
     numStars = 0;
@@ -71,8 +66,6 @@ public class TappingGameView extends GameView implements View.OnClickListener{
         }
       }
     };
-
-
   }
 
   @Override
@@ -90,17 +83,15 @@ public class TappingGameView extends GameView implements View.OnClickListener{
                             (int) (getScreenHeight() / charHeight),
                             (int) (getScreenWidth() / charWidth),
                             activity);
-
-
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
-
     ((TappingGameManager)gameManager).setPictures(tappingCircleBMP, yellowPug, blueBird, redFish);
     gameManager.createGameItems();
     gameManager.startMusic();
 
-    tappingMainThread.setRunning(true);
-    tappingMainThread.start();
+    thread.setRunning(true);
+    thread.start();
+
     ((TappingGameManager) gameManager).setCanRun(false);
     this.setOnClickListener(this.listener);
     CountDownTimer timer =
@@ -132,10 +123,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
                     ((TappingGameManager) gameManager).starDisplayer.setNumStar(numStars);
                   }
                 }
-
                 reachDestination = !((TappingGameManager) gameManager).isCanRun();
-
-
               }
 
               @Override
@@ -152,36 +140,17 @@ public class TappingGameView extends GameView implements View.OnClickListener{
                 if (!gameStarted){
                   ((TappingGameManager) gameManager).gameOver(numTaps, numStars);
                 }
-
               }
             };
     myTimer = timer;
     timer.start();
-
     gameStarted = true;
-
-
   }
-
-
-  @Override
-  public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
 
   @Override
   public void surfaceDestroyed(SurfaceHolder holder) {
-    boolean retry = true;
-    while (retry) {
-      try {
-        tappingMainThread.setRunning(false);
-        tappingMainThread.join();
-        gameManager.stopMusic();
-        myTimer.cancel();
-
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-      retry = false;
-    }
+      super.surfaceDestroyed(holder);
+      myTimer.cancel();
   }
 
   /** Update the fish tank. */
@@ -198,10 +167,8 @@ public class TappingGameView extends GameView implements View.OnClickListener{
 //    }
 //  }
 
-
   @Override
   public void onClick(View v){
-
     if (gameStarted){
       numTaps++;
       ((TappingGameManager)gameManager).tapCounter.setNumTaps(numTaps);
