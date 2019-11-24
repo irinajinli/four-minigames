@@ -17,14 +17,6 @@ public class GameItemsBuilder {
     this.customization = customization;
   }
 
-  public void createBackground() {
-    if (customization.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-      this.background = new Background();
-      //            place(b);
-      //            b.setLocation(0, 0);
-    }
-  }
-
   public void setTheme(AppleGameManager appleGameManager) {
       if (customization.getColourScheme().equals(Customization.ColourScheme.DARK)) {
           appleGameManager.setSkyColor(appleGameManager.getSkyColorDark());

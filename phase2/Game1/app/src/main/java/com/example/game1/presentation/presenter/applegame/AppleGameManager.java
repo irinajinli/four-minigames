@@ -55,7 +55,6 @@ public class AppleGameManager extends GameManager {
   public void createGameItems() {
     // TODO: delete this method?
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
-//    gib.createBackground();
     gib.createPointsCounter();
     gib.createBasket(basketBMP);
     gib.setTheme(this);
