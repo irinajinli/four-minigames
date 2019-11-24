@@ -25,7 +25,9 @@ import com.example.game1.presentation.view.common.Star;
 /** Based on Fish Tank's FishTankView. */
 public class AppleGameView extends GameView {
 
-  private Bitmap appleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.red_apple);
+  // TODO: new
+  private Bitmap appleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.apple_red);
+  private Bitmap basketBMP = BitmapFactory.decodeResource(getResources(), R.drawable.basket_red);
 
   /** Construct an AppleGameView with the specified Context. */
   public AppleGameView(Context context) {
@@ -49,13 +51,15 @@ public class AppleGameView extends GameView {
         AppManager.getInstance()
             .getAppleGameManager((getScreenHeight()), (getScreenWidth()),
                 activity);
-    gameManager.createGameItems();
     gameManager.startMusic();
 
     // TODO: new
     appleBMP = getResizedBitmap(appleBMP, 80, 80);
-    ((AppleGameManager) gameManager).setBMPFiles(appleBMP);
+    basketBMP = getResizedBitmap(basketBMP, 80, 80);
 
+    ((AppleGameManager) gameManager).setBMPFiles(appleBMP, basketBMP);
+
+    gameManager.createGameItems();
     thread.setRunning(true);
     thread.start();
   }
@@ -77,7 +81,7 @@ public class AppleGameView extends GameView {
   @Override
   public void drawItem(Canvas canvas, GameItem item) {
     // TODO: new
-    if (item instanceof Apple) {
+    if (item instanceof Apple || item instanceof Basket) {
       Object appearance2 = item.getAppearance();
       double xCoordinate2 = item.getxCoordinate();
       double yCoordinate2 = item.getyCoordinate();

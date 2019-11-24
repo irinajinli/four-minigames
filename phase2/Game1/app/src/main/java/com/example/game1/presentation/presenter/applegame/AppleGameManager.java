@@ -28,6 +28,7 @@ public class AppleGameManager extends GameManager {
 
   // TODO: new
   private Bitmap appleBMP;
+  private Bitmap basketBMP;
 
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
@@ -36,8 +37,9 @@ public class AppleGameManager extends GameManager {
 
 
   // TODO: new
-  public void setBMPFiles(Bitmap appleBMP) {
+  public void setBMPFiles(Bitmap appleBMP, Bitmap basketBMP) {
     this.appleBMP = appleBMP;
+    this.basketBMP = basketBMP;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -45,9 +47,15 @@ public class AppleGameManager extends GameManager {
     // TODO: delete this method
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
     gib.createBackground();
-    gib.createBasket();
     gib.createPointsCounter();
+    gib.createBasket(basketBMP);
+
     gib.placeItems(this);
+
+    // TODO: new for basket
+//    this.basket = new Basket(3, 3, basketBMP);
+//    place(basket);
+//    basket.setPosition(Math.round(getGridWidth()) / 2, getGridHeight());
 
     // TODO: new for testing coordinates
 //    Apple testApple = new Apple(3, 3, appleBMP);

@@ -25,8 +25,8 @@ public class GameItemsBuilder {
     }
   }
 
-  public void createBasket() {
-    this.basket = new Basket();
+  public void createBasket(Object basketBMP) {
+    this.basket = new Basket(3, 3, basketBMP);
     // set color of basket
 //    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
 //      basket.setColor(Color.BLUE);
