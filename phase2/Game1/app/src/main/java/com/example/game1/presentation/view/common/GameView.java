@@ -106,7 +106,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     super.draw(canvas);
     if (canvas != null) {
       if (gameManager instanceof JumpingGameManager){
-        canvas.drawColor(((JumpingGameManager) gameManager).getSkyColor());}
+        canvas.drawColor((int)((JumpingGameManager) gameManager).getSkyColor());}
       // gameManager.draw(canvas);
       List<GameItem> items = gameManager.getGameItems();
       for (GameItem item : items) {

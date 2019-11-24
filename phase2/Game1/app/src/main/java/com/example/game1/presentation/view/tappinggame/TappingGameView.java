@@ -230,4 +230,6 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     blueBird = getResizedBitmap(blueBird, getScreenWidth()/10, getScreenWidth()/10);
     redFish = getResizedBitmap(redFish, getScreenWidth()/10, getScreenWidth()/10);
   }
+
+
 }

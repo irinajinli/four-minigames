@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
@@ -12,6 +13,7 @@ import android.view.View;
 
 import com.example.game1.R;
 
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.AppManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
@@ -38,6 +40,11 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   private Bitmap jumperRedBMP ;
   private Bitmap jumperYellowBMP;
   private Bitmap jumperNinjaBMP;
+  private int skyColorDark;
+  private int skyColorLight;
+  private int skyColorDefault;
+
+
 
   /**
    * creates a new JumpingView *
@@ -80,21 +87,8 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     gameManager.setScreenWidth(this.getScreenWidth());
     ((JumpingGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
-    obstacleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1);
-    starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
-    terrainBMP = BitmapFactory.decodeResource(getResources(), R.drawable.grass);
-    jumperBlueBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_blue);
-    jumperRedBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_red);
-    jumperYellowBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_yellow);
-    jumperNinjaBMP = BitmapFactory.decodeResource(getResources(), R.drawable.ninja_idle__000);
+    extractBMPFiles();
 
-    obstacleBMP = getResizedBitmap(obstacleBMP, 100, 100);
-    starBMP = getResizedBitmap(starBMP, 80, 80);
-    terrainBMP = getResizedBitmap( terrainBMP, getScreenWidth(), getScreenHeight()/2);
-    jumperBlueBMP = getResizedBitmap(jumperBlueBMP, 100, 200);
-    jumperRedBMP = getResizedBitmap(jumperRedBMP, 100, 200);
-    jumperYellowBMP = getResizedBitmap(jumperYellowBMP, 100, 200);
-    jumperNinjaBMP = getResizedBitmap(jumperNinjaBMP, 100, 200);
 
 
 
@@ -107,8 +101,15 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
                     jumperYellowBMP,
                     jumperRedBMP,
                     jumperNinjaBMP);
+
+
+    extractSkyColors();
+    ((JumpingGameManager)gameManager).setSkyColors(skyColorDark, skyColorLight, skyColorDefault);
+
     gameManager.createGameItems();
     gameManager.startMusic();
+    extractSkyColors();
+
 
     thread.setRunning(true);
     thread.start();
@@ -221,4 +222,36 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
               paintText);
     }
   }
+
+
+  public void extractBMPFiles(){
+    obstacleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1);
+    starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
+    terrainBMP = BitmapFactory.decodeResource(getResources(), R.drawable.grass);
+    jumperBlueBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_blue);
+    jumperRedBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_red);
+    jumperYellowBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_yellow);
+    jumperNinjaBMP = BitmapFactory.decodeResource(getResources(), R.drawable.ninja_idle__000);
+
+    obstacleBMP = getResizedBitmap(obstacleBMP, 100, 100);
+    starBMP = getResizedBitmap(starBMP, 80, 80);
+    terrainBMP = getResizedBitmap( terrainBMP, getScreenWidth(), getScreenHeight()/2);
+    jumperBlueBMP = getResizedBitmap(jumperBlueBMP, 100, 200);
+    jumperRedBMP = getResizedBitmap(jumperRedBMP, 100, 200);
+    jumperYellowBMP = getResizedBitmap(jumperYellowBMP, 100, 200);
+    jumperNinjaBMP = getResizedBitmap(jumperNinjaBMP, 100, 200);
+  }
+
+  /**
+   * Set the theme of this game
+   *
+   */
+  public void extractSkyColors(){
+    skyColorDark = Color.rgb(83, 92, 104);
+    skyColorLight = Color.rgb(223, 249, 251);
+    skyColorDefault = Color.rgb(204, 255, 255);
+
+  }
+
+
 }
