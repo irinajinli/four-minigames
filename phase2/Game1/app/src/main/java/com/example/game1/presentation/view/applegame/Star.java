@@ -1,6 +1,5 @@
-package com.example.game1.presentation.view.common;
+package com.example.game1.presentation.view.applegame;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
@@ -14,21 +13,27 @@ public class Star extends AnimatedGameItem {
     paintText.setColor(Color.CYAN);
   }
 
+  public Star(int height, int width, Object appearance) {
+    super(height, width, appearance);
+  }
+
   @Override
   public void move() {
     // moving forward
-    double newY = getyCoordinate() + 1;
+    double newY = getyCoordinate() + 15;
     setPosition(getxCoordinate(), newY);
   }
 
-//  @Override
-//  public void drawString(Canvas canvas, String s, int x, int y) {
-//    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
-//  }
+  //  @Override
+  //  public void drawString(Canvas canvas, String s, int x, int y) {
+  //    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
+  //  }
 
   public Result update(ImportInfo jumpingImportInfo) {
     return (new Result());
   }
-  public Result animate(ImportInfo importInfo){return new Result();}
 
+  public Result animate(ImportInfo importInfo) {
+    return new Result();
+  }
 }

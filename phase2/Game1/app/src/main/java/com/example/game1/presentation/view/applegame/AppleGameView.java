@@ -21,12 +21,13 @@ import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
-import com.example.game1.presentation.view.common.Star;
+
 /** Based on Fish Tank's FishTankView. */
 public class AppleGameView extends GameView {
 
   // TODO: new
   private Bitmap appleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.apple_red);
+  private Bitmap starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_7);
   private Bitmap basketBMP = BitmapFactory.decodeResource(getResources(), R.drawable.basket_red);
 
   /** Construct an AppleGameView with the specified Context. */
@@ -49,15 +50,15 @@ public class AppleGameView extends GameView {
     // Use the letter size and screen height to determine the size of the GameManager.
     gameManager =
         AppManager.getInstance()
-            .getAppleGameManager((getScreenHeight()), (getScreenWidth()),
-                activity);
+            .getAppleGameManager((getScreenHeight()), (getScreenWidth()), activity);
     gameManager.startMusic();
 
     // TODO: new
     appleBMP = getResizedBitmap(appleBMP, 80, 80);
+    starBMP = getResizedBitmap(starBMP, 80, 80);
     basketBMP = getResizedBitmap(basketBMP, 100, 100);
 
-    ((AppleGameManager) gameManager).setBMPFiles(appleBMP, basketBMP);
+    ((AppleGameManager) gameManager).setBMPFiles(appleBMP, starBMP, basketBMP);
 
     gameManager.createGameItems();
     thread.setRunning(true);
@@ -81,7 +82,7 @@ public class AppleGameView extends GameView {
   @Override
   public void drawItem(Canvas canvas, GameItem item) {
     // TODO: new
-    if (item instanceof Apple || item instanceof Basket) {
+    if (item instanceof Apple || item instanceof Basket || item instanceof Star) {
       Object appearance2 = item.getAppearance();
       double xCoordinate2 = item.getxCoordinate();
       double yCoordinate2 = item.getyCoordinate();
@@ -95,74 +96,74 @@ public class AppleGameView extends GameView {
       }
     }
 
-      paintText = new Paint();
-      paintText.setTypeface(Typeface.DEFAULT_BOLD);
-      paintText.setTextSize(36);
-      if (item instanceof Background) {
-        Rect backgroundRect = new Rect(0, 0, 999999, 999999);
-        Paint backgroundPaint = new Paint();
-        backgroundPaint.setStyle(Paint.Style.STROKE);
-        backgroundPaint.setStrokeWidth(5);
-        backgroundPaint.setAntiAlias(true);
-        backgroundPaint.setColor(Color.DKGRAY);
-        backgroundPaint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(backgroundRect, backgroundPaint);
-      } else {
+    paintText = new Paint();
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    paintText.setTextSize(36);
+    if (item instanceof Background) {
+      Rect backgroundRect = new Rect(0, 0, 999999, 999999);
+      Paint backgroundPaint = new Paint();
+      backgroundPaint.setStyle(Paint.Style.STROKE);
+      backgroundPaint.setStrokeWidth(5);
+      backgroundPaint.setAntiAlias(true);
+      backgroundPaint.setColor(Color.DKGRAY);
+      backgroundPaint.setStyle(Paint.Style.FILL);
+      canvas.drawRect(backgroundRect, backgroundPaint);
+    } else {
 
-        Object appearance = item.getAppearance();
-        double xCoordinate = item.getxCoordinate();
-        double yCoordinate = item.getyCoordinate();
-        if (appearance.getClass() == String.class) {
-          if (item instanceof Basket) {
-            if (gameManager
-                .getGame()
-                .getCustomization()
-                .getCharacterColour()
-                .equals(Customization.CharacterColour.BLUE)) {
-              paintText.setColor(Color.BLUE);
-            } else if (gameManager
-                .getGame()
-                .getCustomization()
-                .getCharacterColour()
-                .equals(Customization.CharacterColour.RED)) {
-              paintText.setColor(Color.RED);
-            } else if (gameManager
-                .getGame()
-                .getCustomization()
-                .getCharacterColour()
-                .equals(Customization.CharacterColour.YELLOW)) {
-              paintText.setColor(Color.YELLOW);
-            }
-          }
-          if (item instanceof PointsCounter) {
-            paintText.setColor(Color.WHITE);
-          }
-          if (item instanceof Apple) {
+      Object appearance = item.getAppearance();
+      double xCoordinate = item.getxCoordinate();
+      double yCoordinate = item.getyCoordinate();
+      if (appearance.getClass() == String.class) {
+        if (item instanceof Basket) {
+          if (gameManager
+              .getGame()
+              .getCustomization()
+              .getCharacterColour()
+              .equals(Customization.CharacterColour.BLUE)) {
+            paintText.setColor(Color.BLUE);
+          } else if (gameManager
+              .getGame()
+              .getCustomization()
+              .getCharacterColour()
+              .equals(Customization.CharacterColour.RED)) {
             paintText.setColor(Color.RED);
+          } else if (gameManager
+              .getGame()
+              .getCustomization()
+              .getCharacterColour()
+              .equals(Customization.CharacterColour.YELLOW)) {
+            paintText.setColor(Color.YELLOW);
           }
-          if (item instanceof Star) {
-            paintText.setColor(Color.CYAN);
-          }
-          canvas.drawText(
-              (String) appearance,
-              (float) xCoordinate * GameView.charWidth,
-              (float) yCoordinate * GameView.charHeight,
-              paintText);
-
-          // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
-          // TappingGameView.charHeight, paintText);
-          //      } else if (appearance.getClass() == Bitmap.class) {
-          //        canvas.drawBitmap(
-          //                (Bitmap) appearance,
-          //                (int) Math.round(xCoordinate),
-          //                (int) Math.round(yCoordinate),
-          //                paintText);
-          //      }
         }
+        if (item instanceof PointsCounter) {
+          paintText.setColor(Color.WHITE);
+        }
+        if (item instanceof Apple) {
+          paintText.setColor(Color.RED);
+        }
+        if (item instanceof Star) {
+          paintText.setColor(Color.CYAN);
+        }
+        canvas.drawText(
+            (String) appearance,
+            (float) xCoordinate * GameView.charWidth,
+            (float) yCoordinate * GameView.charHeight,
+            paintText);
+
+        // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
+        // TappingGameView.charHeight, paintText);
+        //      } else if (appearance.getClass() == Bitmap.class) {
+        //        canvas.drawBitmap(
+        //                (Bitmap) appearance,
+        //                (int) Math.round(xCoordinate),
+        //                (int) Math.round(yCoordinate),
+        //                paintText);
+        //      }
       }
     }
+  }
 
-    // TODO: new
+  // TODO: delete this; inherited from GameView
   /**
    * code taken from: https://stackoverflow.com/questions/4837715/how-to-resize-a-bitmap-in-android
    *
@@ -185,9 +186,5 @@ public class AppleGameView extends GameView {
     Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     bm.recycle();
     return resizedBitmap;
-
-
   }
-  }
-
-
+}
