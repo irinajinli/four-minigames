@@ -11,7 +11,7 @@ import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.applegame.PointsCounter;
-import com.example.game1.presentation.view.common.Star;
+import com.example.game1.presentation.view.applegame.Star;
 
 import java.util.Random;
 
@@ -28,16 +28,19 @@ public class AppleGameManager extends GameManager {
 
   // TODO: new
   private Bitmap appleBMP;
+  private Bitmap starBMP;
+  private Bitmap basketBMP;
 
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
   }
 
-
   // TODO: new
-  public void setBMPFiles(Bitmap appleBMP) {
+  public void setBMPFiles(Bitmap appleBMP, Bitmap starBMP, Bitmap basketBMP) {
     this.appleBMP = appleBMP;
+    this.starBMP = starBMP;
+    this.basketBMP = basketBMP;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -45,26 +48,27 @@ public class AppleGameManager extends GameManager {
     // TODO: delete this method
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
     gib.createBackground();
-    gib.createBasket();
     gib.createPointsCounter();
+    gib.createBasket(basketBMP);
+
     gib.placeItems(this);
 
     // TODO: new for testing coordinates
-//    Apple testApple = new Apple(3, 3, appleBMP);
-//    place(testApple);
-//    testApple.setPosition(30, 3);
-//
-//    Apple testApple2 = new Apple(3, 3, appleBMP);
-//    place(testApple2);
-//    testApple2.setPosition(8, 10);
-//
-//    Apple testApple3 = new Apple(3, 3, appleBMP);
-//    place(testApple3);
-//    testApple3.setPosition(20, 20);
-//
-//    Apple testApple4 = new Apple(3, 3, appleBMP);
-//    place(testApple4);
-//    testApple4.setPosition(15, 30);
+    //    Apple testApple = new Apple(3, 3, appleBMP);
+    //    place(testApple);
+    //    testApple.setPosition(30, 3);
+    //
+    //    Apple testApple2 = new Apple(3, 3, appleBMP);
+    //    place(testApple2);
+    //    testApple2.setPosition(8, 10);
+    //
+    //    Apple testApple3 = new Apple(3, 3, appleBMP);
+    //    place(testApple3);
+    //    testApple3.setPosition(20, 20);
+    //
+    //    Apple testApple4 = new Apple(3, 3, appleBMP);
+    //    place(testApple4);
+    //    testApple4.setPosition(15, 30);
   }
 
   public void setBasket(Basket basket) {
@@ -98,7 +102,8 @@ public class AppleGameManager extends GameManager {
         // AnimatedGameItem currItem = (AnimatedGameItem) currItem2;
         // move each GameItemOld
         ((AnimatedGameItem) currItem).move();
-      } else {}
+      } else {
+      }
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItemOld is off screen; remove if necessary
@@ -106,8 +111,8 @@ public class AppleGameManager extends GameManager {
           dropGameItem(currItem);
         }
 
-        // if currItem is within +/- 1 of basket
-        if (checkIfCaught(currItem)) {
+        // check if currItem should be caught
+        if (currItem.isOverlapping(basket)) {
           removeItem(currItem);
           if (currItem instanceof Apple) {
             catchApple();
@@ -157,15 +162,15 @@ public class AppleGameManager extends GameManager {
     // decide whether to spawn an Apple or a Star or nothing
     Random randItem = new Random();
     int randint = randItem.nextInt(200);
-    if (randint < 1) {
+    if (randint < 8) {
       // spawn new Star
-      Star nextItem = new Star();
+      Star nextItem = new Star(80, 80, starBMP);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
     } else if (randint < 10) {
       // spawn new Apple
       // TODO: new constructor call; uncomment out when done testing
-      Apple nextItem = new Apple(3, 3, appleBMP);
+      Apple nextItem = new Apple(80, 80, appleBMP);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
 

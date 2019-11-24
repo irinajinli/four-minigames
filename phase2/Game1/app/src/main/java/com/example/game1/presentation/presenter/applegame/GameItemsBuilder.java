@@ -25,8 +25,8 @@ public class GameItemsBuilder {
     }
   }
 
-  public void createBasket() {
-    this.basket = new Basket();
+  public void createBasket(Object basketBMP) {
+    this.basket = new Basket(100, 100, basketBMP);
     // set color of basket
 //    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
 //      basket.setColor(Color.BLUE);
@@ -57,7 +57,7 @@ public class GameItemsBuilder {
     appleGameManager.setBasket(basket);
     appleGameManager.place(basket);
     basket.setPosition(
-            appleGameManager.getGridWidth() / 2 + 1, appleGameManager.getGridHeight() - 5);
+            appleGameManager.getGridWidth() / 2, appleGameManager.getGridHeight() - 300);
 
     // pointsCounter
     appleGameManager.setPointsCounter(pointsCounter);
