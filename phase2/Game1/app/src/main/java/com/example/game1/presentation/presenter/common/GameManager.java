@@ -1,6 +1,5 @@
 package com.example.game1.presentation.presenter.common;
 
-import android.graphics.Canvas;
 import android.media.MediaPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.AppManager;
-import com.example.game1.presentation.view.common.GameItemOld;
 
 import java.util.ArrayList;
 
@@ -34,10 +32,7 @@ public abstract class GameManager {
   /** The music player of the game that this GameManager manages. */
   private MediaPlayer musicPlayer;
 
-
-  /**
-   * Constructs a GameManager with the specified height, width, game, and activity.
-   */
+  /** Constructs a GameManager with the specified height, width, game, and activity. */
   public GameManager(int height, int width, Game game, AppCompatActivity activity) {
     gridHeight = height;
     gridWidth = width;
@@ -71,17 +66,17 @@ public abstract class GameManager {
     gameItems.add(item);
   }
 
-//  /**
-//   * Draws all GameItems in gameItems.
-//   *
-//   * @param canvas the canvas on which to draw
-//   */
-//  public void draw(Canvas canvas) {
-//    // iterate through gameItems and draw them
-//    for (int i = 0; i < gameItems.size(); i++) {
-//      gameItems.get(i).draw(canvas);
-//    }
-//  }
+  //  /**
+  //   * Draws all GameItems in gameItems.
+  //   *
+  //   * @param canvas the canvas on which to draw
+  //   */
+  //  public void draw(Canvas canvas) {
+  //    // iterate through gameItems and draw them
+  //    for (int i = 0; i < gameItems.size(); i++) {
+  //      gameItems.get(i).draw(canvas);
+  //    }
+  //  }
 
   /** Updates this GameManager by moving all GameItems in it. */
   public abstract boolean update();
@@ -127,7 +122,7 @@ public abstract class GameManager {
     musicPlayer.release();
   }
 
-  public void gameOver(){
+  public void gameOver() {
     stopMusic();
     AppManager.getInstance().finishGame(game, activity);
   }
@@ -147,4 +142,6 @@ public abstract class GameManager {
   public void setScreenHeight(int screenHeight) {
     this.screenHeight = screenHeight;
   }
+
+  public abstract Object getSkyColor();
 }

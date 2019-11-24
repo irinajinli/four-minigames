@@ -15,6 +15,7 @@ import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.common.Result;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,6 @@ public class BrickGameManager extends GameManager {
    * A GameManager for a Brick Breaking minigame. Includes extra variables and methods for handling
    * game-specific features..
    */
-
-
-
   private Paddle paddle;
 
   private Ball ball;
@@ -54,7 +52,7 @@ public class BrickGameManager extends GameManager {
   public static final int BRICK_HEIGHT = 80;
   public static final int STAR_WIDTH = 80;
   public static final int STAR_HEIGHT = 80;
-  public static final int PADDLE_WIDTH = 300; //1550
+  public static final int PADDLE_WIDTH = 300; // 1550
   public static final int PADDLE_HEIGHT = 60;
   public static final int BALL_WIDTH = 80;
   public static final int BALL_HEIGHT = 80;
@@ -176,8 +174,6 @@ public class BrickGameManager extends GameManager {
 
     setRunning(true);
   }
-
-
 
   /**
    * Set the theme of this game
@@ -302,8 +298,6 @@ public class BrickGameManager extends GameManager {
       }
     }
 
-
-
     //  if (brickResult.isGameOver()) {
     //  gameOver();
     // return false;
@@ -349,7 +343,6 @@ public class BrickGameManager extends GameManager {
     paddle.setyCoordinate(getScreenHeight() - PADDLE_HEIGHT * 6);
   }
 
-
   public int getNumTaps() {
     return numTaps;
   }
@@ -381,5 +374,10 @@ public class BrickGameManager extends GameManager {
 
   public void setNumOfSeconds(double numOfSeconds) {
     this.numOfSeconds = numOfSeconds;
+  }
+
+  public Object getSkyColor() {
+    return 0;
+    // TODO FOR ABDUL: finish setting up skyColor for this game
   }
 }
