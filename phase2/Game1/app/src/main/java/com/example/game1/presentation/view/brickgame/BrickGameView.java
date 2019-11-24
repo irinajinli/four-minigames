@@ -36,6 +36,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   private Bitmap ballBMP;
   private Bitmap starBMP;
   private Bitmap brickBMP;
+  private Bitmap brickDamagedBMP;
   private Bitmap paddleBlueBMP;
   private Bitmap paddleRedBMP;
   private Bitmap paddleYellowBMP;
@@ -83,6 +84,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     ballBMP = BitmapFactory.decodeResource(getResources(), R.drawable.ball_blue);
     starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
     brickBMP = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue);
+    brickDamagedBMP = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue_damaged);
     paddleBlueBMP = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_blue);
     paddleRedBMP = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_red);
     paddleYellowBMP = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_yellow);
@@ -90,6 +92,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     ballBMP = getResizedBitmap(ballBMP, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
     starBMP = getResizedBitmap(starBMP, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
     brickBMP = getResizedBitmap( brickBMP, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
+    brickDamagedBMP = getResizedBitmap( brickDamagedBMP, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
     paddleBlueBMP = getResizedBitmap(paddleBlueBMP, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
     paddleRedBMP = getResizedBitmap(paddleRedBMP, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
     paddleYellowBMP = getResizedBitmap(paddleYellowBMP, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
@@ -101,6 +104,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
                     ballBMP,
                     starBMP,
                     brickBMP,
+                    brickDamagedBMP,
                     paddleBlueBMP,
                     paddleRedBMP,
                     paddleYellowBMP);
@@ -158,7 +162,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
    */
   @Override
   public boolean onTouchEvent(MotionEvent event) {
-    ((BrickGameManager) gameManager).onScreenTap();
+    ((BrickGameManager) gameManager).onTouchEvent(event.getX());
     return super.onTouchEvent(event);
   }
 

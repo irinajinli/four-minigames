@@ -9,6 +9,14 @@ import com.example.game1.presentation.presenter.common.ImportInfo;
 
 public class Brick extends GameItem {
 
+    private final int STARTING_DAMAGE_LEVEL = 2;
+    private final int APPEARANCE_CHANGE_CUTOFF = 1;
+    private final int DESTROYED_CUTOFF = 0;
+
+
+    private int damageLevel;
+    //private Bitmap damagedAppearance;
+
     /** The Obstacle. */
 
     /**
@@ -20,6 +28,7 @@ public class Brick extends GameItem {
      */
     public Brick(int height, int width, Bitmap appearance) {
         super(height, width, appearance);
+        damageLevel = STARTING_DAMAGE_LEVEL;
     }
 
 
@@ -52,6 +61,28 @@ public class Brick extends GameItem {
         return brickResult;
     }
 
+
+    /**
+     * Causes this brick to take damage.
+     *
+     * @return True if an only if this brick is now broken
+     */
+    public boolean damageBrick(){
+        damageLevel -= 1;
+        if (damageLevel == DESTROYED_CUTOFF){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns whether the appearance of this brick needs to be changed.
+     *
+     * @return whether the appearance of this brick needs to be changed.
+     */
+    public boolean needChangeAppearance(){
+        return damageLevel == APPEARANCE_CHANGE_CUTOFF;
+    }
 
     public void move() {}
 

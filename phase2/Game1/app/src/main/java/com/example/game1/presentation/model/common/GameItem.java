@@ -171,15 +171,15 @@ public abstract class GameItem {
         double otherItemLeftBoundary = other.getxCoordinate();
         double otherItemRightBoundary = other.getxCoordinate() + other.getWidth();
 
-        double thisItemLowerBoundary = this.yCoordinate;
-        double thisItemUpperBoundary = this.yCoordinate + this.height;
-        double otherItemLowerBoundary = other.getyCoordinate();
-        double otherItemUpperBoundary = other.getyCoordinate() + other.getHeight();
+        double thisItemLowerBoundary = this.yCoordinate + this.height;
+        double thisItemUpperBoundary = this.yCoordinate;
+        double otherItemLowerBoundary = other.getyCoordinate() + other.getHeight();
+        double otherItemUpperBoundary = other.getyCoordinate();
 
         return !(thisItemRightBoundary < otherItemLeftBoundary
                 || otherItemRightBoundary < thisItemLeftBoundary
-                || thisItemUpperBoundary < otherItemLowerBoundary
-                || otherItemUpperBoundary < thisItemLowerBoundary);
+                || thisItemLowerBoundary < otherItemUpperBoundary
+                || otherItemLowerBoundary < thisItemUpperBoundary);
     }
 
     public abstract Result update(ImportInfo importInfo);

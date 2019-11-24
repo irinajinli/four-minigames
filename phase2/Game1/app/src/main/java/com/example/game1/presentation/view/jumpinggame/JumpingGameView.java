@@ -99,12 +99,11 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
                     terrainBMP,
                     jumperBlueBMP,
                     jumperYellowBMP,
-                    jumperRedBMP,
-                    jumperNinjaBMP);
+                    jumperRedBMP);
 
 
     extractSkyColors();
-    ((JumpingGameManager)gameManager).setSkyColors(skyColorDark, skyColorLight, skyColorDefault);
+    ((JumpingGameManager)gameManager).setSkyColors(skyColorDark, skyColorLight);
 
     gameManager.createGameItems();
     gameManager.startMusic();
@@ -158,7 +157,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
    */
   @Override
   public boolean onTouchEvent(MotionEvent event) {
-    ((JumpingGameManager) gameManager).onScreenTap();
+    ((JumpingGameManager) gameManager).onTouchEvent();
     return super.onTouchEvent(event);
   }
 
