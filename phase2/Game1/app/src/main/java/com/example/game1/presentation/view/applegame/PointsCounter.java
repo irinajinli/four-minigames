@@ -18,7 +18,7 @@ public class PointsCounter extends AnimatedGameItem {
 
   /** Construct a PointsCounter with white text. */
   public PointsCounter() {
-    super("0");
+    super("apples: 0");
     paintText.setColor(Color.WHITE);
   }
 

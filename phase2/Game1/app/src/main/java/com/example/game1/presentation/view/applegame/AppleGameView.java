@@ -98,7 +98,7 @@ public class AppleGameView extends GameView {
 
     paintText = new Paint();
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    paintText.setTextSize(36);
+    paintText.setTextSize(800);
     if (item instanceof Background) {
       Rect backgroundRect = new Rect(0, 0, 999999, 999999);
       Paint backgroundPaint = new Paint();
@@ -114,40 +114,40 @@ public class AppleGameView extends GameView {
       double xCoordinate = item.getxCoordinate();
       double yCoordinate = item.getyCoordinate();
       if (appearance.getClass() == String.class) {
-        if (item instanceof Basket) {
-          if (gameManager
-              .getGame()
-              .getCustomization()
-              .getCharacterColour()
-              .equals(Customization.CharacterColour.BLUE)) {
-            paintText.setColor(Color.BLUE);
-          } else if (gameManager
-              .getGame()
-              .getCustomization()
-              .getCharacterColour()
-              .equals(Customization.CharacterColour.RED)) {
-            paintText.setColor(Color.RED);
-          } else if (gameManager
-              .getGame()
-              .getCustomization()
-              .getCharacterColour()
-              .equals(Customization.CharacterColour.YELLOW)) {
-            paintText.setColor(Color.YELLOW);
-          }
-        }
+//        if (item instanceof Basket) {
+//          if (gameManager
+//              .getGame()
+//              .getCustomization()
+//              .getCharacterColour()
+//              .equals(Customization.CharacterColour.BLUE)) {
+//            paintText.setColor(Color.BLUE);
+//          } else if (gameManager
+//              .getGame()
+//              .getCustomization()
+//              .getCharacterColour()
+//              .equals(Customization.CharacterColour.RED)) {
+//            paintText.setColor(Color.RED);
+//          } else if (gameManager
+//              .getGame()
+//              .getCustomization()
+//              .getCharacterColour()
+//              .equals(Customization.CharacterColour.YELLOW)) {
+//            paintText.setColor(Color.YELLOW);
+//          }
+//        }
         if (item instanceof PointsCounter) {
           paintText.setColor(Color.WHITE);
         }
-        if (item instanceof Apple) {
-          paintText.setColor(Color.RED);
-        }
-        if (item instanceof Star) {
-          paintText.setColor(Color.CYAN);
-        }
+//        if (item instanceof Apple) {
+//          paintText.setColor(Color.RED);
+//        }
+//        if (item instanceof Star) {
+//          paintText.setColor(Color.CYAN);
+//        }
         canvas.drawText(
             (String) appearance,
-            (float) xCoordinate * GameView.charWidth,
-            (float) yCoordinate * GameView.charHeight,
+            (float) xCoordinate,
+            (float) yCoordinate,
             paintText);
 
         // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *

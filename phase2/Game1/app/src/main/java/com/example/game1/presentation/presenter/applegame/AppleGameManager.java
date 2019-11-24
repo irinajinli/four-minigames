@@ -162,12 +162,12 @@ public class AppleGameManager extends GameManager {
     // decide whether to spawn an Apple or a Star or nothing
     Random randItem = new Random();
     int randint = randItem.nextInt(200);
-    if (randint < 8) {
+    if (randint < 1) {
       // spawn new Star
       Star nextItem = new Star(80, 80, starBMP);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
-    } else if (randint < 10) {
+    } else if (randint < 9) {
       // spawn new Apple
       // TODO: new constructor call; uncomment out when done testing
       Apple nextItem = new Apple(80, 80, appleBMP);
