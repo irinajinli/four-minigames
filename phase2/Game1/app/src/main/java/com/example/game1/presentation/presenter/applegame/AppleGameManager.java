@@ -59,6 +59,10 @@ public class AppleGameManager extends GameManager {
     gib.createBasket(basketBMP);
     gib.setTheme(this);
     gib.placeItems(this);
+    // TODO: trying to fix pointscounter
+      points = new PointsCounter();
+      place(points);
+      points.setPosition(getGridWidth() / 2, getGridHeight() - 300);
   }
 
   public void setBasket(Basket basket) {

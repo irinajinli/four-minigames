@@ -147,12 +147,6 @@ public class AppleGameView extends GameView {
         if (item instanceof PointsCounter) {
           paintText.setColor(Color.WHITE);
         }
-        //        if (item instanceof Apple) {
-        //          paintText.setColor(Color.RED);
-        //        }
-        //        if (item instanceof Star) {
-        //          paintText.setColor(Color.CYAN);
-        //        }
         canvas.drawText((String) appearance, (float) xCoordinate, (float) yCoordinate, paintText);
 
         // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
@@ -166,31 +160,6 @@ public class AppleGameView extends GameView {
         //      }
       }
     }
-  }
-
-  // TODO: delete this; inherited from GameView
-  /**
-   * code taken from: https://stackoverflow.com/questions/4837715/how-to-resize-a-bitmap-in-android
-   *
-   * @param bm
-   * @param newWidth
-   * @param newHeight
-   * @return
-   */
-  public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
-    int width = bm.getWidth();
-    int height = bm.getHeight();
-    float scaleWidth = ((float) newWidth) / width;
-    float scaleHeight = ((float) newHeight) / height;
-    // CREATE A MATRIX FOR THE MANIPULATION
-    Matrix matrix = new Matrix();
-    // RESIZE THE BIT MAP
-    matrix.postScale(scaleWidth, scaleHeight);
-
-    // "RECREATE" THE NEW BITMAP
-    Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-    bm.recycle();
-    return resizedBitmap;
   }
 
   public void extractSkyColors() {

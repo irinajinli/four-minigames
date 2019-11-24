@@ -378,6 +378,6 @@ public class BrickGameManager extends GameManager {
 
   public Object getSkyColor() {
     return 0;
-    // TODO FOR ABDUL: finish setting up skyColor for this game
+    // TODO FOR ABDUL: decide what to do with this method (it overrides abstract method of parent)
   }
 }

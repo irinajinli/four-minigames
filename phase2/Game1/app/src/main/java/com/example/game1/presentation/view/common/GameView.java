@@ -26,7 +26,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public static float charWidth;
   /** The height of a character. */
   public static float charHeight;
-  /** The fish tank contents. */
+  /** The manager. */
   public GameManager gameManager;
   /** The part of the program that manages time. */
   public GameThread thread;
@@ -40,7 +40,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
   /**
-   * Create a new fish tank in the context environment.
+   * Constructs a GameView with the given context.
    *
    * @param context the environment.
    */
@@ -49,14 +49,6 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     this.activity = (AppCompatActivity) context;
     getHolder().addCallback(this);
     setFocusable(true);
-  }
-
-  public static float getCharWidth() {
-    return charWidth;
-  }
-
-  public static float getCharHeight() {
-    return charHeight;
   }
 
   public int getScreenWidth() {
@@ -134,8 +126,6 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
           (float) yCoordinate * GameView.charHeight,
           paintText);
 
-      // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
-      // TappingGameView.charHeight, paintText);
     } else if (appearance.getClass() == Bitmap.class) {
       canvas.drawBitmap(
           (Bitmap) appearance,
@@ -144,15 +134,15 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
           paintText);
     }
   }
-  //  }
 
   /**
+   * Resize a bitmap to the specified width and height.
    * code taken from: https://stackoverflow.com/questions/4837715/how-to-resize-a-bitmap-in-android
    *
-   * @param bm
-   * @param newWidth
-   * @param newHeight
-   * @return
+   * @param bm the bitmap to be resized
+   * @param newWidth the new width
+   * @param newHeight the new height
+   * @return the resized bitmap
    */
   public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
     int width = bm.getWidth();
