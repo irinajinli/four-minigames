@@ -249,7 +249,7 @@ public class BrickGameManager extends GameManager {
       ball.setXVelocity(-ball.getXVelocity());
     }
     // out of top boundary
-    if (ball.getyCoordinate() < 0) {
+    if (ball.getYCoordinate() < 0) {
       ball.setYVelocity(Math.abs(ball.getYVelocity()));
     }
 
@@ -260,12 +260,12 @@ public class BrickGameManager extends GameManager {
 
     // overlapping and not more than halfway through
     if (ball.isOverlapping(paddle)
-        && ball.getyCoordinate() + ball.getHeight()
-            < paddle.getyCoordinate() + paddle.getHeight() / 2) {
+        && ball.getYCoordinate() + ball.getHeight()
+            < paddle.getYCoordinate() + paddle.getHeight() / 2) {
       ball.setYVelocity((-Math.abs(ball.getYVelocity())));
     }
 
-    if (ball.getyCoordinate() > getScreenHeight()) {
+    if (ball.getYCoordinate() > getScreenHeight()) {
       gameOver();
       return false;
     }
@@ -287,7 +287,7 @@ public class BrickGameManager extends GameManager {
             Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBMP);
             star.setPosition(
                 brick.getXCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
-                brick.getyCoordinate());
+                brick.getYCoordinate());
             place(star);
             stars.add(star);
           }

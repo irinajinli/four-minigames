@@ -136,7 +136,7 @@ public abstract class AnimatedGameItem extends GameItem {
                 + getXVelocity() * numOfSeconds);
         setXCoordinate(newXCoordinate);
 
-        double newYCoordinate = getyCoordinate()
+        double newYCoordinate = getYCoordinate()
                 + (0.5 * getYAcceleration() * numOfSeconds * numOfSeconds
                 + getYVelocity() * numOfSeconds);
         setYCoordinate(newYCoordinate);

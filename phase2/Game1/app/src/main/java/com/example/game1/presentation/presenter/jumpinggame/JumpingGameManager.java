@@ -225,7 +225,7 @@ public class JumpingGameManager extends GameManager {
    */
   public void setStarPosition(Star star, int xCoordinate) {
     //    Star star = new Star(80, 80, this);
-    star.setYCoordinate(terrain.getyCoordinate() - 4 * obstacle1.getHeight());
+    star.setYCoordinate(terrain.getYCoordinate() - 4 * obstacle1.getHeight());
     star.setXCoordinate(xCoordinate);
     star.setXVelocity(-cameraVelocityX);
     // stars.add(star);
@@ -329,7 +329,7 @@ public class JumpingGameManager extends GameManager {
   }
 
   public void setObstaclePosition(Obstacle obstacle, double xCoordinate) {
-    obstacle.setYCoordinate(terrain.getyCoordinate() - obstacle.getHeight());
+    obstacle.setYCoordinate(terrain.getYCoordinate() - obstacle.getHeight());
     obstacle.setXCoordinate(xCoordinate);
     obstacle.setXVelocity(-cameraVelocityX);
   }
@@ -338,13 +338,13 @@ public class JumpingGameManager extends GameManager {
     double xCoordinate = getScreenWidth() * 4 / 3 + star.getWidth() / 2 - 80 / 2;
     star.setXCoordinate(xCoordinate);
     // Star star = new Star(80, 80, this);
-    double yCoordinate = terrain.getyCoordinate() - 4 * obstacle1.getHeight();
+    double yCoordinate = terrain.getYCoordinate() - 4 * obstacle1.getHeight();
     star.setYCoordinate(yCoordinate);
     star.setXVelocity(-cameraVelocityX);
   }
 
   public void setJumperPosition(Jumper jumper) {
-    jumper.setYCoordinate(terrain.getyCoordinate() - JUMPER_HEIGHT);
+    jumper.setYCoordinate(terrain.getYCoordinate() - JUMPER_HEIGHT);
     jumper.setXVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
   }
 

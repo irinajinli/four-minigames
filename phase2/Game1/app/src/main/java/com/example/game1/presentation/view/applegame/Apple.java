@@ -22,7 +22,7 @@ public class Apple extends AnimatedGameItem {
   /** Move this GameItemOld within its GameManager. */
   @Override
   public void move() {
-    double newY = getyCoordinate() + 15;
+    double newY = getYCoordinate() + 15;
     setPosition(getXCoordinate(), newY);
   }
 

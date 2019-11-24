@@ -206,7 +206,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     paintText.setTextSize(36);
     Object appearance = item.getAppearance();
     double xCoordinate = item.getXCoordinate();
-    double yCoordinate = item.getyCoordinate();
+    double yCoordinate = item.getYCoordinate();
     if (appearance.getClass() == String.class) {
 
       canvas.drawText(

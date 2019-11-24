@@ -145,7 +145,7 @@ public abstract class GameItem {
      * Get the yCoordinate of this GameItem
      * @return the yCoordinate of this GameItem
      */
-    public double getyCoordinate() {
+    public double getYCoordinate() {
         return this.yCoordinate;
     }
 
@@ -173,8 +173,8 @@ public abstract class GameItem {
 
         double thisItemLowerBoundary = this.yCoordinate + this.height;
         double thisItemUpperBoundary = this.yCoordinate;
-        double otherItemLowerBoundary = other.getyCoordinate() + other.getHeight();
-        double otherItemUpperBoundary = other.getyCoordinate();
+        double otherItemLowerBoundary = other.getYCoordinate() + other.getHeight();
+        double otherItemUpperBoundary = other.getYCoordinate();
 
         return !(thisItemRightBoundary < otherItemLeftBoundary
                 || otherItemRightBoundary < thisItemLeftBoundary

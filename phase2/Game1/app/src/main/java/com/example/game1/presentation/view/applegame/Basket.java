@@ -46,7 +46,7 @@ public class Basket extends AnimatedGameItem {
    * @param x the x coordinate to move this Basket to
    */
   public void move(int x) {
-    setPosition(x, getyCoordinate());
+    setPosition(x, getYCoordinate());
   }
 
   public Result update(ImportInfo jumpingImportInfo) {

@@ -101,7 +101,7 @@ public class AppleGameManager extends GameManager {
 
       if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItemOld is off screen; remove if necessary
-        if (currItem.getyCoordinate() > getGridHeight()) {
+        if (currItem.getYCoordinate() > getGridHeight()) {
           dropGameItem(currItem);
         }
 
@@ -144,7 +144,7 @@ public class AppleGameManager extends GameManager {
     return ((gameItem.getXCoordinate() == basket.getXCoordinate()
             || gameItem.getXCoordinate() == basket.getXCoordinate() - 1
             || gameItem.getXCoordinate() == basket.getXCoordinate() + 1)
-        && gameItem.getyCoordinate() == basket.getyCoordinate());
+        && gameItem.getYCoordinate() == basket.getYCoordinate());
   }
 
   /** Spawns a new Apple or Star in a random location at the top of the screen. */

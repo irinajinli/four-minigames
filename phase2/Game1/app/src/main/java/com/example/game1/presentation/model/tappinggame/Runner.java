@@ -44,7 +44,7 @@ public class Runner extends AnimatedGameItem {
   public boolean move(int width) {
     if (getXCoordinate() + speed  < width - 100) {
       double newX = getXCoordinate() + speed ;
-      setPosition(newX, getyCoordinate());
+      setPosition(newX, getYCoordinate());
       canRun = true;
       return canRun;
     }

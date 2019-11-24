@@ -31,7 +31,7 @@ public class Jumper extends AnimatedGameItem {
         Terrain terrain = ((JumpingImportInfo) jumpingImportInfo).getTerrian();
         updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
         if (this.isOverlapping(terrain)) {
-            this.setYCoordinate(terrain.getyCoordinate() - this.getHeight());
+            this.setYCoordinate(terrain.getYCoordinate() - this.getHeight());
             this.setYVelocity(0);
             this.setYAcceleration(0);
         }
