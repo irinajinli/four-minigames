@@ -51,7 +51,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @param xVelocity velocity at x axis direction
      */
-    public void setxVelocity(double xVelocity) {
+    public void setXVelocity(double xVelocity) {
 
         this.xVelocity = xVelocity;
     }
@@ -60,7 +60,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @return velocity of this GameItem at x axis direction
      */
-    public double getxVelocity() {
+    public double getXVelocity() {
         return this.xVelocity;
     }
 
@@ -69,7 +69,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @param yVelocity velocity at y axis direction
      */
-    public void setyVelocity(double yVelocity) {
+    public void setYVelocity(double yVelocity) {
 
         this.yVelocity = yVelocity;
     }
@@ -79,7 +79,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @return velocity of this GameItem at y axis direction
      */
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
@@ -89,7 +89,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @param xAcceleration acceleration at x axis direction
      */
-    public void setAccelerationX(double xAcceleration) {
+    public void setXAcceleration(double xAcceleration) {
 
         this.xAcceleration = xAcceleration;
     }
@@ -98,7 +98,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @return acceleration of this GameItem at x axis direction
      */
-    public double getxAcceleration() {
+    public double getXAcceleration() {
         return xAcceleration;
     }
 
@@ -106,7 +106,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @param yAcceleration acceleration at y axis direction
      */
-    public void setyAcceleration(double yAcceleration) {
+    public void setYAcceleration(double yAcceleration) {
 
         this.yAcceleration = yAcceleration;
     }
@@ -117,7 +117,7 @@ public abstract class AnimatedGameItem extends GameItem {
      *
      * @return acceleration of this GameItem at y axis direction
      */
-    public double getyAcceleration() {
+    public double getYAcceleration() {
         return yAcceleration;
     }
 
@@ -131,21 +131,21 @@ public abstract class AnimatedGameItem extends GameItem {
      *                     Currently numOfSeconds = GameThread.FRAME_DURATION_NS / 1000000000.
      */
     public void updatePositionAndVelocity(double numOfSeconds) {
-        double newXCoordinate = getxCoordinate()
-                + (0.5 * getxAcceleration() * numOfSeconds * numOfSeconds
-                + getxVelocity() * numOfSeconds);
-        setxCoordinate(newXCoordinate);
+        double newXCoordinate = getXCoordinate()
+                + (0.5 * getXAcceleration() * numOfSeconds * numOfSeconds
+                + getXVelocity() * numOfSeconds);
+        setXCoordinate(newXCoordinate);
 
         double newYCoordinate = getyCoordinate()
-                + (0.5 * getyAcceleration() * numOfSeconds * numOfSeconds
-                + getyVelocity() * numOfSeconds);
-        setyCoordinate(newYCoordinate);
+                + (0.5 * getYAcceleration() * numOfSeconds * numOfSeconds
+                + getYVelocity() * numOfSeconds);
+        setYCoordinate(newYCoordinate);
 
-        double newxVelocity = getxVelocity() + getxAcceleration() * numOfSeconds;
-        setxVelocity(newxVelocity);
+        double newXVelocity = getXVelocity() + getXAcceleration() * numOfSeconds;
+        setXVelocity(newXVelocity);
 
-        double newyVelocity = getyVelocity() + getyAcceleration() * numOfSeconds;
-        setyVelocity(newyVelocity);
+        double newYVelocity = getYVelocity() + getYAcceleration() * numOfSeconds;
+        setYVelocity(newYVelocity);
     }
 
     public abstract Result animate(ImportInfo importInfo);

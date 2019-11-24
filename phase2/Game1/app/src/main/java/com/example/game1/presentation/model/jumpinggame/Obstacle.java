@@ -1,6 +1,5 @@
 package com.example.game1.presentation.model.jumpinggame;
 
-import android.graphics.Bitmap;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingImportInfo;
@@ -36,8 +35,8 @@ public class Obstacle extends AnimatedGameItem {
             jumpingResult.setGameOver(true);
 
             // reset obstacle's xCoordinate if it is out of the screen
-        } else if (this.getxCoordinate() + this.getWidth() < 0) {
-            this.setxCoordinate(((JumpingImportInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
+        } else if (this.getXCoordinate() + this.getWidth() < 0) {
+            this.setXCoordinate(((JumpingImportInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
             jumpingResult.setObstacleJumped(true);
 
             // randomly add new star
@@ -46,7 +45,7 @@ public class Obstacle extends AnimatedGameItem {
             }
         }
 //    else{
-//      setxCoordinate(getxCoordinate() - 15);
+//      setXCoordinate(getxCoordinate() - 15);
 //    }
         return jumpingResult;
     }

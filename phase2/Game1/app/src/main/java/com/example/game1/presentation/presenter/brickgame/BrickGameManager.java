@@ -166,8 +166,8 @@ public class BrickGameManager extends GameManager {
 
     ball = new Ball(BALL_WIDTH, BALL_HEIGHT, ballBMP);
     ball.setPosition(getScreenWidth() / 2, BRICK_HEIGHT * (NUM_BRICK_LAYERS + 1));
-    ball.setxVelocity(BALL_VELOCITY_X);
-    ball.setyVelocity(BALL_VELOCITY_Y);
+    ball.setXVelocity(BALL_VELOCITY_X);
+    ball.setYVelocity(BALL_VELOCITY_Y);
     place(ball);
 
     stars = new ArrayList<>();
@@ -245,12 +245,12 @@ public class BrickGameManager extends GameManager {
       }
     }
     // out of horizontal bounds
-    if (ball.getxCoordinate() + ball.getWidth() >= getScreenWidth() || ball.getxCoordinate() < 0) {
-      ball.setxVelocity(-ball.getxVelocity());
+    if (ball.getXCoordinate() + ball.getWidth() >= getScreenWidth() || ball.getXCoordinate() < 0) {
+      ball.setXVelocity(-ball.getXVelocity());
     }
     // out of top boundary
     if (ball.getyCoordinate() < 0) {
-      ball.setyVelocity(Math.abs(ball.getyVelocity()));
+      ball.setYVelocity(Math.abs(ball.getYVelocity()));
     }
 
     // hits paddle
@@ -262,7 +262,7 @@ public class BrickGameManager extends GameManager {
     if (ball.isOverlapping(paddle)
         && ball.getyCoordinate() + ball.getHeight()
             < paddle.getyCoordinate() + paddle.getHeight() / 2) {
-      ball.setyVelocity((-Math.abs(ball.getyVelocity())));
+      ball.setYVelocity((-Math.abs(ball.getYVelocity())));
     }
 
     if (ball.getyCoordinate() > getScreenHeight()) {
@@ -286,7 +286,7 @@ public class BrickGameManager extends GameManager {
           if (Math.random() > STAR_PROBABILITY) {
             Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBMP);
             star.setPosition(
-                brick.getxCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
+                brick.getXCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
                 brick.getyCoordinate());
             place(star);
             stars.add(star);
@@ -294,7 +294,7 @@ public class BrickGameManager extends GameManager {
         } else if (brick.needChangeAppearance()) {
           brick.setAppearance(brickDamagedBMP);
         }
-        ball.setyVelocity(Math.abs(ball.getyVelocity()));
+        ball.setYVelocity(Math.abs(ball.getYVelocity()));
       }
     }
 
@@ -322,7 +322,7 @@ public class BrickGameManager extends GameManager {
 
   /** Handles the jumper's jump when the screen is tapped */
   public void onTouchEvent(double xCoordinate) {
-    paddle.setxCoordinate(xCoordinate - paddle.getWidth() / 2);
+    paddle.setXCoordinate(xCoordinate - paddle.getWidth() / 2);
 
     // numTaps += 1;
   }
@@ -339,8 +339,8 @@ public class BrickGameManager extends GameManager {
   }
 
   public void setPaddlePosition(Paddle paddle) {
-    paddle.setxCoordinate((getScreenWidth() - PADDLE_WIDTH) / 2);
-    paddle.setyCoordinate(getScreenHeight() - PADDLE_HEIGHT * 6);
+    paddle.setXCoordinate((getScreenWidth() - PADDLE_WIDTH) / 2);
+    paddle.setYCoordinate(getScreenHeight() - PADDLE_HEIGHT * 6);
   }
 
   public int getNumTaps() {

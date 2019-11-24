@@ -141,9 +141,9 @@ public class AppleGameManager extends GameManager {
    * Checks if the specified GameItem should be caught (i.e., if it's within +/- 1 x of the basket).
    */
   private boolean checkIfCaught(GameItem gameItem) {
-    return ((gameItem.getxCoordinate() == basket.getxCoordinate()
-            || gameItem.getxCoordinate() == basket.getxCoordinate() - 1
-            || gameItem.getxCoordinate() == basket.getxCoordinate() + 1)
+    return ((gameItem.getXCoordinate() == basket.getXCoordinate()
+            || gameItem.getXCoordinate() == basket.getXCoordinate() - 1
+            || gameItem.getXCoordinate() == basket.getXCoordinate() + 1)
         && gameItem.getyCoordinate() == basket.getyCoordinate());
   }
 

@@ -1,7 +1,5 @@
 package com.example.game1.presentation.model.jumpinggame;
 
-import android.graphics.Bitmap;
-
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
@@ -33,9 +31,9 @@ public class Jumper extends AnimatedGameItem {
         Terrain terrain = ((JumpingImportInfo) jumpingImportInfo).getTerrian();
         updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
         if (this.isOverlapping(terrain)) {
-            this.setyCoordinate(terrain.getyCoordinate() - this.getHeight());
-            this.setyVelocity(0);
-            this.setyAcceleration(0);
+            this.setYCoordinate(terrain.getyCoordinate() - this.getHeight());
+            this.setYVelocity(0);
+            this.setYAcceleration(0);
         }
         return jumpingResult;
     }

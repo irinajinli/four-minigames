@@ -120,7 +120,7 @@ public abstract class GameItem {
      *
      * @param xCoordinate the x coordinate
      */
-    public void setxCoordinate(double xCoordinate) {
+    public void setXCoordinate(double xCoordinate) {
         this.xCoordinate = xCoordinate;
     }
 
@@ -129,7 +129,7 @@ public abstract class GameItem {
      *
      * @param yCoordinate the y coordinate
      */
-    public void setyCoordinate(double yCoordinate) {
+    public void setYCoordinate(double yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
 
@@ -137,7 +137,7 @@ public abstract class GameItem {
      * Get the xCoordinate of this GameItem
      * @return the xCoordinate of this GameItem
      */
-    public double getxCoordinate() {
+    public double getXCoordinate() {
         return this.xCoordinate;
     }
 
@@ -168,8 +168,8 @@ public abstract class GameItem {
     public boolean isOverlapping(GameItem other) {
         double thisItemLeftBoundary = this.xCoordinate;
         double thisItemRightBoundary = this.xCoordinate + this.width;
-        double otherItemLeftBoundary = other.getxCoordinate();
-        double otherItemRightBoundary = other.getxCoordinate() + other.getWidth();
+        double otherItemLeftBoundary = other.getXCoordinate();
+        double otherItemRightBoundary = other.getXCoordinate() + other.getWidth();
 
         double thisItemLowerBoundary = this.yCoordinate + this.height;
         double thisItemUpperBoundary = this.yCoordinate;
@@ -185,33 +185,7 @@ public abstract class GameItem {
     public abstract Result update(ImportInfo importInfo);
 
 
-    // to be deleted
-//    /**
-//     * Draw this GameItem.
-//     *
-//     * @param canvas the canvas on which to draw this item.
-//     */
-//    public void draw(Canvas canvas) {
-//
-//
-//        if(appearance.getClass() == String.class) {
-//            drawString(canvas, (String)appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate));
-//            //canvas.drawText((String) appearance, x * TappingGameView.charWidth, y * TappingGameView.charHeight, paintText);
-//        } else if (appearance.getClass() == Bitmap.class){
-//            canvas.drawBitmap((Bitmap) appearance, (int)Math.round(xCoordinate), (int)Math.round(yCoordinate), paintText);
-//        }
-//    }
-//    /**
-//     * Draw the GameItem at a location on the specified Canvas using a String.
-//     *
-//     * @param canvas the canvas on which to draw
-//     * @param s the String to draw
-//     * @param x the x coordinate at which to draw
-//     * @param y the y coordinate at which to draw
-//     */
-//    public void drawString(Canvas canvas, String s, int x, int y){
-//        canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, paintText);
-//    }
+
 
     public void setColor(int color) {
         paintText.setColor(color);

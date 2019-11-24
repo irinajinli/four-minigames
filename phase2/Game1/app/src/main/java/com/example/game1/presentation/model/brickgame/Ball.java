@@ -41,7 +41,7 @@ public class Ball extends AnimatedGameItem {
     //  result.addOutItem(this);
     //}
 //    else{
-//      setxCoordinate(getxCoordinate() - 15);
+//      setXCoordinate(getxCoordinate() - 15);
 //    }
 
     return result;

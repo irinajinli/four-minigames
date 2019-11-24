@@ -225,9 +225,9 @@ public class JumpingGameManager extends GameManager {
    */
   public void setStarPosition(Star star, int xCoordinate) {
     //    Star star = new Star(80, 80, this);
-    star.setyCoordinate(terrain.getyCoordinate() - 4 * obstacle1.getHeight());
-    star.setxCoordinate(xCoordinate);
-    star.setxVelocity(-cameraVelocityX);
+    star.setYCoordinate(terrain.getyCoordinate() - 4 * obstacle1.getHeight());
+    star.setXCoordinate(xCoordinate);
+    star.setXVelocity(-cameraVelocityX);
     // stars.add(star);
   }
 
@@ -297,9 +297,9 @@ public class JumpingGameManager extends GameManager {
 
   /** Handles the jumper's jump when teh screen is tapped */
   public void onTouchEvent() {
-    if (jumper.getyVelocity() == 0) {
-      jumper.setyVelocity(-2000);
-      jumper.setyAcceleration(5000);
+    if (jumper.getYVelocity() == 0) {
+      jumper.setYVelocity(-2000);
+      jumper.setYAcceleration(5000);
     }
     //numTaps += 1;
   }
@@ -318,34 +318,34 @@ public class JumpingGameManager extends GameManager {
   }
 
   public void setTerrainPosition(Terrain terrain) {
-    terrain.setxCoordinate(0);
-    terrain.setyCoordinate(getScreenHeight() / 2);
+    terrain.setXCoordinate(0);
+    terrain.setYCoordinate(getScreenHeight() / 2);
   }
 
   public void setObstaclexCoordinate(Obstacle obstacle) {
-    if (obstacle.getxCoordinate() + obstacle.getWidth() < 0) {
-      obstacle.setxCoordinate(getScreenWidth() * 4 / 3);
+    if (obstacle.getXCoordinate() + obstacle.getWidth() < 0) {
+      obstacle.setXCoordinate(getScreenWidth() * 4 / 3);
     }
   }
 
   public void setObstaclePosition(Obstacle obstacle, double xCoordinate) {
-    obstacle.setyCoordinate(terrain.getyCoordinate() - obstacle.getHeight());
-    obstacle.setxCoordinate(xCoordinate);
-    obstacle.setxVelocity(-cameraVelocityX);
+    obstacle.setYCoordinate(terrain.getyCoordinate() - obstacle.getHeight());
+    obstacle.setXCoordinate(xCoordinate);
+    obstacle.setXVelocity(-cameraVelocityX);
   }
 
   public void autoSetStarPosition(Star star) {
     double xCoordinate = getScreenWidth() * 4 / 3 + star.getWidth() / 2 - 80 / 2;
-    star.setxCoordinate(xCoordinate);
+    star.setXCoordinate(xCoordinate);
     // Star star = new Star(80, 80, this);
     double yCoordinate = terrain.getyCoordinate() - 4 * obstacle1.getHeight();
-    star.setyCoordinate(yCoordinate);
-    star.setxVelocity(-cameraVelocityX);
+    star.setYCoordinate(yCoordinate);
+    star.setXVelocity(-cameraVelocityX);
   }
 
   public void setJumperPosition(Jumper jumper) {
-    jumper.setyCoordinate(terrain.getyCoordinate() - JUMPER_HEIGHT);
-    jumper.setxVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
+    jumper.setYCoordinate(terrain.getyCoordinate() - JUMPER_HEIGHT);
+    jumper.setXVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
   }
 
   public int getNumTaps() {

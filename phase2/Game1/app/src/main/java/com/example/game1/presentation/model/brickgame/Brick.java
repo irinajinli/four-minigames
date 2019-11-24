@@ -47,7 +47,7 @@ public class Brick extends GameItem {
 
             // reset obstacle's xCoordinate if it is out of the screen
        // } else if (this.getxCoordinate() + this.getWidth() < 0) {
-       //     this.setxCoordinate(((JumpingImportInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
+       //     this.setXCoordinate(((JumpingImportInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
        //     jumpingResult.setObstacleJumped(true);
 
             // randomly add new star
@@ -56,7 +56,7 @@ public class Brick extends GameItem {
         //    }
         //}
 //    else{
-//      setxCoordinate(getxCoordinate() - 15);
+//      setXCoordinate(getxCoordinate() - 15);
 //    }
         return brickResult;
     }

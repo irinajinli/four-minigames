@@ -93,7 +93,7 @@ public class AppleGameView extends GameView {
     // TODO: new
     if (item instanceof Apple || item instanceof Basket || item instanceof Star) {
       Object appearance2 = item.getAppearance();
-      double xCoordinate2 = item.getxCoordinate();
+      double xCoordinate2 = item.getXCoordinate();
       double yCoordinate2 = item.getyCoordinate();
 
       if (appearance2.getClass() == Bitmap.class) {
@@ -120,7 +120,7 @@ public class AppleGameView extends GameView {
     } else {
 
       Object appearance = item.getAppearance();
-      double xCoordinate = item.getxCoordinate();
+      double xCoordinate = item.getXCoordinate();
       double yCoordinate = item.getyCoordinate();
       if (appearance.getClass() == String.class) {
         //        if (item instanceof Basket) {

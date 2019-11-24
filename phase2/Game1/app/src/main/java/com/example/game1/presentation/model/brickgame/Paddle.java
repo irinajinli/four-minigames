@@ -33,7 +33,7 @@ public class Paddle extends AnimatedGameItem {
         updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
         if (this.isOverlapping(terrain)) {
             this.setyCoordinate(terrain.getyCoordinate() - this.getHeight());
-            this.setyVelocity(0);
+            this.setYVelocity(0);
             this.setyAcceleration(0);
         }*/
         return brickResult;

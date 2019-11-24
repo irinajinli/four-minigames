@@ -23,7 +23,7 @@ public class Apple extends AnimatedGameItem {
   @Override
   public void move() {
     double newY = getyCoordinate() + 15;
-    setPosition(getxCoordinate(), newY);
+    setPosition(getXCoordinate(), newY);
   }
 
   public Result update(ImportInfo jumpingImportInfo) {

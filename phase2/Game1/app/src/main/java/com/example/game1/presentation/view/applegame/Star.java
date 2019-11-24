@@ -21,7 +21,7 @@ public class Star extends AnimatedGameItem {
   public void move() {
     // moving forward
     double newY = getyCoordinate() + 15;
-    setPosition(getxCoordinate(), newY);
+    setPosition(getXCoordinate(), newY);
   }
 
   //  @Override
