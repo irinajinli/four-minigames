@@ -5,6 +5,8 @@ import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingImportInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
 
+import java.util.List;
+
 public class Obstacle extends AnimatedGameItem {
 
     /** The Obstacle. */
@@ -14,10 +16,10 @@ public class Obstacle extends AnimatedGameItem {
      *
      * @param height the height of this GameItem
      * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
+     * @param appearances the appearances of this GameItem
      */
-    public Obstacle(int height, int width, Object appearance) {
-        super(height, width, appearance);
+    public Obstacle(int height, int width, List appearances) {
+        super(height, width, appearances);
     }
 
     @Override

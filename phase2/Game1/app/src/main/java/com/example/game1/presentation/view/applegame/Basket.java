@@ -7,6 +7,8 @@ import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
 import com.example.game1.presentation.view.common.GameItemOld;
 
+import java.util.List;
+
 public class Basket extends AnimatedGameItem {
 
   /** Construct a light gray basket. */
@@ -15,8 +17,8 @@ public class Basket extends AnimatedGameItem {
     paintText.setColor(Color.LTGRAY);
   }
 
-  public Basket(int height, int width, Object appearance) {
-    super(height, width, appearance);
+  public Basket(int height, int width, List appearances) {
+    super(height, width, appearances);
   }
 
 //  /**
