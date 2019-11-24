@@ -13,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 import com.example.game1.R;
-import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.AppManager;
@@ -32,8 +31,8 @@ public class AppleGameView extends GameView {
 
   // TODO: new for colors
   private int skyColorDark;
-    private int skyColorLight;
-    private int skyColorDefault;
+  private int skyColorLight;
+  private int skyColorDefault;
 
   /** Construct an AppleGameView with the specified Context. */
   public AppleGameView(Context context) {
@@ -44,8 +43,7 @@ public class AppleGameView extends GameView {
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
 
-      // todo: new for skycolor
-
+    // todo: new for skycolor
 
     Paint paintText = new Paint();
     paintText.setTextSize(36);
@@ -68,7 +66,9 @@ public class AppleGameView extends GameView {
     ((AppleGameManager) gameManager).setBMPFiles(appleBMP, starBMP, basketBMP);
 
     // TODO: new for colors
-      extractSkyColors();
+    extractSkyColors();
+    ((AppleGameManager) gameManager).setSkyColors(skyColorDark, skyColorLight, skyColorDefault);
+
     gameManager.createGameItems();
     thread.setRunning(true);
     thread.start();
@@ -123,41 +123,37 @@ public class AppleGameView extends GameView {
       double xCoordinate = item.getxCoordinate();
       double yCoordinate = item.getyCoordinate();
       if (appearance.getClass() == String.class) {
-//        if (item instanceof Basket) {
-//          if (gameManager
-//              .getGame()
-//              .getCustomization()
-//              .getCharacterColour()
-//              .equals(Customization.CharacterColour.BLUE)) {
-//            paintText.setColor(Color.BLUE);
-//          } else if (gameManager
-//              .getGame()
-//              .getCustomization()
-//              .getCharacterColour()
-//              .equals(Customization.CharacterColour.RED)) {
-//            paintText.setColor(Color.RED);
-//          } else if (gameManager
-//              .getGame()
-//              .getCustomization()
-//              .getCharacterColour()
-//              .equals(Customization.CharacterColour.YELLOW)) {
-//            paintText.setColor(Color.YELLOW);
-//          }
-//        }
+        //        if (item instanceof Basket) {
+        //          if (gameManager
+        //              .getGame()
+        //              .getCustomization()
+        //              .getCharacterColour()
+        //              .equals(Customization.CharacterColour.BLUE)) {
+        //            paintText.setColor(Color.BLUE);
+        //          } else if (gameManager
+        //              .getGame()
+        //              .getCustomization()
+        //              .getCharacterColour()
+        //              .equals(Customization.CharacterColour.RED)) {
+        //            paintText.setColor(Color.RED);
+        //          } else if (gameManager
+        //              .getGame()
+        //              .getCustomization()
+        //              .getCharacterColour()
+        //              .equals(Customization.CharacterColour.YELLOW)) {
+        //            paintText.setColor(Color.YELLOW);
+        //          }
+        //        }
         if (item instanceof PointsCounter) {
           paintText.setColor(Color.WHITE);
         }
-//        if (item instanceof Apple) {
-//          paintText.setColor(Color.RED);
-//        }
-//        if (item instanceof Star) {
-//          paintText.setColor(Color.CYAN);
-//        }
-        canvas.drawText(
-            (String) appearance,
-            (float) xCoordinate,
-            (float) yCoordinate,
-            paintText);
+        //        if (item instanceof Apple) {
+        //          paintText.setColor(Color.RED);
+        //        }
+        //        if (item instanceof Star) {
+        //          paintText.setColor(Color.CYAN);
+        //        }
+        canvas.drawText((String) appearance, (float) xCoordinate, (float) yCoordinate, paintText);
 
         // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
         // TappingGameView.charHeight, paintText);
@@ -197,10 +193,9 @@ public class AppleGameView extends GameView {
     return resizedBitmap;
   }
 
-    public void extractSkyColors(){
-        skyColorDark = Color.BLACK;
-        skyColorLight = Color.LTGRAY;
-        skyColorDefault = Color.BLACK;
-
-    }
+  public void extractSkyColors() {
+    skyColorDark = Color.BLACK;
+    skyColorLight = Color.LTGRAY;
+    skyColorDefault = Color.BLACK;
+  }
 }

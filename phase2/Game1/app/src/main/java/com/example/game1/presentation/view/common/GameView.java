@@ -4,17 +4,16 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Rect;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.graphics.Paint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
@@ -34,14 +33,14 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public GameManager gameManager;
   /** The part of the program that manages time. */
   public GameThread thread;
-  /** Screen width. */
-  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-  /** Screen height. */
-  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
   /** The activity class corresponding this view */
   public AppCompatActivity activity;
   /** This item's Paint. */
   public Paint paintText = new Paint();
+  /** Screen width. */
+  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+  /** Screen height. */
+  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
   /**
    * Create a new fish tank in the context environment.
@@ -106,10 +105,15 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
-      if (gameManager instanceof JumpingGameManager){
-        canvas.drawColor((int)((JumpingGameManager) gameManager).getSkyColor());}
-      if (gameManager instanceof TappingGameManager){
-        canvas.drawColor((int)((TappingGameManager) gameManager).getSkyColor());}
+      if (gameManager instanceof JumpingGameManager) {
+        canvas.drawColor((int) ((JumpingGameManager) gameManager).getSkyColor());
+      }
+      if (gameManager instanceof TappingGameManager) {
+        canvas.drawColor((int) ((TappingGameManager) gameManager).getSkyColor());
+      }
+      if (gameManager instanceof AppleGameManager) {
+        canvas.drawColor((int) ((AppleGameManager) gameManager).getSkyColor());
+      }
 
       // gameManager.draw(canvas);
       List<GameItem> items = gameManager.getGameItems();
@@ -136,22 +140,22 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     if (appearance.getClass() == String.class) {
 
       canvas.drawText(
-              (String) appearance,
-              (float) xCoordinate * GameView.charWidth,
-              (float) yCoordinate * GameView.charHeight,
-              paintText);
+          (String) appearance,
+          (float) xCoordinate * GameView.charWidth,
+          (float) yCoordinate * GameView.charHeight,
+          paintText);
 
       // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
       // TappingGameView.charHeight, paintText);
     } else if (appearance.getClass() == Bitmap.class) {
       canvas.drawBitmap(
-              (Bitmap) appearance,
-              (int) Math.round(xCoordinate),
-              (int) Math.round(yCoordinate),
-              paintText);
+          (Bitmap) appearance,
+          (int) Math.round(xCoordinate),
+          (int) Math.round(yCoordinate),
+          paintText);
     }
   }
-//  }
+  //  }
 
   /**
    * code taken from: https://stackoverflow.com/questions/4837715/how-to-resize-a-bitmap-in-android
@@ -175,7 +179,5 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     bm.recycle();
     return resizedBitmap;
-
-
   }
 }
