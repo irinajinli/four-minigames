@@ -39,7 +39,9 @@ public class JumpingGameManager extends GameManager {
 
 
   private int numTaps = 0;
-  private int skyColor;
+  private Object skyColor;
+  private Object skyColorLight;
+  private Object skyColorDark;
   private boolean isRunning;
   private Object obstacleAppearance;
   private Object starAppearance;
@@ -141,7 +143,7 @@ public class JumpingGameManager extends GameManager {
   public void createGameItems() {
     // create background according to Customization
     Customization cust = game.getCustomization();
-    setTheme(cust.getColourScheme());
+
     if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
       this.jumperAppearance = jumperBlueAppearance;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
@@ -152,6 +154,11 @@ public class JumpingGameManager extends GameManager {
       this.jumperAppearance = jumperNinjaAppearance;
     }
 
+    if(cust.getColourScheme().equals(Customization.ColourScheme.DARK)){
+      setSkyColor(skyColorDark);
+    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)){
+      setSkyColor(skyColorLight);
+    }
 
 
     terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2, terrainAppearance);
@@ -188,27 +195,14 @@ public class JumpingGameManager extends GameManager {
 
 
 
-  /**
-   * Set the theme of this game
-   *
-   * @param theme the theme to set
-   */
-  private void setTheme(Customization.ColourScheme theme) {
-    if (theme.equals(Customization.ColourScheme.DARK)) {
-      skyColor = Color.rgb(83, 92, 104);
-    } else if (theme.equals((Customization.ColourScheme.LIGHT))) {
-      skyColor = Color.rgb(223, 249, 251);
-    } else {
-      skyColor = Color.rgb(204, 255, 255);
-    }
-  }
+
 
   /**
    * Returns the colour of the sky
    *
    * @return the colour of the sky
    */
-  public int getSkyColor() {
+  public Object getSkyColor() {
     return this.skyColor;
   }
 
@@ -360,6 +354,18 @@ public class JumpingGameManager extends GameManager {
     this.jumperRedAppearance = jumperRedAppearance;
     this.jumperNinjaAppearance = jumperNinjaAppearance;
   }
+
+  public void setSkyColors(Object skyColorDark, Object skyColorLight, Object skyColorDefault){
+    this.skyColorDark = skyColorDark;
+    this.skyColorLight = skyColorLight;
+    this.skyColor = skyColorDefault;
+  }
+
+  public void setSkyColor(Object skyColor){
+    this.skyColor = skyColor;
+  }
+
+
 
   public double getNumOfSeconds() {
     return numOfSeconds;
