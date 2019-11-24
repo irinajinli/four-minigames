@@ -21,11 +21,11 @@ import java.util.List;
 
 public class TappingGameManager extends GameManager {
 
-  private Bitmap tappingCircleBMP;
-  private Bitmap runnerBMP;
-  private Bitmap yellowPug;
-  private Bitmap blueBird;
-  private Bitmap redFish;
+  private Object tappingCircleAppearance;
+  private Object runnerAppearance;
+  private Object yellowPugAppearance;
+  private Object blueBirdAppearance;
+  private Object redFishAppearance;
   public TappingCircle tappingCircle;
 
   public Runner runner;
@@ -58,12 +58,13 @@ public class TappingGameManager extends GameManager {
     this.canRun = true;
   }
 
-  public void setPictures(Bitmap tappingCircleBMP, Bitmap yellowPug, Bitmap blueBird, Bitmap redFish) {
-    this.tappingCircleBMP = tappingCircleBMP;
-    this.yellowPug = yellowPug;
-    this.blueBird = blueBird;
-    this.redFish = redFish;
-    this.runnerBMP = yellowPug;
+  public void setAppearance(Object tappingCircleAppearance, Object yellowPugAppearance,
+                            Object blueBirdAppearance, Object redFishAppearance) {
+    this.tappingCircleAppearance = tappingCircleAppearance;
+    this.yellowPugAppearance = yellowPugAppearance;
+    this.blueBirdAppearance = blueBirdAppearance;
+    this.redFishAppearance = redFishAppearance;
+    this.runnerAppearance = yellowPugAppearance;
   }
 
   /**
@@ -102,15 +103,15 @@ public class TappingGameManager extends GameManager {
       b.setPosition(0, 0);
     }
     if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
-      this.runnerBMP = blueBird;
+      this.runnerAppearance = blueBirdAppearance;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
-      this.runnerBMP = redFish;
+      this.runnerAppearance = redFishAppearance;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
-      this.runnerBMP = yellowPug;
+      this.runnerAppearance = yellowPugAppearance;
     }
-    this.tappingCircle = new TappingCircle(tappingCircleBMP, 0, 0);
+    this.tappingCircle = new TappingCircle(tappingCircleAppearance, 0, 0);
     place(tappingCircle);
-    this.runner = new Runner(runnerBMP, 0, 1550);
+    this.runner = new Runner(runnerAppearance, 0, 1550);
     place(runner);
     this.tapCounter = new TapCounter(10, 30);
     place(tapCounter);

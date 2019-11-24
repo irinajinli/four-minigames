@@ -17,7 +17,7 @@ public class Obstacle extends AnimatedGameItem {
      * @param width the width of this GameItem
      * @param appearance the appearance of this GameItem
      */
-    public Obstacle(int height, int width, Bitmap appearance) {
+    public Obstacle(int height, int width, Object appearance) {
         super(height, width, appearance);
     }
 

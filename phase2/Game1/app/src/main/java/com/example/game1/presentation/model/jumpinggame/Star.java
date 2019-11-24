@@ -18,7 +18,7 @@ public class Star extends AnimatedGameItem {
    * @param width the width of this GameItem
    * @param appearance the appearance of this GameItem
    */
-  public Star(int width, int height, Bitmap appearance) {
+  public Star(int width, int height, Object appearance) {
 
     super(width, height, appearance);
   }

@@ -25,10 +25,6 @@ public class TapCounter extends GameItem {
         return numTaps;
     }
 
-    public void incrementNumTaps(){
-        this.numTaps ++;
-    }
-
     public void setNumTaps(int numTaps) {
         this.numTaps = numTaps;
         setAppearance("Number of Taps: " + this.numTaps);

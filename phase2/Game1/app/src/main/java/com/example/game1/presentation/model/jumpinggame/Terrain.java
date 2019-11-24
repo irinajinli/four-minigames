@@ -16,7 +16,7 @@ public class Terrain extends GameItem {
      * @param width the width of this GameItem
      * @param appearance the appearance of this GameItem
      */
-    public Terrain(int height, int width, Bitmap appearance) {
+    public Terrain(int height, int width, Object appearance) {
 
         super(height, width, appearance);
     }

@@ -1,7 +1,7 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
 
-import android.graphics.Bitmap;
+
 import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,14 +41,14 @@ public class JumpingGameManager extends GameManager {
   private int numTaps = 0;
   private int skyColor;
   private boolean isRunning;
-  private Bitmap obstacleBMP;
-  private Bitmap starBMP;
-  private Bitmap terrainBMP;
-  private Bitmap jumperBlueBMP;
-  private Bitmap jumperRedBMP;
-  private Bitmap jumperYellowBMP;
-  private Bitmap jumperNinjaMP;
-  private Bitmap jumperBMP;
+  private Object obstacleAppearance;
+  private Object starAppearance;
+  private Object terrainAppearance;
+  private Object jumperBlueAppearance;
+  private Object jumperRedAppearance;
+  private Object jumperYellowAppearance;
+  private Object jumperNinjaAppearance;
+  private Object jumperAppearance;
 
   private double numOfSeconds;
 
@@ -143,40 +143,40 @@ public class JumpingGameManager extends GameManager {
     Customization cust = game.getCustomization();
     setTheme(cust.getColourScheme());
     if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
-      this.jumperBMP = jumperBlueBMP;
+      this.jumperAppearance = jumperBlueAppearance;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
-      this.jumperBMP = jumperRedBMP;
+      this.jumperAppearance = jumperRedAppearance;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
-      this.jumperBMP = jumperYellowBMP;
+      this.jumperAppearance = jumperYellowAppearance;
     } else {
-      this.jumperBMP = jumperNinjaMP;
+      this.jumperAppearance = jumperNinjaAppearance;
     }
 
 
 
-    terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2, terrainBMP);
+    terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2, terrainAppearance);
     setTerrainPosition(terrain);
     place(terrain);
 
 
-    jumper = new Jumper(200, 100, jumperBMP);
+    jumper = new Jumper(200, 100, jumperAppearance);
     setJumperPosition(jumper);
     place(jumper);
 
 
 
-    obstacle1 = new Obstacle(100, 100, obstacleBMP);
+    obstacle1 = new Obstacle(100, 100, obstacleAppearance);
     setObstaclePosition(obstacle1, getScreenWidth() * 8 / 5);
     place(obstacle1);
-    obstacle2 = new Obstacle(100, 100, obstacleBMP);
+    obstacle2 = new Obstacle(100, 100, obstacleAppearance);
     setObstaclePosition(obstacle2, getScreenWidth() * 3 / 5);
     place(obstacle2);
-    obstacle3 = new Obstacle(100, 100, obstacleBMP);
+    obstacle3 = new Obstacle(100, 100, obstacleAppearance);
     setObstaclePosition(obstacle3, getScreenWidth() * 6 / 5);
     place(obstacle3);
 
 
-    Star star = new Star(80, 80, starBMP);
+    Star star = new Star(80, 80, starAppearance);
 
     setStarPosition(star, getScreenWidth() * 3 / 5);
     place(star);
@@ -265,7 +265,7 @@ public class JumpingGameManager extends GameManager {
           numStars += 1;
         }
         if (jumpingResult.isNeedNewStar()) {
-          Star newStar = new Star(80, 80, starBMP);
+          Star newStar = new Star(80, 80, starAppearance);
           autoSetStarPosition(newStar);
           newItems.add(newStar);
         }
@@ -349,16 +349,16 @@ public class JumpingGameManager extends GameManager {
   }
 
 
-  public void setBMPfiles(Bitmap obstacleBMP, Bitmap starBMP, Bitmap terrainBMP,
-                          Bitmap jumperBlueBMP, Bitmap jumperYellowBMP,
-                          Bitmap jumperRedBMP, Bitmap jumperNinjaBMP){
-    this.obstacleBMP = obstacleBMP;
-    this.starBMP = starBMP;
-    this.terrainBMP = terrainBMP;
-    this.jumperBlueBMP = jumperBlueBMP;
-    this.jumperYellowBMP = jumperYellowBMP;
-    this.jumperRedBMP = jumperRedBMP;
-    this.jumperNinjaMP = jumperNinjaBMP;
+  public void setAppearance(Object obstacleAppearance, Object starAppearance, Object terrainAppearance,
+                            Object jumperBlueAppearance, Object jumperYellowAppearance,
+                            Object jumperRedAppearance, Object jumperNinjaAppearance){
+    this.obstacleAppearance = obstacleAppearance;
+    this.starAppearance = starAppearance;
+    this.terrainAppearance = terrainAppearance;
+    this.jumperBlueAppearance = jumperBlueAppearance;
+    this.jumperYellowAppearance = jumperYellowAppearance;
+    this.jumperRedAppearance = jumperRedAppearance;
+    this.jumperNinjaAppearance = jumperNinjaAppearance;
   }
 
   public double getNumOfSeconds() {

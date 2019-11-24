@@ -24,11 +24,10 @@ import com.example.game1.presentation.view.common.GameView;
 
 public class TappingGameView extends GameView implements View.OnClickListener{
 
-  private Bitmap tappingCircleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-  private Bitmap runnerBMP;
-  private Bitmap yellowPug = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_pug);
-  private Bitmap blueBird = BitmapFactory.decodeResource(getResources(), R.drawable.blue_bird);
-  private Bitmap redFish = BitmapFactory.decodeResource(getResources(), R.drawable.red_fish);
+  private Bitmap tappingCircleBMP;
+  private Bitmap yellowPug;
+  private Bitmap blueBird;
+  private Bitmap redFish;
 
   protected int numTaps;
   protected int numStars;
@@ -36,7 +35,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
   protected int bestResult;
   protected int secondLeft;
   protected int speed;
-  private boolean reachDestination;
+
   private OnClickListener listener;
   private CountDownTimer myTimer;
 
@@ -56,7 +55,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     bestResult = 0;
     secondLeft = 10;
     speed = 0;
-    reachDestination = false;
+
     this.listener = new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -77,6 +76,8 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     charWidth = paintText.measureText("W");
     charHeight = -paintText.ascent() + paintText.descent();
 
+    extractBMPFiles();
+
     gameManager =
             AppManager.getInstance()
                     .getTappingGameManager(
@@ -85,7 +86,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
                             activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
-    ((TappingGameManager)gameManager).setPictures(tappingCircleBMP, yellowPug, blueBird, redFish);
+    ((TappingGameManager)gameManager).setAppearance(tappingCircleBMP, yellowPug, blueBird, redFish);
     gameManager.createGameItems();
     gameManager.startMusic();
 
@@ -123,7 +124,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
                     ((TappingGameManager) gameManager).starDisplayer.setNumStar(numStars);
                   }
                 }
-                reachDestination = !((TappingGameManager) gameManager).isCanRun();
+
               }
 
               @Override
@@ -199,7 +200,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
       double xCoordinate = item.getxCoordinate();
       double yCoordinate = item.getyCoordinate();
       if (appearance.getClass() == String.class) {
-        paintText.setColor(Color.WHITE);
+        paintText.setColor(Color.CYAN);
         canvas.drawText(
                 (String) appearance,
                 (float) xCoordinate * GameView.charWidth,
@@ -216,5 +217,17 @@ public class TappingGameView extends GameView implements View.OnClickListener{
                 paintText);
       }
     }
+  }
+
+  public void extractBMPFiles(){
+    tappingCircleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
+    yellowPug = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_pug);
+    blueBird = BitmapFactory.decodeResource(getResources(), R.drawable.blue_bird);
+    redFish = BitmapFactory.decodeResource(getResources(), R.drawable.red_fish);
+
+    tappingCircleBMP = getResizedBitmap(tappingCircleBMP, getScreenWidth(), getScreenWidth());
+    yellowPug = getResizedBitmap(yellowPug, getScreenWidth()/10, getScreenWidth()/10);
+    blueBird = getResizedBitmap(blueBird, getScreenWidth()/10, getScreenWidth()/10);
+    redFish = getResizedBitmap(redFish, getScreenWidth()/10, getScreenWidth()/10);
   }
 }
