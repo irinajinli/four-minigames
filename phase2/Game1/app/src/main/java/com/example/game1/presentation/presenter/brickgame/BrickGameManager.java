@@ -60,6 +60,7 @@ public class BrickGameManager extends GameManager {
   public static final int BALL_HEIGHT = 80;
   public static final double BALL_VELOCITY_X = 900;
   public static final double BALL_VELOCITY_Y = 900;
+  public static final double STAR_PROBABILITY = 0.8;
   private final int darkColor = Color.rgb(83, 92, 104);
   private final int lightColor = Color.rgb(223, 249, 251);
   /**
@@ -286,12 +287,14 @@ public class BrickGameManager extends GameManager {
         if (broken) {
           outItems.add(brick);
           numBroken++;
-
-          Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBMP);
-          star.setPosition(
-              brick.getxCoordinate() + brick.getWidth() / 2 - STAR_WIDTH/2, brick.getyCoordinate());
-          place(star);
-          stars.add(star);
+          if (Math.random() > STAR_PROBABILITY) {
+            Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBMP);
+            star.setPosition(
+                brick.getxCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
+                brick.getyCoordinate());
+            place(star);
+            stars.add(star);
+          }
         } else if (brick.needChangeAppearance()) {
           brick.setAppearance(brickDamagedBMP);
         }

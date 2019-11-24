@@ -22,6 +22,8 @@ import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 /** The view of the jumping game presented to the user. */
@@ -43,7 +45,9 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   private int skyColorDark;
   private int skyColorLight;
   private int skyColorDefault;
-
+  private List<Bitmap> jumperBlueBmps;
+  private List<Bitmap> jumperRedBmps;
+  private List<Bitmap> jumperYellowBmps;
 
 
   /**
@@ -97,9 +101,9 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
                     obstacleBMP,
                     starBMP,
                     terrainBMP,
-                    jumperBlueBMP,
-                    jumperYellowBMP,
-                    jumperRedBMP);
+                    jumperBlueBmps,
+                    jumperYellowBmps,
+                    jumperRedBmps);
 
 
     extractSkyColors();
@@ -220,6 +224,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
               (int) Math.round(yCoordinate),
               paintText);
     }
+
   }
 
 
@@ -239,6 +244,28 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     jumperRedBMP = getResizedBitmap(jumperRedBMP, 100, 200);
     jumperYellowBMP = getResizedBitmap(jumperYellowBMP, 100, 200);
     jumperNinjaBMP = getResizedBitmap(jumperNinjaBMP, 100, 200);
+  // @TODO don't need to load everything - only the customization that was chosen
+    jumperBlueBmps = new ArrayList<>();
+    jumperRedBmps = new ArrayList<>();
+    jumperYellowBmps = new ArrayList<>();
+
+    int[] jumperBlueFiles = {R.drawable.jumper_blue_1, R.drawable.jumper_blue_2, R.drawable.jumper_blue_3, R.drawable.jumper_blue_4,R.drawable.jumper_blue_5, R.drawable.jumper_blue_6, R.drawable.jumper_blue_7, R.drawable.jumper_blue_8 ,  R.drawable.jumper_blue_9,  R.drawable.jumper_blue_10};
+    int[] jumperRedFiles = {R.drawable.jumper_red_1, R.drawable.jumper_red_2, R.drawable.jumper_red_3, R.drawable.jumper_red_4,R.drawable.jumper_red_5, R.drawable.jumper_red_6, R.drawable.jumper_red_7, R.drawable.jumper_red_8, R.drawable.jumper_red_9 , R.drawable.jumper_red_10 };
+    int[] jumperYellowFiles = {R.drawable.jumper_yellow_1, R.drawable.jumper_yellow_2, R.drawable.jumper_yellow_3, R.drawable.jumper_yellow_4,R.drawable.jumper_yellow_5, R.drawable.jumper_yellow_6, R.drawable.jumper_yellow_7, R.drawable.jumper_yellow_8 };
+
+
+    generateJumperBmps(jumperBlueBmps, jumperBlueFiles);
+    generateJumperBmps(jumperRedBmps, jumperRedFiles);
+    generateJumperBmps(jumperYellowBmps, jumperYellowFiles);
+
+  }
+
+  private void generateJumperBmps(List<Bitmap> dest, int[] files){
+    for (int i: files){
+      Bitmap b = BitmapFactory.decodeResource(getResources(), i);
+      b = getResizedBitmap(b, JumpingGameManager.JUMPER_HEIGHT, JumpingGameManager.JUMPER_HEIGHT);
+      dest.add(b);
+    }
   }
 
   /**

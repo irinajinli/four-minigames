@@ -2,6 +2,7 @@ package com.example.game1.presentation.presenter.jumpinggame;
 
 
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class JumpingGameManager extends GameManager {
   private Obstacle obstacle2;
   private Obstacle obstacle3;
 
-  private double cameraVelocityX = 450;
+  private double cameraVelocityX = 450; //450
   private int numJumped = 0;
   private int numStars = 0;
 
@@ -46,16 +47,29 @@ public class JumpingGameManager extends GameManager {
   private Object obstacleAppearance;
   private Object starAppearance;
   private Object terrainAppearance;
-  private Object jumperBlueAppearance;
-  private Object jumperRedAppearance;
-  private Object jumperYellowAppearance;
-  private Object jumperAppearance;
+  private List<Object> jumperBlueAppearances;
+  private List<Object> jumperRedAppearances;
+  private List<Object> jumperYellowAppearances;
+  private List<Object> jumperAppearances;
 
   private double numOfSeconds;
 
   private final int darkColor = Color.rgb(83, 92, 104);
   private final int lightColor = Color.rgb(223, 249, 251);
 
+  public static final int JUMPER_WIDTH = 100;
+  public static final int JUMPER_HEIGHT = 200;
+
+  private List<Bitmap> jumperSprites;
+  private int currFrame;
+
+  private Object getNextJumperFrame(){
+    currFrame += 1;
+    if (currFrame >= jumperAppearances.size()){
+      currFrame = 0;
+    }
+    return jumperAppearances.get(currFrame);
+  }
   /**
    * Constructs a JumpingGameManager with the specified height, width, game, and activity.
    */
@@ -147,11 +161,11 @@ public class JumpingGameManager extends GameManager {
     Customization cust = game.getCustomization();
 
     if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
-      this.jumperAppearance = jumperBlueAppearance;
+      this.jumperAppearances = jumperBlueAppearances;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
-      this.jumperAppearance = jumperRedAppearance;
+      this.jumperAppearances = jumperRedAppearances;
     } else{ // (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW))
-      this.jumperAppearance = jumperYellowAppearance;
+      this.jumperAppearances = jumperYellowAppearances;
     }
 
     if(cust.getColourScheme().equals(Customization.ColourScheme.DARK)){
@@ -166,11 +180,9 @@ public class JumpingGameManager extends GameManager {
     place(terrain);
 
 
-    jumper = new Jumper(200, 100, jumperAppearance);
+    jumper = new Jumper(JUMPER_HEIGHT, JUMPER_WIDTH, jumperAppearances.get(0));
     setJumperPosition(jumper);
     place(jumper);
-
-
 
     obstacle1 = new Obstacle(100, 100, obstacleAppearance);
     setObstaclePosition(obstacle1, getScreenWidth() * 8 / 5);
@@ -277,6 +289,8 @@ public class JumpingGameManager extends GameManager {
         removeItem(outItem);
       }
     }
+
+    jumper.setAppearance(getNextJumperFrame());
     // TODO: temporary return true; decide when you want to return true/false
     return true;
   }
@@ -330,8 +344,8 @@ public class JumpingGameManager extends GameManager {
   }
 
   public void setJumperPosition(Jumper jumper) {
-    jumper.setyCoordinate(terrain.getyCoordinate() - jumper.getHeight());
-    jumper.setxVelocity(-cameraVelocityX + cameraVelocityX);
+    jumper.setyCoordinate(terrain.getyCoordinate() - JUMPER_HEIGHT);
+    jumper.setxVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
   }
 
   public int getNumTaps() {
@@ -344,14 +358,14 @@ public class JumpingGameManager extends GameManager {
 
 
   public void setAppearance(Object obstacleAppearance, Object starAppearance, Object terrainAppearance,
-                            Object jumperBlueAppearance, Object jumperYellowAppearance,
-                            Object jumperRedAppearance){
+                            List jumperBlueAppearances, List jumperYellowAppearances,
+                            List jumperRedAppearances){
     this.obstacleAppearance = obstacleAppearance;
     this.starAppearance = starAppearance;
     this.terrainAppearance = terrainAppearance;
-    this.jumperBlueAppearance = jumperBlueAppearance;
-    this.jumperYellowAppearance = jumperYellowAppearance;
-    this.jumperRedAppearance = jumperRedAppearance;
+    this.jumperBlueAppearances = jumperBlueAppearances;
+    this.jumperYellowAppearances = jumperYellowAppearances;
+    this.jumperRedAppearances = jumperRedAppearances;
   }
 
   public void setSkyColors(int skyColorDark, int skyColorLight){
