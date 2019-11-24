@@ -109,8 +109,8 @@ public class AppleGameManager extends GameManager {
           dropGameItem(currItem);
         }
 
-        // if currItem is within +/- 1 of basket
-        if (checkIfCaught(currItem)) {
+        // check if currItem should be caught
+        if (currItem.isOverlapping(basket)) {
           removeItem(currItem);
           if (currItem instanceof Apple) {
             catchApple();
@@ -168,7 +168,7 @@ public class AppleGameManager extends GameManager {
     } else if (randint < 10) {
       // spawn new Apple
       // TODO: new constructor call; uncomment out when done testing
-      Apple nextItem = new Apple(3, 3, appleBMP);
+      Apple nextItem = new Apple(80, 80, appleBMP);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
 
