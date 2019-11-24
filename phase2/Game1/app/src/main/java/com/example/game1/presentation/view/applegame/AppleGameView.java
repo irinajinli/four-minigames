@@ -25,10 +25,15 @@ import com.example.game1.presentation.view.common.GameView;
 /** Based on Fish Tank's FishTankView. */
 public class AppleGameView extends GameView {
 
-  // TODO: new
+  // TODO: new for images
   private Bitmap appleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.apple_red);
   private Bitmap starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_7);
   private Bitmap basketBMP = BitmapFactory.decodeResource(getResources(), R.drawable.basket_red);
+
+  // TODO: new for colors
+  private int skyColorDark;
+    private int skyColorLight;
+    private int skyColorDefault;
 
   /** Construct an AppleGameView with the specified Context. */
   public AppleGameView(Context context) {
@@ -39,7 +44,9 @@ public class AppleGameView extends GameView {
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
 
-    // Figure out the size of a letter.
+      // todo: new for skycolor
+
+
     Paint paintText = new Paint();
     paintText.setTextSize(36);
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
@@ -47,19 +54,21 @@ public class AppleGameView extends GameView {
     charWidth = paintText.measureText("W");
     charHeight = -paintText.ascent() + paintText.descent();
 
-    // Use the letter size and screen height to determine the size of the GameManager.
+    // use screen height and width to determine the size of the GameManager
     gameManager =
         AppManager.getInstance()
             .getAppleGameManager((getScreenHeight()), (getScreenWidth()), activity);
     gameManager.startMusic();
 
-    // TODO: new
+    // TODO: new for images
     appleBMP = getResizedBitmap(appleBMP, 80, 80);
     starBMP = getResizedBitmap(starBMP, 80, 80);
     basketBMP = getResizedBitmap(basketBMP, 100, 100);
 
     ((AppleGameManager) gameManager).setBMPFiles(appleBMP, starBMP, basketBMP);
 
+    // TODO: new for colors
+      extractSkyColors();
     gameManager.createGameItems();
     thread.setRunning(true);
     thread.start();
@@ -187,4 +196,11 @@ public class AppleGameView extends GameView {
     bm.recycle();
     return resizedBitmap;
   }
+
+    public void extractSkyColors(){
+        skyColorDark = Color.BLACK;
+        skyColorLight = Color.LTGRAY;
+        skyColorDefault = Color.BLACK;
+
+    }
 }
