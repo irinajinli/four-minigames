@@ -1,6 +1,6 @@
 package com.example.game1.presentation.presenter.tappinggame;
 
-import android.graphics.Bitmap;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,6 +50,10 @@ public class TappingGameManager extends GameManager {
 
 
 
+  private Object skyColor;
+  private Object skyColorLight;
+  private Object skyColorDark;
+
   /**
    * Constructs a TappingGameManager with the specified height, width, game, and activity.
    */
@@ -97,10 +101,13 @@ public class TappingGameManager extends GameManager {
   public void createGameItems() {
 
     Customization cust = game.getCustomization();
-    if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-      Background b = new Background();
-      place(b);
-      b.setPosition(0, 0);
+    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
+//      Background b = new Background();
+//      place(b);
+//      b.setPosition(0, 0);
+      setSkyColor(skyColorDark);
+    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+      setSkyColor(skyColorLight);
     }
     if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
       this.runnerAppearance = blueBirdAppearance;
@@ -109,6 +116,8 @@ public class TappingGameManager extends GameManager {
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
       this.runnerAppearance = yellowPugAppearance;
     }
+
+
     this.tappingCircle = new TappingCircle(tappingCircleAppearance, 0, 0);
     place(tappingCircle);
     this.runner = new Runner(runnerAppearance, 0, 1550);
@@ -131,5 +140,17 @@ public class TappingGameManager extends GameManager {
     super.gameOver();
   }
 
+  public void setSkyColors(Object skyColorDark, Object skyColorLight, Object skyColorDefault){
+    this.skyColorDark = skyColorDark;
+    this.skyColorLight = skyColorLight;
+    this.skyColor = skyColorDefault;
+  }
 
+  public Object getSkyColor() {
+    return skyColor;
+  }
+
+  public void setSkyColor(Object skyColor) {
+    this.skyColor = skyColor;
+  }
 }

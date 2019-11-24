@@ -1,6 +1,7 @@
 package com.example.game1.presentation.presenter.applegame;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,13 @@ public class AppleGameManager extends GameManager {
    * A GameManager for an Apple minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling Apples.
    */
+
+  // TODO: new for colors
+  private int skyColor;
+
+  private int skyColorDark = Color.BLACK;
+  private int skyColorLight = Color.LTGRAY;
+
   private Basket basket;
 
   private PointsCounter points;
@@ -45,30 +53,13 @@ public class AppleGameManager extends GameManager {
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    // TODO: delete this method
+    // TODO: delete this method?
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
-    gib.createBackground();
+//    gib.createBackground();
     gib.createPointsCounter();
     gib.createBasket(basketBMP);
-
+    gib.setTheme(this);
     gib.placeItems(this);
-
-    // TODO: new for testing coordinates
-    //    Apple testApple = new Apple(3, 3, appleBMP);
-    //    place(testApple);
-    //    testApple.setPosition(30, 3);
-    //
-    //    Apple testApple2 = new Apple(3, 3, appleBMP);
-    //    place(testApple2);
-    //    testApple2.setPosition(8, 10);
-    //
-    //    Apple testApple3 = new Apple(3, 3, appleBMP);
-    //    place(testApple3);
-    //    testApple3.setPosition(20, 20);
-    //
-    //    Apple testApple4 = new Apple(3, 3, appleBMP);
-    //    place(testApple4);
-    //    testApple4.setPosition(15, 30);
   }
 
   public void setBasket(Basket basket) {
@@ -162,12 +153,12 @@ public class AppleGameManager extends GameManager {
     // decide whether to spawn an Apple or a Star or nothing
     Random randItem = new Random();
     int randint = randItem.nextInt(200);
-    if (randint < 8) {
+    if (randint < 1) {
       // spawn new Star
       Star nextItem = new Star(80, 80, starBMP);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
-    } else if (randint < 10) {
+    } else if (randint < 9) {
       // spawn new Apple
       // TODO: new constructor call; uncomment out when done testing
       Apple nextItem = new Apple(80, 80, appleBMP);
@@ -186,4 +177,27 @@ public class AppleGameManager extends GameManager {
     game.setNumStars(game.getNumStars() + numCaughtStars);
     super.gameOver();
   }
+
+  // TODO: new
+  public void setSkyColors(int skyColorDark, int skyColorLight, int skyColorDefault){
+      this.skyColorDark = skyColorDark;
+      this.skyColorLight = skyColorLight;
+      this.skyColor = skyColorDefault;
+  }
+
+    public Object getSkyColor() {
+        return skyColor;
+    }
+
+    public void setSkyColor(int skyColor) {
+        this.skyColor = skyColor;
+    }
+
+    public int getSkyColorDark() {
+        return skyColorDark;
+    }
+
+    public int getSkyColorLight() {
+        return skyColorLight;
+    }
 }

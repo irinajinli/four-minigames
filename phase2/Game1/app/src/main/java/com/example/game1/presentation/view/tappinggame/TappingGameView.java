@@ -38,7 +38,9 @@ public class TappingGameView extends GameView implements View.OnClickListener{
 
   private OnClickListener listener;
   private CountDownTimer myTimer;
-
+  private int skyColorDark;
+  private int skyColorLight;
+  private int skyColorDefault;
   /**
    * Create a new fish tank in the context environment.
    *
@@ -76,7 +78,7 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     charWidth = paintText.measureText("W");
     charHeight = -paintText.ascent() + paintText.descent();
 
-    extractBMPFiles();
+
 
     gameManager =
             AppManager.getInstance()
@@ -86,7 +88,11 @@ public class TappingGameView extends GameView implements View.OnClickListener{
                             activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
+      extractBMPFiles();
     ((TappingGameManager)gameManager).setAppearance(tappingCircleBMP, yellowPug, blueBird, redFish);
+    extractSkyColors();
+      ((TappingGameManager)gameManager).setSkyColors(skyColorDark, skyColorLight,skyColorDefault);
+
     gameManager.createGameItems();
     gameManager.startMusic();
 
@@ -231,5 +237,14 @@ public class TappingGameView extends GameView implements View.OnClickListener{
     redFish = getResizedBitmap(redFish, getScreenWidth()/10, getScreenWidth()/10);
   }
 
+  /**
+   * Set the theme of this game
+   *
+   */
+  public void extractSkyColors(){
+    skyColorDark = Color.rgb(83, 92, 104);
+    skyColorLight = Color.rgb(223, 249, 251);
+    skyColorDefault = Color.rgb(204, 255, 255);
 
+  }
 }

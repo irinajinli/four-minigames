@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
+import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 
 import java.util.List;
 
@@ -107,6 +108,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     if (canvas != null) {
       if (gameManager instanceof JumpingGameManager){
         canvas.drawColor((int)((JumpingGameManager) gameManager).getSkyColor());}
+      if (gameManager instanceof TappingGameManager){
+        canvas.drawColor((int)((TappingGameManager) gameManager).getSkyColor());}
+
       // gameManager.draw(canvas);
       List<GameItem> items = gameManager.getGameItems();
       for (GameItem item : items) {
