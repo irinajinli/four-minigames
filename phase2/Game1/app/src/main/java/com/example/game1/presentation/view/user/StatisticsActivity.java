@@ -21,7 +21,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
 
         EditText infoText = findViewById(R.id.infoText);
-        infoText.setText("score = points + stars + taps");
+        infoText.setText(R.string.stats_score_description);
 
         String usernameOfCurrUser = userManager.getCurrentUser().getUserName();
 

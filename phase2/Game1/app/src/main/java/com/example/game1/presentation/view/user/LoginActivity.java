@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             // The username and password were correct. Go to the user menu.
             startActivity(intent);
         } else {
-            messageText.setText("Incorrect username or password");
+            messageText.setText(R.string.login_incorrect_username_or_pass);
         }
 
     }

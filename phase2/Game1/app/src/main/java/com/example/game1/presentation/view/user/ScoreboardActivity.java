@@ -39,12 +39,12 @@ public class ScoreboardActivity extends AppCompatActivity {
         // Create the spinner listener
         spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
-
                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                         // Update header 2
                         Object item = parent.getItemAtPosition(pos);
                         EditText header2 = findViewById(R.id.tableHeader2);
-                        header2.setText(item.toString() + ":");
+                        String headerText = item.toString() + ":";
+                        header2.setText(headerText);
                         // Update the values displayed in the scoreboard
                         displayValues(item.toString());
                     }

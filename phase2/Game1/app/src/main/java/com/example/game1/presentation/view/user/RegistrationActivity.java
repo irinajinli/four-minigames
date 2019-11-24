@@ -46,10 +46,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 // Registration successful. Go to the user menu.
                 startActivity(intent);
             } else {
-                messageText.setText("This username is already taken");
+                messageText.setText(R.string.reg_username_taken);
             }
         } else {
-            messageText.setText("Passwords do not match");
+            messageText.setText(R.string.reg_passwords_do_not_match);
         }
 
     }
