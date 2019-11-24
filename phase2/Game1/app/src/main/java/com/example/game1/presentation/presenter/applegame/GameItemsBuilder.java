@@ -57,7 +57,7 @@ public class GameItemsBuilder {
     appleGameManager.setBasket(basket);
     appleGameManager.place(basket);
     basket.setPosition(
-            appleGameManager.getGridWidth() / 2 + 1, appleGameManager.getGridHeight() - 5);
+            appleGameManager.getGridWidth() / 2, appleGameManager.getGridHeight() - 300);
 
     // pointsCounter
     appleGameManager.setPointsCounter(pointsCounter);

@@ -55,7 +55,7 @@ public class AppleGameView extends GameView {
 
     // TODO: new
     appleBMP = getResizedBitmap(appleBMP, 80, 80);
-    basketBMP = getResizedBitmap(basketBMP, 80, 80);
+    basketBMP = getResizedBitmap(basketBMP, 100, 100);
 
     ((AppleGameManager) gameManager).setBMPFiles(appleBMP, basketBMP);
 
@@ -70,7 +70,7 @@ public class AppleGameView extends GameView {
     Game game = gameManager.getGame();
     game.setNumTaps(game.getNumTaps() + 1);
 
-    double touchX = event.getX() / charWidth;
+    double touchX = event.getX();
     ((AppleGameManager) gameManager).moveBasket((int) touchX);
 
     return true;

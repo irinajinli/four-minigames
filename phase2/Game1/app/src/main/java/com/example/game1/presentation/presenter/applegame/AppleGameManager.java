@@ -52,11 +52,6 @@ public class AppleGameManager extends GameManager {
 
     gib.placeItems(this);
 
-    // TODO: new for basket
-//    this.basket = new Basket(3, 3, basketBMP);
-//    place(basket);
-//    basket.setPosition(Math.round(getGridWidth()) / 2, getGridHeight());
-
     // TODO: new for testing coordinates
 //    Apple testApple = new Apple(3, 3, appleBMP);
 //    place(testApple);

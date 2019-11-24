@@ -15,8 +15,8 @@ public class Basket extends AnimatedGameItem {
     paintText.setColor(Color.LTGRAY);
   }
 
-  public Basket(int width, int height, Object appearance) {
-    super(width, height, appearance);
+  public Basket(int height, int width, Object appearance) {
+    super(height, width, appearance);
   }
 
 //  /**
