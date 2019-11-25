@@ -45,6 +45,19 @@ public abstract class GameItem {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setTextSize(36);
     }
+
+    /**
+     * Constructs a GameItem with the specified coordinates
+     *
+     * @param xCoordinate xCoordinate of the GameItem
+     * @param yCoordinate yCoordinate of the GameItem
+     */
+    public GameItem(double xCoordinate, double yCoordinate) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+    }
+
+
     /**
 
      /**

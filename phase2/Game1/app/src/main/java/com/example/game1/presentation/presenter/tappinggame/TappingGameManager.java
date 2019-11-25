@@ -120,10 +120,10 @@ public class TappingGameManager extends GameManager {
 //    }
 
 
-    this.tappingCircle = new TappingCircle(tappingCircleAppearance, 0, 0);
+    this.tappingCircle = new TappingCircle(0, 0);
     place(tappingCircle);
-    this.runner = new Runner((int)(getScreenWidth() * RUNNER_WIDTH_MULTIPLIER), (int)(getScreenHeight()* RUNNER_HEIGHT_MULTIPLIER), runnerAppearances);
-    runner.setPosition(0, 1550);
+    this.runner = new Runner(0, 1550);
+    //runner.setPosition(0, 1550);
     place(runner);
     this.tapCounter = new TapCounter(10, 30);
     place(tapCounter);
