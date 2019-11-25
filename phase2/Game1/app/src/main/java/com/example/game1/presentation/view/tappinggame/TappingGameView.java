@@ -101,9 +101,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
     generateSkyColor();
 
-    ((TappingGameManager) gameManager)
-        .setAppearance(tappingCircleBmp, yellowPugs, blueBirds, redFishs);
-    ((TappingGameManager) gameManager).setSkyColors(SKY_COLOR_DARK, SKY_COLOR_LIGHT);
+
 
     gameManager.createGameItems();
     gameManager.startMusic();
@@ -176,14 +174,6 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     gameManager.update();
   }
 
-  //  @Override
-  //  public void draw(Canvas canvas) {
-  //    super.draw(canvas);
-  //
-  //    if (canvas != null) {
-  //      gameManager.draw(canvas);
-  //    }
-  //  }
 
   @Override
   public void onClick(View v) {

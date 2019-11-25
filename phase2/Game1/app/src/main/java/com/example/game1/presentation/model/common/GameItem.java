@@ -33,7 +33,7 @@ public abstract class GameItem {
     // variables to be deleted
     /** This item's Paint. */
     public Paint paintText = new Paint();
-    JumpingGameManager jgm;
+
 
     /**
      * Constructs a GameItemOld with the specified appearance.

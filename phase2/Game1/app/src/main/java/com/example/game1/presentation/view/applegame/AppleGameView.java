@@ -69,8 +69,11 @@ public class AppleGameView extends GameView {
 
         // TODO: new for colors
         extractSkyColors();
-        ((AppleGameManager) gameManager).setSkyColors(skyColorDark, skyColorLight, skyColorDefault);
+//        ((AppleGameManager) gameManager).setSkyColors(skyColorDark, skyColorLight, skyColorDefault);
+        setSkyColorDark(skyColorDark);
+        setSkyColorLight(skyColorLight);
 
+        generateSkyColor();
         gameManager.createGameItems();
         thread.setRunning(true);
         thread.start();

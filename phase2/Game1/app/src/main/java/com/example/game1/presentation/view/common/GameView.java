@@ -112,9 +112,6 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
-      // set skyColor
-//      canvas.drawColor((int) gameManager.getSkyColor());
-      // gameManager.draw(canvas);
       canvas.drawColor(getSkyColor());
       List<GameItem> items = gameManager.getGameItems();
       for (GameItem item : items) {
@@ -288,7 +285,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   }
 
   /**
-   * Advances the current appearance of the item so that it moves onto the next "frame"
+   *
    */
   public int updateIndex(int index, int length){
     index += 1;
