@@ -34,7 +34,7 @@ public class PointsCounter extends GameItem {
    */
   public void addPoints(int points) {
     numPoints += points;
-    setAppearance(numPoints + ""); // concatenate to make String
+    setAppearance("apples: " + numPoints);
   }
 
   public Result update(ImportInfo jumpingImportInfo) {
