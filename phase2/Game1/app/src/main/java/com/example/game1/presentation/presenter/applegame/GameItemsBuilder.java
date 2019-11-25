@@ -1,7 +1,5 @@
 package com.example.game1.presentation.presenter.applegame;
 
-import android.graphics.Color;
-
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.applegame.LivesCounter;
@@ -23,11 +21,11 @@ public class GameItemsBuilder {
   }
 
   public void setTheme(AppleGameManager appleGameManager) {
-      if (customization.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-          appleGameManager.setSkyColor(appleGameManager.getSkyColorDark());
-      } else if (customization.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-          appleGameManager.setSkyColor(appleGameManager.getSkyColorLight());
-      }
+    if (customization.getColourScheme().equals(Customization.ColourScheme.DARK)) {
+      appleGameManager.setSkyColor(appleGameManager.getSkyColorDark());
+    } else if (customization.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+      appleGameManager.setSkyColor(appleGameManager.getSkyColorLight());
+    }
   }
 
   public void createBasket(List basketBmps, List basketBlueBmps, List basketYellowBmps) {
@@ -37,9 +35,7 @@ public class GameItemsBuilder {
       this.basket = new Basket(100, 100, basketBlueBmps);
     } else if (customization.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
       this.basket = new Basket(100, 100, basketYellowBmps);
-    }
-    else
-      this.basket = new Basket(100, 100, basketBmps);
+    } else this.basket = new Basket(100, 100, basketBmps);
   }
 
   public void createPointsCounter() {
@@ -65,8 +61,7 @@ public class GameItemsBuilder {
     // basket
     appleGameManager.setBasket(basket);
     appleGameManager.place(basket);
-    basket.setPosition(
-            appleGameManager.getGridWidth() / 2, appleGameManager.getGridHeight() - 300);
+    basket.setPosition(appleGameManager.getGridWidth() / 2, appleGameManager.getGridHeight() - 300);
 
     // pointsCounter
     appleGameManager.setPointsCounter(pointsCounter);

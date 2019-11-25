@@ -5,7 +5,6 @@ import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
@@ -58,8 +57,12 @@ public class AppleGameManager extends GameManager {
   }
 
   // TODO: new
-  public void setBMPFiles(List<Bitmap> appleBmps, List<Bitmap> starBmps, List<Bitmap> basketBmps,
-                          List<Bitmap> basketBlueBmps, List<Bitmap> basketYellowBmps) {
+  public void setBMPFiles(
+      List<Bitmap> appleBmps,
+      List<Bitmap> starBmps,
+      List<Bitmap> basketBmps,
+      List<Bitmap> basketBlueBmps,
+      List<Bitmap> basketYellowBmps) {
     this.appleBmps = appleBmps;
     this.starBmps = starBmps;
     this.basketBmps = basketBmps;
