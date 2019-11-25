@@ -107,9 +107,7 @@ public class AppleGameView extends GameView {
       }
     }
 
-    paintText = new Paint();
-    paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    paintText.setTextSize(800);
+
     if (item instanceof Background) {
       Rect backgroundRect = new Rect(0, 0, 999999, 999999);
       Paint backgroundPaint = new Paint();
@@ -119,7 +117,11 @@ public class AppleGameView extends GameView {
       backgroundPaint.setColor(Color.DKGRAY);
       backgroundPaint.setStyle(Paint.Style.FILL);
       canvas.drawRect(backgroundRect, backgroundPaint);
-    } else {
+    } else { // String appearance
+
+      paintText = new Paint();
+      paintText.setTypeface(Typeface.DEFAULT_BOLD);
+      paintText.setTextSize(36);
 
       Object appearance = item.getAppearance();
       double xCoordinate = item.getXCoordinate();

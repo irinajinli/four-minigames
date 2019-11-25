@@ -64,6 +64,6 @@ public class GameItemsBuilder {
     // pointsCounter
     appleGameManager.setPointsCounter(pointsCounter);
     appleGameManager.place(pointsCounter);
-    pointsCounter.setPosition(appleGameManager.getGridWidth() / 2, appleGameManager.getGridHeight() - 300);
+    pointsCounter.setPosition(appleGameManager.getGridWidth() - 250, 100);
   }
 }
