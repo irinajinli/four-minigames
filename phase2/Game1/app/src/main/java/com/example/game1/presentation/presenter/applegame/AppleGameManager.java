@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
@@ -39,6 +40,8 @@ public class AppleGameManager extends GameManager {
   private List<Bitmap> appleBmps;
   private List<Bitmap> starBmps;
   private List<Bitmap> basketBmps;
+  private List<Bitmap> basketBlueBmps;
+  private List<Bitmap> basketYellowBmps;
 
   public static final int APPLE_WIDTH = 100;
   public static final int APPLE_HEIGHT = 100;
@@ -53,10 +56,13 @@ public class AppleGameManager extends GameManager {
   }
 
   // TODO: new
-  public void setBMPFiles(List<Bitmap> appleBmps, List<Bitmap> starBmps, List<Bitmap> basketBmps) {
+  public void setBMPFiles(List<Bitmap> appleBmps, List<Bitmap> starBmps, List<Bitmap> basketBmps,
+                          List<Bitmap> basketBlueBmps, List<Bitmap> basketYellowBmps) {
     this.appleBmps = appleBmps;
     this.starBmps = starBmps;
     this.basketBmps = basketBmps;
+    this.basketBlueBmps = basketBlueBmps;
+    this.basketYellowBmps = basketYellowBmps;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -64,7 +70,9 @@ public class AppleGameManager extends GameManager {
     // TODO: delete this method?
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
     gib.createPointsCounter();
-    gib.createBasket(basketBmps);
+    // TODO: construct basket with proper basket colour BMP
+    gib.createBasket(basketBmps, basketBlueBmps, basketYellowBmps);
+
     gib.setTheme(this);
     gib.placeItems(this);
   }

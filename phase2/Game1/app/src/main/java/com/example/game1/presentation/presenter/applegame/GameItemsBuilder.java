@@ -11,6 +11,7 @@ import java.util.List;
 
 public class GameItemsBuilder {
   private Customization customization;
+  // TODO: delete background
   private Background background;
   private Basket basket;
   private PointsCounter pointsCounter;
@@ -27,16 +28,16 @@ public class GameItemsBuilder {
       }
   }
 
-  public void createBasket(List basketBmps) {
+  public void createBasket(List basketBmps, List basketBlueBmps, List basketYellowBmps) {
     this.basket = new Basket(100, 100, basketBmps);
     // set color of basket
-//    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-//      basket.setColor(Color.BLUE);
-//    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-//      basket.setColor(Color.RED);
-//    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-//      basket.setColor(Color.YELLOW);
-//    }
+    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
+      this.basket = new Basket(100, 100, basketBlueBmps);
+    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
+      this.basket = new Basket(100, 100, basketYellowBmps);
+    }
+    else
+      this.basket = new Basket(100, 100, basketBmps);
   }
 
   public void createPointsCounter() {
