@@ -16,8 +16,9 @@ public abstract class AnimatedGameItem extends GameItem {
     private double yAcceleration;
     /** This item's customization info passed by view. */
     //private Object appearance;
-
+    /** The current frame this object's appearance is at */
     private int currentFrame = 0;
+    /** The various appearances of this object's animation (one per frame)*/
     private List appearances;
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
@@ -28,6 +29,9 @@ public abstract class AnimatedGameItem extends GameItem {
         super(appearance);
     }
 
+    /**
+     * Advances the current appearance of the item so that it moves onto the next "frame"
+     */
     private void advanceFrame(){
         currentFrame += 1;
         if (currentFrame >= appearances.size()){

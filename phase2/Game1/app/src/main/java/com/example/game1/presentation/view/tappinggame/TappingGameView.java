@@ -23,12 +23,15 @@ import com.example.game1.R;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameView;
 
-public class TappingGameView extends GameView implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    private Bitmap tappingCircleBMP;
-    private Bitmap yellowPug;
-    private Bitmap blueBird;
-    private Bitmap redFish;
+public class TappingGameView extends GameView implements View.OnClickListener{
+
+    private Bitmap tappingCircleBmp;
+    private List<Bitmap> yellowPugs;
+    private List<Bitmap> blueBirds;
+    private List<Bitmap> redFishs;
 
     protected int numTaps;
     protected int numStars;
@@ -39,9 +42,8 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
     private OnClickListener listener;
     private CountDownTimer myTimer;
-    private int skyColorDark;
-    private int skyColorLight;
-    private int skyColorDefault;
+    private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
+    private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
 
     /**
      * Create a new fish tank in the context environment.
@@ -63,9 +65,9 @@ public class TappingGameView extends GameView implements View.OnClickListener {
         this.listener = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (gameStarted) {
+                if (gameStarted){
                     numTaps++;
-                    ((TappingGameManager) gameManager).tapCounter.setNumTaps(numTaps);
+                    ((TappingGameManager)gameManager).tapCounter.setNumTaps(numTaps);
                 }
             }
         };
@@ -80,6 +82,8 @@ public class TappingGameView extends GameView implements View.OnClickListener {
         charWidth = paintText.measureText("W");
         charHeight = -paintText.ascent() + paintText.descent();
 
+
+
         gameManager = AppManager.getInstance().buildGameManager(
                 Game.GameName.TAPPING,
                 (int) (getScreenHeight() / charHeight),
@@ -87,10 +91,10 @@ public class TappingGameView extends GameView implements View.OnClickListener {
                 activity);
         gameManager.setScreenHeight(this.getScreenHeight());
         gameManager.setScreenWidth(this.getScreenWidth());
-        extractBMPFiles();
-        ((TappingGameManager) gameManager).setAppearance(tappingCircleBMP, yellowPug, blueBird, redFish);
-        extractSkyColors();
-        ((TappingGameManager) gameManager).setSkyColors(skyColorDark, skyColorLight, skyColorDefault);
+        extractBmpFiles();
+        ((TappingGameManager)gameManager).setAppearance(tappingCircleBmp, yellowPugs, blueBirds, redFishs);
+        ((TappingGameManager)gameManager).setSkyColors(SKY_COLOR_DARK, SKY_COLOR_LIGHT);
+
         gameManager.createGameItems();
         gameManager.startMusic();
 
@@ -142,7 +146,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
                         if (numTaps > bestResult) {
                             bestResult = numTaps;
                         }
-                        if (!gameStarted) {
+                        if (!gameStarted){
                             ((TappingGameManager) gameManager).gameOver(numTaps, numStars);
                         }
                     }
@@ -158,9 +162,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
         myTimer.cancel();
     }
 
-    /**
-     * Update the fish tank.
-     */
+    /** Update the fish tank. */
     public void update() {
         gameManager.update();
     }
@@ -175,10 +177,10 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 //  }
 
     @Override
-    public void onClick(View v) {
-        if (gameStarted) {
+    public void onClick(View v){
+        if (gameStarted){
             numTaps++;
-            ((TappingGameManager) gameManager).tapCounter.setNumTaps(numTaps);
+            ((TappingGameManager)gameManager).tapCounter.setNumTaps(numTaps);
         }
     }
 
@@ -225,25 +227,26 @@ public class TappingGameView extends GameView implements View.OnClickListener {
         }
     }
 
-    public void extractBMPFiles() {
-        tappingCircleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-        yellowPug = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_pug);
-        blueBird = BitmapFactory.decodeResource(getResources(), R.drawable.blue_bird);
-        redFish = BitmapFactory.decodeResource(getResources(), R.drawable.red_fish);
+    public void extractBmpFiles(){
+        tappingCircleBmp = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
+        Bitmap yellowPug = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_pug);
+        Bitmap blueBird = BitmapFactory.decodeResource(getResources(), R.drawable.blue_bird);
+        Bitmap redFish = BitmapFactory.decodeResource(getResources(), R.drawable.red_fish);
+        int runnerWidth = (int)(getScreenWidth() * TappingGameManager.RUNNER_WIDTH_MULTIPLIER);
+        int runnerHeight = (int)(getScreenWidth() * TappingGameManager.RUNNER_HEIGHT_MULTIPLIER);
+        tappingCircleBmp = getResizedBitmap(tappingCircleBmp, getScreenWidth(), getScreenWidth());
+        yellowPug = getResizedBitmap(yellowPug, runnerWidth, runnerHeight);
+        blueBird = getResizedBitmap(blueBird, runnerWidth, runnerHeight);
+        redFish = getResizedBitmap(redFish, runnerWidth, runnerHeight);
 
-        tappingCircleBMP = getResizedBitmap(tappingCircleBMP, getScreenWidth(), getScreenWidth());
-        yellowPug = getResizedBitmap(yellowPug, getScreenWidth() / 10, getScreenWidth() / 10);
-        blueBird = getResizedBitmap(blueBird, getScreenWidth() / 10, getScreenWidth() / 10);
-        redFish = getResizedBitmap(redFish, getScreenWidth() / 10, getScreenWidth() / 10);
+        yellowPugs = new ArrayList<>();
+        blueBirds = new ArrayList<>();
+        redFishs = new ArrayList<>();
+
+        yellowPugs.add(yellowPug);
+        blueBirds.add(blueBird);
+        redFishs.add(redFish);
     }
 
-    /**
-     * Set the theme of this game
-     */
-    public void extractSkyColors() {
-        skyColorDark = Color.rgb(83, 92, 104);
-        skyColorLight = Color.rgb(223, 249, 251);
-        skyColorDefault = Color.rgb(204, 255, 255);
 
-    }
 }
