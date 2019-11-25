@@ -136,6 +136,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     double yCoordinate = item.getYCoordinate();
     if (appearance.getClass() == String.class) {
 
+      // TODO NEW: remove * charWidth?
       canvas.drawText(
           (String) appearance,
           (float) xCoordinate * GameView.charWidth,

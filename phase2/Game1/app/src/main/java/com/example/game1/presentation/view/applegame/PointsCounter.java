@@ -1,17 +1,13 @@
 package com.example.game1.presentation.view.applegame;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 
-import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
-import com.example.game1.presentation.view.common.GameItemOld;
-import com.example.game1.presentation.view.common.GameView;
 
 /** A counter for points earned. */
-public class PointsCounter extends AnimatedGameItem {
+public class PointsCounter extends GameItem {
 
   /** How many points have been counted. */
   private int numPoints = 0;
@@ -21,25 +17,6 @@ public class PointsCounter extends AnimatedGameItem {
     super("apples: 0");
     paintText.setColor(Color.WHITE);
   }
-
-  /** Move this GameItemOld within its GameManager. */
-  @Override
-  public void move() {
-    // TODO: empty method? fix?
-  }
-
-//  /**
-//   * Draw this PointsCounter.
-//   *
-//   * @param canvas the canvas on which to draw
-//   * @param s the String to draw
-//   * @param x the x coordinate at which to draw
-//   * @param y the y coordinate at which to draw
-//   */
-//  @Override
-//  public void drawString(Canvas canvas, String s, int x, int y) {
-//    canvas.drawText(s, x * GameView.charWidth, y * GameView.charHeight, super.paintText);
-//  }
 
   /**
    * Get numPoints.
@@ -63,7 +40,8 @@ public class PointsCounter extends AnimatedGameItem {
   public Result update(ImportInfo jumpingImportInfo) {
     return (new Result());
   }
-  public Result animate(ImportInfo importInfo){return new Result();}
 
-
+  public Result animate(ImportInfo importInfo) {
+    return new Result();
+  }
 }

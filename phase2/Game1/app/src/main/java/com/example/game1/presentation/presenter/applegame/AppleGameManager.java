@@ -68,9 +68,9 @@ public class AppleGameManager extends GameManager {
     gib.setTheme(this);
     gib.placeItems(this);
     // TODO: trying to fix pointscounter
-      points = new PointsCounter();
-      place(points);
-      points.setPosition(getGridWidth() / 2, getGridHeight() - 300);
+    points = new PointsCounter();
+    place(points);
+    points.setPosition(getGridWidth() / 2, getGridHeight() - 400);
   }
 
   public void setBasket(Basket basket) {
@@ -190,25 +190,25 @@ public class AppleGameManager extends GameManager {
   }
 
   // TODO: new
-  public void setSkyColors(int skyColorDark, int skyColorLight, int skyColorDefault){
-      this.skyColorDark = skyColorDark;
-      this.skyColorLight = skyColorLight;
-      this.skyColor = skyColorDefault;
+  public void setSkyColors(int skyColorDark, int skyColorLight, int skyColorDefault) {
+    this.skyColorDark = skyColorDark;
+    this.skyColorLight = skyColorLight;
+    this.skyColor = skyColorDefault;
   }
 
-    public Object getSkyColor() {
-        return skyColor;
-    }
+  public Object getSkyColor() {
+    return skyColor;
+  }
 
-    public void setSkyColor(int skyColor) {
-        this.skyColor = skyColor;
-    }
+  public void setSkyColor(int skyColor) {
+    this.skyColor = skyColor;
+  }
 
-    public int getSkyColorDark() {
-        return skyColorDark;
-    }
+  public int getSkyColorDark() {
+    return skyColorDark;
+  }
 
-    public int getSkyColorLight() {
-        return skyColorLight;
-    }
+  public int getSkyColorLight() {
+    return skyColorLight;
+  }
 }
