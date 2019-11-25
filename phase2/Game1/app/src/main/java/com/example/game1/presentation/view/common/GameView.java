@@ -3,6 +3,7 @@ package com.example.game1.presentation.view.common;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -159,4 +160,18 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     bm.recycle();
     return resizedBitmap;
   }
+
+  public Bitmap getNewBitmap(int resource, int width, int height){
+    Bitmap newBmp = BitmapFactory.decodeResource(getResources(), resource);
+    newBmp = getResizedBitmap(newBmp, width, height);
+    return newBmp;
+  }
+  public void generateAnimatedBmps(List<Bitmap> dest, int[] files, int width, int height){
+    //dest = new ArrayList<>();
+    for (int i: files){
+      dest.add(getNewBitmap(i, width, height));
+    }
+  }
+
+  public abstract void extractBmpFiles();
 }

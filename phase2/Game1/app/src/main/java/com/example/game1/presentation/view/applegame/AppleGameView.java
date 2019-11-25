@@ -28,9 +28,9 @@ import java.util.List;
 public class AppleGameView extends GameView {
 
   // TODO: new for images
-  private Bitmap appleBmp = BitmapFactory.decodeResource(getResources(), R.drawable.apple_red);
-  private Bitmap starBmp = BitmapFactory.decodeResource(getResources(), R.drawable.star_7);
-  private Bitmap basketBmp = BitmapFactory.decodeResource(getResources(), R.drawable.basket_red);
+  private List<Bitmap> appleBmps;
+  private List<Bitmap> starBmps;
+  private List<Bitmap> basketBmps;
 
   // TODO: new for colors
   private int skyColorDark;
@@ -61,17 +61,7 @@ public class AppleGameView extends GameView {
             .getAppleGameManager((getScreenHeight()), (getScreenWidth()), activity);
     gameManager.startMusic();
 
-    // TODO: new for images
-    appleBmp = getResizedBitmap(appleBmp, 80, 80);
-    starBmp = getResizedBitmap(starBmp, 80, 80);
-    basketBmp = getResizedBitmap(basketBmp, 100, 100);
-    // animated items require a list of bitmaps for each of their frames
-    List<Bitmap> appleBmps = new ArrayList<Bitmap>();
-    List<Bitmap> starBmps = new ArrayList<Bitmap>();
-    List<Bitmap> basketBmps = new ArrayList<Bitmap>();
-    appleBmps.add(appleBmp);
-    starBmps.add(starBmp);
-    basketBmps.add(basketBmp);
+    extractBmpFiles();
 
     ((AppleGameManager) gameManager).setBMPFiles(appleBmps, starBmps, basketBmps);
 
@@ -170,6 +160,21 @@ public class AppleGameView extends GameView {
         //      }
       }
     }
+  }
+
+  public void extractBmpFiles(){
+    int[] appleFiles = {R.drawable.apple_red};
+    int[] starFiles = {R.drawable.star_6};
+    int[] basketFiles = {R.drawable.basket_red};
+
+    // animated items require a list of bitmaps for each of their frames
+    appleBmps = new ArrayList<Bitmap>();
+    starBmps = new ArrayList<Bitmap>();
+    basketBmps = new ArrayList<Bitmap>();
+
+    generateAnimatedBmps(appleBmps, appleFiles, AppleGameManager.APPLE_WIDTH, AppleGameManager.APPLE_HEIGHT);
+    generateAnimatedBmps(starBmps, starFiles, AppleGameManager.STAR_WIDTH, AppleGameManager.STAR_HEIGHT);
+    generateAnimatedBmps(basketBmps, basketFiles, AppleGameManager.BASKET_WIDTH, AppleGameManager.BASKET_HEIGHT);
   }
 
   public void extractSkyColors() {

@@ -40,6 +40,13 @@ public class AppleGameManager extends GameManager {
   private List<Bitmap> starBmps;
   private List<Bitmap> basketBmps;
 
+  public static final int APPLE_WIDTH = 100;
+  public static final int APPLE_HEIGHT = 100;
+  public static final int STAR_WIDTH = 80;
+  public static final int STAR_HEIGHT = 80;
+  public static final int BASKET_WIDTH = 100;
+  public static final int BASKET_HEIGHT = 100;
+
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);

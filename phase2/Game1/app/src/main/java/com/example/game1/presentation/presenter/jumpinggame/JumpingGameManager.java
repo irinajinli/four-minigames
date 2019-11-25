@@ -59,6 +59,10 @@ public class JumpingGameManager extends GameManager {
 
   public static final int JUMPER_WIDTH = 100;
   public static final int JUMPER_HEIGHT = 200;
+  public static final int OBSTACLE_WIDTH = 100;
+  public static final int OBSTACLE_HEIGHT = 100;
+  public static final int STAR_WIDTH = 80;
+  public static final int STAR_HEIGHT = 80;
 
   private List<Bitmap> jumperSprites;
   private int currFrame;

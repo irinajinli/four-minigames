@@ -32,7 +32,7 @@ public abstract class AnimatedGameItem extends GameItem {
     /**
      * Advances the current appearance of the item so that it moves onto the next "frame"
      */
-    private void advanceFrame(){
+    public void advanceFrame(){
         currentFrame += 1;
         if (currentFrame >= appearances.size()){
             currentFrame = 0;

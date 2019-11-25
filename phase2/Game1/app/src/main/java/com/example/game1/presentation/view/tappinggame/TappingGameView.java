@@ -228,24 +228,21 @@ public class TappingGameView extends GameView implements View.OnClickListener{
   }
 
   public void extractBmpFiles(){
-    tappingCircleBmp = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-    Bitmap yellowPug = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_pug);
-    Bitmap blueBird = BitmapFactory.decodeResource(getResources(), R.drawable.blue_bird);
-    Bitmap redFish = BitmapFactory.decodeResource(getResources(), R.drawable.red_fish);
+    tappingCircleBmp = getNewBitmap(R.drawable.circle, getScreenWidth(), getScreenHeight()/2);
     int runnerWidth = (int)(getScreenWidth() * TappingGameManager.RUNNER_WIDTH_MULTIPLIER);
     int runnerHeight = (int)(getScreenWidth() * TappingGameManager.RUNNER_HEIGHT_MULTIPLIER);
-    tappingCircleBmp = getResizedBitmap(tappingCircleBmp, getScreenWidth(), getScreenWidth());
-    yellowPug = getResizedBitmap(yellowPug, runnerWidth, runnerHeight);
-    blueBird = getResizedBitmap(blueBird, runnerWidth, runnerHeight);
-    redFish = getResizedBitmap(redFish, runnerWidth, runnerHeight);
+
+    int[] yellowPugFiles ={R.drawable.dog_yellow_1, R.drawable.dog_yellow_2, R.drawable.dog_yellow_3, R.drawable.dog_yellow_4, R.drawable.dog_yellow_5, R.drawable.dog_yellow_6, R.drawable.dog_yellow_7, R.drawable.dog_yellow_8};
+    int[] blueBirdFiles = {R.drawable.bird_blue_1, R.drawable.bird_blue_2, R.drawable.bird_blue_3,R.drawable.bird_blue_4 };//R.drawable.blue_bird};
+    int[] redFishsFiles = {R.drawable.fish_red_1, R.drawable.fish_red_2, R.drawable.fish_red_3, R.drawable.fish_red_4, R.drawable.fish_red_5, R.drawable.fish_red_6};
 
     yellowPugs = new ArrayList<>();
     blueBirds = new ArrayList<>();
     redFishs = new ArrayList<>();
 
-    yellowPugs.add(yellowPug);
-    blueBirds.add(blueBird);
-    redFishs.add(redFish);
+    generateAnimatedBmps(yellowPugs, yellowPugFiles, runnerWidth, runnerHeight);
+    generateAnimatedBmps(blueBirds, blueBirdFiles, runnerWidth, runnerHeight);
+    generateAnimatedBmps(redFishs, redFishsFiles, runnerWidth, runnerHeight);
   }
 
 

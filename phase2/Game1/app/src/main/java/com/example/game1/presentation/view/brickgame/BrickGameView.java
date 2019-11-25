@@ -82,32 +82,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     gameManager.setScreenWidth(this.getScreenWidth());
     ((BrickGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
-    Bitmap ballBmp = BitmapFactory.decodeResource(getResources(), R.drawable.ball_blue);
-    Bitmap starBmp = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
-    brickBmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue);
-    brickDamagedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue_damaged);
-    Bitmap paddleBlueBmp = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_blue);
-    Bitmap paddleRedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_red);
-    Bitmap paddleYellowBmp = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_yellow);
-
-    ballBmp = getResizedBitmap(ballBmp, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
-    starBmp = getResizedBitmap(starBmp, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
-    brickBmp = getResizedBitmap( brickBmp, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
-    brickDamagedBmp = getResizedBitmap( brickDamagedBmp, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
-    paddleBlueBmp = getResizedBitmap(paddleBlueBmp, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
-    paddleRedBmp = getResizedBitmap(paddleRedBmp, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
-    paddleYellowBmp = getResizedBitmap(paddleYellowBmp, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
-
-    ballBmps = new ArrayList<Bitmap>();
-    ballBmps.add(ballBmp);
-    starBmps = new ArrayList<Bitmap>();
-    starBmps.add(starBmp);
-    paddleBlueBmps = new ArrayList<Bitmap>();
-    paddleBlueBmps.add(paddleBlueBmp);
-    paddleRedBmps= new ArrayList<Bitmap>();
-    paddleRedBmps.add(paddleRedBmp);
-    paddleYellowBmps = new ArrayList<Bitmap>();
-    paddleYellowBmps.add(paddleYellowBmp);
+    extractBmpFiles();
 
     ((BrickGameManager) gameManager)
             .setBmpfiles(
@@ -204,30 +179,29 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   }
 
 
-  /**
-   * code taken from: https://stackoverflow.com/questions/4837715/how-to-resize-a-bitmap-in-android
-   *
-   * @param bm
-   * @param newWidth
-   * @param newHeight
-   * @return
-   */
-  public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
-    int width = bm.getWidth();
-    int height = bm.getHeight();
-    float scaleWidth = ((float) newWidth) / width;
-    float scaleHeight = ((float) newHeight) / height;
-    // CREATE A MATRIX FOR THE MANIPULATION
-    Matrix matrix = new Matrix();
-    // RESIZE THE BIT MAP
-    matrix.postScale(scaleWidth, scaleHeight);
 
-    // "RECREATE" THE NEW BITMAP
-    Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-    bm.recycle();
-    return resizedBitmap;
+  public void extractBmpFiles(){
 
+    brickBmp = getNewBitmap(R.drawable.brick_blue, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
+    brickDamagedBmp = getNewBitmap(R.drawable.brick_blue_damaged, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
 
+    int[] ballFiles = {R.drawable.ball_blue};
+    int[]starFiles = {R.drawable.star_6};
+    int[] paddleBlueFiles = {R.drawable.paddle_blue};
+    int[] paddleRedFiles = {R.drawable.paddle_red};
+    int[] paddleYellowFiles = {R.drawable.paddle_yellow};
+
+    ballBmps = new ArrayList<Bitmap>();
+    starBmps = new ArrayList<Bitmap>();
+    paddleBlueBmps = new ArrayList<Bitmap>();
+    paddleRedBmps= new ArrayList<Bitmap>();
+    paddleYellowBmps = new ArrayList<Bitmap>();
+
+    generateAnimatedBmps(ballBmps, ballFiles, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
+    generateAnimatedBmps(starBmps, starFiles, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
+    generateAnimatedBmps(paddleBlueBmps, paddleBlueFiles, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
+    generateAnimatedBmps(paddleRedBmps, paddleRedFiles, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
+    generateAnimatedBmps(paddleYellowBmps, paddleYellowFiles, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
   }
 
 }

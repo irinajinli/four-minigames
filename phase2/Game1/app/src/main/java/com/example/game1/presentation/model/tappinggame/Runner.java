@@ -56,10 +56,14 @@ public class Runner extends AnimatedGameItem {
    * @return
    */
   public boolean move(int width) {
+
     if (getXCoordinate() + speed  < width - 100) {
       double newX = getXCoordinate() + speed ;
       setPosition(newX, getYCoordinate());
       canRun = true;
+      if (speed > 0){
+        advanceFrame();
+      }
       return canRun;
     }
     else{

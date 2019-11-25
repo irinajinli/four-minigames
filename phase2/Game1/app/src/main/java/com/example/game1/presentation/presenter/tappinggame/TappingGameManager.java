@@ -48,8 +48,8 @@ public class TappingGameManager extends GameManager {
 
   private boolean canRun;
 
-  public static final double RUNNER_WIDTH_MULTIPLIER = 0.1;
-  public static final double RUNNER_HEIGHT_MULTIPLIER = 0.1;
+  public static final double RUNNER_WIDTH_MULTIPLIER = 0.2;
+  public static final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
 
   private Object skyColor;
   private Object skyColorDark;

@@ -220,44 +220,31 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
 
   public void extractBmpFiles(){
-
-    Bitmap obstacleBmp = getNewBitmap(R.drawable.wooden_blocks_1, 100, 100);
-    Bitmap starBmp = getNewBitmap(R.drawable.star_6, 80, 80);
     terrainBmp = getNewBitmap( R.drawable.grass, getScreenWidth(), getScreenHeight()/2);
 
-    
-
     obstacleBmps = new ArrayList<>();
-    obstacleBmps.add(obstacleBmp);
     starBmps = new ArrayList<>();
-    starBmps.add(starBmp);
   // @TODO don't need to load everything - only the customization that was chosen
     jumperBlueBmps = new ArrayList<>();
     jumperRedBmps = new ArrayList<>();
     jumperYellowBmps = new ArrayList<>();
 
+    int[] obstacleFiles = {R.drawable.wooden_blocks_1};
+    int[] starFiles = {R.drawable.star_6};
+    //int[] starFiles = {R.drawable.glowing_star_1, R.drawable.glowing_star_1, R.drawable.glowing_star_1,R.drawable.glowing_star_1, R.drawable.glowing_star_1, R.drawable.glowing_star_2, R.drawable.glowing_star_2, R.drawable.glowing_star_2, R.drawable.glowing_star_2, R.drawable.glowing_star_2, R.drawable.glowing_star_3, R.drawable.glowing_star_3, R.drawable.glowing_star_3, R.drawable.glowing_star_3, R.drawable.glowing_star_3};
     int[] jumperBlueFiles = {R.drawable.jumper_blue_1, R.drawable.jumper_blue_2, R.drawable.jumper_blue_3, R.drawable.jumper_blue_4,R.drawable.jumper_blue_5, R.drawable.jumper_blue_6, R.drawable.jumper_blue_7, R.drawable.jumper_blue_8 ,  R.drawable.jumper_blue_9,  R.drawable.jumper_blue_10};
     int[] jumperRedFiles = {R.drawable.jumper_red_1, R.drawable.jumper_red_2, R.drawable.jumper_red_3, R.drawable.jumper_red_4,R.drawable.jumper_red_5, R.drawable.jumper_red_6, R.drawable.jumper_red_7, R.drawable.jumper_red_8, R.drawable.jumper_red_9 , R.drawable.jumper_red_10 };
     int[] jumperYellowFiles = {R.drawable.jumper_yellow_1, R.drawable.jumper_yellow_2, R.drawable.jumper_yellow_3, R.drawable.jumper_yellow_4,R.drawable.jumper_yellow_5, R.drawable.jumper_yellow_6, R.drawable.jumper_yellow_7, R.drawable.jumper_yellow_8 };
 
-
+    generateAnimatedBmps(obstacleBmps, obstacleFiles, JumpingGameManager.OBSTACLE_WIDTH, JumpingGameManager.OBSTACLE_HEIGHT);
+    generateAnimatedBmps(starBmps, starFiles, JumpingGameManager.STAR_WIDTH, JumpingGameManager.STAR_HEIGHT);
     generateAnimatedBmps(jumperBlueBmps, jumperBlueFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
     generateAnimatedBmps(jumperRedBmps, jumperRedFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
     generateAnimatedBmps(jumperYellowBmps, jumperYellowFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
 
   }
 
-  private Bitmap getNewBitmap(int resource, int width, int height){
-    Bitmap newBmp = BitmapFactory.decodeResource(getResources(), resource);
-    newBmp = getResizedBitmap(newBmp, width, height);
-    return newBmp;
-  }
-  private void generateAnimatedBmps(List<Bitmap> dest, int[] files, int width, int height){
-    //dest = new ArrayList<>();
-    for (int i: files){
-      dest.add(getNewBitmap(i, width, height));
-    }
-  }
+
 
 
 
