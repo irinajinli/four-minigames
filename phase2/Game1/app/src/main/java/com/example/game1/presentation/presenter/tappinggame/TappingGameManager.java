@@ -102,28 +102,28 @@ public class TappingGameManager extends GameManager {
 
   public void createGameItems() {
 
-    Customization cust = game.getCustomization();
-    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-//      Background b = new Background();
-//      place(b);
-//      b.setPosition(0, 0);
-      setSkyColor(skyColorDark);
-    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-      setSkyColor(skyColorLight);
-    }
-    if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
-      this.runnerAppearances = blueBirdAppearances;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
-      this.runnerAppearances = redFishAppearances;
-    } else{ // if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
-      this.runnerAppearances = yellowPugAppearances;
-    }
+//    Customization cust = game.getCustomization();
+//    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
+////      Background b = new Background();
+////      place(b);
+////      b.setPosition(0, 0);
+//      setSkyColor(skyColorDark);
+//    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+//      setSkyColor(skyColorLight);
+//    }
+//    if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
+//      this.runnerAppearances = blueBirdAppearances;
+//    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
+//      this.runnerAppearances = redFishAppearances;
+//    } else{ // if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
+//      this.runnerAppearances = yellowPugAppearances;
+//    }
 
 
-    this.tappingCircle = new TappingCircle(tappingCircleAppearance, 0, 0);
+    this.tappingCircle = new TappingCircle(0, 0);
     place(tappingCircle);
-    this.runner = new Runner((int)(getScreenWidth() * RUNNER_WIDTH_MULTIPLIER), (int)(getScreenHeight()* RUNNER_HEIGHT_MULTIPLIER), runnerAppearances);
-    runner.setPosition(0, 1550);
+    this.runner = new Runner(0, 1550);
+    //runner.setPosition(0, 1550);
     place(runner);
     this.tapCounter = new TapCounter(10, 30);
     place(tapCounter);

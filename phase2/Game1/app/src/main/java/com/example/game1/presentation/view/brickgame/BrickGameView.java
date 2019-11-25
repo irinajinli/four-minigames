@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -38,6 +39,8 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     private List<Bitmap> paddleBlueBmps;
     private List<Bitmap> paddleRedBmps;
     private List<Bitmap> paddleYellowBmps;
+    private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
+    private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
     /**
      * creates a new BrickView *
      *
@@ -89,6 +92,11 @@ public class BrickGameView extends GameView implements View.OnClickListener {
                         paddleBlueBmps,
                         paddleRedBmps,
                         paddleYellowBmps);
+        setSkyColorDark(SKY_COLOR_DARK);
+        setSkyColorLight(SKY_COLOR_LIGHT);
+
+        generateSkyColor();
+
         gameManager.createGameItems();
         gameManager.startMusic();
 

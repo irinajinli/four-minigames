@@ -16,11 +16,17 @@ import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.AppManager;
+import com.example.game1.presentation.model.jumpinggame.Jumper;
+import com.example.game1.presentation.model.jumpinggame.Obstacle;
+import com.example.game1.presentation.model.jumpinggame.Terrain;
+import com.example.game1.presentation.model.tappinggame.Runner;
+import com.example.game1.presentation.model.tappinggame.TappingCircle;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
+import com.example.game1.presentation.model.jumpinggame.Star;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +49,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     private List<Bitmap> jumperBlueBmps;
     private List<Bitmap> jumperRedBmps;
     private List<Bitmap> jumperYellowBmps;
-
+private int currentFrameJumper = 0;
     /**
      * creates a new JumpingView *
      *
@@ -98,8 +104,15 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
                         jumperYellowBmps,
                         jumperRedBmps);
 
-        ((JumpingGameManager)gameManager).setSkyColors(SKY_COLOR_DARK, SKY_COLOR_LIGHT);
+//        ((JumpingGameManager)gameManager).setSkyColors(SKY_COLOR_DARK, SKY_COLOR_LIGHT);
 
+      extractBmpFiles();
+      generateCharacterColor();
+
+      setSkyColorDark(SKY_COLOR_DARK);
+      setSkyColorLight(SKY_COLOR_LIGHT);
+
+      generateSkyColor();
         gameManager.createGameItems();
         gameManager.startMusic();
 
@@ -190,32 +203,36 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
      * @param canvas the canvas on which to draw this item.
      */
     public void drawItem(Canvas canvas, GameItem item) {
-
-        paintText = new Paint();
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        paintText.setTextSize(36);
-        Object appearance = item.getAppearance();
+setupPaintText();
+      Bitmap appearance ;
+        //Object appearance = item.getAppearance();
         double xCoordinate = item.getXCoordinate();
         double yCoordinate = item.getYCoordinate();
-        if (appearance.getClass() == String.class) {
-
-            canvas.drawText(
-                    (String) appearance,
-                    (float) xCoordinate * GameView.charWidth,
-                    (float) yCoordinate * GameView.charHeight,
-                    paintText);
+        if (item instanceof Jumper) {
+          String key = "Jumper" + getCharacterColorScheme();
+          appearance = getCurrentAppearance(key);
+           } else if (item instanceof Terrain){
+          appearance = terrainBmp;}
+        else if (item instanceof Obstacle){
+          appearance = obstacleBmps.get(0);
+          } else {
+          appearance = starBmps.get(0);}
 
             // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
             // TappingGameView.charHeight, paintText);
-        } else if (appearance.getClass() == Bitmap.class) {
+//        } else if (appearance.getClass() == Bitmap.class) {
             canvas.drawBitmap(
-                    (Bitmap) appearance,
+                    appearance,
                     (int) Math.round(xCoordinate),
                     (int) Math.round(yCoordinate),
                     paintText);
         }
+//      canvas.drawText(
+//              (String) appearance,
+//              (float) xCoordinate * GameView.charWidth,
+//              (float) yCoordinate * GameView.charHeight,
+//              paintText);
 
-    }
 
 
   public void extractBmpFiles(){
@@ -241,11 +258,29 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     generateAnimatedBmps(jumperRedBmps, jumperRedFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
     generateAnimatedBmps(jumperYellowBmps, jumperYellowFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
 
+    addGameItemAppearances("JumperYellow", jumperYellowBmps);
+    addGameItemAppearances("JumperBlue", jumperBlueBmps);
+    addGameItemAppearances("JumperRed", jumperRedBmps);
+
+
     }
 
 
+  public void setupPaintText() {
+    paintText = new Paint();
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    paintText.setTextSize(36);
+  }
 
+  public String generateKey() {
 
+    return "Runner" + getCharacterColorScheme();
+}
+  public Bitmap getCurrentAppearance(String key) {
+    List<Bitmap> appearances = getAppearances(key);
 
-
+    Bitmap appearance = appearances.get(currentFrameJumper);
+    currentFrameJumper = updateIndex(currentFrameJumper, appearances.size());
+    return appearance;
+  }
 }

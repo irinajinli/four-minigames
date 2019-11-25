@@ -5,12 +5,14 @@ import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
+import com.example.game1.presentation.view.applegame.LivesCounter;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.applegame.Star;
 
@@ -32,6 +34,7 @@ public class AppleGameManager extends GameManager {
   private Basket basket;
 
   private PointsCounter points;
+  private LivesCounter livesCounter;
   private int numDroppedApples = 0;
   private int numCaughtStars = 0;
 
@@ -39,6 +42,8 @@ public class AppleGameManager extends GameManager {
   private List<Bitmap> appleBmps;
   private List<Bitmap> starBmps;
   private List<Bitmap> basketBmps;
+  private List<Bitmap> basketBlueBmps;
+  private List<Bitmap> basketYellowBmps;
 
   public static final int APPLE_WIDTH = 100;
   public static final int APPLE_HEIGHT = 100;
@@ -53,10 +58,13 @@ public class AppleGameManager extends GameManager {
   }
 
   // TODO: new
-  public void setBMPFiles(List<Bitmap> appleBmps, List<Bitmap> starBmps, List<Bitmap> basketBmps) {
+  public void setBMPFiles(List<Bitmap> appleBmps, List<Bitmap> starBmps, List<Bitmap> basketBmps,
+                          List<Bitmap> basketBlueBmps, List<Bitmap> basketYellowBmps) {
     this.appleBmps = appleBmps;
     this.starBmps = starBmps;
     this.basketBmps = basketBmps;
+    this.basketBlueBmps = basketBlueBmps;
+    this.basketYellowBmps = basketYellowBmps;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -64,13 +72,10 @@ public class AppleGameManager extends GameManager {
     // TODO: delete this method?
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
     gib.createPointsCounter();
-    gib.createBasket(basketBmps);
+    gib.createLivesCounter();
+    gib.createBasket(basketBmps, basketBlueBmps, basketYellowBmps);
     gib.setTheme(this);
     gib.placeItems(this);
-    // TODO: trying to fix pointscounter
-      points = new PointsCounter();
-      place(points);
-      points.setPosition(getGridWidth() / 2, getGridHeight() - 300);
   }
 
   public void setBasket(Basket basket) {
@@ -80,6 +85,11 @@ public class AppleGameManager extends GameManager {
   public void setPointsCounter(PointsCounter pointsCounter) {
     this.points = pointsCounter;
   }
+
+  public void setLivesCounter(LivesCounter livesCounter) {
+    this.livesCounter = livesCounter;
+  }
+
   /**
    * Move this AppleGameManager's Basket to the specified x coordinate.
    *
@@ -190,25 +200,25 @@ public class AppleGameManager extends GameManager {
   }
 
   // TODO: new
-  public void setSkyColors(int skyColorDark, int skyColorLight, int skyColorDefault){
-      this.skyColorDark = skyColorDark;
-      this.skyColorLight = skyColorLight;
-      this.skyColor = skyColorDefault;
+  public void setSkyColors(int skyColorDark, int skyColorLight, int skyColorDefault) {
+    this.skyColorDark = skyColorDark;
+    this.skyColorLight = skyColorLight;
+    this.skyColor = skyColorDefault;
   }
 
-    public Object getSkyColor() {
-        return skyColor;
-    }
+  public Object getSkyColor() {
+    return skyColor;
+  }
 
-    public void setSkyColor(int skyColor) {
-        this.skyColor = skyColor;
-    }
+  public void setSkyColor(int skyColor) {
+    this.skyColor = skyColor;
+  }
 
-    public int getSkyColorDark() {
-        return skyColorDark;
-    }
+  public int getSkyColorDark() {
+    return skyColorDark;
+  }
 
-    public int getSkyColorLight() {
-        return skyColorLight;
-    }
+  public int getSkyColorLight() {
+    return skyColorLight;
+  }
 }

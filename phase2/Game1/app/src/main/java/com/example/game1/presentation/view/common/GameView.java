@@ -13,9 +13,12 @@ import android.view.SurfaceView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /** The fish tank view. */
@@ -40,6 +43,19 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   /** Screen height. */
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
+  /** Hash Map that map the GameItems with its appearance */
+  protected HashMap<String, List<Bitmap>> itemAppearances;
+
+  private String characterColorScheme;
+
+  private String backgroundColorScheme;
+  private int skyColor;
+  private int skyColorDark;
+  private int skyColorLight;
+
+
+
+
   /**
    * Constructs a GameView with the given context.
    *
@@ -50,6 +66,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     this.activity = (AppCompatActivity) context;
     getHolder().addCallback(this);
     setFocusable(true);
+    itemAppearances = new HashMap<>();
   }
 
   public int getScreenWidth() {
@@ -95,9 +112,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
-      // set skyColor
-      canvas.drawColor((int) gameManager.getSkyColor());
-      // gameManager.draw(canvas);
+      canvas.drawColor(getSkyColor());
       List<GameItem> items = gameManager.getGameItems();
       for (GameItem item : items) {
 
@@ -121,6 +136,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     double yCoordinate = item.getYCoordinate();
     if (appearance.getClass() == String.class) {
 
+      // TODO NEW: remove * charWidth?
       canvas.drawText(
           (String) appearance,
           (float) xCoordinate * GameView.charWidth,
@@ -167,11 +183,116 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return newBmp;
   }
   public void generateAnimatedBmps(List<Bitmap> dest, int[] files, int width, int height){
-    //dest = new ArrayList<>();
+
     for (int i: files){
       dest.add(getNewBitmap(i, width, height));
     }
   }
 
   public abstract void extractBmpFiles();
+
+  public HashMap<String, List<Bitmap>> getItemAppearances() {
+    return itemAppearances;
+  }
+
+  public void addGameItemAppearance(String gameItemName, Bitmap image) {
+    if (itemAppearances.containsKey(gameItemName)){
+      itemAppearances.get(gameItemName).add(image);
+    } else {
+      List<Bitmap> images = new ArrayList<>();
+      images.add(image);
+      itemAppearances.put(gameItemName, images);
+    }
+  }
+  public void addGameItemAppearances(String gameItemName, List<Bitmap> images){
+    if (itemAppearances.containsKey(gameItemName)){
+      for (Bitmap image: images){
+        itemAppearances.get(gameItemName).add(image);
+      }
+    } else {
+      itemAppearances.put(gameItemName, images);
+    }
+  }
+
+  public List<Bitmap> getAppearances(String key){
+    return itemAppearances.get(key);
+  }
+
+  public Bitmap getAppearance(String key){
+    return itemAppearances.get(key).get(0);
+  }
+
+  public void generateBackgroundColor(){
+
+    Customization cust = gameManager.getGame().getCustomization();
+    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
+      this.backgroundColorScheme = "Dark";
+    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+      this.backgroundColorScheme = "Light";
+    }
+  }
+
+  public void generateCharacterColor(){
+    Customization cust = gameManager.getGame().getCustomization();
+    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
+      this.characterColorScheme = "Blue";
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
+      this.characterColorScheme = "Yellow";
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
+      this.characterColorScheme = "Red";
+    }
+  }
+
+  public void setSkyColors(int skyColorDark, int skyColorLight){
+    this.skyColorDark = skyColorDark;
+    this.skyColorLight = skyColorLight;
+  }
+
+  public void setSkyColor(int skyColor) {
+    this.skyColor = skyColor;
+  }
+
+  public void generateSkyColor(){
+    generateBackgroundColor();
+    if(this.backgroundColorScheme.equals("Dark")){
+      setSkyColor(skyColorDark);
+    } else if (this.backgroundColorScheme.equals("Light")){
+      setSkyColor(skyColorLight);
+    }
+  }
+
+  public int getSkyColor() {
+    return skyColor;
+  }
+
+  public int getSkyColorDark() {
+    return skyColorDark;
+  }
+
+  public void setSkyColorDark(int skyColorDark) {
+    this.skyColorDark = skyColorDark;
+  }
+
+  public int getSkyColorLight() {
+    return skyColorLight;
+  }
+
+  public void setSkyColorLight(int skyColorLight) {
+    this.skyColorLight = skyColorLight;
+  }
+
+  public String getCharacterColorScheme() {
+    return characterColorScheme;
+  }
+
+  /**
+   *
+   */
+  public int updateIndex(int index, int length){
+    index += 1;
+    if (index == length){
+      index = 0;
+    }
+    return index;
+  }
 }

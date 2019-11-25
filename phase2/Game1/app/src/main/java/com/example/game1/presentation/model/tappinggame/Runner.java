@@ -30,13 +30,11 @@ public class Runner extends AnimatedGameItem {
   /**
    * Constructs a Jumper with the specified height, width, and appearance.
    *
-   * @param height the height of this GameItem
-   * @param width the width of this GameItem
-   * @param appearances the appearances of this GameItem
+   * @param xCoordinate xCoordinate of the GameItem
+   * @param yCoordinate yCoordinate of the GameItem
    */
-  public Runner(int height, int width, List appearances) {
-    super(height, width, appearances);
-    canRun = true;
+  public Runner(double xCoordinate, double yCoordinate) {
+    super(xCoordinate, yCoordinate);
   }
 
   /** Constructs a runner at the specified cursor location (x, y). */
@@ -57,12 +55,12 @@ public class Runner extends AnimatedGameItem {
    */
   public boolean move(int width) {
 
-    if (getXCoordinate() + speed  < width - 100) {
+    if ((getXCoordinate() + speed)  < (width - 100)) {
       double newX = getXCoordinate() + speed ;
       setPosition(newX, getYCoordinate());
       canRun = true;
       if (speed > 0){
-        advanceFrame();
+        //advanceFrame();
       }
       return canRun;
     }

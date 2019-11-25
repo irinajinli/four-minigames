@@ -11,12 +11,10 @@ import com.example.game1.presentation.view.common.GameItemOld;
 /** a tapping circle */
 public class TappingCircle extends GameItem {
     /** construct a tapping circle at the specified cursor location (x, y). */
-    public TappingCircle(Object appearance, int x, int y) {
+    public TappingCircle(int x, int y) {
         // Call super() to set appearance, location (x, y), appearance and
         // type face.
-        super(appearance);
-        setPosition(x, y);
-        setAppearance(appearance);
+        super(x, y);
     }
 
     @Override
