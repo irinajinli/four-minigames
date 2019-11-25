@@ -22,10 +22,10 @@ import java.util.List;
 public class TappingGameManager extends GameManager {
 
   private Object tappingCircleAppearance;
-  private Object runnerAppearance;
-  private Object yellowPugAppearance;
-  private Object blueBirdAppearance;
-  private Object redFishAppearance;
+  private List runnerAppearances;
+  private List yellowPugAppearances;
+  private List blueBirdAppearances;
+  private List redFishAppearances;
   public TappingCircle tappingCircle;
 
   public Runner runner;
@@ -48,11 +48,13 @@ public class TappingGameManager extends GameManager {
 
   private boolean canRun;
 
-
+  public static final double RUNNER_WIDTH_MULTIPLIER = 0.1;
+  public static final double RUNNER_HEIGHT_MULTIPLIER = 0.1;
 
   private Object skyColor;
-  private Object skyColorLight;
   private Object skyColorDark;
+  private Object skyColorLight;
+
 
   /**
    * Constructs a TappingGameManager with the specified height, width, game, and activity.
@@ -62,13 +64,13 @@ public class TappingGameManager extends GameManager {
     this.canRun = true;
   }
 
-  public void setAppearance(Object tappingCircleAppearance, Object yellowPugAppearance,
-                            Object blueBirdAppearance, Object redFishAppearance) {
+  public void setAppearance(Object tappingCircleAppearance, List yellowPugAppearances,
+                            List blueBirdAppearances, List redFishAppearances) {
     this.tappingCircleAppearance = tappingCircleAppearance;
-    this.yellowPugAppearance = yellowPugAppearance;
-    this.blueBirdAppearance = blueBirdAppearance;
-    this.redFishAppearance = redFishAppearance;
-    this.runnerAppearance = yellowPugAppearance;
+    this.yellowPugAppearances = yellowPugAppearances;
+    this.blueBirdAppearances = blueBirdAppearances;
+    this.redFishAppearances = redFishAppearances;
+    this.runnerAppearances = yellowPugAppearances;
   }
 
   /**
@@ -110,17 +112,18 @@ public class TappingGameManager extends GameManager {
       setSkyColor(skyColorLight);
     }
     if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
-      this.runnerAppearance = blueBirdAppearance;
+      this.runnerAppearances = blueBirdAppearances;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
-      this.runnerAppearance = redFishAppearance;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
-      this.runnerAppearance = yellowPugAppearance;
+      this.runnerAppearances = redFishAppearances;
+    } else{ // if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
+      this.runnerAppearances = yellowPugAppearances;
     }
 
 
     this.tappingCircle = new TappingCircle(tappingCircleAppearance, 0, 0);
     place(tappingCircle);
-    this.runner = new Runner(runnerAppearance, 0, 1550);
+    this.runner = new Runner((int)(getScreenWidth() * RUNNER_WIDTH_MULTIPLIER), (int)(getScreenHeight()* RUNNER_HEIGHT_MULTIPLIER), runnerAppearances);
+    runner.setPosition(0, 1550);
     place(runner);
     this.tapCounter = new TapCounter(10, 30);
     place(tapCounter);
@@ -140,10 +143,9 @@ public class TappingGameManager extends GameManager {
     super.gameOver();
   }
 
-  public void setSkyColors(Object skyColorDark, Object skyColorLight, Object skyColorDefault){
+  public void setSkyColors(Object skyColorDark, Object skyColorLight){
     this.skyColorDark = skyColorDark;
     this.skyColorLight = skyColorLight;
-    this.skyColor = skyColorDefault;
   }
 
   public Object getSkyColor() {

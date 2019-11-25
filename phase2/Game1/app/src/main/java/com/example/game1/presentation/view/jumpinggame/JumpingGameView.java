@@ -38,10 +38,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   private List<Bitmap> obstacleBmps;
   private List<Bitmap> starBmps;
   private Bitmap terrainBmp;
-  private Bitmap jumperBlueBmp;
-  private Bitmap jumperRedBmp ;
-  private Bitmap jumperYellowBmp;
-  private Bitmap jumperNinjaBmp;
   private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
   private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
   private List<Bitmap> jumperBlueBmps;
@@ -224,21 +220,11 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
 
   public void extractBmpFiles(){
-    Bitmap obstacleBmp = BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1);
-    Bitmap starBmp = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
-    terrainBmp = BitmapFactory.decodeResource(getResources(), R.drawable.grass);
-    jumperBlueBmp = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_blue);
-    jumperRedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_red);
-    jumperYellowBmp = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_yellow);
-    jumperNinjaBmp = BitmapFactory.decodeResource(getResources(), R.drawable.ninja_idle__000);
 
-    obstacleBmp = getResizedBitmap(obstacleBmp, 100, 100);
-    starBmp = getResizedBitmap(starBmp, 80, 80);
-    terrainBmp = getResizedBitmap( terrainBmp, getScreenWidth(), getScreenHeight()/2);
-    jumperBlueBmp = getResizedBitmap(jumperBlueBmp, 100, 200);
-    jumperRedBmp = getResizedBitmap(jumperRedBmp, 100, 200);
-    jumperYellowBmp = getResizedBitmap(jumperYellowBmp, 100, 200);
-    jumperNinjaBmp = getResizedBitmap(jumperNinjaBmp, 100, 200);
+    Bitmap obstacleBmp = getNewBitmap(R.drawable.wooden_blocks_1, 100, 100);
+    Bitmap starBmp = getNewBitmap(R.drawable.star_6, 80, 80);
+    terrainBmp = getNewBitmap( R.drawable.grass, getScreenWidth(), getScreenHeight()/2);
+
     
 
     obstacleBmps = new ArrayList<>();
@@ -255,17 +241,21 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     int[] jumperYellowFiles = {R.drawable.jumper_yellow_1, R.drawable.jumper_yellow_2, R.drawable.jumper_yellow_3, R.drawable.jumper_yellow_4,R.drawable.jumper_yellow_5, R.drawable.jumper_yellow_6, R.drawable.jumper_yellow_7, R.drawable.jumper_yellow_8 };
 
 
-    generateJumperBmps(jumperBlueBmps, jumperBlueFiles);
-    generateJumperBmps(jumperRedBmps, jumperRedFiles);
-    generateJumperBmps(jumperYellowBmps, jumperYellowFiles);
+    generateAnimatedBmps(jumperBlueBmps, jumperBlueFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
+    generateAnimatedBmps(jumperRedBmps, jumperRedFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
+    generateAnimatedBmps(jumperYellowBmps, jumperYellowFiles, JumpingGameManager.JUMPER_WIDTH, JumpingGameManager.JUMPER_HEIGHT);
 
   }
 
-  private void generateJumperBmps(List<Bitmap> dest, int[] files){
+  private Bitmap getNewBitmap(int resource, int width, int height){
+    Bitmap newBmp = BitmapFactory.decodeResource(getResources(), resource);
+    newBmp = getResizedBitmap(newBmp, width, height);
+    return newBmp;
+  }
+  private void generateAnimatedBmps(List<Bitmap> dest, int[] files, int width, int height){
+    //dest = new ArrayList<>();
     for (int i: files){
-      Bitmap b = BitmapFactory.decodeResource(getResources(), i);
-      b = getResizedBitmap(b, JumpingGameManager.JUMPER_HEIGHT, JumpingGameManager.JUMPER_HEIGHT);
-      dest.add(b);
+      dest.add(getNewBitmap(i, width, height));
     }
   }
 

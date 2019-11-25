@@ -8,6 +8,8 @@ import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
 import com.example.game1.presentation.view.common.GameItemOld;
 
+import java.util.List;
+
 /** Runner of the tapping game */
 public class Runner extends AnimatedGameItem {
 
@@ -25,13 +27,25 @@ public class Runner extends AnimatedGameItem {
 
   private boolean canRun;
 
+  /**
+   * Constructs a Jumper with the specified height, width, and appearance.
+   *
+   * @param height the height of this GameItem
+   * @param width the width of this GameItem
+   * @param appearances the appearances of this GameItem
+   */
+  public Runner(int height, int width, List appearances) {
+    super(height, width, appearances);
+    canRun = true;
+  }
+
   /** Constructs a runner at the specified cursor location (x, y). */
-  public Runner(Object appearance, int x, int y) {
-    super(appearance);
+  /**public Runner(List appearances, int x, int y) {
+    super(x, y, appearances);
     setPosition(x, y);
     setAppearance(appearance);
     canRun = true;
-  }
+  }*/
 
 
 
