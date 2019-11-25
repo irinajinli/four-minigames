@@ -12,6 +12,7 @@ import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
+import com.example.game1.presentation.view.applegame.LivesCounter;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.applegame.Star;
 
@@ -33,6 +34,7 @@ public class AppleGameManager extends GameManager {
   private Basket basket;
 
   private PointsCounter points;
+  private LivesCounter livesCounter;
   private int numDroppedApples = 0;
   private int numCaughtStars = 0;
 
@@ -70,9 +72,8 @@ public class AppleGameManager extends GameManager {
     // TODO: delete this method?
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
     gib.createPointsCounter();
-    // TODO: construct basket with proper basket colour BMP
+    gib.createLivesCounter();
     gib.createBasket(basketBmps, basketBlueBmps, basketYellowBmps);
-
     gib.setTheme(this);
     gib.placeItems(this);
   }
@@ -84,6 +85,11 @@ public class AppleGameManager extends GameManager {
   public void setPointsCounter(PointsCounter pointsCounter) {
     this.points = pointsCounter;
   }
+
+  public void setLivesCounter(LivesCounter livesCounter) {
+    this.livesCounter = livesCounter;
+  }
+
   /**
    * Move this AppleGameManager's Basket to the specified x coordinate.
    *

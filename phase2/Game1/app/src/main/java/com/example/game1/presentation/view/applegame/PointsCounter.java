@@ -1,7 +1,5 @@
 package com.example.game1.presentation.view.applegame;
 
-import android.graphics.Color;
-
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
@@ -15,7 +13,6 @@ public class PointsCounter extends GameItem {
   /** Construct a PointsCounter with white text. */
   public PointsCounter() {
     super("apples: 0");
-    paintText.setColor(Color.WHITE);
   }
 
   /**

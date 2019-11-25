@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.view.applegame.Basket;
+import com.example.game1.presentation.view.applegame.LivesCounter;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.Background;
 
@@ -15,6 +16,7 @@ public class GameItemsBuilder {
   private Background background;
   private Basket basket;
   private PointsCounter pointsCounter;
+  private LivesCounter livesCounter;
 
   public GameItemsBuilder(Customization customization) {
     this.customization = customization;
@@ -44,6 +46,10 @@ public class GameItemsBuilder {
     this.pointsCounter = new PointsCounter();
   }
 
+  public void createLivesCounter() {
+    this.livesCounter = new LivesCounter();
+  }
+
   /**
    * Builds the items in the specified GameManager.
    *
@@ -66,5 +72,10 @@ public class GameItemsBuilder {
     appleGameManager.setPointsCounter(pointsCounter);
     appleGameManager.place(pointsCounter);
     pointsCounter.setPosition(appleGameManager.getGridWidth() - 250, 100);
+
+    // livesCounter
+    appleGameManager.setLivesCounter(livesCounter);
+    appleGameManager.place(livesCounter);
+    livesCounter.setPosition(appleGameManager.getGridWidth() - 250, 150);
   }
 }

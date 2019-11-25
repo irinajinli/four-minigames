@@ -150,7 +150,8 @@ public class AppleGameView extends GameView {
         //            paintText.setColor(Color.YELLOW);
         //          }
         //        }
-        if (item instanceof PointsCounter) {
+        // TODO: fix instanceof if statement
+        if (item instanceof PointsCounter || item instanceof LivesCounter) {
           paintText.setColor(Color.WHITE);
         }
         canvas.drawText((String) appearance, (float) xCoordinate, (float) yCoordinate, paintText);
