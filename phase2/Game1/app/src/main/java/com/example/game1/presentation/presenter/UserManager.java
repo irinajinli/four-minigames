@@ -4,7 +4,6 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.game1.AppManager;
 import com.example.game1.domain.UserServiceIntf;
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
@@ -41,6 +40,7 @@ public class UserManager {
     public void setUserService(UserServiceIntf userService) {
         this.userService = userService;
     }
+
     /**
      * Registers a new User instance with username, userName, and password, password. If
      * registration is successful return true. Otherwise, return false.
@@ -123,9 +123,9 @@ public class UserManager {
      * object.
      */
     public void updateCurrentUsersGame(Game game) {
-        updateGameInfo(currentUser.getStatsOfCurrentGame().getPoints() + game.getNumPoints(),
-                currentUser.getStatsOfCurrentGame().getStars() + game.getNumStars(),
-                currentUser.getStatsOfCurrentGame().getTaps() + game.getNumTaps(),
+        updateGameInfo(currentUser.getStatsOfCurrentGame().getPoints() + game.getStatistics().getPoints(),
+                currentUser.getStatsOfCurrentGame().getStars() + game.getStatistics().getStars(),
+                currentUser.getStatsOfCurrentGame().getTaps() + game.getStatistics().getTaps(),
                 game.getLevel());
         updateUserInfo();
     }
@@ -168,7 +168,7 @@ public class UserManager {
      * Returns the current score of the user with the given username. If the user does not exist,
      * this method returns 0.
      */
-    public int getCurrentScore(String username){
+    public int getCurrentScore(String username) {
         return userService.getCurrentScore(username);
     }
 
@@ -176,7 +176,7 @@ public class UserManager {
      * Returns the top score of the user with the given username. If the user does not exist,
      * this method returns 0.
      */
-    public int getTopScore(String username){
+    public int getTopScore(String username) {
         return userService.getTopScore(username);
     }
 

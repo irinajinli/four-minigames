@@ -313,9 +313,9 @@ public class JumpingGameManager extends GameManager {
   public void gameOver() {
     setRunning(false);
     // set points here
-    game.setNumPoints(numJumped);
-    game.setNumStars(numStars);
-    game.setNumTaps(numTaps);
+    game.getStatistics().setPoints(numJumped);
+    game.getStatistics().setStars(numStars);
+    game.getStatistics().setTaps(numTaps);
     System.out.println(numJumped + "  " + numStars + "  " + numTaps);
 
     super.gameOver();

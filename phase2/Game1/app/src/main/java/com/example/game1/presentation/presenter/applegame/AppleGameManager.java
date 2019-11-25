@@ -184,8 +184,8 @@ public class AppleGameManager extends GameManager {
 
   /** Ends this minigame. */
   public void gameOver() {
-    game.setNumPoints(game.getNumPoints() + points.getNumPoints());
-    game.setNumStars(game.getNumStars() + numCaughtStars);
+    game.getStatistics().setPoints(game.getStatistics().getPoints() + points.getNumPoints());
+    game.getStatistics().setStars(game.getStatistics().getStars() + numCaughtStars);
     super.gameOver();
   }
 

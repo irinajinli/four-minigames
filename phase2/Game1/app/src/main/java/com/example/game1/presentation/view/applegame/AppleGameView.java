@@ -80,7 +80,7 @@ public class AppleGameView extends GameView {
     public boolean onTouchEvent(MotionEvent event) {
         // count tap in game's numTaps
         Game game = gameManager.getGame();
-        game.setNumTaps(game.getNumTaps() + 1);
+        game.getStatistics().setTaps(game.getStatistics().getTaps() + 1);
 
         double touchX = event.getX();
         ((AppleGameManager) gameManager).moveBasket((int) touchX);

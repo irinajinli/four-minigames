@@ -331,9 +331,9 @@ public class BrickGameManager extends GameManager {
   public void gameOver() {
     setRunning(false);
     // set points here
-    game.setNumPoints(numBroken);
-    game.setNumStars(numStars);
-    game.setNumTaps(numTaps);
+    game.getStatistics().setPoints(numBroken);
+    game.getStatistics().setStars(numStars);
+    game.getStatistics().setTaps(numTaps);
 
     super.gameOver();
   }

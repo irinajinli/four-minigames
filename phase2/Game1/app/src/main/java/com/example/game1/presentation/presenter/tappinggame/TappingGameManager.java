@@ -137,9 +137,9 @@ public class TappingGameManager extends GameManager {
 
   public void gameOver(int numTaps, int stars) {
     // TODO
-    game.setNumPoints(numTaps);
-    game.setNumStars(stars);
-    game.setNumTaps(numTaps);
+    game.getStatistics().setPoints(numTaps);
+    game.getStatistics().setStars(stars);
+    game.getStatistics().setTaps(numTaps);
     super.gameOver();
   }
 

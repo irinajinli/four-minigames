@@ -20,9 +20,7 @@ public class Game {
 
     private GameName name;
     private int level;
-    private int numPoints;
-    private int numStars;
-    private int numTaps;
+    private Statistics statistics;
     private Customization customization;
 
     /**
@@ -32,10 +30,8 @@ public class Game {
         this.name = name;
         setLevel();
         // Set default values for the game's statistics and customization
-        numPoints = 0;
-        numStars = 0;
-        numTaps = 0;
-        this.customization = new Customization();
+        statistics = new Statistics();
+        customization = new Customization();
     }
 
     /**
@@ -76,28 +72,12 @@ public class Game {
         this.level = level;
     }
 
-    public int getNumPoints() {
-        return numPoints;
+    public Statistics getStatistics() {
+        return statistics;
     }
 
-    public void setNumPoints(int numPoints) {
-        this.numPoints = numPoints;
-    }
-
-    public int getNumStars() {
-        return numStars;
-    }
-
-    public void setNumStars(int numStars) {
-        this.numStars = numStars;
-    }
-
-    public int getNumTaps() {
-        return numTaps;
-    }
-
-    public void setNumTaps(int numTaps) {
-        this.numTaps = numTaps;
+    public void setStatistics(Statistics statistics) {
+        this.statistics = statistics;
     }
 
     public Customization getCustomization() {
