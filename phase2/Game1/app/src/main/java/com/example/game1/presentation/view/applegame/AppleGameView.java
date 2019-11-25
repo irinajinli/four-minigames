@@ -63,8 +63,8 @@ public class AppleGameView extends GameView {
 
     extractBmpFiles();
 
-    ((AppleGameManager) gameManager).setBMPFiles(appleBmps, starBmps, basketBmps, basketBlueBmps,
-            basketYellowBmps);
+    ((AppleGameManager) gameManager)
+        .setBMPFiles(appleBmps, starBmps, basketBmps, basketBlueBmps, basketYellowBmps);
 
     // TODO: new for colors
     extractSkyColors();
@@ -192,7 +192,10 @@ public class AppleGameView extends GameView {
     generateAnimatedBmps(
             basketBmps, basketFiles, AppleGameManager.BASKET_WIDTH, AppleGameManager.BASKET_HEIGHT);
     generateAnimatedBmps(
-            basketBlueBmps, basketBlueFiles, AppleGameManager.BASKET_WIDTH, AppleGameManager.BASKET_HEIGHT);
+        basketBlueBmps,
+        basketBlueFiles,
+        AppleGameManager.BASKET_WIDTH,
+        AppleGameManager.BASKET_HEIGHT);
     generateAnimatedBmps(
             basketYellowBmps,
             basketYellowFiles,

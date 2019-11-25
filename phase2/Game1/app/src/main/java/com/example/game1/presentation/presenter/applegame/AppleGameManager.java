@@ -5,7 +5,6 @@ import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
@@ -58,8 +57,12 @@ public class AppleGameManager extends GameManager {
   }
 
   // TODO: new
-  public void setBMPFiles(List<Bitmap> appleBmps, List<Bitmap> starBmps, List<Bitmap> basketBmps,
-                          List<Bitmap> basketBlueBmps, List<Bitmap> basketYellowBmps) {
+  public void setBMPFiles(
+      List<Bitmap> appleBmps,
+      List<Bitmap> starBmps,
+      List<Bitmap> basketBmps,
+      List<Bitmap> basketBlueBmps,
+      List<Bitmap> basketYellowBmps) {
     this.appleBmps = appleBmps;
     this.starBmps = starBmps;
     this.basketBmps = basketBmps;
@@ -101,9 +104,7 @@ public class AppleGameManager extends GameManager {
 
   /** Moves, removes, and catches GameItems. */
   public boolean update() {
-
-    // check if the game is over
-    if (numDroppedApples >= 20) {
+    if (livesCounter.getLivesRemaining() <= 0) {
       gameOver();
       return false;
     }
@@ -117,10 +118,11 @@ public class AppleGameManager extends GameManager {
       } else {
       }
 
-      if (!(currItem instanceof Basket)) {
+      if (!(currItem instanceof Basket)) { // TODO is this if statement necessary?
         // check if each non-Basket GameItemOld is off screen; remove if necessary
         if (currItem.getYCoordinate() > getGridHeight()) {
           dropGameItem(currItem);
+          livesCounter.subtractLife();
         }
 
         // check if currItem should be caught
