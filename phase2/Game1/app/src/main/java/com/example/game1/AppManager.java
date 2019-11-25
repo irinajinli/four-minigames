@@ -43,7 +43,7 @@ public class AppManager {
     /**
      * Called upon opening the app.
      * Sets the context of the application.
-     * Creates an instance of UserManager and GameManagerFactory.
+     * Creates an instance of UserManager, GameStateObserver, and GameManagerFactory.
      */
     public void init(Context context) {
         this.context = context;
@@ -51,6 +51,7 @@ public class AppManager {
         gameStateObserver = buildGameStateObserver();
         gameManagerFactory = new GameManagerFactory();
     }
+
     /**
      * Returns the single instance of AppManager
      */
@@ -66,7 +67,7 @@ public class AppManager {
      */
     private UserManager buildUserManager () {
         UserManager userManager = new UserManager();
-        // inject user service
+        // inject the user service into userManager
         userManager.setUserService(lookupUserService());
         return userManager;
     }
@@ -76,7 +77,7 @@ public class AppManager {
      */
     private GameStateObserver buildGameStateObserver () {
         GameStateObserver gameStateObserver = new GameStateObserver();
-        // inject game state observer
+        // inject the user manager into gameStateObserver
         gameStateObserver.setUserManager(getUserManager());
         return gameStateObserver;
     }
@@ -129,6 +130,7 @@ public class AppManager {
      * Returns an instance of the user service
      */
     public UserServiceIntf lookupUserService() {
+        // Return a service that implements UserServiceIntf
         return new UserService();
     }
 
@@ -136,7 +138,7 @@ public class AppManager {
      * Returns an instance of the data manager
      */
     public DataManagerIntf lookupDataManager() {
-        // Currently we only provide the file based data manager
+        // Currently we only provide a file based data manager
         return new FileDataManager();
     }
 }

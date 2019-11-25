@@ -8,17 +8,22 @@ import com.example.game1.presentation.presenter.common.GameManager;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * An observer class that responds to game state changes.
+ */
 public class GameStateObserver implements Observer {
 
     private UserManager userManager;
 
     /**
-     * Event notified
+     * This method is called when the state of a game has changed. It notifies the rest of the
+     * system of this state change.
      */
     @Override
     public void update(Observable o, Object arg) {
         if (o instanceof GameManager) {
             GameManager gameManager = (GameManager)o;
+            // Currently, this method only takes action if a game has stopped.
             if (GameManager.State.STOP.equals(gameManager.getState())) {
                 finishGame(gameManager.getGame(), gameManager.getActivity());
             }
@@ -26,14 +31,14 @@ public class GameStateObserver implements Observer {
     }
 
     /**
-     * Injects the user manager
+     * Injects the user manager into this GameStateObserver.
      */
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;
     }
 
     /**
-     * Notifies the system that a game is finished. Currently, it routes the control to userManager
+     * Notifies the system that a game has finished. Currently, it only notified userManager.
      */
     private void finishGame(Game game, AppCompatActivity activity) {
         if (userManager!=null) {

@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 /**
- * A game manager.
+ * A game manager. It acts as a mediator between the view and the model of a game.
+ * It is observed by GameStateObserver.
  */
 public abstract class GameManager extends Observable {
 
@@ -24,7 +25,7 @@ public abstract class GameManager extends Observable {
     /* The state of this GameManager. */
     private State state;
 
-    /* A list of GameItems in this GameManager. */
+    /* The list of GameItems in this GameManager. */
     private ArrayList<GameItem> gameItems = new ArrayList<>();
 
     /* The width of the game display. */
@@ -80,6 +81,10 @@ public abstract class GameManager extends Observable {
      */
     public abstract void createGameItems();
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public Game getGame() {
         return game;
     }
@@ -92,16 +97,36 @@ public abstract class GameManager extends Observable {
         return state;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
     }
 
     public AppCompatActivity getActivity() {
         return activity;
     }
 
-    public void setActivity(AppCompatActivity activity) {
-        this.activity = activity;
+    public void setScreenWidth(int width) {
+        this.width = width;
+    }
+
+    public int getScreenWidth() {
+        return width;
+    }
+
+    public void setScreenHeight(int height) {
+        this.height = height;
+    }
+
+    public int getScreenHeight() {
+        return height;
+    }
+
+    public int getGridWidth() {
+        return width;
+    }
+
+    public int getGridHeight() {
+        return height;
     }
 
     public void setMusicPlayer(MediaPlayer musicPlayer) {
@@ -122,30 +147,6 @@ public abstract class GameManager extends Observable {
         state = State.STOP;
         setChanged();
         notifyObservers(this);
-    }
-
-    public int getScreenWidth() {
-        return width;
-    }
-
-    public void setScreenWidth(int width) {
-        this.width = width;
-    }
-
-    public int getScreenHeight() {
-        return height;
-    }
-
-    public void setScreenHeight(int height) {
-        this.height = height;
-    }
-
-    public int getGridWidth() {
-        return width;
-    }
-
-    public int getGridHeight() {
-        return height;
     }
 
     public abstract Object getSkyColor();

@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
-import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
+import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 
