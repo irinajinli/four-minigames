@@ -36,14 +36,14 @@ public class BrickGameManager extends GameManager {
   private int numTaps = 0;
   private int backgroundColor;
   private boolean isRunning;
-  private Bitmap brickBMP;
-  private Bitmap brickDamagedBMP;
-  private Bitmap starBMP;
-  private Bitmap ballBMP;
-  private Bitmap paddleBMP;
-  private Bitmap paddleBlueBMP;
-  private Bitmap paddleRedBMP;
-  private Bitmap paddleYellowBMP;
+  private Bitmap brickBmp;
+  private Bitmap brickDamagedBmp;
+  private List<Bitmap> starBmps;
+  private List<Bitmap> ballBmps;
+  private List<Bitmap> paddleBmps;
+  private List<Bitmap> paddleBlueBmps;
+  private List<Bitmap> paddleRedBmps;
+  private List<Bitmap> paddleYellowBmps;
 
   private double numOfSeconds;
 
@@ -59,8 +59,8 @@ public class BrickGameManager extends GameManager {
   public static final double BALL_VELOCITY_X = 900;
   public static final double BALL_VELOCITY_Y = 900;
   public static final double STAR_PROBABILITY = 0.8;
-  private final int darkColor = Color.rgb(83, 92, 104);
-  private final int lightColor = Color.rgb(223, 249, 251);
+  private final int DARK_COLOR = Color.rgb(83, 92, 104);
+  private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
   /**
    * Constructs a BrickGameManager with the specified height and width.
    *
@@ -140,16 +140,16 @@ public class BrickGameManager extends GameManager {
     Customization cust = game.getCustomization();
     setTheme(cust.getColourScheme());
     if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      this.paddleBMP = paddleBlueBMP;
+      this.paddleBmps = paddleBlueBmps;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-      this.paddleBMP = paddleRedBMP;
+      this.paddleBmps = paddleRedBmps;
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      this.paddleBMP = paddleYellowBMP;
+      this.paddleBmps = paddleYellowBmps;
     } else {
-      this.paddleBMP = paddleBlueBMP;
+      this.paddleBmps = paddleBlueBmps;
     }
 
-    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH, paddleBMP);
+    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH, paddleBmps);
     setPaddlePosition(paddle);
     place(paddle);
 
@@ -157,14 +157,14 @@ public class BrickGameManager extends GameManager {
     int brickWidth = getScreenWidth() / NUM_BRICKS_HORIZONTAL;
     for (int i = 0; i < NUM_BRICK_LAYERS; i++) {
       for (int j = 0; j < NUM_BRICKS_HORIZONTAL; j++) {
-        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth, brickBMP);
+        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth, brickBmp);
         newBrick.setPosition(j * brickWidth, i * BRICK_HEIGHT);
         place(newBrick);
         bricks.add(newBrick);
       }
     }
 
-    ball = new Ball(BALL_WIDTH, BALL_HEIGHT, ballBMP);
+    ball = new Ball(BALL_WIDTH, BALL_HEIGHT, ballBmps);
     ball.setPosition(getScreenWidth() / 2, BRICK_HEIGHT * (NUM_BRICK_LAYERS + 1));
     ball.setXVelocity(BALL_VELOCITY_X);
     ball.setYVelocity(BALL_VELOCITY_Y);
@@ -182,9 +182,9 @@ public class BrickGameManager extends GameManager {
    */
   private void setTheme(Customization.ColourScheme theme) {
     if (theme.equals(Customization.ColourScheme.DARK)) {
-      backgroundColor = darkColor;
+      backgroundColor = DARK_COLOR;
     } else { // (theme.equals((Customization.ColourScheme.LIGHT)))
-      backgroundColor = lightColor;
+      backgroundColor = LIGHT_COLOR;
     }
   }
 
@@ -284,7 +284,7 @@ public class BrickGameManager extends GameManager {
           outItems.add(brick);
           numBroken++;
           if (Math.random() > STAR_PROBABILITY) {
-            Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBMP);
+            Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBmps);
             star.setPosition(
                 brick.getXCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
                 brick.getYCoordinate());
@@ -292,7 +292,7 @@ public class BrickGameManager extends GameManager {
             stars.add(star);
           }
         } else if (brick.needChangeAppearance()) {
-          brick.setAppearance(brickDamagedBMP);
+          brick.setAppearance(brickDamagedBmp);
         }
         ball.setYVelocity(Math.abs(ball.getYVelocity()));
       }
@@ -351,21 +351,21 @@ public class BrickGameManager extends GameManager {
     this.numTaps = numTaps;
   }
 
-  public void setBMPfiles(
-      Bitmap ballBMP,
-      Bitmap starBMP,
-      Bitmap brickBMP,
-      Bitmap brickDamagedBMP,
-      Bitmap paddleBlueBMP,
-      Bitmap paddleRedBMP,
-      Bitmap paddleYellowBMP) {
-    this.ballBMP = ballBMP;
-    this.brickBMP = brickBMP;
-    this.brickDamagedBMP = brickDamagedBMP;
-    this.starBMP = starBMP;
-    this.paddleBlueBMP = paddleBlueBMP;
-    this.paddleYellowBMP = paddleYellowBMP;
-    this.paddleRedBMP = paddleRedBMP;
+  public void setBmpfiles(
+      List<Bitmap> ballBmps,
+      List<Bitmap> starBmps,
+      Bitmap brickBmp,
+      Bitmap brickDamagedBmp,
+      List<Bitmap> paddleBlueBmps,
+      List<Bitmap> paddleRedBmps,
+      List<Bitmap> paddleYellowBmps) {
+    this.ballBmps = ballBmps;
+    this.brickBmp = brickBmp;
+    this.brickDamagedBmp = brickDamagedBmp;
+    this.starBmps = starBmps;
+    this.paddleBlueBmps = paddleBlueBmps;
+    this.paddleYellowBmps = paddleYellowBmps;
+    this.paddleRedBmps = paddleRedBmps;
   }
 
   public double getNumOfSeconds() {

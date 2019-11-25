@@ -26,9 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * The view of the jumping game presented to the user.
- */
+/** The view of the jumping game presented to the user. */
 public class JumpingGameView extends GameView implements View.OnClickListener {
 
 
@@ -37,20 +35,18 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
     private OnClickListener listener;
     private int numTaps = 0;
-    private Bitmap obstacleBMP;
-    private Bitmap starBMP;
-    private Bitmap terrainBMP;
-    private Bitmap jumperBlueBMP;
-    private Bitmap jumperRedBMP;
-    private Bitmap jumperYellowBMP;
-    private Bitmap jumperNinjaBMP;
-    private int skyColorDark;
-    private int skyColorLight;
-    private int skyColorDefault;
+    private List<Bitmap> obstacleBmps;
+    private List<Bitmap> starBmps;
+    private Bitmap terrainBmp;
+    private Bitmap jumperBlueBmp;
+    private Bitmap jumperRedBmp ;
+    private Bitmap jumperYellowBmp;
+    private Bitmap jumperNinjaBmp;
+    private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
+    private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
     private List<Bitmap> jumperBlueBmps;
     private List<Bitmap> jumperRedBmps;
     private List<Bitmap> jumperYellowBmps;
-
 
     /**
      * creates a new JumpingView *
@@ -90,27 +86,26 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
                 activity);
         gameManager.setScreenHeight(this.getScreenHeight());
         gameManager.setScreenWidth(this.getScreenWidth());
-        ((JumpingGameManager) gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+        ((JumpingGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
-        extractBMPFiles();
+        extractBmpFiles();
+
+
 
 
         ((JumpingGameManager) gameManager)
                 .setAppearance(
-                        obstacleBMP,
-                        starBMP,
-                        terrainBMP,
+                        obstacleBmps,
+                        starBmps,
+                        terrainBmp,
                         jumperBlueBmps,
                         jumperYellowBmps,
                         jumperRedBmps);
 
-
-        extractSkyColors();
-        ((JumpingGameManager) gameManager).setSkyColors(skyColorDark, skyColorLight);
+        ((JumpingGameManager)gameManager).setSkyColors(SKY_COLOR_DARK, SKY_COLOR_LIGHT);
 
         gameManager.createGameItems();
         gameManager.startMusic();
-        extractSkyColors();
 
 
         thread.setRunning(true);
@@ -119,12 +114,12 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
         this.setOnClickListener(this.listener);
 
 
+
     }
 
 
-    /**
-     * Updates this game view
-     */
+
+    /** Updates this game view */
     @Override
     public void update() {
         // get amount of time in seconds);
@@ -163,6 +158,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
         ((JumpingGameManager) gameManager).onTouchEvent();
         return super.onTouchEvent(event);
     }
+
 
 
     @Override
@@ -226,30 +222,36 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     }
 
 
-    public void extractBMPFiles() {
-        obstacleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1);
-        starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
-        terrainBMP = BitmapFactory.decodeResource(getResources(), R.drawable.grass);
-        jumperBlueBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_blue);
-        jumperRedBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_red);
-        jumperYellowBMP = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_yellow);
-        jumperNinjaBMP = BitmapFactory.decodeResource(getResources(), R.drawable.ninja_idle__000);
+    public void extractBmpFiles(){
+        Bitmap obstacleBmp = BitmapFactory.decodeResource(getResources(), R.drawable.wooden_blocks_1);
+        Bitmap starBmp = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
+        terrainBmp = BitmapFactory.decodeResource(getResources(), R.drawable.grass);
+        jumperBlueBmp = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_blue);
+        jumperRedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_red);
+        jumperYellowBmp = BitmapFactory.decodeResource(getResources(), R.drawable.jumper_yellow);
+        jumperNinjaBmp = BitmapFactory.decodeResource(getResources(), R.drawable.ninja_idle__000);
 
-        obstacleBMP = getResizedBitmap(obstacleBMP, 100, 100);
-        starBMP = getResizedBitmap(starBMP, 80, 80);
-        terrainBMP = getResizedBitmap(terrainBMP, getScreenWidth(), getScreenHeight() / 2);
-        jumperBlueBMP = getResizedBitmap(jumperBlueBMP, 100, 200);
-        jumperRedBMP = getResizedBitmap(jumperRedBMP, 100, 200);
-        jumperYellowBMP = getResizedBitmap(jumperYellowBMP, 100, 200);
-        jumperNinjaBMP = getResizedBitmap(jumperNinjaBMP, 100, 200);
+        obstacleBmp = getResizedBitmap(obstacleBmp, 100, 100);
+        starBmp = getResizedBitmap(starBmp, 80, 80);
+        terrainBmp = getResizedBitmap( terrainBmp, getScreenWidth(), getScreenHeight()/2);
+        jumperBlueBmp = getResizedBitmap(jumperBlueBmp, 100, 200);
+        jumperRedBmp = getResizedBitmap(jumperRedBmp, 100, 200);
+        jumperYellowBmp = getResizedBitmap(jumperYellowBmp, 100, 200);
+        jumperNinjaBmp = getResizedBitmap(jumperNinjaBmp, 100, 200);
+
+
+        obstacleBmps = new ArrayList<>();
+        obstacleBmps.add(obstacleBmp);
+        starBmps = new ArrayList<>();
+        starBmps.add(starBmp);
         // @TODO don't need to load everything - only the customization that was chosen
         jumperBlueBmps = new ArrayList<>();
         jumperRedBmps = new ArrayList<>();
         jumperYellowBmps = new ArrayList<>();
 
-        int[] jumperBlueFiles = {R.drawable.jumper_blue_1, R.drawable.jumper_blue_2, R.drawable.jumper_blue_3, R.drawable.jumper_blue_4, R.drawable.jumper_blue_5, R.drawable.jumper_blue_6, R.drawable.jumper_blue_7, R.drawable.jumper_blue_8, R.drawable.jumper_blue_9, R.drawable.jumper_blue_10};
-        int[] jumperRedFiles = {R.drawable.jumper_red_1, R.drawable.jumper_red_2, R.drawable.jumper_red_3, R.drawable.jumper_red_4, R.drawable.jumper_red_5, R.drawable.jumper_red_6, R.drawable.jumper_red_7, R.drawable.jumper_red_8, R.drawable.jumper_red_9, R.drawable.jumper_red_10};
-        int[] jumperYellowFiles = {R.drawable.jumper_yellow_1, R.drawable.jumper_yellow_2, R.drawable.jumper_yellow_3, R.drawable.jumper_yellow_4, R.drawable.jumper_yellow_5, R.drawable.jumper_yellow_6, R.drawable.jumper_yellow_7, R.drawable.jumper_yellow_8};
+        int[] jumperBlueFiles = {R.drawable.jumper_blue_1, R.drawable.jumper_blue_2, R.drawable.jumper_blue_3, R.drawable.jumper_blue_4,R.drawable.jumper_blue_5, R.drawable.jumper_blue_6, R.drawable.jumper_blue_7, R.drawable.jumper_blue_8 ,  R.drawable.jumper_blue_9,  R.drawable.jumper_blue_10};
+        int[] jumperRedFiles = {R.drawable.jumper_red_1, R.drawable.jumper_red_2, R.drawable.jumper_red_3, R.drawable.jumper_red_4,R.drawable.jumper_red_5, R.drawable.jumper_red_6, R.drawable.jumper_red_7, R.drawable.jumper_red_8, R.drawable.jumper_red_9 , R.drawable.jumper_red_10 };
+        int[] jumperYellowFiles = {R.drawable.jumper_yellow_1, R.drawable.jumper_yellow_2, R.drawable.jumper_yellow_3, R.drawable.jumper_yellow_4,R.drawable.jumper_yellow_5, R.drawable.jumper_yellow_6, R.drawable.jumper_yellow_7, R.drawable.jumper_yellow_8 };
 
 
         generateJumperBmps(jumperBlueBmps, jumperBlueFiles);
@@ -258,23 +260,15 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
     }
 
-    private void generateJumperBmps(List<Bitmap> dest, int[] files) {
-        for (int i : files) {
+    private void generateJumperBmps(List<Bitmap> dest, int[] files){
+        for (int i: files){
             Bitmap b = BitmapFactory.decodeResource(getResources(), i);
             b = getResizedBitmap(b, JumpingGameManager.JUMPER_HEIGHT, JumpingGameManager.JUMPER_HEIGHT);
             dest.add(b);
         }
     }
 
-    /**
-     * Set the theme of this game
-     */
-    public void extractSkyColors() {
-        skyColorDark = Color.rgb(83, 92, 104);
-        skyColorLight = Color.rgb(223, 249, 251);
-        skyColorDefault = Color.rgb(204, 255, 255);
 
-    }
 
 
 }

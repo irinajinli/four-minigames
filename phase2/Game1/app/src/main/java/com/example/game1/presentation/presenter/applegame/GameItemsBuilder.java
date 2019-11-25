@@ -7,6 +7,8 @@ import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.Background;
 
+import java.util.List;
+
 public class GameItemsBuilder {
   private Customization customization;
   private Background background;
@@ -25,8 +27,8 @@ public class GameItemsBuilder {
       }
   }
 
-  public void createBasket(Object basketBMP) {
-    this.basket = new Basket(100, 100, basketBMP);
+  public void createBasket(List basketBmps) {
+    this.basket = new Basket(100, 100, basketBmps);
     // set color of basket
 //    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
 //      basket.setColor(Color.BLUE);

@@ -3,6 +3,8 @@ package com.example.game1.presentation.model.common;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
+import java.util.List;
+
 public abstract class AnimatedGameItem extends GameItem {
     /** This item's velocity for x coordinate. */
     private double xVelocity;
@@ -15,6 +17,8 @@ public abstract class AnimatedGameItem extends GameItem {
     /** This item's customization info passed by view. */
     //private Object appearance;
 
+    private int currentFrame = 0;
+    private List appearances;
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
      *
@@ -24,15 +28,24 @@ public abstract class AnimatedGameItem extends GameItem {
         super(appearance);
     }
 
+    private void advanceFrame(){
+        currentFrame += 1;
+        if (currentFrame >= appearances.size()){
+            currentFrame = 0;
+        }
+        setAppearance(appearances.get(currentFrame));
+    }
+
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
      *
      * @param height the height of this GameItem
      * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
+     * @param appearances the appearances of this GameItem
      */
-    protected AnimatedGameItem(int height, int width, Object appearance){
-        super(height, width, appearance);
+    protected AnimatedGameItem(int height, int width, List appearances){
+        super(height, width, appearances.get(0));
+        this.appearances = appearances;
     }
     /**
      * Constructs a AnimatedGameItem with the specified height and width.
@@ -146,7 +159,11 @@ public abstract class AnimatedGameItem extends GameItem {
 
         double newYVelocity = getYVelocity() + getYAcceleration() * numOfSeconds;
         setYVelocity(newYVelocity);
+        //@TODO maybe this call can be moved elsewhere
+        advanceFrame();
     }
+
+
 
     public abstract Result animate(ImportInfo importInfo);
 

@@ -6,6 +6,8 @@ import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
+import java.util.List;
+
 public class Star extends AnimatedGameItem {
 
   public Star() {
@@ -13,8 +15,8 @@ public class Star extends AnimatedGameItem {
     paintText.setColor(Color.CYAN);
   }
 
-  public Star(int height, int width, Object appearance) {
-    super(height, width, appearance);
+  public Star(int height, int width, List appearances) {
+    super(height, width, appearances);
   }
 
   @Override

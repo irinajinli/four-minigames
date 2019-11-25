@@ -126,13 +126,6 @@ public class AppManager {
     }
 
     /**
-     * Returns an Game State Observer
-     */
-    public GameStateObserver lookupGameStateObserver() {
-        return gameStateObserver;
-    }
-
-    /**
      * Returns an instance of the user service
      */
     public UserServiceIntf lookupUserService() {

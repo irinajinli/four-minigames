@@ -7,6 +7,8 @@ import com.example.game1.presentation.presenter.brickgame.BrickImportInfo;
 import com.example.game1.presentation.presenter.brickgame.BrickResult;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 
+import java.util.List;
+
 public class Star extends AnimatedGameItem {
 
   /** The star. */
@@ -16,11 +18,11 @@ public class Star extends AnimatedGameItem {
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearance the appearance of this GameItem
+   * @param appearances the appearances of this GameItem
    */
-  public Star(int width, int height, Bitmap appearance) {
+  public Star(int width, int height, List appearances) {
 
-    super(width, height, appearance);
+    super(width, height, appearances);
   }
 
   @Override

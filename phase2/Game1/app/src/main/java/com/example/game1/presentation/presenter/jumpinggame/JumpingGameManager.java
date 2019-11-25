@@ -44,8 +44,8 @@ public class JumpingGameManager extends GameManager {
   private int skyColorLight;
   private int skyColorDark;
   private boolean isRunning;
-  private Object obstacleAppearance;
-  private Object starAppearance;
+  private List obstacleAppearances;
+  private List starAppearances;
   private Object terrainAppearance;
   private List<Object> jumperBlueAppearances;
   private List<Object> jumperRedAppearances;
@@ -54,8 +54,8 @@ public class JumpingGameManager extends GameManager {
 
   private double numOfSeconds;
 
-  private final int darkColor = Color.rgb(83, 92, 104);
-  private final int lightColor = Color.rgb(223, 249, 251);
+  private final int DARK_COLOR = Color.rgb(83, 92, 104);
+  private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
 
   public static final int JUMPER_WIDTH = 100;
   public static final int JUMPER_HEIGHT = 200;
@@ -179,23 +179,23 @@ public class JumpingGameManager extends GameManager {
     setTerrainPosition(terrain);
     place(terrain);
 
-
-    jumper = new Jumper(JUMPER_HEIGHT, JUMPER_WIDTH, jumperAppearances.get(0));
+    //@TODO changed
+    jumper = new Jumper(JUMPER_HEIGHT, JUMPER_WIDTH, jumperAppearances);
     setJumperPosition(jumper);
     place(jumper);
 
-    obstacle1 = new Obstacle(100, 100, obstacleAppearance);
+    obstacle1 = new Obstacle(100, 100, obstacleAppearances);
     setObstaclePosition(obstacle1, getScreenWidth() * 8 / 5);
     place(obstacle1);
-    obstacle2 = new Obstacle(100, 100, obstacleAppearance);
+    obstacle2 = new Obstacle(100, 100, obstacleAppearances);
     setObstaclePosition(obstacle2, getScreenWidth() * 3 / 5);
     place(obstacle2);
-    obstacle3 = new Obstacle(100, 100, obstacleAppearance);
+    obstacle3 = new Obstacle(100, 100, obstacleAppearances);
     setObstaclePosition(obstacle3, getScreenWidth() * 6 / 5);
     place(obstacle3);
 
 
-    Star star = new Star(80, 80, starAppearance);
+    Star star = new Star(80, 80, starAppearances);
 
     setStarPosition(star, getScreenWidth() * 3 / 5);
     place(star);
@@ -271,7 +271,7 @@ public class JumpingGameManager extends GameManager {
           numStars += 1;
         }
         if (jumpingResult.isNeedNewStar()) {
-          Star newStar = new Star(80, 80, starAppearance);
+          Star newStar = new Star(80, 80, starAppearances);
           autoSetStarPosition(newStar);
           newItems.add(newStar);
         }
@@ -357,11 +357,11 @@ public class JumpingGameManager extends GameManager {
   }
 
 
-  public void setAppearance(Object obstacleAppearance, Object starAppearance, Object terrainAppearance,
+  public void setAppearance(List obstacleAppearances, List starAppearances, Object terrainAppearance,
                             List jumperBlueAppearances, List jumperYellowAppearances,
                             List jumperRedAppearances){
-    this.obstacleAppearance = obstacleAppearance;
-    this.starAppearance = starAppearance;
+    this.obstacleAppearances = obstacleAppearances;
+    this.starAppearances = starAppearances;
     this.terrainAppearance = terrainAppearance;
     this.jumperBlueAppearances = jumperBlueAppearances;
     this.jumperYellowAppearances = jumperYellowAppearances;

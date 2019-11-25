@@ -80,7 +80,8 @@ public class TappingGameView extends GameView implements View.OnClickListener {
         charWidth = paintText.measureText("W");
         charHeight = -paintText.ascent() + paintText.descent();
 
-        gameManager = AppManager.getInstance().buildGameManager(Game.GameName.TAPPING,
+        gameManager = AppManager.getInstance().buildGameManager(
+                Game.GameName.TAPPING,
                 (int) (getScreenHeight() / charHeight),
                 (int) (getScreenWidth() / charWidth),
                 activity);

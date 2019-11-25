@@ -7,6 +7,8 @@ import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.brickgame.BrickResult;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 
+import java.util.List;
+
 public class Paddle extends AnimatedGameItem {
     /** The jumper. */
 
@@ -15,10 +17,10 @@ public class Paddle extends AnimatedGameItem {
      *
      * @param height the height of this GameItem
      * @param width the width of this GameItem
-     * @param appearance the appearance of this GameItem
+     * @param appearances the appearance of this GameItem
      */
-    public Paddle(int height, int width, Bitmap appearance) {
-        super(height, width, appearance);
+    public Paddle(int height, int width, List appearances) {
+        super(height, width, appearances);
     }
 
     @Override

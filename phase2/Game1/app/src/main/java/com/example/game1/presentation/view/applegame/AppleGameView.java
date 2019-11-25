@@ -20,24 +20,23 @@ import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
-/**
- * Based on Fish Tank's FishTankView.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+/** Based on Fish Tank's FishTankView. */
 public class AppleGameView extends GameView {
 
     // TODO: new for images
-    private Bitmap appleBMP = BitmapFactory.decodeResource(getResources(), R.drawable.apple_red);
-    private Bitmap starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_7);
-    private Bitmap basketBMP = BitmapFactory.decodeResource(getResources(), R.drawable.basket_red);
+    private Bitmap appleBmp = BitmapFactory.decodeResource(getResources(), R.drawable.apple_red);
+    private Bitmap starBmp = BitmapFactory.decodeResource(getResources(), R.drawable.star_7);
+    private Bitmap basketBmp = BitmapFactory.decodeResource(getResources(), R.drawable.basket_red);
 
     // TODO: new for colors
     private int skyColorDark;
     private int skyColorLight;
     private int skyColorDefault;
 
-    /**
-     * Construct an AppleGameView with the specified Context.
-     */
+    /** Construct an AppleGameView with the specified Context. */
     public AppleGameView(Context context) {
         super(context);
         thread = new GameThread(getHolder(), this);
@@ -64,11 +63,18 @@ public class AppleGameView extends GameView {
         gameManager.startMusic();
 
         // TODO: new for images
-        appleBMP = getResizedBitmap(appleBMP, 80, 80);
-        starBMP = getResizedBitmap(starBMP, 80, 80);
-        basketBMP = getResizedBitmap(basketBMP, 100, 100);
+        appleBmp = getResizedBitmap(appleBmp, 80, 80);
+        starBmp = getResizedBitmap(starBmp, 80, 80);
+        basketBmp = getResizedBitmap(basketBmp, 100, 100);
+        // animated items require a list of bitmaps for each of their frames
+        List<Bitmap> appleBmps = new ArrayList<Bitmap>();
+        List<Bitmap> starBmps = new ArrayList<Bitmap>();
+        List<Bitmap> basketBmps = new ArrayList<Bitmap>();
+        appleBmps.add(appleBmp);
+        starBmps.add(starBmp);
+        basketBmps.add(basketBmp);
 
-        ((AppleGameManager) gameManager).setBMPFiles(appleBMP, starBMP, basketBMP);
+        ((AppleGameManager) gameManager).setBMPFiles(appleBmps, starBmps, basketBmps);
 
         // TODO: new for colors
         extractSkyColors();

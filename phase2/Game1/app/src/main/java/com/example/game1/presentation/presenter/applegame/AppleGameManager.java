@@ -14,6 +14,7 @@ import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.applegame.PointsCounter;
 import com.example.game1.presentation.view.applegame.Star;
 
+import java.util.List;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
@@ -35,9 +36,9 @@ public class AppleGameManager extends GameManager {
   private int numCaughtStars = 0;
 
   // TODO: new
-  private Bitmap appleBMP;
-  private Bitmap starBMP;
-  private Bitmap basketBMP;
+  private List<Bitmap> appleBmps;
+  private List<Bitmap> starBmps;
+  private List<Bitmap> basketBmps;
 
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
@@ -45,10 +46,10 @@ public class AppleGameManager extends GameManager {
   }
 
   // TODO: new
-  public void setBMPFiles(Bitmap appleBMP, Bitmap starBMP, Bitmap basketBMP) {
-    this.appleBMP = appleBMP;
-    this.starBMP = starBMP;
-    this.basketBMP = basketBMP;
+  public void setBMPFiles(List<Bitmap> appleBmps, List<Bitmap> starBmps, List<Bitmap> basketBmps) {
+    this.appleBmps = appleBmps;
+    this.starBmps = starBmps;
+    this.basketBmps = basketBmps;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -56,7 +57,7 @@ public class AppleGameManager extends GameManager {
     // TODO: delete this method?
     GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
     gib.createPointsCounter();
-    gib.createBasket(basketBMP);
+    gib.createBasket(basketBmps);
     gib.setTheme(this);
     gib.placeItems(this);
     // TODO: trying to fix pointscounter
@@ -158,13 +159,13 @@ public class AppleGameManager extends GameManager {
     int randint = randItem.nextInt(200);
     if (randint < 1) {
       // spawn new Star
-      Star nextItem = new Star(80, 80, starBMP);
+      Star nextItem = new Star(80, 80, starBmps);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
     } else if (randint < 9) {
       // spawn new Apple
       // TODO: new constructor call; uncomment out when done testing
-      Apple nextItem = new Apple(80, 80, appleBMP);
+      Apple nextItem = new Apple(80, 80, appleBmps);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
 

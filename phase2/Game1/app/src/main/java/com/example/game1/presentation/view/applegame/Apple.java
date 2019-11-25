@@ -7,6 +7,8 @@ import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
+import java.util.List;
+
 public class Apple extends AnimatedGameItem {
 
   /** Construct a red apple. */
@@ -15,8 +17,8 @@ public class Apple extends AnimatedGameItem {
     paintText.setColor(Color.RED);
   }
 
-  public Apple(int width, int height, Bitmap appearance) {
-    super(width, height, appearance);
+  public Apple(int width, int height, List appearances) {
+    super(width, height, appearances);
   }
 
   /** Move this GameItemOld within its GameManager. */

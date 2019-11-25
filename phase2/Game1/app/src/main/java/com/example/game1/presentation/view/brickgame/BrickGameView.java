@@ -15,16 +15,14 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.AppManager;
 import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
-
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * The view of the jumping game presented to the user.
- */
+/** The view of the jumping game presented to the user. */
 public class BrickGameView extends GameView implements View.OnClickListener {
 
 
@@ -33,14 +31,13 @@ public class BrickGameView extends GameView implements View.OnClickListener {
 
     private OnClickListener listener;
     private int numTaps = 0;
-    private Bitmap ballBMP;
-    private Bitmap starBMP;
-    private Bitmap brickBMP;
-    private Bitmap brickDamagedBMP;
-    private Bitmap paddleBlueBMP;
-    private Bitmap paddleRedBMP;
-    private Bitmap paddleYellowBMP;
-
+    private List<Bitmap> ballBmps;
+    private List<Bitmap> starBmps;
+    private Bitmap brickBmp;
+    private Bitmap brickDamagedBmp;
+    private List<Bitmap> paddleBlueBmps;
+    private List<Bitmap> paddleRedBmps;
+    private List<Bitmap> paddleYellowBmps;
     /**
      * creates a new BrickView *
      *
@@ -72,40 +69,51 @@ public class BrickGameView extends GameView implements View.OnClickListener {
      */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        gameManager = AppManager.getInstance().buildGameManager(Game.GameName.BRICK,
+        gameManager = AppManager.getInstance().buildGameManager(
+                Game.GameName.BRICK,
                 (int) (getScreenHeight() / charHeight),
                 (int) (getScreenWidth() / charWidth),
                 activity);
         gameManager.setScreenHeight(this.getScreenHeight());
         gameManager.setScreenWidth(this.getScreenWidth());
-        ((BrickGameManager) gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+        ((BrickGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
-        ballBMP = BitmapFactory.decodeResource(getResources(), R.drawable.ball_blue);
-        starBMP = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
-        brickBMP = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue);
-        brickDamagedBMP = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue_damaged);
-        paddleBlueBMP = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_blue);
-        paddleRedBMP = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_red);
-        paddleYellowBMP = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_yellow);
+        Bitmap ballBmp = BitmapFactory.decodeResource(getResources(), R.drawable.ball_blue);
+        Bitmap starBmp = BitmapFactory.decodeResource(getResources(), R.drawable.star_6);
+        brickBmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue);
+        brickDamagedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue_damaged);
+        Bitmap paddleBlueBmp = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_blue);
+        Bitmap paddleRedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_red);
+        Bitmap paddleYellowBmp = BitmapFactory.decodeResource(getResources(), R.drawable.paddle_yellow);
 
-        ballBMP = getResizedBitmap(ballBMP, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
-        starBMP = getResizedBitmap(starBMP, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
-        brickBMP = getResizedBitmap(brickBMP, getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
-        brickDamagedBMP = getResizedBitmap(brickDamagedBMP, getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
-        paddleBlueBMP = getResizedBitmap(paddleBlueBMP, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
-        paddleRedBMP = getResizedBitmap(paddleRedBMP, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
-        paddleYellowBMP = getResizedBitmap(paddleYellowBMP, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
+        ballBmp = getResizedBitmap(ballBmp, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
+        starBmp = getResizedBitmap(starBmp, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
+        brickBmp = getResizedBitmap( brickBmp, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
+        brickDamagedBmp = getResizedBitmap( brickDamagedBmp, getScreenWidth()/BrickGameManager.NUM_BRICKS_HORIZONTAL, BrickGameManager.BRICK_HEIGHT);
+        paddleBlueBmp = getResizedBitmap(paddleBlueBmp, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
+        paddleRedBmp = getResizedBitmap(paddleRedBmp, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
+        paddleYellowBmp = getResizedBitmap(paddleYellowBmp, BrickGameManager.PADDLE_WIDTH, BrickGameManager.PADDLE_HEIGHT);
 
+        ballBmps = new ArrayList<Bitmap>();
+        ballBmps.add(ballBmp);
+        starBmps = new ArrayList<Bitmap>();
+        starBmps.add(starBmp);
+        paddleBlueBmps = new ArrayList<Bitmap>();
+        paddleBlueBmps.add(paddleBlueBmp);
+        paddleRedBmps= new ArrayList<Bitmap>();
+        paddleRedBmps.add(paddleRedBmp);
+        paddleYellowBmps = new ArrayList<Bitmap>();
+        paddleYellowBmps.add(paddleYellowBmp);
 
         ((BrickGameManager) gameManager)
-                .setBMPfiles(
-                        ballBMP,
-                        starBMP,
-                        brickBMP,
-                        brickDamagedBMP,
-                        paddleBlueBMP,
-                        paddleRedBMP,
-                        paddleYellowBMP);
+                .setBmpfiles(
+                        ballBmps,
+                        starBmps,
+                        brickBmp,
+                        brickDamagedBmp,
+                        paddleBlueBmps,
+                        paddleRedBmps,
+                        paddleYellowBmps);
         gameManager.createGameItems();
         gameManager.startMusic();
 
@@ -115,12 +123,12 @@ public class BrickGameView extends GameView implements View.OnClickListener {
         this.setOnClickListener(this.listener);
 
 
+
     }
 
 
-    /**
-     * Updates this game view
-     */
+
+    /** Updates this game view */
     @Override
     public void update() {
         // get amount of time in seconds);
@@ -163,6 +171,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
         ((BrickGameManager) gameManager).onTouchEvent(event.getX());
         return super.onTouchEvent(event);
     }
+
 
 
     @Override
