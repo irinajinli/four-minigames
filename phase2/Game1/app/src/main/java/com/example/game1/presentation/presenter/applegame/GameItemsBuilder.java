@@ -47,7 +47,7 @@ public class GameItemsBuilder {
   }
 
   public void createLivesCounter() {
-    this.livesCounter = new LivesCounter();
+    this.livesCounter = new LivesCounter(10);
   }
 
   /**

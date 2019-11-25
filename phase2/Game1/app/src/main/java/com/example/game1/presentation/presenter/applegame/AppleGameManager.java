@@ -101,9 +101,7 @@ public class AppleGameManager extends GameManager {
 
   /** Moves, removes, and catches GameItems. */
   public boolean update() {
-
-    // check if the game is over
-    if (numDroppedApples >= 20) {
+    if (livesCounter.getLivesRemaining() <= 0) {
       gameOver();
       return false;
     }
@@ -117,10 +115,11 @@ public class AppleGameManager extends GameManager {
       } else {
       }
 
-      if (!(currItem instanceof Basket)) {
+      if (!(currItem instanceof Basket)) { // TODO is this if statement necessary?
         // check if each non-Basket GameItemOld is off screen; remove if necessary
         if (currItem.getYCoordinate() > getGridHeight()) {
           dropGameItem(currItem);
+          livesCounter.subtractLife();
         }
 
         // check if currItem should be caught
