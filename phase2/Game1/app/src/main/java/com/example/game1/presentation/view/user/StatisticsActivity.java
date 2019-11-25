@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.game1.R;
-import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 
 public class StatisticsActivity extends AppCompatActivity {

@@ -11,13 +11,10 @@ import android.view.View;
 
 import com.example.game1.R;
 
-import com.example.game1.presentation.model.brickgame.Brick;
+import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.AppManager;
 import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
-import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
-
-import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
@@ -29,154 +26,153 @@ import java.util.List;
 public class BrickGameView extends GameView implements View.OnClickListener {
 
 
-  private GameThread thread;
+    private GameThread thread;
 
 
-  private OnClickListener listener;
-  private int numTaps = 0;
-  private List<Bitmap> ballBmps;
-  private List<Bitmap> starBmps;
-  private Bitmap brickBmp;
-  private Bitmap brickDamagedBmp;
-  private List<Bitmap> paddleBlueBmps;
-  private List<Bitmap> paddleRedBmps;
-  private List<Bitmap> paddleYellowBmps;
-  /**
-   * creates a new BrickView *
-   *
-   * @param context the context in which to create the view
-   */
-  public BrickGameView(Context context) {
-    super(context);
+    private OnClickListener listener;
+    private int numTaps = 0;
+    private List<Bitmap> ballBmps;
+    private List<Bitmap> starBmps;
+    private Bitmap brickBmp;
+    private Bitmap brickDamagedBmp;
+    private List<Bitmap> paddleBlueBmps;
+    private List<Bitmap> paddleRedBmps;
+    private List<Bitmap> paddleYellowBmps;
+    /**
+     * creates a new BrickView *
+     *
+     * @param context the context in which to create the view
+     */
+    public BrickGameView(Context context) {
+        super(context);
 
-    getHolder().addCallback(this);
-    thread = new GameThread(getHolder(), this);
-    setFocusable(true);
-    this.listener =
-            new OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                if (true) {
-                  numTaps++;
-                  ((BrickGameManager) gameManager).setNumTaps(numTaps);
-                }
-              }
-            };
-  }
+        getHolder().addCallback(this);
+        thread = new GameThread(getHolder(), this);
+        setFocusable(true);
+        this.listener =
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (true) {
+                            numTaps++;
+                            ((BrickGameManager) gameManager).setNumTaps(numTaps);
+                        }
+                    }
+                };
+    }
 
 
-  /**
-   * initialiezes the game view when a surface is created
-   *
-   * @param holder the surface holder holding the view
-   */
-  @Override
-  public void surfaceCreated(SurfaceHolder holder) {
-    gameManager =
-            AppManager.getInstance()
-                    .getBrickGameManager(
-                            (int) (getScreenHeight() / charHeight),
-                            (int) (getScreenWidth() / charWidth),
-                            activity);
-    gameManager.setScreenHeight(this.getScreenHeight());
-    gameManager.setScreenWidth(this.getScreenWidth());
-    ((BrickGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+    /**
+     * initialiezes the game view when a surface is created
+     *
+     * @param holder the surface holder holding the view
+     */
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        gameManager = AppManager.getInstance().buildGameManager(
+                Game.GameName.BRICK,
+                (int) (getScreenHeight() / charHeight),
+                (int) (getScreenWidth() / charWidth),
+                activity);
+        gameManager.setScreenHeight(this.getScreenHeight());
+        gameManager.setScreenWidth(this.getScreenWidth());
+        ((BrickGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     extractBmpFiles();
 
-    ((BrickGameManager) gameManager)
-            .setBmpfiles(
-                    ballBmps,
-                    starBmps,
-                    brickBmp,
-                    brickDamagedBmp,
-                    paddleBlueBmps,
-                    paddleRedBmps,
-                    paddleYellowBmps);
-    gameManager.createGameItems();
-    gameManager.startMusic();
+        ((BrickGameManager) gameManager)
+                .setBmpfiles(
+                        ballBmps,
+                        starBmps,
+                        brickBmp,
+                        brickDamagedBmp,
+                        paddleBlueBmps,
+                        paddleRedBmps,
+                        paddleYellowBmps);
+        gameManager.createGameItems();
+        gameManager.startMusic();
 
-    thread.setRunning(true);
-    thread.start();
+        thread.setRunning(true);
+        thread.start();
 
-    this.setOnClickListener(this.listener);
-
-
-
-  }
+        this.setOnClickListener(this.listener);
 
 
 
-  /** Updates this game view */
-  @Override
-  public void update() {
-    // get amount of time in seconds);
-
-    boolean updated = gameManager.update();
-    // stop thread if update fails
-    if (!updated) {
-      thread.setRunning(false);
     }
 
-  }
 
-  /**
-   * draws this game view on the canvas
-   *
-   * @param canvas the canvas on which to draw
-   */
-  @Override
-  public void draw(Canvas canvas) {
-    super.draw(canvas);
-    if (canvas != null) {
-      canvas.drawColor(((BrickGameManager) gameManager).getBackgroundColor());
-      //gameManager.draw(canvas);
-      List<GameItem> items = gameManager.getGameItems();
-      for (GameItem item : items) {
 
-        drawItem(canvas, item);
-      }
+    /** Updates this game view */
+    @Override
+    public void update() {
+        // get amount of time in seconds);
+
+        boolean updated = gameManager.update();
+        // stop thread if update fails
+        if (!updated) {
+            thread.setRunning(false);
+        }
+
     }
-  }
 
-  /**
-   * Handles the jumper's jump when the user taps the screen
-   *
-   * @param event the event for the screen tap
-   * @return true or false depending on the implementation of the superclass
-   */
-  @Override
-  public boolean onTouchEvent(MotionEvent event) {
-    ((BrickGameManager) gameManager).onTouchEvent(event.getX());
-    return super.onTouchEvent(event);
-  }
+    /**
+     * draws this game view on the canvas
+     *
+     * @param canvas the canvas on which to draw
+     */
+    @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        if (canvas != null) {
+            canvas.drawColor(((BrickGameManager) gameManager).getBackgroundColor());
+            //gameManager.draw(canvas);
+            List<GameItem> items = gameManager.getGameItems();
+            for (GameItem item : items) {
 
-
-
-  @Override
-  public void surfaceDestroyed(SurfaceHolder holder) {
-    boolean retry = true;
-    while (retry) {
-      try {
-        thread.setRunning(false);
-        thread.join();
-        gameManager.gameOver();
-
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-      retry = false;
+                drawItem(canvas, item);
+            }
+        }
     }
-  }
 
-  @Override
-  public void onClick(View v) {
-
-    if (true) {
-      numTaps++;
-      System.out.println(numTaps);
+    /**
+     * Handles the jumper's jump when the user taps the screen
+     *
+     * @param event the event for the screen tap
+     * @return true or false depending on the implementation of the superclass
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        ((BrickGameManager) gameManager).onTouchEvent(event.getX());
+        return super.onTouchEvent(event);
     }
-  }
+
+
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        boolean retry = true;
+        while (retry) {
+            try {
+                thread.setRunning(false);
+                thread.join();
+                gameManager.gameOver();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            retry = false;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (true) {
+            numTaps++;
+            System.out.println(numTaps);
+        }
+    }
 
 
 

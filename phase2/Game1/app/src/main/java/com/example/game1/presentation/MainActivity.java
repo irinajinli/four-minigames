@@ -7,8 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.game1.R;
-import com.example.game1.presentation.presenter.AppManager;
-import com.example.game1.presentation.view.applegame.AppleActivity;
+import com.example.game1.AppManager;
 import com.example.game1.presentation.view.user.LoginActivity;
 import com.example.game1.presentation.view.user.RegistrationActivity;
 

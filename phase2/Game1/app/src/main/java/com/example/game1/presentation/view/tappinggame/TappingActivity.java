@@ -2,23 +2,9 @@ package com.example.game1.presentation.view.tappinggame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.example.game1.R;
-import com.example.game1.presentation.presenter.AppManager;
-import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 
 /** The Tapping Activity Class */
 public class TappingActivity extends AppCompatActivity {

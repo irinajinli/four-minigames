@@ -2,7 +2,7 @@ package com.example.game1.data;
 
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.User;
-import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.AppManager;
 
 import android.util.Log;
 
@@ -21,11 +21,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-
 /**
- * Responsible for storing, retrieving, and loading data.
+ * This is the file based data manager that implements the DataManagerIntf interface
+ * in the persistence layer.
+ * It is responsible for storing, retrieving, and loading data in the persistence file.
  */
-public class DataManager {
+public class FileDataManager implements DataManagerIntf {
 
     /* For logging output. */
     private static final String USERNAME = "UserName";
@@ -56,7 +57,7 @@ public class DataManager {
     /**
      * Constructs a DataManager
      */
-    public DataManager() {
+    public FileDataManager() {
         readFromFile();
 
         testPrintTopIndividualStatistics(); // TESTING PURPOSES

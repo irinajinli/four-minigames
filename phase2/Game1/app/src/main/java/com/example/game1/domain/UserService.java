@@ -1,7 +1,8 @@
 package com.example.game1.domain;
 
 import com.example.game1.presentation.model.User;
-import com.example.game1.data.DataManager;
+import com.example.game1.data.DataManagerIntf;
+import com.example.game1.AppManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,20 +10,20 @@ import java.util.List;
 /**
  * The domain service. It implements business logic, such as user validation.
  */
-public class UserService {
+public class UserService implements UserServiceIntf {
 
-    private DataManager dataManager;
+    private DataManagerIntf dataManager;
 
     /**
      * Constructs a UserService object
      */
     public UserService() {
-        dataManager = new DataManager();
+        dataManager = AppManager.getInstance().lookupDataManager();
     }
 
     /**
-     * Verifies if the user's username is not already taken. If it is not taken, register the user
-     * and return true. Otherwise, return false
+     * If the given user's username is not already taken, register the given user and return true.
+     * Otherwise, return false
      */
     public boolean registerUser(User user) {
         if (dataManager.getUser(user.getUserName()) != null) {
@@ -34,8 +35,8 @@ public class UserService {
     }
 
     /**
-     * Verifies if the given username and password correspond to an existing user. If they do,
-     * return the existing user. Otherwise, return null
+     * If the given username and password correspond to an existing user, return the existing user.
+     * Otherwise, return null
      */
     public User getUser(String username, String password) {
         User user = dataManager.getUser(username);
@@ -112,5 +113,4 @@ public class UserService {
         }
         return newList;
     }
-
 }
