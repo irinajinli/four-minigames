@@ -6,142 +6,147 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.AppManager;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-/** A game manager. */
-public abstract class GameManager {
+/**
+ * A game manager.
+ */
+public abstract class GameManager extends Observable {
 
-  /** The Game that this GameManager manages */
-  public Game game;
-  /** A list of TankItems in this GameManager. */
-  private ArrayList<GameItem> gameItems = new ArrayList<>();
-  /** The width of this GameManager. */
-  private int gridWidth;
-  /** The height of this GameManager. */
-  private int gridHeight;
+    /* The possible states of a GameManager. */
+    public enum State {START, PAUSE, STOP, RESUME}
 
-  /** The width of this GameManager. */
-  private int screenWidth;
-  /** The height of this GameManager. */
-  private int screenHeight;
+    /* The Game that this GameManager manages */
+    public Game game;
 
-  /** The Activity class of the game this GameManager manages. */
-  private AppCompatActivity activity;
-  /** The music player of the game that this GameManager manages. */
-  private MediaPlayer musicPlayer;
+    /* The state of this GameManager. */
+    private State state;
 
-  /** Constructs a GameManager with the specified height, width, game, and activity. */
-  public GameManager(int height, int width, Game game, AppCompatActivity activity) {
-    gridHeight = height;
-    gridWidth = width;
-    this.game = game;
-    this.activity = activity;
-  }
+    /* A list of GameItems in this GameManager. */
+    private ArrayList<GameItem> gameItems = new ArrayList<>();
 
-  public int getGridWidth() {
-    return gridWidth;
-  }
+    /* The width of the game display. */
+    private int width;
 
-  public int getGridHeight() {
-    return gridHeight;
-  }
+    /* The height of the game display. */
+    private int height;
 
-  /**
-   * Returns gameItems.
-   *
-   * @return gameItems
-   */
-  public ArrayList<GameItem> getGameItems() {
-    return gameItems;
-  }
+    /* The Activity class of the game this GameManager manages.*/
+    private AppCompatActivity activity;
 
-  /**
-   * Places the specified item in this GameManager.
-   *
-   * @param item the item to be placed in the GameManager
-   */
-  public void place(GameItem item) {
-    gameItems.add(item);
-  }
+    /* The music player of the game that this GameManager manages. */
+    private MediaPlayer musicPlayer;
 
-  //  /**
-  //   * Draws all GameItems in gameItems.
-  //   *
-  //   * @param canvas the canvas on which to draw
-  //   */
-  //  public void draw(Canvas canvas) {
-  //    // iterate through gameItems and draw them
-  //    for (int i = 0; i < gameItems.size(); i++) {
-  //      gameItems.get(i).draw(canvas);
-  //    }
-  //  }
+    /**
+     * Constructs a GameManager with the specified height, width, game, and activity.
+     */
+    public GameManager(int height, int width, Game game, AppCompatActivity activity) {
+        this.height = height;
+        this.width = width;
+        this.game = game;
+        this.activity = activity;
+    }
 
-  /** Updates this GameManager by moving all GameItems in it. */
-  public abstract boolean update();
+    /**
+     * Returns gameItems.
+     */
+    public ArrayList<GameItem> getGameItems() {
+        return gameItems;
+    }
 
-  /**
-   * Removes the specified item from gameItems.
-   *
-   * @param item the item to be removed
-   */
-  public void removeItem(GameItem item) {
-    gameItems.remove(item);
-  }
+    /**
+     * Adds the specified item to gameItems.
+     */
+    public void place(GameItem item) {
+        gameItems.add(item);
+    }
 
-  /** Creates some GameItems and adds them to this GameManager. */
-  public abstract void createGameItems();
+    /**
+     * Updates this GameManager by moving all GameItems in it.
+     */
+    public abstract boolean update();
 
-  public Game getGame() {
-    return game;
-  }
+    /**
+     * Removes the specified item from gameItems.
+     */
+    protected void removeItem(GameItem item) {
+        gameItems.remove(item);
+    }
 
-  public void setGame(Game game) {
-    this.game = game;
-  }
+    /**
+     * Creates some GameItems and adds them to this GameManager.
+     */
+    public abstract void createGameItems();
 
-  public AppCompatActivity getActivity() {
-    return activity;
-  }
+    public Game getGame() {
+        return game;
+    }
 
-  public void setActivity(AppCompatActivity activity) {
-    this.activity = activity;
-  }
+    public void setState(State state) {
+        this.state = state;
+    }
 
-  public void setMusicPlayer(MediaPlayer musicPlayer) {
-    this.musicPlayer = musicPlayer;
-  }
+    public State getState() {
+        return state;
+    }
 
-  public void startMusic() {
-    musicPlayer.start();
-  }
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
-  public void stopMusic() {
-    musicPlayer.stop();
-    musicPlayer.release();
-  }
+    public AppCompatActivity getActivity() {
+        return activity;
+    }
 
-  public void gameOver() {
-    stopMusic();
-    AppManager.getInstance().finishGame(game, activity);
-  }
+    public void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
+    }
 
-  public int getScreenWidth() {
-    return screenWidth;
-  }
+    public void setMusicPlayer(MediaPlayer musicPlayer) {
+        this.musicPlayer = musicPlayer;
+    }
 
-  public void setScreenWidth(int screenWidth) {
-    this.screenWidth = screenWidth;
-  }
+    public void startMusic() {
+        musicPlayer.start();
+    }
 
-  public int getScreenHeight() {
-    return screenHeight;
-  }
+    public void stopMusic() {
+        musicPlayer.stop();
+        musicPlayer.release();
+    }
 
-  public void setScreenHeight(int screenHeight) {
-    this.screenHeight = screenHeight;
-  }
+    public void gameOver() {
+        stopMusic();
+        state = State.STOP;
+        setChanged();
+        notifyObservers(this);
+    }
 
-  public abstract Object getSkyColor();
+    public int getScreenWidth() {
+        return width;
+    }
+
+    public void setScreenWidth(int width) {
+        this.width = width;
+    }
+
+    public int getScreenHeight() {
+        return height;
+    }
+
+    public void setScreenHeight(int height) {
+        this.height = height;
+    }
+
+    public int getGridWidth() {
+        return width;
+    }
+
+    public int getGridHeight() {
+        return height;
+    }
+
+    public abstract Object getSkyColor();
 }

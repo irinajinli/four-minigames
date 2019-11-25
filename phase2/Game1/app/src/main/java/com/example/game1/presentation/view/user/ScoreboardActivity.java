@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.game1.R;
-import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 
 import java.util.ArrayList;

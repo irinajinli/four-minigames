@@ -4,10 +4,11 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game1.AppManager;
+import com.example.game1.domain.UserServiceIntf;
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.User;
-import com.example.game1.domain.UserService;
 import com.example.game1.presentation.view.user.UserMenuActivity;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class UserManager {
     /**
      * An instance of UserService from the domain layer.
      */
-    private UserService userService;
+    private UserServiceIntf userService;
 
     /**
      * The current user that is logged in.
@@ -32,9 +33,14 @@ public class UserManager {
      * Constructs a UserManager
      */
     public UserManager() {
-        userService = new UserService();
     }
 
+    /**
+     * Inject user service
+     */
+    public void setUserService(UserServiceIntf userService) {
+        this.userService = userService;
+    }
     /**
      * Registers a new User instance with username, userName, and password, password. If
      * registration is successful return true. Otherwise, return false.
@@ -116,7 +122,7 @@ public class UserManager {
      * Updates the current user's game statistics and level using the information in the given Game
      * object.
      */
-    void updateCurrentUsersGame(Game game) {
+    public void updateCurrentUsersGame(Game game) {
         updateGameInfo(currentUser.getStatsOfCurrentGame().getPoints() + game.getNumPoints(),
                 currentUser.getStatsOfCurrentGame().getStars() + game.getNumStars(),
                 currentUser.getStatsOfCurrentGame().getTaps() + game.getNumTaps(),
@@ -153,7 +159,7 @@ public class UserManager {
     /**
      * Redirects the user to the user menu screen
      */
-    void goToUserMenu(AppCompatActivity activity) {
+    public void goToUserMenu(AppCompatActivity activity) {
         Intent intent = new Intent(activity, UserMenuActivity.class);
         activity.startActivity(intent);
     }

@@ -8,10 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.game1.R;
-import com.example.game1.presentation.model.User;
-import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
-import com.example.game1.presentation.view.applegame.AppleActivity;
 
 public class RegistrationActivity extends AppCompatActivity {
 

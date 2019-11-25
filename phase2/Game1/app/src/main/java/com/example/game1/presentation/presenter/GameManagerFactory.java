@@ -12,7 +12,7 @@ import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 /**
  * A factory for GameManager objects
  */
-class GameManagerFactory {
+public class GameManagerFactory {
     /**
      * Returns a GameManager with the specified game, height, width, and activity.
      *
@@ -21,7 +21,7 @@ class GameManagerFactory {
      * @param width    the width of the game manager
      * @param activity the activity associated with the game manager
      */
-    GameManager getGameManager(Game.GameName game, int height, int width, AppCompatActivity activity) {
+    public GameManager getGameManager(Game.GameName game, int height, int width, AppCompatActivity activity) {
         switch (game) {
             case APPLE:
                 return new AppleGameManager(height, width, new Game(Game.GameName.APPLE), activity);

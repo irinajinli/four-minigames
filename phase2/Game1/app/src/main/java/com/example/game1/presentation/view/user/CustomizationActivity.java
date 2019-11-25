@@ -9,8 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.game1.R;
-import com.example.game1.presentation.model.Customization;
-import com.example.game1.presentation.presenter.AppManager;
+import com.example.game1.AppManager;
 import com.example.game1.presentation.presenter.UserManager;
 
 public class CustomizationActivity extends AppCompatActivity {
