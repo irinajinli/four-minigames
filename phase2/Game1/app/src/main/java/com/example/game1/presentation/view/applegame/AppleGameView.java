@@ -13,6 +13,8 @@ import android.view.SurfaceHolder;
 import com.example.game1.AppManager;
 import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.model.applegame.LivesCounter;
+import com.example.game1.presentation.model.applegame.PointsCounter;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;

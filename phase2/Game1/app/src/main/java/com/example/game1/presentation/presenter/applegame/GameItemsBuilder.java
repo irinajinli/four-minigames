@@ -1,9 +1,9 @@
 package com.example.game1.presentation.presenter.applegame;
 
 import com.example.game1.presentation.model.Customization;
-import com.example.game1.presentation.view.applegame.Basket;
-import com.example.game1.presentation.view.applegame.LivesCounter;
-import com.example.game1.presentation.view.applegame.PointsCounter;
+import com.example.game1.presentation.model.applegame.Basket;
+import com.example.game1.presentation.model.applegame.LivesCounter;
+import com.example.game1.presentation.model.applegame.PointsCounter;
 import com.example.game1.presentation.view.common.Background;
 
 import java.util.List;

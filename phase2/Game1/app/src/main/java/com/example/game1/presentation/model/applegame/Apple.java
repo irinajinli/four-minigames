@@ -1,4 +1,4 @@
-package com.example.game1.presentation.view.applegame;
+package com.example.game1.presentation.model.applegame;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;

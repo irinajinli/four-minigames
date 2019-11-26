@@ -1,4 +1,4 @@
-package com.example.game1.presentation.view.applegame;
+package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
