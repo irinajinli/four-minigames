@@ -2,11 +2,9 @@ package com.example.game1.presentation.model.tappinggame;
 
 import android.graphics.Color;
 
-import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
-import com.example.game1.presentation.view.common.GameItemOld;
 
 public class TapCounter extends GameItem {
     /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
@@ -31,7 +29,7 @@ public class TapCounter extends GameItem {
     }
 
     @Override
-    public Result update(ImportInfo jumpingImportInfo) {
+    public Result update(MovementInfo jumpingMovementInfo) {
         return (new Result());
     }
 

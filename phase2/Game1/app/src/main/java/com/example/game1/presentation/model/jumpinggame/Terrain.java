@@ -1,9 +1,7 @@
 package com.example.game1.presentation.model.jumpinggame;
 
-import android.graphics.Bitmap;
-
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
 
 public class Terrain extends GameItem {
@@ -23,10 +21,10 @@ public class Terrain extends GameItem {
 
     @Override
     /**
-     * @param jumpingImportInfo: import info needed for this terrain to animate
+     * @param jumpingMovementInfo: import info needed for this terrain to animate
      * @return the info needed by game manager after the animation
      */
-    public JumpingResult update(ImportInfo jumpingImportInfo) {
+    public JumpingResult update(MovementInfo jumpingMovementInfo) {
         return (new JumpingResult());
     }
 }

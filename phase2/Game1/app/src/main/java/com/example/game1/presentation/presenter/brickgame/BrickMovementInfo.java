@@ -1,30 +1,34 @@
-package com.example.game1.presentation.presenter.jumpinggame;
-import com.example.game1.presentation.model.jumpinggame.Jumper;
-import com.example.game1.presentation.model.jumpinggame.Terrain;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+package com.example.game1.presentation.presenter.brickgame;
+import com.example.game1.presentation.model.brickgame.Ball;
+import com.example.game1.presentation.model.brickgame.Brick;
+import com.example.game1.presentation.model.brickgame.Paddle;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 
-public class JumpingImportInfo extends ImportInfo {
+import java.util.List;
+
+public class BrickMovementInfo extends MovementInfo {
 
     double numOfSeconds;
-    Jumper jumper;
+    private Ball ball;
+    private List<Brick> bricks;
+    private Paddle paddle;
+
+    private int screenHeight;
+    private int screenWidth;
 
 
-    Terrain terrain;
-    int screenHeight;
-    int screenWidth;
 
 
 
-
-
-    public JumpingImportInfo(int screenHeight, int screenWidth, Jumper jumper, Terrain terrain,
+    public BrickMovementInfo(int screenHeight, int screenWidth, Ball ball, List<Brick> bricks, Paddle paddle,
                              double numOfSeconds){
         //this.numOfSeconds = numOfSeconds;
         //this.item = item;
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
-        this.jumper = jumper;
-        this.terrain = terrain;
+        this.ball = ball;
+        this.bricks = bricks;
+        this.paddle = paddle;
         this.numOfSeconds = numOfSeconds;
     }
 
@@ -52,7 +56,7 @@ public class JumpingImportInfo extends ImportInfo {
         this.screenWidth = screenWidth;
     }
 
-
+/**
     public Jumper getJumper() {
         return jumper;
     }
@@ -62,12 +66,12 @@ public class JumpingImportInfo extends ImportInfo {
     }
 
     public Terrain getTerrain() {
-        return terrain;
+        return terrian;
     }
 
-    public void setTerrain(Terrain terrain) {
-        this.terrain = terrain;
+    public void setTerrain(Terrain terrian) {
+        this.terrian = terrian;
     }
-
+*/
 
 }

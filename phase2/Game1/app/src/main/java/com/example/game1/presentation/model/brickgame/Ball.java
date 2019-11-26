@@ -1,11 +1,9 @@
 package com.example.game1.presentation.model.brickgame;
 
-import android.graphics.Bitmap;
-
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.brickgame.BrickImportInfo;
+import com.example.game1.presentation.presenter.brickgame.BrickMovementInfo;
 import com.example.game1.presentation.presenter.brickgame.BrickResult;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 
 import java.util.List;
 
@@ -30,11 +28,11 @@ public class Ball extends AnimatedGameItem {
    * @param jumper
    * @return result: result needed by the game manager.
    */
-  public BrickResult animate(ImportInfo brickImportInfo) {
-    updatePositionAndVelocity(((BrickImportInfo) brickImportInfo).getNumOfSeconds());
+  public BrickResult animate(MovementInfo brickMovementInfo) {
+    updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumOfSeconds());
     BrickResult result = new BrickResult();
 
-    //Brick brick = ((BrickImportInfo) brickImportInfo).getJumper();
+    //Brick brick = ((BrickMovementInfo) brickMovementInfo).getJumper();
     // if star is collected by the jumper,
     // inform the jumping result to remove the star in the view
     // and increment the numStar collected in the game manager
@@ -53,7 +51,7 @@ public class Ball extends AnimatedGameItem {
   public void move() {}
 
   @Override
-  public BrickResult update(ImportInfo brickImportInfo) {
+  public BrickResult update(MovementInfo brickMovementInfo) {
     return (new BrickResult());
   }
 }

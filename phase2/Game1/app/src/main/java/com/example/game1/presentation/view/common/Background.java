@@ -1,12 +1,7 @@
 package com.example.game1.presentation.view.common;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
 public class Background extends GameItem {
@@ -38,9 +33,9 @@ public class Background extends GameItem {
 //    backgroundPaint.setStyle(Paint.Style.FILL);
 //    canvas.drawRect(backgroundRect, backgroundPaint);
 //  }
-  public Result update(ImportInfo jumpingImportInfo) {
+  public Result update(MovementInfo jumpingMovementInfo) {
     return (new Result());
   }
-  //public Result animate(ImportInfo importInfo){return new Result();}
+  //public Result animate(MovementInfo importInfo){return new Result();}
 
 }

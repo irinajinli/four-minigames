@@ -1,11 +1,10 @@
 package com.example.game1.presentation.model.brickgame;
 
 import android.graphics.Bitmap;
-import com.example.game1.presentation.model.common.AnimatedGameItem;
+
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.brickgame.BrickImportInfo;
 import com.example.game1.presentation.presenter.brickgame.BrickResult;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 
 public class Brick extends GameItem {
 
@@ -33,21 +32,21 @@ public class Brick extends GameItem {
 
 
     /**
-     * @param brickImportInfo: importInfo needed for this jumper to animate
+     * @param brickMovementInfo: importInfo needed for this jumper to animate
      * @return the info needed by game manager after the animation
      */
-    public BrickResult animate(ImportInfo brickImportInfo) {
-        //updatePositionAndVelocity(((BrickImportInfo) brickImportInfo).getNumOfSeconds());
+    public BrickResult animate(MovementInfo brickMovementInfo) {
+        //updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumOfSeconds());
         BrickResult brickResult = new BrickResult();
 
         //Set gameover to be true in the jumping result if jumper touches the obstacle
-       // Jumper jumper = ((JumpingImportInfo) jumpingImportInfo).getJumper();
+       // Jumper jumper = ((JumpingMovementInfo) jumpingImportInfo).getJumper();
        // if (this.isOverlapping(jumper)) {
        //     jumpingResult.setGameOver(true);
 
             // reset obstacle's xCoordinate if it is out of the screen
        // } else if (this.getxCoordinate() + this.getWidth() < 0) {
-       //     this.setXCoordinate(((JumpingImportInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
+       //     this.setXCoordinate(((JumpingMovementInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
        //     jumpingResult.setObstacleJumped(true);
 
             // randomly add new star
@@ -87,7 +86,7 @@ public class Brick extends GameItem {
     public void move() {}
 
     @Override
-    public BrickResult update(ImportInfo importInfo) {
+    public BrickResult update(MovementInfo movementInfo) {
         return (new BrickResult());
     }
 }

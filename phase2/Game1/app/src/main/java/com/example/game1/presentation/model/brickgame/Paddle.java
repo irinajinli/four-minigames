@@ -1,11 +1,9 @@
 package com.example.game1.presentation.model.brickgame;
 
-import android.graphics.Bitmap;
-
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.brickgame.BrickResult;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 
 import java.util.List;
 
@@ -25,14 +23,14 @@ public class Paddle extends AnimatedGameItem {
 
     @Override
     /**
-     * @param jumpingImportInfo:importInfo needed for this jumper to animate
+     * @param jumpingMovementInfo:importInfo needed for this jumper to animate
      * @return the info needed by game manager after the animation
      */
-    public BrickResult animate(ImportInfo jumpingImportInfo) {
+    public BrickResult animate(MovementInfo jumpingMovementInfo) {
         BrickResult brickResult = new BrickResult();
         // Jumper land on the terrain
-        /**Terrain terrain = ((JumpingImportInfo) jumpingImportInfo).getTerrain();
-        updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
+        /**Terrain terrain = ((JumpingMovementInfo) jumpingMovementInfo).getTerrain();
+        updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumOfSeconds());
         if (this.isOverlapping(terrain)) {
             this.setyCoordinate(terrain.getyCoordinate() - this.getHeight());
             this.setYVelocity(0);
@@ -45,7 +43,7 @@ public class Paddle extends AnimatedGameItem {
     public void move() {}
 
     @Override
-    public BrickResult update(ImportInfo jumpingImportInfo) {
+    public BrickResult update(MovementInfo jumpingMovementInfo) {
         return (new BrickResult());
     }
 }

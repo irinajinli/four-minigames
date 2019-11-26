@@ -1,7 +1,7 @@
 package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
 public class LivesCounter extends GameItem {
@@ -31,11 +31,11 @@ public class LivesCounter extends GameItem {
     setAppearance("lives: " + livesRemaining);
   }
 
-  public Result update(ImportInfo jumpingImportInfo) {
+  public Result update(MovementInfo jumpingMovementInfo) {
     return (new Result());
   }
 
-  public Result animate(ImportInfo importInfo) {
+  public Result animate(MovementInfo movementInfo) {
     return new Result();
   }
 }

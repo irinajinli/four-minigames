@@ -1,10 +1,9 @@
 package com.example.game1.presentation.model.applegame;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
 import java.util.List;
@@ -28,11 +27,11 @@ public class Apple extends AnimatedGameItem {
     setPosition(getXCoordinate(), newY);
   }
 
-  public Result update(ImportInfo jumpingImportInfo) {
+  public Result update(MovementInfo jumpingMovementInfo) {
     return (new Result());
   }
 
-  public Result animate(ImportInfo importInfo) {
+  public Result animate(MovementInfo movementInfo) {
     return new Result();
   }
 

@@ -3,7 +3,7 @@ package com.example.game1.presentation.model.common;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
 /** An item which can be in a GameManager. */
 public abstract class GameItem {
@@ -176,7 +176,7 @@ public abstract class GameItem {
         || otherItemLowerBoundary < thisItemUpperBoundary);
   }
 
-  public abstract Result update(ImportInfo importInfo);
+  public abstract Result update(MovementInfo movementInfo);
 
   public void setColor(int color) {
     paintText.setColor(color);

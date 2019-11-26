@@ -1,6 +1,6 @@
 package com.example.game1.presentation.model.common;
 
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
 import java.util.List;
@@ -180,6 +180,6 @@ public abstract class AnimatedGameItem extends GameItem {
 
 
 
-    public abstract Result animate(ImportInfo importInfo);
+    public abstract Result animate(MovementInfo movementInfo);
 
 }

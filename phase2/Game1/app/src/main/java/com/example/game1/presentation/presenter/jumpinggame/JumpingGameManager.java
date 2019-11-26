@@ -250,12 +250,12 @@ public class JumpingGameManager extends GameManager {
     Result result;
 
     List<GameItem> gameItems = getGameItems();
-    JumpingImportInfo jumpingImportInfo =
-            new JumpingImportInfo(getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumOfSeconds());
+    JumpingMovementInfo jumpingMovementInfo =
+            new JumpingMovementInfo(getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumOfSeconds());
 
     for (GameItem item : gameItems) {
       if (item instanceof AnimatedGameItem) {
-        result = ((AnimatedGameItem) item).animate(jumpingImportInfo);
+        result = ((AnimatedGameItem) item).animate(jumpingMovementInfo);
         // process result
         JumpingResult jumpingResult = (JumpingResult)result;
         if (jumpingResult.getInItems() != null) {

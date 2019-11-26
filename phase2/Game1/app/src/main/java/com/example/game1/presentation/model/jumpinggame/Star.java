@@ -1,8 +1,8 @@
 package com.example.game1.presentation.model.jumpinggame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingMovementInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
 
 import java.util.List;
@@ -28,11 +28,11 @@ public class Star extends AnimatedGameItem {
    * @param jumper
    * @return result: result needed by the game manager.
    */
-  public JumpingResult animate(ImportInfo jumpingImportInfo) {
-    updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
+  public JumpingResult animate(MovementInfo jumpingMovementInfo) {
+    updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumOfSeconds());
     JumpingResult result = new JumpingResult();
 
-    Jumper jumper = ((JumpingImportInfo) jumpingImportInfo).getJumper();
+    Jumper jumper = ((JumpingMovementInfo) jumpingMovementInfo).getJumper();
     // if star is collected by the jumper,
     // inform the jumping result to remove the star in the view
     // and increment the numStar collected in the game manager
@@ -55,7 +55,7 @@ public class Star extends AnimatedGameItem {
   public void move() {}
 
   @Override
-  public JumpingResult update(ImportInfo jumpingImportInfo) {
+  public JumpingResult update(MovementInfo jumpingMovementInfo) {
     return (new JumpingResult());
   }
 }

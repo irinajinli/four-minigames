@@ -217,8 +217,8 @@ public class BrickGameManager extends GameManager {
     Result result;
 
     List<GameItem> gameItems = getGameItems();
-    BrickImportInfo brickImportInfo =
-        new BrickImportInfo(
+    BrickMovementInfo brickImportInfo =
+        new BrickMovementInfo(
             getScreenHeight(),
             getScreenWidth(),
             this.ball,

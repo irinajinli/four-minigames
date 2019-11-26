@@ -2,8 +2,8 @@ package com.example.game1.presentation.model.jumpinggame;
 
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingMovementInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
 
 import java.util.List;
@@ -24,14 +24,14 @@ public class Jumper extends AnimatedGameItem {
 
     @Override
     /**
-     * @param jumpingImportInfo: importInfo needed for this jumper to animate
+     * @param jumpingMovementInfo: importInfo needed for this jumper to animate
      * @return the info needed by game manager after the animation
      */
-    public JumpingResult animate(ImportInfo jumpingImportInfo) {
+    public JumpingResult animate(MovementInfo jumpingMovementInfo) {
         JumpingResult jumpingResult = new JumpingResult();
         // Jumper land on the terrain
-        Terrain terrain = ((JumpingImportInfo) jumpingImportInfo).getTerrain();
-        updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
+        Terrain terrain = ((JumpingMovementInfo) jumpingMovementInfo).getTerrain();
+        updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumOfSeconds());
         if (this.isOverlapping(terrain)) {
             this.setYCoordinate(terrain.getYCoordinate() - this.getHeight());
             this.setYVelocity(0);
@@ -44,7 +44,7 @@ public class Jumper extends AnimatedGameItem {
     public void move() {}
 
     @Override
-    public JumpingResult update(ImportInfo jumpingImportInfo) {
+    public JumpingResult update(MovementInfo jumpingMovementInfo) {
         return (new JumpingResult());
     }
 }

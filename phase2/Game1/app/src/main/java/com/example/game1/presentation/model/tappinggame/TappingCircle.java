@@ -1,12 +1,8 @@
 package com.example.game1.presentation.model.tappinggame;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
-import com.example.game1.presentation.view.common.GameItemOld;
 
 /** a tapping circle */
 public class TappingCircle extends GameItem {
@@ -18,8 +14,8 @@ public class TappingCircle extends GameItem {
     }
 
     @Override
-    public Result update(ImportInfo jumpingImportInfo) {
+    public Result update(MovementInfo jumpingMovementInfo) {
         return (new Result());
     }
-    //public Result animate(ImportInfo importInfo){return new Result();}
+    //public Result animate(MovementInfo importInfo){return new Result();}
 }

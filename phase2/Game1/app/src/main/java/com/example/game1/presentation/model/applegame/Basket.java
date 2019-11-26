@@ -3,9 +3,8 @@ package com.example.game1.presentation.model.applegame;
 import android.graphics.Color;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.common.ImportInfo;
+import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
-import com.example.game1.presentation.view.common.GameItemOld;
 
 import java.util.List;
 
@@ -51,9 +50,9 @@ public class Basket extends AnimatedGameItem {
     setPosition(x, getYCoordinate());
   }
 
-  public Result update(ImportInfo jumpingImportInfo) {
+  public Result update(MovementInfo jumpingMovementInfo) {
     return (new Result());
   }
-  public Result animate(ImportInfo importInfo){return new Result();}
+  public Result animate(MovementInfo movementInfo){return new Result();}
 
 }

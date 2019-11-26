@@ -1,4 +1,4 @@
 package com.example.game1.presentation.presenter.common;
 
-public class ImportInfo {
+public class MovementInfo {
 }
