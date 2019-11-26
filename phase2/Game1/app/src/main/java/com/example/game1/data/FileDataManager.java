@@ -247,22 +247,37 @@ public class FileDataManager implements DataManagerIntf {
      * Adds the given user's updated information to userMap and write userMap to file.
      */
     public void updateUser(User user) {
+        // Update the statistics of the user's top game
+        updateUsersTopGameStats(user);
+
+        // Update the user's top individual statistics
+        updateUsersTopIndStats(user);
+
+        // Add the user to userMap and write userMap to file
+        createUser(user);
+    }
+
+    /**
+     * Updates the statistics of the given user's top game.
+     */
+    private void updateUsersTopGameStats(User user) {
+        // If the user's current score is higher than their top score, update the statistics of
+        // their top game
+        if (getCurrentScore(user) > getTopScore(user)) {
+            user.getStatsOfTopGame().setPoints(user.getStatsOfCurrentGame().getPoints());
+            user.getStatsOfTopGame().setStars(user.getStatsOfCurrentGame().getStars());
+            user.getStatsOfTopGame().setTaps(user.getStatsOfCurrentGame().getTaps());
+        }
+    }
+
+    /**
+     * Updates the given user's top individual statistics.
+     */
+    private void updateUsersTopIndStats(User user) {
         // Get the user's current statistics
         int currentPoints = user.getStatsOfCurrentGame().getPoints();
         int currentStars = user.getStatsOfCurrentGame().getStars();
         int currentTaps = user.getStatsOfCurrentGame().getTaps();
-
-        // Calculate the user's current score and top score
-        int currentScore = getCurrentScore(user);
-        int topScore = getTopScore(user);
-
-        // If the user's current score is higher than their top score, update the statistics of
-        // their top game
-        if (currentScore > topScore) {
-            user.getStatsOfTopGame().setPoints(currentPoints);
-            user.getStatsOfTopGame().setStars(currentStars);
-            user.getStatsOfTopGame().setTaps(currentTaps);
-        }
 
         // Update the user's top individual statistics
         if (currentPoints > user.getTopIndividualStats().getPoints()) {
@@ -274,9 +289,6 @@ public class FileDataManager implements DataManagerIntf {
         if (currentTaps > user.getTopIndividualStats().getTaps()) {
             user.getTopIndividualStats().setTaps(currentTaps);
         }
-
-        // Add the user to userMap and write userMap to file
-        createUser(user);
     }
 
     /**
