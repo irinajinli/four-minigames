@@ -9,7 +9,7 @@ public class JumpingImportInfo extends ImportInfo {
     Jumper jumper;
 
 
-    Terrain terrian;
+    Terrain terrain;
     int screenHeight;
     int screenWidth;
 
@@ -17,14 +17,14 @@ public class JumpingImportInfo extends ImportInfo {
 
 
 
-    public JumpingImportInfo(int screenHeight, int screenWidth, Jumper jumper, Terrain terrian,
+    public JumpingImportInfo(int screenHeight, int screenWidth, Jumper jumper, Terrain terrain,
                              double numOfSeconds){
         //this.numOfSeconds = numOfSeconds;
         //this.item = item;
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.jumper = jumper;
-        this.terrian = terrian;
+        this.terrain = terrain;
         this.numOfSeconds = numOfSeconds;
     }
 
@@ -61,12 +61,12 @@ public class JumpingImportInfo extends ImportInfo {
         this.jumper = jumper;
     }
 
-    public Terrain getTerrian() {
-        return terrian;
+    public Terrain getTerrain() {
+        return terrain;
     }
 
-    public void setTerrian(Terrain terrian) {
-        this.terrian = terrian;
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
     }
 
 

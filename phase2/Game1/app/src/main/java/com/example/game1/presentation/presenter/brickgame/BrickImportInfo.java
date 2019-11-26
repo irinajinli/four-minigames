@@ -65,11 +65,11 @@ public class BrickImportInfo extends ImportInfo {
         this.jumper = jumper;
     }
 
-    public Terrain getTerrian() {
+    public Terrain getTerrain() {
         return terrian;
     }
 
-    public void setTerrian(Terrain terrian) {
+    public void setTerrain(Terrain terrian) {
         this.terrian = terrian;
     }
 */

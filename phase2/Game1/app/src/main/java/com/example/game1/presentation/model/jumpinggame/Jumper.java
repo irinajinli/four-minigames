@@ -30,7 +30,7 @@ public class Jumper extends AnimatedGameItem {
     public JumpingResult animate(ImportInfo jumpingImportInfo) {
         JumpingResult jumpingResult = new JumpingResult();
         // Jumper land on the terrain
-        Terrain terrain = ((JumpingImportInfo) jumpingImportInfo).getTerrian();
+        Terrain terrain = ((JumpingImportInfo) jumpingImportInfo).getTerrain();
         updatePositionAndVelocity(((JumpingImportInfo) jumpingImportInfo).getNumOfSeconds());
         if (this.isOverlapping(terrain)) {
             this.setYCoordinate(terrain.getYCoordinate() - this.getHeight());
