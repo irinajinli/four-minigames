@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.model.jumpinggame.Star;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.view.applegame.Apple;
 import com.example.game1.presentation.view.applegame.Basket;
 import com.example.game1.presentation.view.applegame.LivesCounter;
 import com.example.game1.presentation.view.applegame.PointsCounter;
-import com.example.game1.presentation.view.applegame.Star;
 
 import java.util.List;
 import java.util.Random;
@@ -30,11 +30,11 @@ public class AppleGameManager extends GameManager {
   private int skyColorDark = Color.BLACK;
   private int skyColorLight = Color.LTGRAY;
 
-  private Basket basket;
+  private double numOfSeconds;
 
+  private Basket basket;
   private PointsCounter points;
   private LivesCounter livesCounter;
-  private int numDroppedApples = 0;
   private int numCaughtStars = 0;
 
   // TODO: new
@@ -111,11 +111,15 @@ public class AppleGameManager extends GameManager {
 
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
-      if (currItem instanceof AnimatedGameItem) {
+      if (currItem instanceof Apple) {
         // AnimatedGameItem currItem = (AnimatedGameItem) currItem2;
         // move each GameItemOld
         ((AnimatedGameItem) currItem).move();
       } else {
+      }
+
+      if (currItem instanceof Star) {
+        ((Star) currItem).animate(numOfSeconds);
       }
 
       if (!(currItem instanceof Basket)) { // TODO is this if statement necessary?
@@ -154,7 +158,6 @@ public class AppleGameManager extends GameManager {
   /** Drops the specified Apple. */
   private void dropGameItem(GameItem currItem) {
     removeItem(currItem);
-    if (currItem instanceof Apple) numDroppedApples += 1;
   }
 
   /**
@@ -176,11 +179,13 @@ public class AppleGameManager extends GameManager {
     // decide whether to spawn an Apple or a Star or nothing
     Random randItem = new Random();
     int randint = randItem.nextInt(200);
-    if (randint < 1) {
+    if (randint < 2) {
       // spawn new Star
       Star nextItem = new Star(80, 80, starBmps);
+      nextItem.setYVelocity(250);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
+
     } else if (randint < 9) {
       // spawn new Apple
       // TODO: new constructor call; uncomment out when done testing
@@ -222,5 +227,9 @@ public class AppleGameManager extends GameManager {
 
   public int getSkyColorLight() {
     return skyColorLight;
+  }
+
+  public void setNumOfSeconds(double numOfSeconds) {
+    this.numOfSeconds = numOfSeconds;
   }
 }

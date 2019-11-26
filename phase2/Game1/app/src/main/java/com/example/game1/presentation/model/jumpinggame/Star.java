@@ -1,7 +1,5 @@
 package com.example.game1.presentation.model.jumpinggame;
 
-import android.graphics.Bitmap;
-
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.common.ImportInfo;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingImportInfo;
@@ -42,11 +40,15 @@ public class Star extends AnimatedGameItem {
       result.setStarCollected(true);
       result.addOutItem(this);
     }
-//    else{
-//      setXCoordinate(getxCoordinate() - 15);
-//    }
+    //    else{
+    //      setXCoordinate(getxCoordinate() - 15);
+    //    }
 
     return result;
+  }
+
+  public void animate(double numOfSeconds) {
+    updatePositionAndVelocity(numOfSeconds);
   }
 
   @Override

@@ -13,6 +13,7 @@ import android.view.SurfaceHolder;
 import com.example.game1.AppManager;
 import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.view.common.Background;
@@ -65,6 +66,7 @@ public class AppleGameView extends GameView {
 
     ((AppleGameManager) gameManager)
         .setBMPFiles(appleBmps, starBmps, basketBmps, basketBlueBmps, basketYellowBmps);
+    ((AppleGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     // TODO: new for colors
     extractSkyColors();
@@ -96,7 +98,7 @@ public class AppleGameView extends GameView {
   @Override
   public void drawItem(Canvas canvas, GameItem item) {
     // TODO: new
-    if (item instanceof Apple || item instanceof Basket || item instanceof Star) {
+    if (item instanceof AnimatedGameItem) {
       Object appearance2 = item.getAppearance();
       double xCoordinate2 = item.getXCoordinate();
       double yCoordinate2 = item.getYCoordinate();
