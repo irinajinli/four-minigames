@@ -1,7 +1,5 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
-
-
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
@@ -11,12 +9,13 @@ import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.model.jumpinggame.Jumper;
 import com.example.game1.presentation.model.jumpinggame.Obstacle;
+import com.example.game1.presentation.model.jumpinggame.Star;
 import com.example.game1.presentation.model.jumpinggame.Terrain;
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.model.jumpinggame.Jumper;
-import com.example.game1.presentation.model.jumpinggame.Star;
 import com.example.game1.presentation.presenter.common.Result;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class JumpingGameManager extends GameManager {
    * A GameManager for a Jumping minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling GameObjects.
    */
-
   private Terrain terrain;
 
   private Jumper jumper;
@@ -33,11 +31,9 @@ public class JumpingGameManager extends GameManager {
   private Obstacle obstacle2;
   private Obstacle obstacle3;
 
-  private double cameraVelocityX = 450; //450
+  private double cameraVelocityX = 450; // 450
   private int numJumped = 0;
   private int numStars = 0;
-
-
 
   private int numTaps = 0;
   private Object skyColor;
@@ -67,22 +63,18 @@ public class JumpingGameManager extends GameManager {
   private List<Bitmap> jumperSprites;
   private int currFrame;
 
-  private Object getNextJumperFrame(){
+  private Object getNextJumperFrame() {
     currFrame += 1;
-    if (currFrame >= jumperAppearances.size()){
+    if (currFrame >= jumperAppearances.size()) {
       currFrame = 0;
     }
     return jumperAppearances.get(currFrame);
   }
-  /**
-   * Constructs a JumpingGameManager with the specified height, width, game, and activity.
-   */
+  /** Constructs a JumpingGameManager with the specified height, width, game, and activity. */
   public JumpingGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
-    //this.game = new Game(Game.GameName.JUMPING);
+    // this.game = new Game(Game.GameName.JUMPING);
   }
-
-
 
   /**
    * returns the terrain in this jumping game
@@ -101,8 +93,6 @@ public class JumpingGameManager extends GameManager {
   public Jumper getJumper() {
     return jumper;
   }
-
-
 
   /**
    * returns the number of successful jumps performed by the player.
@@ -149,8 +139,6 @@ public class JumpingGameManager extends GameManager {
     this.isRunning = isRunning;
   }
 
-
-
   /**
    * Returns whether this game is running
    *
@@ -164,26 +152,25 @@ public class JumpingGameManager extends GameManager {
     // create background according to Customization
     Customization cust = game.getCustomization();
 
-    if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
+    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
       this.jumperAppearances = jumperBlueAppearances;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
       this.jumperAppearances = jumperRedAppearances;
-    } else{ // (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW))
+    } else { // (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW))
       this.jumperAppearances = jumperYellowAppearances;
     }
 
-    if(cust.getColourScheme().equals(Customization.ColourScheme.DARK)){
+    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
       setSkyColor(skyColorDark);
-    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)){
+    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
       setSkyColor(skyColorLight);
     }
-
 
     terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2, terrainAppearance);
     setTerrainPosition(terrain);
     place(terrain);
 
-    //@TODO changed
+    // @TODO changed
     jumper = new Jumper(JUMPER_HEIGHT, JUMPER_WIDTH, jumperAppearances);
     setJumperPosition(jumper);
     place(jumper);
@@ -198,20 +185,13 @@ public class JumpingGameManager extends GameManager {
     setObstaclePosition(obstacle3, getScreenWidth() * 6 / 5);
     place(obstacle3);
 
-
     Star star = new Star(80, 80, starAppearances);
 
     setStarPosition(star, getScreenWidth() * 3 / 5);
     place(star);
 
-
-
     setRunning(true);
   }
-
-
-
-
 
   /**
    * Returns the colour of the sky
@@ -235,8 +215,6 @@ public class JumpingGameManager extends GameManager {
     // stars.add(star);
   }
 
-
-
   /** updates all items in this game */
   @Override
   public boolean update() {
@@ -251,13 +229,14 @@ public class JumpingGameManager extends GameManager {
 
     List<GameItem> gameItems = getGameItems();
     JumpingMovementInfo jumpingMovementInfo =
-            new JumpingMovementInfo(getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumOfSeconds());
+        new JumpingMovementInfo(
+            getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumOfSeconds());
 
     for (GameItem item : gameItems) {
       if (item instanceof AnimatedGameItem) {
         result = ((AnimatedGameItem) item).animate(jumpingMovementInfo);
         // process result
-        JumpingResult jumpingResult = (JumpingResult)result;
+        JumpingResult jumpingResult = (JumpingResult) result;
         if (jumpingResult.getInItems() != null) {
           for (GameItem inItem : jumpingResult.getInItems()) {
             newItems.add(inItem);
@@ -305,9 +284,8 @@ public class JumpingGameManager extends GameManager {
       jumper.setYVelocity(-2000);
       jumper.setYAcceleration(5000);
     }
-    //numTaps += 1;
+    // numTaps += 1;
   }
-
 
   /** Ends this minigame. */
   public void gameOver() {
@@ -360,10 +338,13 @@ public class JumpingGameManager extends GameManager {
     this.numTaps = numTaps;
   }
 
-
-  public void setAppearance(List obstacleAppearances, List starAppearances, Object terrainAppearance,
-                            List jumperBlueAppearances, List jumperYellowAppearances,
-                            List jumperRedAppearances){
+  public void setAppearance(
+      List obstacleAppearances,
+      List starAppearances,
+      Object terrainAppearance,
+      List jumperBlueAppearances,
+      List jumperYellowAppearances,
+      List jumperRedAppearances) {
     this.obstacleAppearances = obstacleAppearances;
     this.starAppearances = starAppearances;
     this.terrainAppearance = terrainAppearance;
@@ -372,16 +353,14 @@ public class JumpingGameManager extends GameManager {
     this.jumperRedAppearances = jumperRedAppearances;
   }
 
-  public void setSkyColors(int skyColorDark, int skyColorLight){
+  public void setSkyColors(int skyColorDark, int skyColorLight) {
     this.skyColorDark = skyColorDark;
     this.skyColorLight = skyColorLight;
   }
 
-  public void setSkyColor(Object skyColor){
+  public void setSkyColor(Object skyColor) {
     this.skyColor = skyColor;
   }
-
-
 
   public double getNumOfSeconds() {
     return numOfSeconds;
@@ -390,5 +369,4 @@ public class JumpingGameManager extends GameManager {
   public void setNumOfSeconds(double numOfSeconds) {
     this.numOfSeconds = numOfSeconds;
   }
-
 }
