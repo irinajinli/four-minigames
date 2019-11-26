@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +27,7 @@ public class ScoreboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
 
@@ -141,6 +143,18 @@ public class ScoreboardActivity extends AppCompatActivity {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Changes the theme of the page based on the user's customization choice
+     */
+    private void setTheme(){
+        if ("LIGHT".equals(
+                userManager.getCurrentUser().getCustomization().getColourScheme().toString())) {
+            setTheme(android.R.style.Theme_Material_Light_NoActionBar);
+            getSupportActionBar().setTitle(Html.fromHtml(
+                    "<font color='#ffffff'>Game1</font>"));
         }
     }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -23,6 +24,7 @@ public class CustomizationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customization);
 
@@ -87,6 +89,18 @@ public class CustomizationActivity extends AppCompatActivity {
             musicSpinner.setSelection(2);
         } else {
             musicSpinner.setSelection(0);
+        }
+    }
+
+    /**
+     * Changes the theme of the page based on the user's customization choice
+     */
+    private void setTheme(){
+        if ("LIGHT".equals(
+                userManager.getCurrentUser().getCustomization().getColourScheme().toString())) {
+            setTheme(android.R.style.Theme_Material_Light_NoActionBar);
+            getSupportActionBar().setTitle(Html.fromHtml(
+                    "<font color='#ffffff'>Game1</font>"));
         }
     }
 

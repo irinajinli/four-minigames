@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
 
@@ -17,6 +18,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
@@ -75,6 +77,18 @@ public class StatisticsActivity extends AppCompatActivity {
         EditText topPlayerTapsText = findViewById(R.id.topIndTapsText);
         topPlayerTapsText.setText(String.valueOf(
                 userManager.getCurrentUser().getTopIndividualStats().getTaps()));
+    }
+
+    /**
+     * Changes the theme of the page based on the user's customization choice
+     */
+    private void setTheme(){
+        if ("LIGHT".equals(
+                userManager.getCurrentUser().getCustomization().getColourScheme().toString())) {
+            setTheme(android.R.style.Theme_Material_Light_NoActionBar);
+            getSupportActionBar().setTitle(Html.fromHtml(
+                    "<font color='#ffffff'>Game1</font>"));
+        }
     }
 
     /**

@@ -1,10 +1,14 @@
 package com.example.game1.presentation.view.user;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -23,6 +27,7 @@ public class UserMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu);
 
@@ -41,7 +46,6 @@ public class UserMenuActivity extends AppCompatActivity {
         Button playButton4 = findViewById(R.id.playButton4);
 //        playButton4.setEnabled(false);
 
-
         switch (userManager.getCurrentUser().getLastCompletedLevel()) {
             case 0:
                 playButton1.setEnabled(true);
@@ -57,6 +61,18 @@ public class UserMenuActivity extends AppCompatActivity {
                 break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * Changes the theme of the page based on the user's customization choice
+     */
+    private void setTheme(){
+        if ("LIGHT".equals(
+                userManager.getCurrentUser().getCustomization().getColourScheme().toString())) {
+            setTheme(android.R.style.Theme_Material_Light_NoActionBar);
+            getSupportActionBar().setTitle(Html.fromHtml(
+                    "<font color='#ffffff'>Game1</font>"));
         }
     }
 
