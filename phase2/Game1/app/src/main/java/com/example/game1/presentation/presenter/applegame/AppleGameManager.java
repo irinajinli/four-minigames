@@ -73,12 +73,12 @@ public class AppleGameManager extends GameManager {
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
     // TODO: delete this method?
-    GameItemsBuilder gib = new GameItemsBuilder(game.getCustomization());
-    gib.createPointsCounter();
-    gib.createLivesCounter();
-    gib.createBasket(basketBmps, basketBlueBmps, basketYellowBmps);
-    gib.setTheme(this);
-    gib.placeItems(this);
+    AppleItemsBuilder builder = new AppleItemsBuilder(game.getCustomization());
+    builder.createPointsCounter();
+    builder.createLivesCounter();
+    builder.createBasket(basketBmps, basketBlueBmps, basketYellowBmps);
+    builder.setTheme(this);
+    builder.placeItems(this);
   }
 
   public void setBasket(Basket basket) {

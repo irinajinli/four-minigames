@@ -8,7 +8,7 @@ import com.example.game1.presentation.view.common.Background;
 
 import java.util.List;
 
-public class GameItemsBuilder {
+public class AppleItemsBuilder {
   private Customization customization;
   // TODO: delete background
   private Background background;
@@ -16,7 +16,7 @@ public class GameItemsBuilder {
   private PointsCounter pointsCounter;
   private LivesCounter livesCounter;
 
-  public GameItemsBuilder(Customization customization) {
+  public AppleItemsBuilder(Customization customization) {
     this.customization = customization;
   }
 

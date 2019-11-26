@@ -61,6 +61,7 @@ public class BrickGameManager extends GameManager {
   public static final double STAR_PROBABILITY = 0.8;
   private final int DARK_COLOR = Color.rgb(83, 92, 104);
   private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
+
   /**
    * Constructs a BrickGameManager with the specified height and width.
    *
@@ -72,13 +73,29 @@ public class BrickGameManager extends GameManager {
     // this.game = new Game(Game.GameName.JUMPING);
   }
 
+  public void setBall(Ball ball) {
+    this.ball = ball;
+  }
+
+  public void setBricks(List<Brick> bricks) {
+    this.bricks = bricks;
+  }
+
+  public void setStars(List<Star> stars) {
+    this.stars = stars;
+  }
+
   /**
-   * Returns the jumper in this Jumping game
+   * Returns the Paddle in this brick game
    *
-   * @return the jumper in this Jumping game
+   * @return the Paddle in this brick game
    */
   public Paddle getPaddle() {
     return paddle;
+  }
+
+  public void setPaddle(Paddle paddle) {
+    this.paddle = paddle;
   }
 
   /**
@@ -134,45 +151,64 @@ public class BrickGameManager extends GameManager {
   public boolean getRunning() {
     return this.isRunning;
   }
+
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    // create background according to Customization
-    Customization cust = game.getCustomization();
-    setTheme(cust.getColourScheme());
-    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      this.paddleBmps = paddleBlueBmps;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-      this.paddleBmps = paddleRedBmps;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      this.paddleBmps = paddleYellowBmps;
-    } else {
-      this.paddleBmps = paddleBlueBmps;
-    }
-
-    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH, paddleBmps);
-    setPaddlePosition(paddle);
-    place(paddle);
-
-    bricks = new ArrayList<Brick>();
-    int brickWidth = getScreenWidth() / NUM_BRICKS_HORIZONTAL;
-    for (int i = 0; i < NUM_BRICK_LAYERS; i++) {
-      for (int j = 0; j < NUM_BRICKS_HORIZONTAL; j++) {
-        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth, brickBmp);
-        newBrick.setPosition(j * brickWidth, i * BRICK_HEIGHT);
-        place(newBrick);
-        bricks.add(newBrick);
-      }
-    }
-
-    ball = new Ball(BALL_WIDTH, BALL_HEIGHT, ballBmps);
-    ball.setPosition(getScreenWidth() / 2, BRICK_HEIGHT * (NUM_BRICK_LAYERS + 1));
-    ball.setXVelocity(BALL_VELOCITY_X);
-    ball.setYVelocity(BALL_VELOCITY_Y);
-    place(ball);
-
-    stars = new ArrayList<>();
+    BrickItemsBuilder builder = new BrickItemsBuilder(game.getCustomization());
+    builder.setTheme(this);
+    builder.createPaddle(
+        PADDLE_HEIGHT, PADDLE_WIDTH, paddleBlueBmps, paddleRedBmps, paddleYellowBmps);
+    builder.createBricks(
+        getScreenWidth(), NUM_BRICKS_HORIZONTAL, NUM_BRICK_LAYERS, BRICK_HEIGHT, brickBmp);
+    builder.createBall(
+        BALL_WIDTH,
+        BALL_HEIGHT,
+        ballBmps,
+        getScreenWidth(),
+        BRICK_HEIGHT,
+        NUM_BRICK_LAYERS,
+        BALL_VELOCITY_X,
+        BALL_VELOCITY_Y);
+    builder.placeItems(this);
 
     setRunning(true);
+
+    // create background according to Customization
+//    Customization cust = game.getCustomization();
+    //    setTheme(cust.getColourScheme());
+
+    //    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
+    //      this.paddleBmps = paddleBlueBmps;
+    //    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
+    //      this.paddleBmps = paddleRedBmps;
+    //    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
+    //      this.paddleBmps = paddleYellowBmps;
+    //    } else {
+    //      this.paddleBmps = paddleBlueBmps;
+    //    }
+    //
+    //    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH, paddleBmps);
+    //    setPaddlePosition(paddle);
+    //    place(paddle);
+
+    //    bricks = new ArrayList<Brick>();
+    //    int brickWidth = getScreenWidth() / NUM_BRICKS_HORIZONTAL;
+    //    for (int i = 0; i < NUM_BRICK_LAYERS; i++) {
+    //      for (int j = 0; j < NUM_BRICKS_HORIZONTAL; j++) {
+    //        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth, brickBmp);
+    //        newBrick.setPosition(j * brickWidth, i * BRICK_HEIGHT);
+    //        place(newBrick);
+    //        bricks.add(newBrick);
+    //      }
+    //    }
+
+    //    ball = new Ball(BALL_WIDTH, BALL_HEIGHT, ballBmps);
+    //    ball.setPosition(getScreenWidth() / 2, BRICK_HEIGHT * (NUM_BRICK_LAYERS + 1));
+    //    ball.setXVelocity(BALL_VELOCITY_X);
+    //    ball.setYVelocity(BALL_VELOCITY_Y);
+    //    place(ball);
+
+//    stars = new ArrayList<>();
   }
 
   /**
@@ -180,7 +216,7 @@ public class BrickGameManager extends GameManager {
    *
    * @param theme the theme to set
    */
-  private void setTheme(Customization.ColourScheme theme) {
+  void setTheme(Customization.ColourScheme theme) {
     if (theme.equals(Customization.ColourScheme.DARK)) {
       backgroundColor = DARK_COLOR;
     } else { // (theme.equals((Customization.ColourScheme.LIGHT)))

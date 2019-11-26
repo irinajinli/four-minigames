@@ -19,14 +19,14 @@ public class Brick extends GameItem {
     /** The Obstacle. */
 
     /**
-     * Constructs a Obstacle with the specified height and width.
+     * Constructs a Obstacle with the specified width and height.
      *
-     * @param height the height of this GameItem
      * @param width the width of this GameItem
+     * @param height the height of this GameItem
      * @param appearance the appearance of this GameItem
      */
-    public Brick(int height, int width, Bitmap appearance) {
-        super(height, width, appearance);
+    public Brick(int width, int height, Bitmap appearance) {
+        super(width, height, appearance);
         damageLevel = STARTING_DAMAGE_LEVEL;
     }
 
