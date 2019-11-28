@@ -39,6 +39,7 @@ public class BrickGameManager extends GameManager {
    * game-specific features..
    */
   private Paddle paddle;
+
   private Ball ball;
   private List<Brick> bricks;
   private List<Star> stars;
@@ -238,8 +239,6 @@ public class BrickGameManager extends GameManager {
   /** updates all items in this game */
   @Override
   public boolean update() {
-    //    jumper.update();
-    //    terrain.update();
     // newItems list stores GameItem to be added to gameItems
     List<GameItem> newItems = new ArrayList<>();
     // outItem list stores GameItem to be removed from gameIems
@@ -275,29 +274,9 @@ public class BrickGameManager extends GameManager {
         }
       }
     }
-    // out of horizontal bounds
-    if (ball.getXCoordinate() + ball.getWidth() >= getScreenWidth() || ball.getXCoordinate() < 0) {
-      ball.setXVelocity(-ball.getXVelocity());
-    }
-    // out of top boundary
-    if (ball.getYCoordinate() < 0) {
-      ball.setYVelocity(Math.abs(ball.getYVelocity()));
-    }
 
-    // hits paddle
-    // if (ball.getyCoordinate() + ball.getHeight() > paddle.getyCoordinate() &&
-    // !(ball.getxCoordinate() + ball.getWidth() < paddle.getxCoordinate() ||
-    // ball.getxCoordinate() > paddle.getxCoordinate() + paddle.getWidth() )){
-
-    // overlapping and not more than halfway through
-    if (ball.isOverlapping(paddle)
-        && ball.getYCoordinate() + ball.getHeight()
-            < paddle.getYCoordinate() + paddle.getHeight() / 2) {
-      ball.setYVelocity((-Math.abs(ball.getYVelocity())));
-    }
-
-    if (ball.getYCoordinate() > getScreenHeight()) {
-      gameOver();
+    // update ball and check if game is over
+    if (!updateBall()) {
       return false;
     }
 
@@ -329,11 +308,6 @@ public class BrickGameManager extends GameManager {
       }
     }
 
-    //  if (brickResult.isGameOver()) {
-    //  gameOver();
-    // return false;
-    // }
-
     for (GameItem newItem : newItems) {
       place(newItem);
     }
@@ -348,6 +322,27 @@ public class BrickGameManager extends GameManager {
     }
 
     // TODO: temporary return true; decide when you want to return true/false
+    return true;
+  }
+
+  private boolean updateBall() {
+    if (ball.getXCoordinate() + ball.getWidth() >= getScreenWidth() || ball.getXCoordinate() < 0) {
+      ball.setXVelocity(-ball.getXVelocity());
+    }
+    // out of top boundary
+    if (ball.getYCoordinate() < 0) {
+      ball.setYVelocity(Math.abs(ball.getYVelocity()));
+    }
+    // overlapping and not more than halfway through
+    if (ball.isOverlapping(paddle)
+        && ball.getYCoordinate() + ball.getHeight()
+            < paddle.getYCoordinate() + paddle.getHeight() / 2) {
+      ball.setYVelocity((-Math.abs(ball.getYVelocity())));
+    }
+    if (ball.getYCoordinate() > getScreenHeight()) {
+      gameOver();
+      return false;
+    }
     return true;
   }
 
