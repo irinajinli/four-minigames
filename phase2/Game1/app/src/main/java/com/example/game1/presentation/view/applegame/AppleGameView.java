@@ -97,8 +97,7 @@ public class AppleGameView extends GameView {
 
   @Override
   public void drawItem(Canvas canvas, GameItem item) {
-    // TODO: new
-    if (item instanceof AnimatedGameItem) {
+    if (item instanceof AnimatedGameItem) { // Bitmap appearance
       Object appearance2 = item.getAppearance();
       double xCoordinate2 = item.getXCoordinate();
       double yCoordinate2 = item.getYCoordinate();
@@ -111,17 +110,7 @@ public class AppleGameView extends GameView {
             paintText);
       }
     }
-
-    if (item instanceof Background) {
-      Rect backgroundRect = new Rect(0, 0, 999999, 999999);
-      Paint backgroundPaint = new Paint();
-      backgroundPaint.setStyle(Paint.Style.STROKE);
-      backgroundPaint.setStrokeWidth(5);
-      backgroundPaint.setAntiAlias(true);
-      backgroundPaint.setColor(Color.DKGRAY);
-      backgroundPaint.setStyle(Paint.Style.FILL);
-      canvas.drawRect(backgroundRect, backgroundPaint);
-    } else { // String appearance
+    else if (item.getAppearance() instanceof String) { // String appearance
 
       paintText = new Paint();
       paintText.setTypeface(Typeface.DEFAULT_BOLD);
@@ -131,51 +120,16 @@ public class AppleGameView extends GameView {
       double xCoordinate = item.getXCoordinate();
       double yCoordinate = item.getYCoordinate();
       if (appearance.getClass() == String.class) {
-        //        if (item instanceof Basket) {
-        //          if (gameManager
-        //              .getGame()
-        //              .getCustomization()
-        //              .getCharacterColour()
-        //              .equals(Customization.CharacterColour.BLUE)) {
-        //            paintText.setColor(Color.BLUE);
-        //          } else if (gameManager
-        //              .getGame()
-        //              .getCustomization()
-        //              .getCharacterColour()
-        //              .equals(Customization.CharacterColour.RED)) {
-        //            paintText.setColor(Color.RED);
-        //          } else if (gameManager
-        //              .getGame()
-        //              .getCustomization()
-        //              .getCharacterColour()
-        //              .equals(Customization.CharacterColour.YELLOW)) {
-        //            paintText.setColor(Color.YELLOW);
-        //          }
-        //        }
-        // TODO: fix instanceof if statement
-        if (item instanceof PointsCounter || item instanceof LivesCounter) {
           paintText.setColor(Color.WHITE);
         }
         canvas.drawText((String) appearance, (float) xCoordinate, (float) yCoordinate, paintText);
-
-        // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
-        // TappingGameView.charHeight, paintText);
-        //      } else if (appearance.getClass() == Bitmap.class) {
-        //        canvas.drawBitmap(
-        //                (Bitmap) appearance,
-        //                (int) Math.round(xCoordinate),
-        //                (int) Math.round(yCoordinate),
-        //                paintText);
-        //      }
       }
     }
-  }
 
   public void extractBmpFiles() {
     int[] appleFiles = {R.drawable.apple_red};
     int[] starFiles = {R.drawable.star_6};
     int[] basketFiles = {R.drawable.basket_red};
-    // TODO NEW FOR CUST
     int[] basketBlueFiles = {R.drawable.basket_blue};
     int[] basketYellowFiles = {R.drawable.basket_yellow};
 
