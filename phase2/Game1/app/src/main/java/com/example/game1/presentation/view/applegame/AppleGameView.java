@@ -5,20 +5,18 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+import android.view.View;
 
 import com.example.game1.AppManager;
 import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
-import com.example.game1.presentation.model.applegame.LivesCounter;
-import com.example.game1.presentation.model.applegame.PointsCounter;
+import com.example.game1.presentation.model.Statistics;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
-import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
@@ -26,16 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Based on Fish Tank's FishTankView. */
-public class AppleGameView extends GameView {
+public class AppleGameView extends GameView implements View.OnClickListener{
 
-  // TODO: new for images AND NEW FOR CUST
   private List<Bitmap> appleBmps;
   private List<Bitmap> starBmps;
   private List<Bitmap> basketBmps;
   private List<Bitmap> basketBlueBmps;
   private List<Bitmap> basketYellowBmps;
 
-  // TODO: new for colors
   private int skyColorDark;
   private int skyColorLight;
   private int skyColorDefault;
@@ -48,15 +44,9 @@ public class AppleGameView extends GameView {
 
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
-
-    // todo: new for skycolor
-
     Paint paintText = new Paint();
     paintText.setTextSize(36);
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    // TODO: DELETE NEXT 2 LINES
-    charWidth = paintText.measureText("W");
-    charHeight = -paintText.ascent() + paintText.descent();
 
     // use screen height and width to determine the size of the GameManager
     gameManager =
@@ -82,11 +72,20 @@ public class AppleGameView extends GameView {
   }
 
   @Override
-  public boolean onTouchEvent(MotionEvent event) {
-    // count tap in game's numTaps
-    Game game = gameManager.getGame();
-    game.getStatistics().setTaps(game.getStatistics().getTaps() + 1);
+  public void surfaceDestroyed(SurfaceHolder holder) {
+    super.surfaceDestroyed(holder);
+    Statistics gameStatistics = gameManager.getGame().getStatistics();
+    gameStatistics.setTaps(gameStatistics.getTaps() + ((AppleGameManager) gameManager).getNumTaps());
+  }
 
+  @Override
+  public void onClick(View view) {
+    ((AppleGameManager) gameManager).incrementNumTaps();
+  }
+
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+    // move basket to location of tap
     double touchX = event.getX();
     ((AppleGameManager) gameManager).moveBasket((int) touchX);
 

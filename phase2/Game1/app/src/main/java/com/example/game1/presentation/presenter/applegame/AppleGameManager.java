@@ -6,6 +6,7 @@ import android.graphics.Color;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.model.Statistics;
 import com.example.game1.presentation.model.applegame.Apple;
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
@@ -32,6 +33,7 @@ public class AppleGameManager extends GameManager {
   private Basket basket;
   private PointsCounter points;
   private LivesCounter livesCounter;
+  private int numTaps;
   private int numCaughtStars = 0;
   private List<Bitmap> appleBmps;
   private List<Bitmap> starBmps;
@@ -70,6 +72,14 @@ public class AppleGameManager extends GameManager {
 
   int getSkyColorLight() {
     return skyColorLight;
+  }
+
+  public int getNumTaps() {
+    return numTaps;
+  }
+
+  public void incrementNumTaps() {
+    numTaps += 1;
   }
 
   public void setNumSeconds(double numSeconds) {
@@ -195,8 +205,10 @@ public class AppleGameManager extends GameManager {
 
   /** Ends this minigame. */
   public void gameOver() {
-    game.getStatistics().setPoints(game.getStatistics().getPoints() + points.getNumPoints());
-    game.getStatistics().setStars(game.getStatistics().getStars() + numCaughtStars);
+    Statistics gameStatistics = game.getStatistics();
+    gameStatistics.setPoints(gameStatistics.getPoints() + points.getNumPoints());
+    gameStatistics.setStars(gameStatistics.getStars() + numCaughtStars);
+    gameStatistics.setTaps(gameStatistics.getTaps() + numTaps);
     super.gameOver();
   }
 }
