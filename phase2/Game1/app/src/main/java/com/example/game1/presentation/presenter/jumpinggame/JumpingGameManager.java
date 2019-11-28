@@ -233,11 +233,9 @@ public class JumpingGameManager extends GameManager {
   /** updates all items in this game */
   @Override
   public boolean update() {
-    //    jumper.update();
-    //    terrain.update();
     // newItems list stores GameItem to be added to gameItems
     List<GameItem> newItems = new ArrayList<>();
-    // outItem list stores GameItem to be removed from gameItems
+    // oldItems list stores GameItem to be removed from gameItems
     List<GameItem> oldItems = new ArrayList<>();
     // note, right now, stars are the only object that get removed
     Result result;
@@ -252,14 +250,14 @@ public class JumpingGameManager extends GameManager {
         result = ((AnimatedGameItem) item).animate(jumpingMovementInfo);
         // process result
         JumpingResult jumpingResult = (JumpingResult) result;
-        if (jumpingResult.getInItems() != null) {
-          for (GameItem inItem : jumpingResult.getInItems()) {
-            newItems.add(inItem);
+        if (jumpingResult.getNewItems() != null) {
+          for (GameItem newItem : jumpingResult.getNewItems()) {
+            newItems.add(newItem);
           }
         }
-        if (jumpingResult.getOutItems() != null) {
-          for (GameItem outItem : jumpingResult.getOutItems()) {
-            oldItems.add(outItem);
+        if (jumpingResult.getOldItems() != null) {
+          for (GameItem oldItem : jumpingResult.getOldItems()) {
+            oldItems.add(oldItem);
           }
         }
         if (jumpingResult.isObstacleJumped()) {
@@ -283,8 +281,8 @@ public class JumpingGameManager extends GameManager {
         place(newItem);
       }
 
-      for (GameItem outItem : oldItems) {
-        removeItem(outItem);
+      for (GameItem oldItem : oldItems) {
+        removeItem(oldItem);
       }
     }
 
