@@ -183,23 +183,27 @@ public class AppleGameManager extends GameManager {
     Random randItem = new Random();
     int randint = randItem.nextInt(200);
     if (randint < 2) {
-      // spawn new Star
-      Star nextItem = new Star(80, 80, starBmps);
-      nextItem.setYVelocity(250);
-      place(nextItem);
-      nextItem.setPosition(spawnCoordinate, 0);
-
-    } else if (randint < 9) {
-      // spawn new Apple
-      Apple nextItem = new Apple(80, 80, appleBmps);
-      nextItem.setYVelocity(350);
-      place(nextItem);
-      nextItem.setPosition(spawnCoordinate, 0);
-
-      System.out.println("spawned apple at x " + spawnCoordinate);
+      spawnStar(spawnCoordinate);
+    }
+    else if (randint < 9) {
+      spawnApple(spawnCoordinate);
     }
 
     // else do nothing
+  }
+
+  private void spawnStar(int spawnCoordinate) {
+    Star nextItem = new Star(80, 80, starBmps);
+    nextItem.setYVelocity(250);
+    place(nextItem);
+    nextItem.setPosition(spawnCoordinate, 0);
+  }
+
+  private void spawnApple(int spawnCoordinate) {
+    Apple nextItem = new Apple(80, 80, appleBmps);
+    nextItem.setYVelocity(350);
+    place(nextItem);
+    nextItem.setPosition(spawnCoordinate, 0);
   }
 
   /** Ends this minigame. */
