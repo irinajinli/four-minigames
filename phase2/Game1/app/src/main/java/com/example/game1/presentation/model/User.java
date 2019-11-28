@@ -1,10 +1,9 @@
 package com.example.game1.presentation.model;
 
-/** The model object for a user. This object is used by the domain and data layer. */
+/** The model object for a user. This object is also used by the domain and data layer. */
 public class User {
-  /** This user's username and password */
-  private String userName;
 
+  private String userName;
   private String password;
 
   /** This user's customization choices */
@@ -13,10 +12,7 @@ public class User {
   /** The highest individual statistics in this user's history */
   private Statistics topIndividualStats;
 
-  /**
-   * The statistics of the top game in this user's history (note: the top game is the game with the
-   * highest total points, stars, and taps)
-   */
+  /** The statistics of the top game in this user's history (i.e. the game with the highest score */
   private Statistics statsOfTopGame;
 
   /** The statistics of this user's current game */
@@ -25,12 +21,13 @@ public class User {
   /** The last completed level in this user's current game */
   private int lastCompletedLevel;
 
-  /** Constructs a new User with the given username and password. */
+  /**
+   * Constructs a new User with the given username and password.
+   */
   public User(String userName, String password) {
     this.userName = userName;
     this.password = password;
-    /* Set default values for the user's customization choices, statistics, and last completed
-    level */
+    // Set default values for the user's customization choices, statistics, and last completed level
     customization = new Customization();
     statsOfCurrentGame = new Statistics();
     statsOfTopGame = new Statistics();
@@ -40,10 +37,6 @@ public class User {
 
   public String getUserName() {
     return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 
   public String getPassword() {
@@ -66,24 +59,12 @@ public class User {
     return statsOfCurrentGame;
   }
 
-  public void setStatsOfCurrentGame(Statistics statsOfCurrentGame) {
-    this.statsOfCurrentGame = statsOfCurrentGame;
-  }
-
   public Statistics getStatsOfTopGame() {
     return statsOfTopGame;
   }
 
-  public void setStatsOfTopGame(Statistics statsOfTopGame) {
-    this.statsOfTopGame = statsOfTopGame;
-  }
-
   public Statistics getTopIndividualStats() {
     return topIndividualStats;
-  }
-
-  public void setTopIndividualStats(Statistics topIndividualStats) {
-    this.topIndividualStats = topIndividualStats;
   }
 
   public int getLastCompletedLevel() {

@@ -3,16 +3,23 @@ package com.example.game1.presentation.model;
 /** The model object for a game. */
 public class Game {
 
+  /** The possible game types */
+  public enum GameName {APPLE, TAPPING, JUMPING, BRICK}
+
   /** The levels that each game type corresponds to */
   private static final int APPLE_LEVEL = 1;
   private static final int TAPPING_LEVEL = 2;
   private static final int JUMPING_LEVEL = 3;
   private static final int BRICK_LEVEL = 4;
+
   private GameName name;
   private int level;
   private Statistics statistics;
   private Customization customization;
-  /** Constructs a new Game. */
+
+  /**
+   * Constructs a new Game.
+   */
   public Game(GameName name) {
     this.name = name;
     setLevel();
@@ -41,14 +48,6 @@ public class Game {
     }
   }
 
-  public GameName getName() {
-    return name;
-  }
-
-  public void setName(GameName name) {
-    this.name = name;
-  }
-
   public int getLevel() {
     return level;
   }
@@ -71,13 +70,5 @@ public class Game {
 
   public void setCustomization(Customization customization) {
     this.customization = customization;
-  }
-
-  /** The game types */
-  public enum GameName {
-    APPLE,
-    TAPPING,
-    JUMPING,
-    BRICK
   }
 }

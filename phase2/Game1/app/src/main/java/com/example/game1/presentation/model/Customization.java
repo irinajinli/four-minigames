@@ -1,60 +1,55 @@
 package com.example.game1.presentation.model;
 
-/** The model object for the customization choices of a user or game. */
+/**
+ * The model object for the customization choices of a user or game.
+ */
 public class Customization {
 
-  private CharacterColour characterColour;
-  private ColourScheme colourScheme;
-  private MusicPath musicPath;
+    /* The possible character colour choices */
+    public enum CharacterColour {BLUE, RED, YELLOW}
 
-  /** Constructs a new Customization with default choices. */
-  public Customization() {
-    characterColour = CharacterColour.BLUE;
-    colourScheme = ColourScheme.DARK;
-    musicPath = MusicPath.SONG1;
-  }
+    /* The possible colours scheme choices */
+    public enum ColourScheme {DARK, LIGHT}
 
-  public CharacterColour getCharacterColour() {
-    return characterColour;
-  }
+    /* The possible song choices */
+    public enum MusicPath {SONG1, SONG2, SONG3}
 
-  public void setCharacterColour(CharacterColour characterColour) {
-    this.characterColour = characterColour;
-  }
+    /* The customization choices of this Customization object */
+    private CharacterColour characterColour;
+    private ColourScheme colourScheme;
+    private MusicPath musicPath;
 
-  public ColourScheme getColourScheme() {
-    return colourScheme;
-  }
+    /**
+     * Constructs a new Customization with default choices.
+     */
+    public Customization() {
+        characterColour = CharacterColour.BLUE;
+        colourScheme = ColourScheme.DARK;
+        musicPath = MusicPath.SONG1;
+    }
 
-  public void setColourScheme(ColourScheme colourScheme) {
-    this.colourScheme = colourScheme;
-  }
+    public CharacterColour getCharacterColour() {
+        return characterColour;
+    }
 
-  public MusicPath getMusicPath() {
-    return musicPath;
-  }
+    public void setCharacterColour(CharacterColour characterColour) {
+        this.characterColour = characterColour;
+    }
 
-  public void setMusicPath(MusicPath musicPath) {
-    this.musicPath = musicPath;
-  }
+    public ColourScheme getColourScheme() {
+        return colourScheme;
+    }
 
-  /** The character colour choices */
-  public enum CharacterColour {
-    BLUE,
-    RED,
-    YELLOW
-  }
+    public void setColourScheme(ColourScheme colourScheme) {
+        this.colourScheme = colourScheme;
+    }
 
-  /** The colours scheme choices */
-  public enum ColourScheme {
-    DARK,
-    LIGHT
-  }
+    public MusicPath getMusicPath() {
+        return musicPath;
+    }
 
-  /** The song choices */
-  public enum MusicPath {
-    SONG1,
-    SONG2,
-    SONG3
-  }
+    public void setMusicPath(MusicPath musicPath) {
+        this.musicPath = musicPath;
+    }
+
 }

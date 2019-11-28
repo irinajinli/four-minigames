@@ -2,6 +2,7 @@ package com.example.game1.presentation.model;
 
 /** The model object for the statistics of a game */
 public class Statistics {
+
   private int points;
   private int stars;
   private int taps;
