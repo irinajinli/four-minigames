@@ -177,7 +177,7 @@ public class AppleGameManager extends GameManager {
   private void spawnNew() {
     // get a random x-coordinate to spawn the new Apple/Star at
     Random randCoordinate = new Random();
-    int spawnCoordinate = randCoordinate.nextInt(getGridWidth());
+    int spawnCoordinate = randCoordinate.nextInt(getGridWidth() - 80);
 
     // decide whether to spawn an Apple or a Star or nothing
     Random randItem = new Random();
@@ -191,7 +191,6 @@ public class AppleGameManager extends GameManager {
 
     } else if (randint < 9) {
       // spawn new Apple
-      // TODO: new constructor call; uncomment out when done testing
       Apple nextItem = new Apple(80, 80, appleBmps);
       nextItem.setYVelocity(350);
       place(nextItem);
