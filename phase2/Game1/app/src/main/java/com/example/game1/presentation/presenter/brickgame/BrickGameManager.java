@@ -252,27 +252,14 @@ public class BrickGameManager extends GameManager {
       return false;
     }
 
-    for (Star star : stars) {
-      if (ball.isOverlapping(star)) {
-        oldItems.add(star);
-        numStars += 1;
-      }
-    }
-
+    updateStars(oldItems);
     updateBricks(oldItems);
 
     for (GameItem newItem : newItems) {
       place(newItem);
     }
 
-    for (GameItem oldItem : oldItems) {
-      removeItem(oldItem);
-      if (oldItem instanceof Brick) {
-        bricks.remove(oldItem);
-      } else if (oldItem instanceof Star) {
-        stars.remove(oldItem);
-      }
-    }
+    removeOldItems(oldItems);
 
     return true;
   }
@@ -296,6 +283,15 @@ public class BrickGameManager extends GameManager {
       return false;
     }
     return true;
+  }
+
+  private void updateStars(List<GameItem> oldItems) {
+    for (Star star : stars) {
+      if (ball.isOverlapping(star)) {
+        oldItems.add(star);
+        numStars += 1;
+      }
+    }
   }
 
   public void updateBricks(List<GameItem> oldItems) {
@@ -350,6 +346,17 @@ public class BrickGameManager extends GameManager {
             oldItems.add(oldItem);
           }
         }
+      }
+    }
+  }
+
+  public void removeOldItems(List<GameItem> oldItems) {
+    for (GameItem oldItem : oldItems) {
+      removeItem(oldItem);
+      if (oldItem instanceof Brick) {
+        bricks.remove(oldItem);
+      } else if (oldItem instanceof Star) {
+        stars.remove(oldItem);
       }
     }
   }
