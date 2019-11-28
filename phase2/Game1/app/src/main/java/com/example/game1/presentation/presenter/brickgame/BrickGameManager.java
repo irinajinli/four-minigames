@@ -304,8 +304,8 @@ public class BrickGameManager extends GameManager {
           if (Math.random() > STAR_PROBABILITY) {
             Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBmps);
             star.setPosition(
-                    brick.getXCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
-                    brick.getYCoordinate());
+                brick.getXCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
+                brick.getYCoordinate());
             place(star);
             stars.add(star);
           }
@@ -322,13 +322,13 @@ public class BrickGameManager extends GameManager {
 
     List<GameItem> gameItems = getGameItems();
     BrickMovementInfo brickImportInfo =
-            new BrickMovementInfo(
-                    getScreenHeight(),
-                    getScreenWidth(),
-                    this.ball,
-                    this.bricks,
-                    this.paddle,
-                    getNumSeconds());
+        new BrickMovementInfo(
+            getScreenHeight(),
+            getScreenWidth(),
+            this.ball,
+            this.bricks,
+            this.paddle,
+            getNumSeconds());
 
     for (GameItem item : gameItems) {
       if (item instanceof AnimatedGameItem) {
