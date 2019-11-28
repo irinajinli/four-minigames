@@ -124,13 +124,11 @@ public class AppleGameManager extends GameManager {
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
 
-      // TODO: delete this if block later and include all AnimatedItems in the next block
-      if (currItem instanceof Apple) {
-        ((AnimatedGameItem) currItem).move();
-      }
-
       if (currItem instanceof Star) {
         ((Star) currItem).animate(numSeconds);
+      }
+      else if (currItem instanceof Apple) {
+        ((Apple) currItem).animate(numSeconds);
       }
 
       if (!(currItem instanceof Basket)) {
@@ -191,6 +189,7 @@ public class AppleGameManager extends GameManager {
       // spawn new Apple
       // TODO: new constructor call; uncomment out when done testing
       Apple nextItem = new Apple(80, 80, appleBmps);
+      nextItem.setYVelocity(350);
       place(nextItem);
       nextItem.setPosition(spawnCoordinate, 0);
 
