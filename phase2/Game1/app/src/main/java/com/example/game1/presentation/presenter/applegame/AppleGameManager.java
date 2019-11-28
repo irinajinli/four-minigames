@@ -158,22 +158,18 @@ public class AppleGameManager extends GameManager {
     return true;
   }
 
-  /** Catches an Apple. */
   private void catchApple() {
     points.addPoints(1);
   }
 
-  /** Catches a Star. */
   private void catchStar() {
     numCaughtStars += 1;
   }
 
-  /** Drops the specified Apple. */
   private void dropGameItem(GameItem currItem) {
     removeItem(currItem);
   }
 
-  /** Spawns a new Apple or Star in a random location at the top of the screen. */
   private void spawnNew() {
     // get a random x-coordinate to spawn the new Apple/Star at
     Random randCoordinate = new Random();
@@ -188,8 +184,7 @@ public class AppleGameManager extends GameManager {
     else if (randint < 9) {
       spawnApple(spawnCoordinate);
     }
-
-    // else do nothing
+    // else spawn nothing
   }
 
   private void spawnStar(int spawnCoordinate) {

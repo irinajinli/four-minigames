@@ -124,6 +124,27 @@ public class JumpingGameManager extends GameManager {
     this.numStars = numStars;
   }
 
+  public int getNumTaps() {
+    return numTaps;
+  }
+
+  public void setNumTaps(int numTaps) {
+    this.numTaps = numTaps;
+  }
+
+  /**
+   * Returns the colour of the sky
+   *
+   * @return the colour of the sky
+   */
+  public Object getSkyColor() {
+    return this.skyColor;
+  }
+
+  public void setSkyColor(Object skyColor) {
+    this.skyColor = skyColor;
+  }
+
   /**
    * Returns whether this game is running
    *
@@ -140,6 +161,14 @@ public class JumpingGameManager extends GameManager {
    */
   public void setRunning(boolean isRunning) {
     this.isRunning = isRunning;
+  }
+
+  public double getNumSeconds() {
+    return numSeconds;
+  }
+
+  public void setNumSeconds(double numSeconds) {
+    this.numSeconds = numSeconds;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -189,24 +218,11 @@ public class JumpingGameManager extends GameManager {
   }
 
   /**
-   * Returns the colour of the sky
-   *
-   * @return the colour of the sky
-   */
-  public Object getSkyColor() {
-    return this.skyColor;
-  }
-
-  public void setSkyColor(Object skyColor) {
-    this.skyColor = skyColor;
-  }
-
-  /**
    * Adds the specified star to this game at the given position
    *
    * @param xCoordinate the position at which to add the star
    */
-  public void setStarPosition(Star star, int xCoordinate) {
+  private void setStarPosition(Star star, int xCoordinate) {
     //    Star star = new Star(80, 80, this);
     star.setYCoordinate(terrain.getYCoordinate() - 4 * obstacle1.getHeight());
     star.setXCoordinate(xCoordinate);
@@ -329,14 +345,6 @@ public class JumpingGameManager extends GameManager {
     jumper.setXVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
   }
 
-  public int getNumTaps() {
-    return numTaps;
-  }
-
-  public void setNumTaps(int numTaps) {
-    this.numTaps = numTaps;
-  }
-
   public void setAppearance(
       List obstacleAppearances,
       List starAppearances,
@@ -355,13 +363,5 @@ public class JumpingGameManager extends GameManager {
   public void setSkyColors(int skyColorDark, int skyColorLight) {
     this.skyColorDark = skyColorDark;
     this.skyColorLight = skyColorLight;
-  }
-
-  public double getNumSeconds() {
-    return numSeconds;
-  }
-
-  public void setNumSeconds(double numSeconds) {
-    this.numSeconds = numSeconds;
   }
 }
