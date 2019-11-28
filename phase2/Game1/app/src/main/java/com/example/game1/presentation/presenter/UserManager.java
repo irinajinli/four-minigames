@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.domain.UserServiceIntf;
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.model.Statistics;
 import com.example.game1.presentation.model.User;
+import com.example.game1.presentation.view.user.StatisticsActivity;
 import com.example.game1.presentation.view.user.UserMenuActivity;
 
 import java.util.List;
@@ -136,8 +138,14 @@ public class UserManager {
   }
 
   /** Redirects the user to the user menu screen */
-  public void goToUserMenu(AppCompatActivity activity) {
+  void goToUserMenu(AppCompatActivity activity) {
     Intent intent = new Intent(activity, UserMenuActivity.class);
+    activity.startActivity(intent);
+  }
+
+  /** Redirects the user to the statistics page */
+  void goToStatsPage(AppCompatActivity activity) {
+    Intent intent = new Intent(activity, StatisticsActivity.class);
     activity.startActivity(intent);
   }
 

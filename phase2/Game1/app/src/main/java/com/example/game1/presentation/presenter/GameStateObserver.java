@@ -33,11 +33,12 @@ public class GameStateObserver implements Observer {
     this.userManager = userManager;
   }
 
-  /** Notifies the system that a game has finished. Currently, it only notified userManager. */
+  /** Notifies the system that a game has finished. */
   private void finishGame(Game game, AppCompatActivity activity) {
+    // Currently, this method only notifies userManager.
     if (userManager != null) {
       userManager.updateCurrentUsersGame(game);
-      userManager.goToUserMenu(activity);
+      userManager.goToStatsPage(activity);
     }
   }
 }
