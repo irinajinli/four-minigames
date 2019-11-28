@@ -48,9 +48,6 @@ public class Star extends AnimatedGameItem {
   }
 
   @Override
-  public void move() {}
-
-  @Override
   public BrickResult update(MovementInfo brickMovementInfo) {
     return (new BrickResult());
   }

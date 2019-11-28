@@ -41,9 +41,6 @@ public class Jumper extends AnimatedGameItem {
     }
 
     @Override
-    public void move() {}
-
-    @Override
     public JumpingResult update(MovementInfo jumpingMovementInfo) {
         return (new JumpingResult());
     }

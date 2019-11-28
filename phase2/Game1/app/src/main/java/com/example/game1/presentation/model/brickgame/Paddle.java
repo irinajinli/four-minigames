@@ -40,9 +40,6 @@ public class Paddle extends AnimatedGameItem {
     }
 
     @Override
-    public void move() {}
-
-    @Override
     public BrickResult update(MovementInfo jumpingMovementInfo) {
         return (new BrickResult());
     }

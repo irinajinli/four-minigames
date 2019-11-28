@@ -149,9 +149,6 @@ public abstract class AnimatedGameItem extends GameItem {
         return yAcceleration;
     }
 
-    /** Move this GameItem within its GameManager. */
-    public abstract void move();
-
     /**
      *
      * @param numOfSeconds number of seconds used to refresh new xCoordinate, yCoordinate,

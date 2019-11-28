@@ -53,9 +53,6 @@ public class Obstacle extends AnimatedGameItem {
     }
 
     @Override
-    public void move() {}
-
-    @Override
     public JumpingResult update(MovementInfo movementInfo) {
         return (new JumpingResult());
     }
