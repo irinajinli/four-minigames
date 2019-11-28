@@ -10,16 +10,14 @@ import android.os.CountDownTimer;
 import android.view.SurfaceHolder;
 import android.view.View;
 
+import com.example.game1.AppManager;
+import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.AppManager;
 import com.example.game1.presentation.model.tappinggame.Runner;
 import com.example.game1.presentation.model.tappinggame.TappingCircle;
-import com.example.game1.presentation.view.common.GameThread;
-
-import com.example.game1.R;
-
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
+import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
 import java.util.ArrayList;
@@ -27,22 +25,20 @@ import java.util.List;
 
 public class TappingGameView extends GameView implements View.OnClickListener {
 
-  private Bitmap tappingCircleBmp;
-  private List<Bitmap> yellowPugs;
-  private List<Bitmap> blueBirds;
-  private List<Bitmap> redFishs;
-
+  private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
+  private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
   protected int numTaps;
   protected int numStars;
   protected boolean gameStarted;
   protected int bestResult;
   protected int secondLeft;
   protected int speed;
-
+  private Bitmap tappingCircleBmp;
+  private List<Bitmap> yellowPugs;
+  private List<Bitmap> blueBirds;
+  private List<Bitmap> redFishs;
   private OnClickListener listener;
   private CountDownTimer myTimer;
-  private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
-  private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
   private int currentFrameRunner = 0;
   /**
    * Create a new fish tank in the context environment.
@@ -101,8 +97,6 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
     generateSkyColor();
 
-
-
     gameManager.createGameItems();
     gameManager.startMusic();
 
@@ -136,7 +130,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
               // set star to be the maximum speed reached for now
               if (numStars < speed) {
-                numStars = (int) speed;
+                numStars = speed;
                 ((TappingGameManager) gameManager).starDisplayer.setNumStar(numStars);
               }
             }
@@ -174,7 +168,6 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     gameManager.update();
   }
 
-
   @Override
   public void onClick(View v) {
     if (gameStarted) {
@@ -200,8 +193,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
       } catch (Exception e) {
         System.out.println("No Key");
       }
-      ;
-      Bitmap appearance;
+        Bitmap appearance;
       if (item instanceof Runner) {
         appearance = getCurrentAppearance(key);
       } else {

@@ -20,21 +20,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JumpingGameManager extends GameManager {
+  public static final int JUMPER_WIDTH = 100;
+  public static final int JUMPER_HEIGHT = 200;
+  public static final int OBSTACLE_WIDTH = 100;
+  public static final int OBSTACLE_HEIGHT = 100;
+  public static final int STAR_WIDTH = 80;
+  public static final int STAR_HEIGHT = 80;
+  private final int DARK_COLOR = Color.rgb(83, 92, 104);
+  private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
   /**
    * A GameManager for a Jumping minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling GameObjects.
    */
   private Terrain terrain;
-
   private Jumper jumper;
   private Obstacle obstacle1;
   private Obstacle obstacle2;
   private Obstacle obstacle3;
-
   private double cameraVelocityX = 450; // 450
   private int numJumped = 0;
   private int numStars = 0;
-
   private int numTaps = 0;
   private Object skyColor;
   private int skyColorLight;
@@ -47,21 +52,15 @@ public class JumpingGameManager extends GameManager {
   private List<Object> jumperRedAppearances;
   private List<Object> jumperYellowAppearances;
   private List<Object> jumperAppearances;
-
   private double numSeconds;
-
-  private final int DARK_COLOR = Color.rgb(83, 92, 104);
-  private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
-
-  public static final int JUMPER_WIDTH = 100;
-  public static final int JUMPER_HEIGHT = 200;
-  public static final int OBSTACLE_WIDTH = 100;
-  public static final int OBSTACLE_HEIGHT = 100;
-  public static final int STAR_WIDTH = 80;
-  public static final int STAR_HEIGHT = 80;
-
   private List<Bitmap> jumperSprites;
   private int currFrame;
+
+  /** Constructs a JumpingGameManager with the specified height, width, game, and activity. */
+  public JumpingGameManager(int height, int width, Game game, AppCompatActivity activity) {
+    super(height, width, game, activity);
+    // this.game = new Game(Game.GameName.JUMPING);
+  }
 
   private Object getNextJumperFrame() {
     currFrame += 1;
@@ -69,11 +68,6 @@ public class JumpingGameManager extends GameManager {
       currFrame = 0;
     }
     return jumperAppearances.get(currFrame);
-  }
-  /** Constructs a JumpingGameManager with the specified height, width, game, and activity. */
-  public JumpingGameManager(int height, int width, Game game, AppCompatActivity activity) {
-    super(height, width, game, activity);
-    // this.game = new Game(Game.GameName.JUMPING);
   }
 
   /**
@@ -131,6 +125,15 @@ public class JumpingGameManager extends GameManager {
   }
 
   /**
+   * Returns whether this game is running
+   *
+   * @return whether this game is running
+   */
+  public boolean getRunning() {
+    return this.isRunning;
+  }
+
+  /**
    * Sets whether or not this game is running
    *
    * @param isRunning whether or not this game is running
@@ -139,14 +142,6 @@ public class JumpingGameManager extends GameManager {
     this.isRunning = isRunning;
   }
 
-  /**
-   * Returns whether this game is running
-   *
-   * @return whether this game is running
-   */
-  public boolean getRunning() {
-    return this.isRunning;
-  }
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
     // create background according to Customization
@@ -200,6 +195,10 @@ public class JumpingGameManager extends GameManager {
    */
   public Object getSkyColor() {
     return this.skyColor;
+  }
+
+  public void setSkyColor(Object skyColor) {
+    this.skyColor = skyColor;
   }
 
   /**
@@ -356,10 +355,6 @@ public class JumpingGameManager extends GameManager {
   public void setSkyColors(int skyColorDark, int skyColorLight) {
     this.skyColorDark = skyColorDark;
     this.skyColorLight = skyColorLight;
-  }
-
-  public void setSkyColor(Object skyColor) {
-    this.skyColor = skyColor;
   }
 
   public double getNumSeconds() {

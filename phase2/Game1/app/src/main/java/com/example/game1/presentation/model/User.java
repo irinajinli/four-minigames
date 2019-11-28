@@ -1,110 +1,96 @@
 package com.example.game1.presentation.model;
 
-/**
- * The model object for a user.
- * This object is used by the domain and data layer.
- */
+/** The model object for a user. This object is used by the domain and data layer. */
 public class User {
-    /**
-     * This user's username and password
-     */
-    private String userName;
-    private String password;
+  /** This user's username and password */
+  private String userName;
 
-    /**
-     * This user's customization choices
-     */
-    private Customization customization;
+  private String password;
 
-    /**
-     * The highest individual statistics in this user's history
-     */
-    private Statistics topIndividualStats;
+  /** This user's customization choices */
+  private Customization customization;
 
-    /**
-     * The statistics of the top game in this user's history (note: the top game is the game with
-     * the highest total points, stars, and taps)
-     */
-    private Statistics statsOfTopGame;
+  /** The highest individual statistics in this user's history */
+  private Statistics topIndividualStats;
 
-    /**
-     * The statistics of this user's current game
-     */
-    private Statistics statsOfCurrentGame;
+  /**
+   * The statistics of the top game in this user's history (note: the top game is the game with the
+   * highest total points, stars, and taps)
+   */
+  private Statistics statsOfTopGame;
 
-    /**
-     * The last completed level in this user's current game
-     */
-    private int lastCompletedLevel;
+  /** The statistics of this user's current game */
+  private Statistics statsOfCurrentGame;
 
-    /**
-     * Constructs a new User with the given username and password.
-     */
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-        /* Set default values for the user's customization choices, statistics, and last completed
-        level */
-        customization = new Customization();
-        statsOfCurrentGame = new Statistics();
-        statsOfTopGame = new Statistics();
-        topIndividualStats = new Statistics();
-        lastCompletedLevel = 0;
-    }
+  /** The last completed level in this user's current game */
+  private int lastCompletedLevel;
 
-    public String getUserName() {
-        return userName;
-    }
+  /** Constructs a new User with the given username and password. */
+  public User(String userName, String password) {
+    this.userName = userName;
+    this.password = password;
+    /* Set default values for the user's customization choices, statistics, and last completed
+    level */
+    customization = new Customization();
+    statsOfCurrentGame = new Statistics();
+    statsOfTopGame = new Statistics();
+    topIndividualStats = new Statistics();
+    lastCompletedLevel = 0;
+  }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public String getUserName() {
+    return userName;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public Customization getCustomization() {
-        return customization;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setCustomization(Customization customization) {
-        this.customization = customization;
-    }
+  public Customization getCustomization() {
+    return customization;
+  }
 
-    public Statistics getStatsOfCurrentGame() {
-        return statsOfCurrentGame;
-    }
+  public void setCustomization(Customization customization) {
+    this.customization = customization;
+  }
 
-    public void setStatsOfCurrentGame(Statistics statsOfCurrentGame) {
-        this.statsOfCurrentGame = statsOfCurrentGame;
-    }
+  public Statistics getStatsOfCurrentGame() {
+    return statsOfCurrentGame;
+  }
 
-    public Statistics getStatsOfTopGame() {
-        return statsOfTopGame;
-    }
+  public void setStatsOfCurrentGame(Statistics statsOfCurrentGame) {
+    this.statsOfCurrentGame = statsOfCurrentGame;
+  }
 
-    public void setStatsOfTopGame(Statistics statsOfTopGame) {
-        this.statsOfTopGame = statsOfTopGame;
-    }
+  public Statistics getStatsOfTopGame() {
+    return statsOfTopGame;
+  }
 
-    public Statistics getTopIndividualStats() {
-        return topIndividualStats;
-    }
+  public void setStatsOfTopGame(Statistics statsOfTopGame) {
+    this.statsOfTopGame = statsOfTopGame;
+  }
 
-    public void setTopIndividualStats(Statistics topIndividualStats) {
-        this.topIndividualStats = topIndividualStats;
-    }
+  public Statistics getTopIndividualStats() {
+    return topIndividualStats;
+  }
 
-    public int getLastCompletedLevel() {
-        return lastCompletedLevel;
-    }
+  public void setTopIndividualStats(Statistics topIndividualStats) {
+    this.topIndividualStats = topIndividualStats;
+  }
 
-    public void setLastCompletedLevel(int lastCompletedLevel) {
-        this.lastCompletedLevel = lastCompletedLevel;
-    }
+  public int getLastCompletedLevel() {
+    return lastCompletedLevel;
+  }
+
+  public void setLastCompletedLevel(int lastCompletedLevel) {
+    this.lastCompletedLevel = lastCompletedLevel;
+  }
 }

@@ -1,13 +1,13 @@
 package com.example.game1.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.game1.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game1.AppManager;
+import com.example.game1.R;
 import com.example.game1.presentation.view.user.LoginActivity;
 import com.example.game1.presentation.view.user.RegistrationActivity;
 

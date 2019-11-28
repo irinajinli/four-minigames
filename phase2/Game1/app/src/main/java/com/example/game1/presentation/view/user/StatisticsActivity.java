@@ -1,101 +1,95 @@
 package com.example.game1.presentation.view.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.game1.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game1.AppManager;
+import com.example.game1.R;
 import com.example.game1.presentation.presenter.UserManager;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    private UserManager userManager = AppManager.getInstance().getUserManager();
+  private UserManager userManager = AppManager.getInstance().getUserManager();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setTheme();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    setTheme();
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_statistics);
 
-        EditText infoText = findViewById(R.id.infoText);
-        infoText.setText(R.string.stats_score_description);
+    EditText infoText = findViewById(R.id.infoText);
+    infoText.setText(R.string.stats_score_description);
 
-        String usernameOfCurrUser = userManager.getCurrentUser().getUserName();
+    String usernameOfCurrUser = userManager.getCurrentUser().getUserName();
 
-        /*
-        Display the current score of the current user
-         */
-        EditText currPointsText = findViewById(R.id.currPointsText);
-        currPointsText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfCurrentGame().getPoints()));
-
-        EditText currStarsText = findViewById(R.id.currStarsText);
-        currStarsText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfCurrentGame().getStars()));
-
-        EditText currTapsText = findViewById(R.id.currTapsText);
-        currTapsText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfCurrentGame().getTaps()));
-
-        EditText currScoreText = findViewById(R.id.currScoreText);
-        currScoreText.setText(String.valueOf(userManager.getCurrentScore(usernameOfCurrUser)));
-
-        /*
-        Display the top score of the current user
-         */
-        EditText topPointsText = findViewById(R.id.topPointsText);
-        topPointsText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfTopGame().getPoints()));
-
-        EditText topStarsText = findViewById(R.id.topStarsText);
-        topStarsText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfTopGame().getStars()));
-
-        EditText topTapsText = findViewById(R.id.topTapsText);
-        topTapsText.setText(String.valueOf(
-                userManager.getCurrentUser().getStatsOfTopGame().getTaps()));
-
-        EditText topScoreText = findViewById(R.id.topScoreText);
-        topScoreText.setText(String.valueOf(userManager.getTopScore(usernameOfCurrUser)));
-
-        /*
-        Display the top individual statistics of the current user
-         */
-        EditText topPlayerPointsText = findViewById(R.id.topIndPointsText);
-        topPlayerPointsText.setText(String.valueOf(
-                userManager.getCurrentUser().getTopIndividualStats().getPoints()));
-
-        EditText topPlayerStarsText = findViewById(R.id.topIndStarsText);
-        topPlayerStarsText.setText(String.valueOf(
-                userManager.getCurrentUser().getTopIndividualStats().getStars()));
-
-        EditText topPlayerTapsText = findViewById(R.id.topIndTapsText);
-        topPlayerTapsText.setText(String.valueOf(
-                userManager.getCurrentUser().getTopIndividualStats().getTaps()));
-    }
-
-    /**
-     * Changes the theme of the page based on the user's customization choice
+    /*
+    Display the current score of the current user
      */
-    private void setTheme(){
-        if ("LIGHT".equals(
-                userManager.getCurrentUser().getCustomization().getColourScheme().toString())) {
-            setTheme(android.R.style.Theme_Material_Light_NoActionBar);
-            getSupportActionBar().setTitle(Html.fromHtml(
-                    "<font color='#ffffff'>Game1</font>"));
-        }
-    }
+    EditText currPointsText = findViewById(R.id.currPointsText);
+    currPointsText.setText(
+        String.valueOf(userManager.getCurrentUser().getStatsOfCurrentGame().getPoints()));
 
-    /**
-     * Called when the user taps the Back button
+    EditText currStarsText = findViewById(R.id.currStarsText);
+    currStarsText.setText(
+        String.valueOf(userManager.getCurrentUser().getStatsOfCurrentGame().getStars()));
+
+    EditText currTapsText = findViewById(R.id.currTapsText);
+    currTapsText.setText(
+        String.valueOf(userManager.getCurrentUser().getStatsOfCurrentGame().getTaps()));
+
+    EditText currScoreText = findViewById(R.id.currScoreText);
+    currScoreText.setText(String.valueOf(userManager.getCurrentScore(usernameOfCurrUser)));
+
+    /*
+    Display the top score of the current user
      */
-    public void goBack(View view) {
-        Intent intent = new Intent(this, UserMenuActivity.class);
-        startActivity(intent);
+    EditText topPointsText = findViewById(R.id.topPointsText);
+    topPointsText.setText(
+        String.valueOf(userManager.getCurrentUser().getStatsOfTopGame().getPoints()));
+
+    EditText topStarsText = findViewById(R.id.topStarsText);
+    topStarsText.setText(
+        String.valueOf(userManager.getCurrentUser().getStatsOfTopGame().getStars()));
+
+    EditText topTapsText = findViewById(R.id.topTapsText);
+    topTapsText.setText(String.valueOf(userManager.getCurrentUser().getStatsOfTopGame().getTaps()));
+
+    EditText topScoreText = findViewById(R.id.topScoreText);
+    topScoreText.setText(String.valueOf(userManager.getTopScore(usernameOfCurrUser)));
+
+    /*
+    Display the top individual statistics of the current user
+     */
+    EditText topPlayerPointsText = findViewById(R.id.topIndPointsText);
+    topPlayerPointsText.setText(
+        String.valueOf(userManager.getCurrentUser().getTopIndividualStats().getPoints()));
+
+    EditText topPlayerStarsText = findViewById(R.id.topIndStarsText);
+    topPlayerStarsText.setText(
+        String.valueOf(userManager.getCurrentUser().getTopIndividualStats().getStars()));
+
+    EditText topPlayerTapsText = findViewById(R.id.topIndTapsText);
+    topPlayerTapsText.setText(
+        String.valueOf(userManager.getCurrentUser().getTopIndividualStats().getTaps()));
+  }
+
+  /** Changes the theme of the page based on the user's customization choice */
+  private void setTheme() {
+    if ("LIGHT"
+        .equals(userManager.getCurrentUser().getCustomization().getColourScheme().toString())) {
+      setTheme(android.R.style.Theme_Material_Light_NoActionBar);
+      getSupportActionBar().setTitle(Html.fromHtml("<font color='#ffffff'>Game1</font>"));
     }
+  }
+
+  /** Called when the user taps the Back button */
+  public void goBack(View view) {
+    Intent intent = new Intent(this, UserMenuActivity.class);
+    startActivity(intent);
+  }
 }

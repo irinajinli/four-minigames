@@ -1,42 +1,44 @@
 package com.example.game1.presentation.presenter.tappinggame;
 
-
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.view.common.Background;
 import com.example.game1.presentation.model.tappinggame.Runner;
 import com.example.game1.presentation.model.tappinggame.SpeedDisplayer;
 import com.example.game1.presentation.model.tappinggame.StarDisplayer;
 import com.example.game1.presentation.model.tappinggame.TapCounter;
 import com.example.game1.presentation.model.tappinggame.TappingCircle;
 import com.example.game1.presentation.model.tappinggame.TimerDisplayer;
+import com.example.game1.presentation.presenter.common.GameManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TappingGameManager extends GameManager {
 
+  public static final double RUNNER_WIDTH_MULTIPLIER = 0.2;
+  public static final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
+  public TappingCircle tappingCircle;
+  public Runner runner;
+  public TapCounter tapCounter;
+  public TimerDisplayer timerDisplayer;
+  public StarDisplayer starDisplayer;
+  public SpeedDisplayer speedDisplayer;
   private Object tappingCircleAppearance;
   private List runnerAppearances;
   private List yellowPugAppearances;
   private List blueBirdAppearances;
   private List redFishAppearances;
-  public TappingCircle tappingCircle;
-
-  public Runner runner;
-
-  public TapCounter tapCounter;
-
-  public TimerDisplayer timerDisplayer;
-
-  public StarDisplayer starDisplayer;
-
-  public SpeedDisplayer speedDisplayer;
+  private boolean canRun;
+  private Object skyColor;
+  private Object skyColorDark;
+  private Object skyColorLight;
+  /** Constructs a TappingGameManager with the specified height, width, game, and activity. */
+  public TappingGameManager(int height, int width, Game game, AppCompatActivity activity) {
+    super(height, width, game, activity);
+    this.canRun = true;
+  }
 
   public boolean isCanRun() {
     return canRun;
@@ -46,26 +48,11 @@ public class TappingGameManager extends GameManager {
     this.canRun = canRun;
   }
 
-  private boolean canRun;
-
-  public static final double RUNNER_WIDTH_MULTIPLIER = 0.2;
-  public static final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
-
-  private Object skyColor;
-  private Object skyColorDark;
-  private Object skyColorLight;
-
-
-  /**
-   * Constructs a TappingGameManager with the specified height, width, game, and activity.
-   */
-  public TappingGameManager(int height, int width, Game game, AppCompatActivity activity) {
-    super(height, width, game, activity);
-    this.canRun = true;
-  }
-
-  public void setAppearance(Object tappingCircleAppearance, List yellowPugAppearances,
-                            List blueBirdAppearances, List redFishAppearances) {
+  public void setAppearance(
+      Object tappingCircleAppearance,
+      List yellowPugAppearances,
+      List blueBirdAppearances,
+      List redFishAppearances) {
     this.tappingCircleAppearance = tappingCircleAppearance;
     this.yellowPugAppearances = yellowPugAppearances;
     this.blueBirdAppearances = blueBirdAppearances;
@@ -73,25 +60,21 @@ public class TappingGameManager extends GameManager {
     this.runnerAppearances = yellowPugAppearances;
   }
 
-  /**
-   * execute animation on each item in myFishTank and update myFishTank accordingly.
-   *
-   */
+  /** execute animation on each item in myFishTank and update myFishTank accordingly. */
   public boolean update() {
-    //newItems list stores FishTankItems to be added to myFishTank
+    // newItems list stores FishTankItems to be added to myFishTank
     List<GameItem> newItems = new ArrayList<>();
     // outItem list stores FishTankItem to be removed from myFishTank
     List<GameItem> outItems = new ArrayList<>();
 
     List<GameItem> Items = getGameItems();
     for (GameItem item : Items) {
-      if(item.getClass() == Runner.class){
-        canRun = ((Runner)item).move(getScreenWidth());
+      if (item.getClass() == Runner.class) {
+        canRun = ((Runner) item).move(getScreenWidth());
       }
-
     }
 
-    //Iterate all items in newItems List, add them to myFishTank.
+    // Iterate all items in newItems List, add them to myFishTank.
     for (GameItem newItem : newItems) {
       place(newItem);
     }
@@ -102,28 +85,27 @@ public class TappingGameManager extends GameManager {
 
   public void createGameItems() {
 
-//    Customization cust = game.getCustomization();
-//    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-////      Background b = new Background();
-////      place(b);
-////      b.setPosition(0, 0);
-//      setSkyColor(skyColorDark);
-//    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-//      setSkyColor(skyColorLight);
-//    }
-//    if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
-//      this.runnerAppearances = blueBirdAppearances;
-//    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
-//      this.runnerAppearances = redFishAppearances;
-//    } else{ // if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
-//      this.runnerAppearances = yellowPugAppearances;
-//    }
-
+    //    Customization cust = game.getCustomization();
+    //    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
+    ////      Background b = new Background();
+    ////      place(b);
+    ////      b.setPosition(0, 0);
+    //      setSkyColor(skyColorDark);
+    //    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+    //      setSkyColor(skyColorLight);
+    //    }
+    //    if(cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
+    //      this.runnerAppearances = blueBirdAppearances;
+    //    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
+    //      this.runnerAppearances = redFishAppearances;
+    //    } else{ // if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
+    //      this.runnerAppearances = yellowPugAppearances;
+    //    }
 
     this.tappingCircle = new TappingCircle(0, 0);
     place(tappingCircle);
     this.runner = new Runner(0, 1550);
-    //runner.setPosition(0, 1550);
+    // runner.setPosition(0, 1550);
     place(runner);
     this.tapCounter = new TapCounter(10, 30);
     place(tapCounter);
@@ -143,7 +125,7 @@ public class TappingGameManager extends GameManager {
     super.gameOver();
   }
 
-  public void setSkyColors(Object skyColorDark, Object skyColorLight){
+  public void setSkyColors(Object skyColorDark, Object skyColorLight) {
     this.skyColorDark = skyColorDark;
     this.skyColorLight = skyColorLight;
   }

@@ -16,27 +16,27 @@ public class AppleMovementInfo extends MovementInfo {
     this.basket = basket;
   }
 
-  public void setScreenWidth(int screenWidth) {
-    this.screenWidth = screenWidth;
-  }
-
-  public void setScreenHeight(int screenHeight) {
-    this.screenHeight = screenHeight;
-  }
-
-  public void setBasket(Basket basket) {
-    this.basket = basket;
-  }
-
   public int getScreenWidth() {
     return screenWidth;
+  }
+
+  public void setScreenWidth(int screenWidth) {
+    this.screenWidth = screenWidth;
   }
 
   public int getScreenHeight() {
     return screenHeight;
   }
 
+  public void setScreenHeight(int screenHeight) {
+    this.screenHeight = screenHeight;
+  }
+
   public Basket getBasket() {
     return basket;
+  }
+
+  public void setBasket(Basket basket) {
+    this.basket = basket;
   }
 }

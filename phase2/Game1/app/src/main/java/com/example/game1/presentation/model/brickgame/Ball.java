@@ -32,17 +32,17 @@ public class Ball extends AnimatedGameItem {
     updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumSeconds());
     BrickResult result = new BrickResult();
 
-    //Brick brick = ((BrickMovementInfo) brickMovementInfo).getJumper();
+    // Brick brick = ((BrickMovementInfo) brickMovementInfo).getJumper();
     // if star is collected by the jumper,
     // inform the jumping result to remove the star in the view
     // and increment the numStar collected in the game manager
-    //if (this.isOverlapping(jumper)) {
+    // if (this.isOverlapping(jumper)) {
     //  result.setStarCollected(true);
     //  result.addOutItem(this);
-    //}
-//    else{
-//      setXCoordinate(getxCoordinate() - 15);
-//    }
+    // }
+    //    else{
+    //      setXCoordinate(getxCoordinate() - 15);
+    //    }
 
     return result;
   }

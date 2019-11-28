@@ -6,43 +6,38 @@ import android.graphics.Color;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
-import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.model.jumpinggame.Star;
-import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.model.applegame.Apple;
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
+import com.example.game1.presentation.model.common.GameItem;
+import com.example.game1.presentation.model.jumpinggame.Star;
+import com.example.game1.presentation.presenter.common.GameManager;
 
 import java.util.List;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
-  /** A GameManager for an Apple minigame. */
-  private int skyColor;
-  private int skyColorDark = Color.BLACK;
-  private int skyColorLight = Color.LTGRAY;
-
-  private double numSeconds;
-
-  private Basket basket;
-  private PointsCounter points;
-  private LivesCounter livesCounter;
-  private int numCaughtStars = 0;
-
-  private List<Bitmap> appleBmps;
-  private List<Bitmap> starBmps;
-  private List<Bitmap> basketBmps;
-  private List<Bitmap> basketBlueBmps;
-  private List<Bitmap> basketYellowBmps;
-
   public static final int APPLE_WIDTH = 100;
   public static final int APPLE_HEIGHT = 100;
   public static final int STAR_WIDTH = 80;
   public static final int STAR_HEIGHT = 80;
   public static final int BASKET_WIDTH = 100;
   public static final int BASKET_HEIGHT = 100;
+  /** A GameManager for an Apple minigame. */
+  private int skyColor;
+  private int skyColorDark = Color.BLACK;
+  private int skyColorLight = Color.LTGRAY;
+  private double numSeconds;
+  private Basket basket;
+  private PointsCounter points;
+  private LivesCounter livesCounter;
+  private int numCaughtStars = 0;
+  private List<Bitmap> appleBmps;
+  private List<Bitmap> starBmps;
+  private List<Bitmap> basketBmps;
+  private List<Bitmap> basketBlueBmps;
+  private List<Bitmap> basketYellowBmps;
 
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
@@ -126,8 +121,7 @@ public class AppleGameManager extends GameManager {
 
       if (currItem instanceof Star) {
         ((Star) currItem).animate(numSeconds);
-      }
-      else if (currItem instanceof Apple) {
+      } else if (currItem instanceof Apple) {
         ((Apple) currItem).animate(numSeconds);
       }
 

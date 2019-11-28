@@ -38,23 +38,18 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public AppCompatActivity activity;
   /** This item's Paint. */
   public Paint paintText = new Paint();
+  /** Hash Map that map the GameItems with its appearance */
+  protected HashMap<String, List<Bitmap>> itemAppearances;
   /** Screen width. */
   private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
   /** Screen height. */
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-
-  /** Hash Map that map the GameItems with its appearance */
-  protected HashMap<String, List<Bitmap>> itemAppearances;
-
   private String characterColorScheme;
 
   private String backgroundColorScheme;
   private int skyColor;
   private int skyColorDark;
   private int skyColorLight;
-
-
-
 
   /**
    * Constructs a GameView with the given context.
@@ -153,8 +148,8 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   }
 
   /**
-   * Resize a bitmap to the specified width and height.
-   * code taken from: https://stackoverflow.com/questions/4837715/how-to-resize-a-bitmap-in-android
+   * Resize a bitmap to the specified width and height. code taken from:
+   * https://stackoverflow.com/questions/4837715/how-to-resize-a-bitmap-in-android
    *
    * @param bm the bitmap to be resized
    * @param newWidth the new width
@@ -177,14 +172,15 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return resizedBitmap;
   }
 
-  public Bitmap getNewBitmap(int resource, int width, int height){
+  public Bitmap getNewBitmap(int resource, int width, int height) {
     Bitmap newBmp = BitmapFactory.decodeResource(getResources(), resource);
     newBmp = getResizedBitmap(newBmp, width, height);
     return newBmp;
   }
-  public void generateAnimatedBmps(List<Bitmap> dest, int[] files, int width, int height){
 
-    for (int i: files){
+  public void generateAnimatedBmps(List<Bitmap> dest, int[] files, int width, int height) {
+
+    for (int i : files) {
       dest.add(getNewBitmap(i, width, height));
     }
   }
@@ -196,7 +192,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   }
 
   public void addGameItemAppearance(String gameItemName, Bitmap image) {
-    if (itemAppearances.containsKey(gameItemName)){
+    if (itemAppearances.containsKey(gameItemName)) {
       itemAppearances.get(gameItemName).add(image);
     } else {
       List<Bitmap> images = new ArrayList<>();
@@ -204,9 +200,10 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
       itemAppearances.put(gameItemName, images);
     }
   }
-  public void addGameItemAppearances(String gameItemName, List<Bitmap> images){
-    if (itemAppearances.containsKey(gameItemName)){
-      for (Bitmap image: images){
+
+  public void addGameItemAppearances(String gameItemName, List<Bitmap> images) {
+    if (itemAppearances.containsKey(gameItemName)) {
+      for (Bitmap image : images) {
         itemAppearances.get(gameItemName).add(image);
       }
     } else {
@@ -214,15 +211,15 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-  public List<Bitmap> getAppearances(String key){
+  public List<Bitmap> getAppearances(String key) {
     return itemAppearances.get(key);
   }
 
-  public Bitmap getAppearance(String key){
+  public Bitmap getAppearance(String key) {
     return itemAppearances.get(key).get(0);
   }
 
-  public void generateBackgroundColor(){
+  public void generateBackgroundColor() {
 
     Customization cust = gameManager.getGame().getCustomization();
     if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
@@ -232,37 +229,37 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-  public void generateCharacterColor(){
+  public void generateCharacterColor() {
     Customization cust = gameManager.getGame().getCustomization();
     if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
       this.characterColorScheme = "Blue";
     } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
       this.characterColorScheme = "Yellow";
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
+    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
       this.characterColorScheme = "Red";
     }
   }
 
-  public void setSkyColors(int skyColorDark, int skyColorLight){
+  public void setSkyColors(int skyColorDark, int skyColorLight) {
     this.skyColorDark = skyColorDark;
     this.skyColorLight = skyColorLight;
   }
 
-  public void setSkyColor(int skyColor) {
-    this.skyColor = skyColor;
-  }
-
-  public void generateSkyColor(){
+  public void generateSkyColor() {
     generateBackgroundColor();
-    if(this.backgroundColorScheme.equals("Dark")){
+    if (this.backgroundColorScheme.equals("Dark")) {
       setSkyColor(skyColorDark);
-    } else if (this.backgroundColorScheme.equals("Light")){
+    } else if (this.backgroundColorScheme.equals("Light")) {
       setSkyColor(skyColorLight);
     }
   }
 
   public int getSkyColor() {
     return skyColor;
+  }
+
+  public void setSkyColor(int skyColor) {
+    this.skyColor = skyColor;
   }
 
   public int getSkyColorDark() {
@@ -285,12 +282,10 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return characterColorScheme;
   }
 
-  /**
-   *
-   */
-  public int updateIndex(int index, int length){
+  /** */
+  public int updateIndex(int index, int length) {
     index += 1;
-    if (index == length){
+    if (index == length) {
       index = 0;
     }
     return index;

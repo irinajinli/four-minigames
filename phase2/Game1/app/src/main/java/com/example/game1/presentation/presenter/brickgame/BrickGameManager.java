@@ -20,33 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrickGameManager extends GameManager {
-  /**
-   * A GameManager for a Brick Breaking minigame. Includes extra variables and methods for handling
-   * game-specific features..
-   */
-  private Paddle paddle;
-
-  private Ball ball;
-  private List<Brick> bricks;
-  private List<Star> stars;
-
-  private int numBroken = 0;
-  private int numStars = 0;
-
-  private int numTaps = 0;
-  private int backgroundColor;
-  private boolean isRunning;
-  private Bitmap brickBmp;
-  private Bitmap brickDamagedBmp;
-  private List<Bitmap> starBmps;
-  private List<Bitmap> ballBmps;
-  private List<Bitmap> paddleBmps;
-  private List<Bitmap> paddleBlueBmps;
-  private List<Bitmap> paddleRedBmps;
-  private List<Bitmap> paddleYellowBmps;
-
-  private double numSeconds;
-
   public static final int NUM_BRICK_LAYERS = 3;
   public static final int NUM_BRICKS_HORIZONTAL = 6;
   public static final int BRICK_HEIGHT = 80;
@@ -61,6 +34,28 @@ public class BrickGameManager extends GameManager {
   public static final double STAR_PROBABILITY = 0.8;
   private final int DARK_COLOR = Color.rgb(83, 92, 104);
   private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
+  /**
+   * A GameManager for a Brick Breaking minigame. Includes extra variables and methods for handling
+   * game-specific features..
+   */
+  private Paddle paddle;
+  private Ball ball;
+  private List<Brick> bricks;
+  private List<Star> stars;
+  private int numBroken = 0;
+  private int numStars = 0;
+  private int numTaps = 0;
+  private int backgroundColor;
+  private boolean isRunning;
+  private Bitmap brickBmp;
+  private Bitmap brickDamagedBmp;
+  private List<Bitmap> starBmps;
+  private List<Bitmap> ballBmps;
+  private List<Bitmap> paddleBmps;
+  private List<Bitmap> paddleBlueBmps;
+  private List<Bitmap> paddleRedBmps;
+  private List<Bitmap> paddleYellowBmps;
+  private double numSeconds;
 
   /**
    * Constructs a BrickGameManager with the specified height and width.
@@ -135,21 +130,21 @@ public class BrickGameManager extends GameManager {
   }
 
   /**
-   * Sets whether or not this game is running
-   *
-   * @param isRunning whether or not this game is running
-   */
-  public void setRunning(boolean isRunning) {
-    this.isRunning = isRunning;
-  }
-
-  /**
    * Returns whether this game is running
    *
    * @return whether this game is running
    */
   public boolean getRunning() {
     return this.isRunning;
+  }
+
+  /**
+   * Sets whether or not this game is running
+   *
+   * @param isRunning whether or not this game is running
+   */
+  public void setRunning(boolean isRunning) {
+    this.isRunning = isRunning;
   }
 
   /** Creates GameItems required at the beginning of the minigame. */
@@ -174,7 +169,7 @@ public class BrickGameManager extends GameManager {
     setRunning(true);
 
     // create background according to Customization
-//    Customization cust = game.getCustomization();
+    //    Customization cust = game.getCustomization();
     //    setTheme(cust.getColourScheme());
 
     //    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
@@ -208,7 +203,7 @@ public class BrickGameManager extends GameManager {
     //    ball.setYVelocity(BALL_VELOCITY_Y);
     //    place(ball);
 
-//    stars = new ArrayList<>();
+    //    stars = new ArrayList<>();
   }
 
   /**

@@ -8,6 +8,8 @@ import com.example.game1.presentation.presenter.common.Result;
 /** An item which can be in a GameManager. */
 public abstract class GameItem {
 
+  /** This item's Paint. */
+  public Paint paintText = new Paint();
   /** How this item appears on the screen. */
   private Object appearance;
   /** the width of this item */
@@ -16,12 +18,10 @@ public abstract class GameItem {
   private int height;
   /** This item's position: x coordinate. */
   private double xCoordinate;
-  /** This item's position: y coordinate. */
-  private double yCoordinate;
 
   // variables to be deleted
-  /** This item's Paint. */
-  public Paint paintText = new Paint();
+  /** This item's position: y coordinate. */
+  private double yCoordinate;
 
   /**
    * Constructs a GameItemOld with the specified appearance.
@@ -77,21 +77,21 @@ public abstract class GameItem {
   }
 
   /**
-   * Sets the appearance of this GameItem.
-   *
-   * @param appearance the appearance of this GameItem
-   */
-  public void setAppearance(Object appearance) {
-    this.appearance = appearance;
-  }
-
-  /**
    * Get the appearance of this GameItem.
    *
    * @return the appearance of this GameItem
    */
   public Object getAppearance() {
     return appearance;
+  }
+
+  /**
+   * Sets the appearance of this GameItem.
+   *
+   * @param appearance the appearance of this GameItem
+   */
+  public void setAppearance(Object appearance) {
+    this.appearance = appearance;
   }
 
   /**
@@ -106,24 +106,6 @@ public abstract class GameItem {
   }
 
   /**
-   * Set the xCoordinate of this GameItem
-   *
-   * @param xCoordinate the x coordinate
-   */
-  public void setXCoordinate(double xCoordinate) {
-    this.xCoordinate = xCoordinate;
-  }
-
-  /**
-   * Set the yCoordinate of this GameItem
-   *
-   * @param yCoordinate the y coordinate
-   */
-  public void setYCoordinate(double yCoordinate) {
-    this.yCoordinate = yCoordinate;
-  }
-
-  /**
    * Get the xCoordinate of this GameItem
    *
    * @return the xCoordinate of this GameItem
@@ -133,12 +115,30 @@ public abstract class GameItem {
   }
 
   /**
+   * Set the xCoordinate of this GameItem
+   *
+   * @param xCoordinate the x coordinate
+   */
+  public void setXCoordinate(double xCoordinate) {
+    this.xCoordinate = xCoordinate;
+  }
+
+  /**
    * Get the yCoordinate of this GameItem
    *
    * @return the yCoordinate of this GameItem
    */
   public double getYCoordinate() {
     return this.yCoordinate;
+  }
+
+  /**
+   * Set the yCoordinate of this GameItem
+   *
+   * @param yCoordinate the y coordinate
+   */
+  public void setYCoordinate(double yCoordinate) {
+    this.yCoordinate = yCoordinate;
   }
 
   /**

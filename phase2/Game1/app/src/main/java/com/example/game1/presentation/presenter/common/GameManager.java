@@ -11,143 +11,130 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 /**
- * A game manager. It acts as a mediator between the view and the model of a game.
- * It is observed by GameStateObserver.
+ * A game manager. It acts as a mediator between the view and the model of a game. It is observed by
+ * GameStateObserver.
  */
 public abstract class GameManager extends Observable {
 
-    /* The possible states of a GameManager. */
-    public enum State {START, PAUSE, STOP, RESUME}
+  /* The Game that this GameManager manages */
+  public Game game;
+  /* The state of this GameManager. */
+  private State state;
+  /* The list of GameItems in this GameManager. */
+  private ArrayList<GameItem> gameItems = new ArrayList<>();
+  /* The width of the game display. */
+  private int width;
+  /* The height of the game display. */
+  private int height;
+  /* The Activity class of the game this GameManager manages.*/
+  private AppCompatActivity activity;
+  /* The music player of the game that this GameManager manages. */
+  private MediaPlayer musicPlayer;
 
-    /* The Game that this GameManager manages */
-    public Game game;
+  /** Constructs a GameManager with the specified height, width, game, and activity. */
+  public GameManager(int height, int width, Game game, AppCompatActivity activity) {
+    this.height = height;
+    this.width = width;
+    this.game = game;
+    this.activity = activity;
+  }
 
-    /* The state of this GameManager. */
-    private State state;
+  /** Returns gameItems. */
+  public ArrayList<GameItem> getGameItems() {
+    return gameItems;
+  }
 
-    /* The list of GameItems in this GameManager. */
-    private ArrayList<GameItem> gameItems = new ArrayList<>();
+  /** Adds the specified item to gameItems. */
+  public void place(GameItem item) {
+    gameItems.add(item);
+  }
 
-    /* The width of the game display. */
-    private int width;
+  /** Updates this GameManager by moving all GameItems in it. */
+  public abstract boolean update();
 
-    /* The height of the game display. */
-    private int height;
+  /** Removes the specified item from gameItems. */
+  protected void removeItem(GameItem item) {
+    gameItems.remove(item);
+  }
 
-    /* The Activity class of the game this GameManager manages.*/
-    private AppCompatActivity activity;
+  /** Creates some GameItems and adds them to this GameManager. */
+  public abstract void createGameItems();
 
-    /* The music player of the game that this GameManager manages. */
-    private MediaPlayer musicPlayer;
+  public Game getGame() {
+    return game;
+  }
 
-    /**
-     * Constructs a GameManager with the specified height, width, game, and activity.
-     */
-    public GameManager(int height, int width, Game game, AppCompatActivity activity) {
-        this.height = height;
-        this.width = width;
-        this.game = game;
-        this.activity = activity;
-    }
+  public void setGame(Game game) {
+    this.game = game;
+  }
 
-    /**
-     * Returns gameItems.
-     */
-    public ArrayList<GameItem> getGameItems() {
-        return gameItems;
-    }
+  public State getState() {
+    return state;
+  }
 
-    /**
-     * Adds the specified item to gameItems.
-     */
-    public void place(GameItem item) {
-        gameItems.add(item);
-    }
+  public void setState(State state) {
+    this.state = state;
+  }
 
-    /**
-     * Updates this GameManager by moving all GameItems in it.
-     */
-    public abstract boolean update();
+  public AppCompatActivity getActivity() {
+    return activity;
+  }
 
-    /**
-     * Removes the specified item from gameItems.
-     */
-    protected void removeItem(GameItem item) {
-        gameItems.remove(item);
-    }
+  public void setActivity(AppCompatActivity activity) {
+    this.activity = activity;
+  }
 
-    /**
-     * Creates some GameItems and adds them to this GameManager.
-     */
-    public abstract void createGameItems();
+  public int getScreenWidth() {
+    return width;
+  }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
+  public void setScreenWidth(int width) {
+    this.width = width;
+  }
 
-    public Game getGame() {
-        return game;
-    }
+  public int getScreenHeight() {
+    return height;
+  }
 
-    public void setState(State state) {
-        this.state = state;
-    }
+  public void setScreenHeight(int height) {
+    this.height = height;
+  }
 
-    public State getState() {
-        return state;
-    }
+  public int getGridWidth() {
+    return width;
+  }
 
-    public void setActivity(AppCompatActivity activity) {
-        this.activity = activity;
-    }
+  public int getGridHeight() {
+    return height;
+  }
 
-    public AppCompatActivity getActivity() {
-        return activity;
-    }
+  public void setMusicPlayer(MediaPlayer musicPlayer) {
+    this.musicPlayer = musicPlayer;
+  }
 
-    public void setScreenWidth(int width) {
-        this.width = width;
-    }
+  public void startMusic() {
+    musicPlayer.start();
+  }
 
-    public int getScreenWidth() {
-        return width;
-    }
+  public void stopMusic() {
+    musicPlayer.stop();
+    musicPlayer.release();
+  }
 
-    public void setScreenHeight(int height) {
-        this.height = height;
-    }
+  public void gameOver() {
+    stopMusic();
+    state = State.STOP;
+    setChanged();
+    notifyObservers(this);
+  }
 
-    public int getScreenHeight() {
-        return height;
-    }
+  public abstract Object getSkyColor();
 
-    public int getGridWidth() {
-        return width;
-    }
-
-    public int getGridHeight() {
-        return height;
-    }
-
-    public void setMusicPlayer(MediaPlayer musicPlayer) {
-        this.musicPlayer = musicPlayer;
-    }
-
-    public void startMusic() {
-        musicPlayer.start();
-    }
-
-    public void stopMusic() {
-        musicPlayer.stop();
-        musicPlayer.release();
-    }
-
-    public void gameOver() {
-        stopMusic();
-        state = State.STOP;
-        setChanged();
-        notifyObservers(this);
-    }
-
-    public abstract Object getSkyColor();
+  /* The possible states of a GameManager. */
+  public enum State {
+    START,
+    PAUSE,
+    STOP,
+    RESUME
+  }
 }

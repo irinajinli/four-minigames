@@ -1,8 +1,10 @@
 package com.example.game1.presentation.view.applegame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 // public class AppleActivity extends AppCompatActivity {
 //
@@ -12,13 +14,8 @@ import android.os.Bundle;
 //        setContentView(R.layout.activity_apple);
 //    }
 // }
-
 // TODO: above is og AppleActivity; below is Fish Tank AppleActivity
-
 // package com.example.game1.Data;
-
-import android.view.Window;
-import android.view.WindowManager;
 
 public class AppleActivity extends AppCompatActivity {
 

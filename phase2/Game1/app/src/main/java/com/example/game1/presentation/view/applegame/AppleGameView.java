@@ -60,15 +60,15 @@ public class AppleGameView extends GameView {
 
     // use screen height and width to determine the size of the GameManager
     gameManager =
-            AppManager.getInstance()
-                    .buildGameManager(Game.GameName.APPLE, getScreenHeight(), getScreenWidth(), activity);
+        AppManager.getInstance()
+            .buildGameManager(Game.GameName.APPLE, getScreenHeight(), getScreenWidth(), activity);
     gameManager.startMusic();
 
     extractBmpFiles();
 
     ((AppleGameManager) gameManager)
         .setBMPFiles(appleBmps, starBmps, basketBmps, basketBlueBmps, basketYellowBmps);
-    ((AppleGameManager)gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+    ((AppleGameManager) gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     // TODO: new for colors
     extractSkyColors();
@@ -105,10 +105,10 @@ public class AppleGameView extends GameView {
 
       if (appearance2.getClass() == Bitmap.class) {
         canvas.drawBitmap(
-                (Bitmap) appearance2,
-                (int) Math.round(xCoordinate2),
-                (int) Math.round(yCoordinate2),
-                paintText);
+            (Bitmap) appearance2,
+            (int) Math.round(xCoordinate2),
+            (int) Math.round(yCoordinate2),
+            paintText);
       }
     }
 
@@ -188,21 +188,21 @@ public class AppleGameView extends GameView {
     basketYellowBmps = new ArrayList<Bitmap>();
 
     generateAnimatedBmps(
-            appleBmps, appleFiles, AppleGameManager.APPLE_WIDTH, AppleGameManager.APPLE_HEIGHT);
+        appleBmps, appleFiles, AppleGameManager.APPLE_WIDTH, AppleGameManager.APPLE_HEIGHT);
     generateAnimatedBmps(
-            starBmps, starFiles, AppleGameManager.STAR_WIDTH, AppleGameManager.STAR_HEIGHT);
+        starBmps, starFiles, AppleGameManager.STAR_WIDTH, AppleGameManager.STAR_HEIGHT);
     generateAnimatedBmps(
-            basketBmps, basketFiles, AppleGameManager.BASKET_WIDTH, AppleGameManager.BASKET_HEIGHT);
+        basketBmps, basketFiles, AppleGameManager.BASKET_WIDTH, AppleGameManager.BASKET_HEIGHT);
     generateAnimatedBmps(
         basketBlueBmps,
         basketBlueFiles,
         AppleGameManager.BASKET_WIDTH,
         AppleGameManager.BASKET_HEIGHT);
     generateAnimatedBmps(
-            basketYellowBmps,
-            basketYellowFiles,
-            AppleGameManager.BASKET_WIDTH,
-            AppleGameManager.BASKET_HEIGHT);
+        basketYellowBmps,
+        basketYellowFiles,
+        AppleGameManager.BASKET_WIDTH,
+        AppleGameManager.BASKET_HEIGHT);
   }
 
   public void extractSkyColors() {
