@@ -36,7 +36,7 @@ public class Brick extends GameItem {
      * @return the info needed by game manager after the animation
      */
     public BrickResult animate(MovementInfo brickMovementInfo) {
-        //updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumOfSeconds());
+        //updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumSeconds());
         BrickResult brickResult = new BrickResult();
 
         //Set gameover to be true in the jumping result if jumper touches the obstacle

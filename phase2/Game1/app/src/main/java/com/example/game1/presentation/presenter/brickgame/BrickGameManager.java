@@ -45,7 +45,7 @@ public class BrickGameManager extends GameManager {
   private List<Bitmap> paddleRedBmps;
   private List<Bitmap> paddleYellowBmps;
 
-  private double numOfSeconds;
+  private double numSeconds;
 
   public static final int NUM_BRICK_LAYERS = 3;
   public static final int NUM_BRICKS_HORIZONTAL = 6;
@@ -260,7 +260,7 @@ public class BrickGameManager extends GameManager {
             this.ball,
             this.bricks,
             this.paddle,
-            getNumOfSeconds());
+            getNumSeconds());
 
     for (GameItem item : gameItems) {
       if (item instanceof AnimatedGameItem) {
@@ -404,12 +404,12 @@ public class BrickGameManager extends GameManager {
     this.paddleRedBmps = paddleRedBmps;
   }
 
-  public double getNumOfSeconds() {
-    return numOfSeconds;
+  public double getNumSeconds() {
+    return numSeconds;
   }
 
-  public void setNumOfSeconds(double numOfSeconds) {
-    this.numOfSeconds = numOfSeconds;
+  public void setNumSeconds(double numSeconds) {
+    this.numSeconds = numSeconds;
   }
 
   public Object getSkyColor() {

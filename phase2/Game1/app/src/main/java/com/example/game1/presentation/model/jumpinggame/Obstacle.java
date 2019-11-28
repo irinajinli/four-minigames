@@ -28,7 +28,7 @@ public class Obstacle extends AnimatedGameItem {
      * @return the info needed by game manager after the animation
      */
     public JumpingResult animate(MovementInfo jumpingMovementInfo) {
-        updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumOfSeconds());
+        updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumSeconds());
         JumpingResult jumpingResult = new JumpingResult();
 
         //Set gameover to be true in the jumping result if jumper touches the obstacle

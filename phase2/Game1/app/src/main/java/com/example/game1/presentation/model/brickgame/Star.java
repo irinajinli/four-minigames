@@ -29,7 +29,7 @@ public class Star extends AnimatedGameItem {
    * @return result: result needed by the game manager.
    */
   public BrickResult animate(MovementInfo brickMovementInfo) {
-    updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumOfSeconds());
+    updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumSeconds());
     BrickResult result = new BrickResult();
 
     //Jumper jumper = ((JumpingMovementInfo) jumpingImportInfo).getJumper();

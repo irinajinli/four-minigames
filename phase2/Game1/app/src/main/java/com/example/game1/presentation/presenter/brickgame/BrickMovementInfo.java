@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BrickMovementInfo extends MovementInfo {
 
-    double numOfSeconds;
+    double numSeconds;
     private Ball ball;
     private List<Brick> bricks;
     private Paddle paddle;
@@ -21,23 +21,23 @@ public class BrickMovementInfo extends MovementInfo {
 
 
     public BrickMovementInfo(int screenHeight, int screenWidth, Ball ball, List<Brick> bricks, Paddle paddle,
-                             double numOfSeconds){
-        //this.numOfSeconds = numOfSeconds;
+                             double numSeconds){
+        //this.numSeconds = numSeconds;
         //this.item = item;
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.ball = ball;
         this.bricks = bricks;
         this.paddle = paddle;
-        this.numOfSeconds = numOfSeconds;
+        this.numSeconds = numSeconds;
     }
 
-    public double getNumOfSeconds() {
-        return numOfSeconds;
+    public double getNumSeconds() {
+        return numSeconds;
     }
 
-    public void setNumOfSeconds(double numOfSeconds) {
-        this.numOfSeconds = numOfSeconds;
+    public void setNumSeconds(double numSeconds) {
+        this.numSeconds = numSeconds;
     }
 
     public int getScreenHeight() {

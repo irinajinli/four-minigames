@@ -5,7 +5,7 @@ import com.example.game1.presentation.presenter.common.MovementInfo;
 
 public class JumpingMovementInfo extends MovementInfo {
 
-    double numOfSeconds;
+    double numSeconds;
     Jumper jumper;
 
 
@@ -18,22 +18,22 @@ public class JumpingMovementInfo extends MovementInfo {
 
 
     public JumpingMovementInfo(int screenHeight, int screenWidth, Jumper jumper, Terrain terrain,
-                               double numOfSeconds){
-        //this.numOfSeconds = numOfSeconds;
+                               double numSeconds){
+        //this.numSeconds = numSeconds;
         //this.item = item;
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
         this.jumper = jumper;
         this.terrain = terrain;
-        this.numOfSeconds = numOfSeconds;
+        this.numSeconds = numSeconds;
     }
 
-    public double getNumOfSeconds() {
-        return numOfSeconds;
+    public double getNumSeconds() {
+        return numSeconds;
     }
 
-    public void setNumOfSeconds(double numOfSeconds) {
-        this.numOfSeconds = numOfSeconds;
+    public void setNumSeconds(double numSeconds) {
+        this.numSeconds = numSeconds;
     }
 
     public int getScreenHeight() {

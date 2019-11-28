@@ -48,7 +48,7 @@ public class JumpingGameManager extends GameManager {
   private List<Object> jumperYellowAppearances;
   private List<Object> jumperAppearances;
 
-  private double numOfSeconds;
+  private double numSeconds;
 
   private final int DARK_COLOR = Color.rgb(83, 92, 104);
   private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
@@ -230,7 +230,7 @@ public class JumpingGameManager extends GameManager {
     List<GameItem> gameItems = getGameItems();
     JumpingMovementInfo jumpingMovementInfo =
         new JumpingMovementInfo(
-            getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumOfSeconds());
+            getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumSeconds());
 
     for (GameItem item : gameItems) {
       if (item instanceof AnimatedGameItem) {
@@ -362,11 +362,11 @@ public class JumpingGameManager extends GameManager {
     this.skyColor = skyColor;
   }
 
-  public double getNumOfSeconds() {
-    return numOfSeconds;
+  public double getNumSeconds() {
+    return numSeconds;
   }
 
-  public void setNumOfSeconds(double numOfSeconds) {
-    this.numOfSeconds = numOfSeconds;
+  public void setNumSeconds(double numSeconds) {
+    this.numSeconds = numSeconds;
   }
 }

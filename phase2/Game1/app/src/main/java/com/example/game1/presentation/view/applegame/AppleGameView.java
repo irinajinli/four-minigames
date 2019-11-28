@@ -68,12 +68,10 @@ public class AppleGameView extends GameView {
 
     ((AppleGameManager) gameManager)
         .setBMPFiles(appleBmps, starBmps, basketBmps, basketBlueBmps, basketYellowBmps);
-    ((AppleGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+    ((AppleGameManager)gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     // TODO: new for colors
     extractSkyColors();
-    //        ((AppleGameManager) gameManager).setSkyColors(skyColorDark, skyColorLight,
-    // skyColorDefault);
     setSkyColorDark(skyColorDark);
     setSkyColorLight(skyColorLight);
 

@@ -19,25 +19,18 @@ import java.util.List;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
-  /**
-   * A GameManager for an Apple minigame. Includes an extra variable numDroppedApples and extra
-   * methods for handling Apples.
-   */
-
-  // TODO: new for colors
+  /** A GameManager for an Apple minigame. */
   private int skyColor;
-
   private int skyColorDark = Color.BLACK;
   private int skyColorLight = Color.LTGRAY;
 
-  private double numOfSeconds;
+  private double numSeconds;
 
   private Basket basket;
   private PointsCounter points;
   private LivesCounter livesCounter;
   private int numCaughtStars = 0;
 
-  // TODO: new
   private List<Bitmap> appleBmps;
   private List<Bitmap> starBmps;
   private List<Bitmap> basketBmps;
@@ -56,7 +49,38 @@ public class AppleGameManager extends GameManager {
     super(height, width, game, activity);
   }
 
-  // TODO: new
+  void setBasket(Basket basket) {
+    this.basket = basket;
+  }
+
+  void setPointsCounter(PointsCounter pointsCounter) {
+    this.points = pointsCounter;
+  }
+
+  void setLivesCounter(LivesCounter livesCounter) {
+    this.livesCounter = livesCounter;
+  }
+
+  public Object getSkyColor() {
+    return skyColor;
+  }
+
+  void setSkyColor(int skyColor) {
+    this.skyColor = skyColor;
+  }
+
+  int getSkyColorDark() {
+    return skyColorDark;
+  }
+
+  int getSkyColorLight() {
+    return skyColorLight;
+  }
+
+  public void setNumSeconds(double numSeconds) {
+    this.numSeconds = numSeconds;
+  }
+
   public void setBMPFiles(
       List<Bitmap> appleBmps,
       List<Bitmap> starBmps,
@@ -72,25 +96,12 @@ public class AppleGameManager extends GameManager {
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    // TODO: delete this method?
     AppleItemsBuilder builder = new AppleItemsBuilder(game.getCustomization());
     builder.createPointsCounter();
     builder.createLivesCounter();
     builder.createBasket(basketBmps, basketBlueBmps, basketYellowBmps);
     builder.setTheme(this);
     builder.placeItems(this);
-  }
-
-  public void setBasket(Basket basket) {
-    this.basket = basket;
-  }
-
-  public void setPointsCounter(PointsCounter pointsCounter) {
-    this.points = pointsCounter;
-  }
-
-  public void setLivesCounter(LivesCounter livesCounter) {
-    this.livesCounter = livesCounter;
   }
 
   /**
@@ -104,6 +115,7 @@ public class AppleGameManager extends GameManager {
 
   /** Moves, removes, and catches GameItems. */
   public boolean update() {
+    // check if the game is over
     if (livesCounter.getLivesRemaining() <= 0) {
       gameOver();
       return false;
@@ -111,26 +123,25 @@ public class AppleGameManager extends GameManager {
 
     for (int i = 0; i < getGameItems().size(); i++) {
       GameItem currItem = getGameItems().get(i);
+
+      // TODO: delete this if block later and include all AnimatedItems in the next block
       if (currItem instanceof Apple) {
-        // AnimatedGameItem currItem = (AnimatedGameItem) currItem2;
-        // move each GameItemOld
         ((AnimatedGameItem) currItem).move();
-      } else {
       }
 
       if (currItem instanceof Star) {
-        ((Star) currItem).animate(numOfSeconds);
+        ((Star) currItem).animate(numSeconds);
       }
 
-      if (!(currItem instanceof Basket)) { // TODO is this if statement necessary?
+      if (!(currItem instanceof Basket)) {
         // check if each non-Basket GameItemOld is off screen; remove if necessary
         if (currItem.getYCoordinate() > getGridHeight()) {
           dropGameItem(currItem);
           livesCounter.subtractLife();
         }
 
-        // check if currItem should be caught
-        if (currItem.isOverlapping(basket)) {
+        // else, check if the non-Basket currItem should be caught
+        else if (currItem.isOverlapping(basket)) {
           removeItem(currItem);
           if (currItem instanceof Apple) {
             catchApple();
@@ -158,16 +169,6 @@ public class AppleGameManager extends GameManager {
   /** Drops the specified Apple. */
   private void dropGameItem(GameItem currItem) {
     removeItem(currItem);
-  }
-
-  /**
-   * Checks if the specified GameItem should be caught (i.e., if it's within +/- 1 x of the basket).
-   */
-  private boolean checkIfCaught(GameItem gameItem) {
-    return ((gameItem.getXCoordinate() == basket.getXCoordinate()
-            || gameItem.getXCoordinate() == basket.getXCoordinate() - 1
-            || gameItem.getXCoordinate() == basket.getXCoordinate() + 1)
-        && gameItem.getYCoordinate() == basket.getYCoordinate());
   }
 
   /** Spawns a new Apple or Star in a random location at the top of the screen. */
@@ -204,32 +205,5 @@ public class AppleGameManager extends GameManager {
     game.getStatistics().setPoints(game.getStatistics().getPoints() + points.getNumPoints());
     game.getStatistics().setStars(game.getStatistics().getStars() + numCaughtStars);
     super.gameOver();
-  }
-
-  // TODO: new
-  public void setSkyColors(int skyColorDark, int skyColorLight, int skyColorDefault) {
-    this.skyColorDark = skyColorDark;
-    this.skyColorLight = skyColorLight;
-    this.skyColor = skyColorDefault;
-  }
-
-  public Object getSkyColor() {
-    return skyColor;
-  }
-
-  public void setSkyColor(int skyColor) {
-    this.skyColor = skyColor;
-  }
-
-  public int getSkyColorDark() {
-    return skyColorDark;
-  }
-
-  public int getSkyColorLight() {
-    return skyColorLight;
-  }
-
-  public void setNumOfSeconds(double numOfSeconds) {
-    this.numOfSeconds = numOfSeconds;
   }
 }

@@ -2,7 +2,6 @@ package com.example.game1.presentation.view.jumpinggame;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,14 +18,11 @@ import com.example.game1.AppManager;
 import com.example.game1.presentation.model.jumpinggame.Jumper;
 import com.example.game1.presentation.model.jumpinggame.Obstacle;
 import com.example.game1.presentation.model.jumpinggame.Terrain;
-import com.example.game1.presentation.model.tappinggame.Runner;
-import com.example.game1.presentation.model.tappinggame.TappingCircle;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
-import com.example.game1.presentation.model.jumpinggame.Star;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +84,7 @@ private int currentFrameJumper = 0;
                 activity);
         gameManager.setScreenHeight(this.getScreenHeight());
         gameManager.setScreenWidth(this.getScreenWidth());
-        ((JumpingGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+        ((JumpingGameManager)gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
         extractBmpFiles();
 

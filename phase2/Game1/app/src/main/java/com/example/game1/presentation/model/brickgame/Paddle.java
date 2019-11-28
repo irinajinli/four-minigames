@@ -30,7 +30,7 @@ public class Paddle extends AnimatedGameItem {
         BrickResult brickResult = new BrickResult();
         // Jumper land on the terrain
         /**Terrain terrain = ((JumpingMovementInfo) jumpingMovementInfo).getTerrain();
-        updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumOfSeconds());
+        updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumSeconds());
         if (this.isOverlapping(terrain)) {
             this.setyCoordinate(terrain.getyCoordinate() - this.getHeight());
             this.setYVelocity(0);

@@ -29,7 +29,7 @@ public class Star extends AnimatedGameItem {
    * @return result: result needed by the game manager.
    */
   public JumpingResult animate(MovementInfo jumpingMovementInfo) {
-    updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumOfSeconds());
+    updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumSeconds());
     JumpingResult result = new JumpingResult();
 
     Jumper jumper = ((JumpingMovementInfo) jumpingMovementInfo).getJumper();

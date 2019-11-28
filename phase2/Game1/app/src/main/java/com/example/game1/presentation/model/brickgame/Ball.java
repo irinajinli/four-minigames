@@ -29,7 +29,7 @@ public class Ball extends AnimatedGameItem {
    * @return result: result needed by the game manager.
    */
   public BrickResult animate(MovementInfo brickMovementInfo) {
-    updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumOfSeconds());
+    updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumSeconds());
     BrickResult result = new BrickResult();
 
     //Brick brick = ((BrickMovementInfo) brickMovementInfo).getJumper();

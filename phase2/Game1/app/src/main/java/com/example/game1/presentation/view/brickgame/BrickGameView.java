@@ -2,10 +2,8 @@ package com.example.game1.presentation.view.brickgame;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
@@ -79,7 +77,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
                 activity);
         gameManager.setScreenHeight(this.getScreenHeight());
         gameManager.setScreenWidth(this.getScreenWidth());
-        ((BrickGameManager)gameManager).setNumOfSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+        ((BrickGameManager)gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     extractBmpFiles();
 
