@@ -38,7 +38,7 @@ public class Ball extends AnimatedGameItem {
     // and increment the numStar collected in the game manager
     // if (this.isOverlapping(jumper)) {
     //  result.setStarCollected(true);
-    //  result.addOutItem(this);
+    //  result.addOldItem(this);
     // }
     //    else{
     //      setXCoordinate(getxCoordinate() - 15);
