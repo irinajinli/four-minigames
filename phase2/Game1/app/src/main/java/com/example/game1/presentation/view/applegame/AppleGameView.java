@@ -35,11 +35,21 @@ public class AppleGameView extends GameView implements View.OnClickListener{
   private int skyColorDark;
   private int skyColorLight;
   private int skyColorDefault;
+  private OnClickListener listener;
 
   /** Construct an AppleGameView with the specified Context. */
   public AppleGameView(Context context) {
     super(context);
     thread = new GameThread(getHolder(), this);
+    this.listener =
+            new OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                if (true) {
+                  ((AppleGameManager) gameManager).incrementNumTaps();
+                }
+              }
+            };
   }
 
   @Override
@@ -69,6 +79,7 @@ public class AppleGameView extends GameView implements View.OnClickListener{
     gameManager.createGameItems();
     thread.setRunning(true);
     thread.start();
+    this.setOnClickListener(this.listener);
   }
 
   @Override
@@ -79,7 +90,7 @@ public class AppleGameView extends GameView implements View.OnClickListener{
   }
 
   @Override
-  public void onClick(View view) {
+  public void onClick(View v) {
     ((AppleGameManager) gameManager).incrementNumTaps();
   }
 
@@ -89,7 +100,7 @@ public class AppleGameView extends GameView implements View.OnClickListener{
     double touchX = event.getX();
     ((AppleGameManager) gameManager).moveBasket((int) touchX);
 
-    return true;
+    return super.onTouchEvent(event);
 
     // TODO: change game.numTaps when the game is over instead of adding 1 each time?
   }
