@@ -4,14 +4,11 @@ import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
-import com.example.game1.presentation.view.common.Background;
 
 import java.util.List;
 
 public class AppleItemsBuilder {
   private Customization customization;
-  // TODO: delete background
-  private Background background;
   private Basket basket;
   private PointsCounter pointsCounter;
   private LivesCounter livesCounter;
@@ -52,11 +49,6 @@ public class AppleItemsBuilder {
    * @param appleGameManager
    */
   public void placeItems(AppleGameManager appleGameManager) {
-    // background
-    if (background instanceof Background) {
-      appleGameManager.place(background);
-      background.setPosition(0, 0);
-    }
 
     // basket
     appleGameManager.setBasket(basket);
