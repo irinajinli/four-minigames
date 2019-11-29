@@ -82,6 +82,7 @@ public class ScoreboardActivity extends AppCompatActivity {
 
     int numUsers;
     List<Pair<String, String>> usernameToStat = new ArrayList<>();
+
     if ("Points".equals(selection)) {
       numUsers = userManager.getTopUsers(5, "Points").size();
       for (int i = 0; i < numUsers; i++) {
@@ -93,14 +94,14 @@ public class ScoreboardActivity extends AppCompatActivity {
     } else if ("Stars".equals(selection)) {
       numUsers = userManager.getTopUsers(5, "Stars").size();
       for (int i = 0; i < numUsers; i++) {
-        String username = userManager.getTopUsers(5, "Points").get(i).getUserName();
+        String username = userManager.getTopUsers(5, "Stars").get(i).getUserName();
         int stars = userManager.getTopUsers(5, "Stars").get(i).getTopIndividualStats().getStars();
         usernameToStat.add(Pair.create(username, String.valueOf(stars)));
       }
     } else if ("Taps".equals(selection)) {
       numUsers = userManager.getTopUsers(5, "Taps").size();
       for (int i = 0; i < numUsers; i++) {
-        String username = userManager.getTopUsers(5, "Points").get(i).getUserName();
+        String username = userManager.getTopUsers(5, "Taps").get(i).getUserName();
         int taps = userManager.getTopUsers(5, "Taps").get(i).getTopIndividualStats().getTaps();
         usernameToStat.add(Pair.create(username, String.valueOf(taps)));
       }
@@ -108,7 +109,7 @@ public class ScoreboardActivity extends AppCompatActivity {
       // "Total Score".equals(selection)
       numUsers = userManager.getTopUsers(5, "Total Score").size();
       for (int i = 0; i < numUsers; i++) {
-        String username = userManager.getTopUsers(5, "Points").get(i).getUserName();
+        String username = userManager.getTopUsers(5, "Total Score").get(i).getUserName();
         int score = userManager.getTopScore(username);
         usernameToStat.add(Pair.create(username, String.valueOf(score)));
       }
