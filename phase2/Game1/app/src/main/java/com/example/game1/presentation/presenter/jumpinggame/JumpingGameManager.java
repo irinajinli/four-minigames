@@ -26,6 +26,7 @@ public class JumpingGameManager extends GameManager {
   public static final int OBSTACLE_HEIGHT = 100;
   public static final int STAR_WIDTH = 80;
   public static final int STAR_HEIGHT = 80;
+
   private final int DARK_COLOR = Color.rgb(83, 92, 104);
   private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
   /**

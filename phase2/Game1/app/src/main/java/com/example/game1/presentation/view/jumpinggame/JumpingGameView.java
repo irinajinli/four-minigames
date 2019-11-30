@@ -36,6 +36,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   private List<Bitmap> obstacleBmps;
   private List<Bitmap> starBmps;
   private Bitmap terrainBmp;
+  private List<Bitmap> terrainBmps;
   private List<Bitmap> jumperBlueBmps;
   private List<Bitmap> jumperRedBmps;
   private List<Bitmap> jumperYellowBmps;
@@ -178,18 +179,22 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   public void drawItem(Canvas canvas, GameItem item) {
     setupPaintText();
     Bitmap appearance;
+    String key;
     // Object appearance = item.getAppearance();
     double xCoordinate = item.getXCoordinate();
     double yCoordinate = item.getYCoordinate();
     if (item instanceof Jumper) {
-      String key = "Jumper" + getCharacterColorScheme();
+      key = "Jumper" + getCharacterColorScheme();
       appearance = getCurrentAppearance(key);
-    } else if (item instanceof Terrain) {
-      appearance = terrainBmp;
-    } else if (item instanceof Obstacle) {
-      appearance = obstacleBmps.get(0);
     } else {
-      appearance = starBmps.get(0);
+      key = item.getClass().getSimpleName();
+      appearance = getAppearance(key);
+//      if (item instanceof Terrain) {
+//      appearance = terrainBmp;
+//    } else if (item instanceof Obstacle) {
+//      appearance = obstacleBmps.get(0);
+//    } else {
+//      appearance = starBmps.get(0);
     }
 
     // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
@@ -205,15 +210,15 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   //              paintText);
 
   public void extractBmpFiles() {
-    terrainBmp = getNewBitmap(R.drawable.grass, getScreenWidth(), getScreenHeight() / 2);
-
+    //terrainBmp = getNewBitmap(R.drawable.grass, getScreenWidth(), getScreenHeight() / 2);
+    terrainBmps = new ArrayList<>();
     obstacleBmps = new ArrayList<>();
     starBmps = new ArrayList<>();
     // @TODO don't need to load everything - only the customization that was chosen
     jumperBlueBmps = new ArrayList<>();
     jumperRedBmps = new ArrayList<>();
     jumperYellowBmps = new ArrayList<>();
-
+    int[] terrainFiles = {R.drawable.grass};
     int[] obstacleFiles = {R.drawable.wooden_blocks_1};
     int[] starFiles = {R.drawable.star_6};
     // int[] starFiles = {R.drawable.glowing_star_1, R.drawable.glowing_star_1,
@@ -256,7 +261,12 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
       R.drawable.jumper_yellow_7,
       R.drawable.jumper_yellow_8
     };
-
+    generateAnimatedBmps(
+            terrainBmps,
+            terrainFiles,
+            getScreenWidth(),
+            getScreenHeight()/2
+    );
     generateAnimatedBmps(
         obstacleBmps,
         obstacleFiles,
@@ -283,6 +293,9 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     addGameItemAppearances("JumperYellow", jumperYellowBmps);
     addGameItemAppearances("JumperBlue", jumperBlueBmps);
     addGameItemAppearances("JumperRed", jumperRedBmps);
+    addGameItemAppearances("Obstacle", obstacleBmps);
+    addGameItemAppearances("Star", starBmps);
+    addGameItemAppearances("Terrain", terrainBmps);
   }
 
   public void setupPaintText() {
@@ -291,10 +304,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     paintText.setTextSize(36);
   }
 
-  public String generateKey() {
 
-    return "Runner" + getCharacterColorScheme();
-  }
 
   public Bitmap getCurrentAppearance(String key) {
     List<Bitmap> appearances = getAppearances(key);

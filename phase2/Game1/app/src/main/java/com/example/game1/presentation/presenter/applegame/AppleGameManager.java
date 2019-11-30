@@ -13,7 +13,6 @@ import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
 import com.example.game1.presentation.model.common.GameItem;
-//import com.example.game1.presentation.model.jumpinggame.Star;
 import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.presenter.common.Result;
 

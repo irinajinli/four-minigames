@@ -14,6 +14,11 @@ import com.example.game1.AppManager;
 import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.Statistics;
+import com.example.game1.presentation.model.applegame.Apple;
+import com.example.game1.presentation.model.applegame.AppleStar;
+import com.example.game1.presentation.model.applegame.Basket;
+import com.example.game1.presentation.model.applegame.LivesCounter;
+import com.example.game1.presentation.model.applegame.PointsCounter;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
@@ -24,14 +29,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Based on Fish Tank's FishTankView. */
-public class AppleGameView extends GameView implements View.OnClickListener{
+public class AppleGameView extends GameView implements View.OnClickListener {
 
   private List<Bitmap> appleBmps;
   private List<Bitmap> starBmps;
   private List<Bitmap> basketBmps;
   private List<Bitmap> basketBlueBmps;
   private List<Bitmap> basketYellowBmps;
-
+  private List<Bitmap> basketRedBmps;
   private int skyColorDark;
   private int skyColorLight;
   private int skyColorDefault;
@@ -42,14 +47,14 @@ public class AppleGameView extends GameView implements View.OnClickListener{
     super(context);
     thread = new GameThread(getHolder(), this);
     this.listener =
-            new OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                if (true) {
-                  ((AppleGameManager) gameManager).incrementNumTaps();
-                }
-              }
-            };
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            if (true) {
+              ((AppleGameManager) gameManager).incrementNumTaps();
+            }
+          }
+        };
   }
 
   @Override
@@ -65,7 +70,7 @@ public class AppleGameView extends GameView implements View.OnClickListener{
     gameManager.startMusic();
 
     extractBmpFiles();
-
+    generateCharacterColor();
     ((AppleGameManager) gameManager)
         .setBMPFiles(appleBmps, starBmps, basketBmps, basketBlueBmps, basketYellowBmps);
     ((AppleGameManager) gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
@@ -86,7 +91,8 @@ public class AppleGameView extends GameView implements View.OnClickListener{
   public void surfaceDestroyed(SurfaceHolder holder) {
     super.surfaceDestroyed(holder);
     Statistics gameStatistics = gameManager.getGame().getStatistics();
-    gameStatistics.setTaps(gameStatistics.getTaps() + ((AppleGameManager) gameManager).getNumTaps());
+    gameStatistics.setTaps(
+        gameStatistics.getTaps() + ((AppleGameManager) gameManager).getNumTaps());
   }
 
   @Override
@@ -107,34 +113,35 @@ public class AppleGameView extends GameView implements View.OnClickListener{
 
   @Override
   public void drawItem(Canvas canvas, GameItem item) {
-    if (item instanceof AnimatedGameItem) { // Bitmap appearance
-      Object appearance2 = item.getAppearance();
-      double xCoordinate2 = item.getXCoordinate();
-      double yCoordinate2 = item.getYCoordinate();
-
-      if (appearance2.getClass() == Bitmap.class) {
-        canvas.drawBitmap(
-            (Bitmap) appearance2,
-            (int) Math.round(xCoordinate2),
-            (int) Math.round(yCoordinate2),
-            paintText);
-      }
-    }
-    else if (item.getAppearance() instanceof String) { // String appearance
-
-      paintText = new Paint();
-      paintText.setTypeface(Typeface.DEFAULT_BOLD);
-      paintText.setTextSize(36);
-
+    double xCoordinate = item.getXCoordinate();
+    double yCoordinate = item.getYCoordinate();
+    if (item instanceof LivesCounter || item instanceof PointsCounter) { // String appearance
+      setupPaintText();
       Object appearance = item.getAppearance();
-      double xCoordinate = item.getXCoordinate();
-      double yCoordinate = item.getYCoordinate();
-      if (appearance.getClass() == String.class) {
-          paintText.setColor(Color.WHITE);
-        }
-        canvas.drawText((String) appearance, (float) xCoordinate, (float) yCoordinate, paintText);
+      if (appearance instanceof String) {
+        paintText.setColor(Color.WHITE);
       }
+      canvas.drawText((String) appearance, (float) xCoordinate, (float) yCoordinate, paintText);
     }
+
+    if (item instanceof Apple || item instanceof AppleStar || item instanceof Basket) {
+      Bitmap appearance;
+      String key;
+
+      if (item instanceof Basket) {
+        key = "Basket" + getCharacterColorScheme();
+
+      } else {
+        key = item.getClass().getSimpleName();
+      }
+      appearance = getAppearance(key);
+      canvas.drawBitmap(
+          appearance,
+          (int) Math.round(xCoordinate),
+          (int) Math.round(yCoordinate),
+          paintText);
+    }
+  }
 
   public void extractBmpFiles() {
     int[] appleFiles = {R.drawable.apple_red};
@@ -142,6 +149,7 @@ public class AppleGameView extends GameView implements View.OnClickListener{
     int[] basketFiles = {R.drawable.basket_red};
     int[] basketBlueFiles = {R.drawable.basket_blue};
     int[] basketYellowFiles = {R.drawable.basket_yellow};
+    int[] basketRedFiles = {R.drawable.basket_red};
 
     // animated items require a list of bitmaps for each of their frames
     appleBmps = new ArrayList<Bitmap>();
@@ -150,6 +158,7 @@ public class AppleGameView extends GameView implements View.OnClickListener{
     // TODO NEW FOR CUST
     basketBlueBmps = new ArrayList<Bitmap>();
     basketYellowBmps = new ArrayList<Bitmap>();
+    basketRedBmps = new ArrayList<Bitmap>();
 
     generateAnimatedBmps(
         appleBmps, appleFiles, AppleGameManager.APPLE_WIDTH, AppleGameManager.APPLE_HEIGHT);
@@ -167,6 +176,28 @@ public class AppleGameView extends GameView implements View.OnClickListener{
         basketYellowFiles,
         AppleGameManager.BASKET_WIDTH,
         AppleGameManager.BASKET_HEIGHT);
+    generateAnimatedBmps(
+        basketRedBmps,
+        basketRedFiles,
+        AppleGameManager.BASKET_WIDTH,
+        AppleGameManager.BASKET_HEIGHT);
+
+    addGameItemAppearances("BasketYellow", basketYellowBmps);
+    addGameItemAppearances("BasketBlue", basketBlueBmps);
+    addGameItemAppearances("BasketRed", basketRedBmps);
+    addGameItemAppearances("Apple", appleBmps);
+    addGameItemAppearances("AppleStar", starBmps);
+  }
+
+  public String generateKey() {
+
+    return "Basket" + getCharacterColorScheme();
+  }
+
+  public void setupPaintText() {
+    paintText = new Paint();
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    paintText.setTextSize(36);
   }
 
   public void extractSkyColors() {
