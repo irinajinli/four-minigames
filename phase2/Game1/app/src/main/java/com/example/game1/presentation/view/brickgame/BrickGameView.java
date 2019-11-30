@@ -126,6 +126,13 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     }
   }
 
+  @Override
+  public void drawItems(Canvas canvas){
+    List<GameItem> items = gameManager.getGameItems();
+    for (GameItem item : items) {
+      drawItem(canvas, item, getAppearance(item));
+    }
+  }
   /**
    * draws this game view on the canvas
    *
@@ -134,15 +141,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   @Override
   public void draw(Canvas canvas) {
     super.draw(canvas);
-    if (canvas != null) {
-      canvas.drawColor(((BrickGameManager) gameManager).getBackgroundColor());
-      // gameManager.draw(canvas);
-      List<GameItem> items = gameManager.getGameItems();
-      for (GameItem item : items) {
 
-        drawItem(canvas, item, getAppearance(item));
-      }
-    }
   }
 
   private Bitmap getAppearance(GameItem item){
