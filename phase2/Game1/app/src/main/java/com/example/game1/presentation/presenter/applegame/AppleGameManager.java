@@ -8,13 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.Statistics;
 import com.example.game1.presentation.model.applegame.Apple;
+import com.example.game1.presentation.model.applegame.AppleStar;
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.model.jumpinggame.Star;
+//import com.example.game1.presentation.model.jumpinggame.Star;
 import com.example.game1.presentation.presenter.common.GameManager;
+import com.example.game1.presentation.presenter.common.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -27,9 +30,12 @@ public class AppleGameManager extends GameManager {
   public static final int BASKET_HEIGHT = 100;
   /** A GameManager for an Apple minigame. */
   private int skyColor;
+
   private int skyColorDark = Color.BLACK;
   private int skyColorLight = Color.LTGRAY;
+
   private double numSeconds;
+
   private Basket basket;
   private PointsCounter points;
   private LivesCounter livesCounter;
@@ -126,32 +132,40 @@ public class AppleGameManager extends GameManager {
       return false;
     }
 
-    for (int i = 0; i < getGameItems().size(); i++) {
-      GameItem currItem = getGameItems().get(i);
+    // oldItems list stores GameItem to be removed from gameItems
+    List<GameItem> oldItems = new ArrayList<>();
+    // note, right now, stars are the only object that get removed
+    Result result;
 
-      if (currItem instanceof Star) {
-        ((Star) currItem).animate(numSeconds);
-      } else if (currItem instanceof Apple) {
-        ((Apple) currItem).animate(numSeconds);
+    List<GameItem> gameItems = getGameItems();
+    AppleMovementInfo appleMovementInfo =
+        new AppleMovementInfo(getScreenWidth(), getScreenHeight(), basket, getNumSeconds());
+    for (GameItem item : gameItems) {
+      result = item.update(appleMovementInfo);
+
+      if (result.getOldItems() != null) {
+        for (GameItem oldItem : result.getOldItems()) {
+          oldItems.add(oldItem);
+        }
       }
 
-      if (!(currItem instanceof Basket)) {
-        // check if each non-Basket GameItemOld is off screen; remove if necessary
-        if (currItem.getYCoordinate() > getGridHeight()) {
-          dropGameItem(currItem);
+      if (result instanceof AppleResult) {
+        AppleResult ar = (AppleResult) result;
+        if (ar.isAppleCollected()) {
+          catchApple();
+        }
+        if (ar.isAppleDropped()) {
           livesCounter.subtractLife();
         }
-
-        // else, check if the non-Basket currItem should be caught
-        else if (currItem.isOverlapping(basket)) {
-          removeItem(currItem);
-          if (currItem instanceof Apple) {
-            catchApple();
-          } else if (currItem instanceof Star) {
-            catchStar();
-          }
+        if (ar.isStarCollected()){
+          catchStar();
         }
       }
+
+    }
+
+    for (GameItem oldItem : oldItems) {
+      removeItem(oldItem);
     }
     spawnNew();
 
@@ -180,15 +194,14 @@ public class AppleGameManager extends GameManager {
     int randint = randItem.nextInt(200);
     if (randint < 2) {
       spawnStar(spawnCoordinate);
-    }
-    else if (randint < 9) {
+    } else if (randint < 9) {
       spawnApple(spawnCoordinate);
     }
     // else spawn nothing
   }
 
   private void spawnStar(int spawnCoordinate) {
-    Star nextItem = new Star(80, 80, starBmps);
+    AppleStar nextItem = new AppleStar(80, 80, starBmps);
     nextItem.setYVelocity(250);
     place(nextItem);
     nextItem.setPosition(spawnCoordinate, 0);
@@ -208,5 +221,9 @@ public class AppleGameManager extends GameManager {
     gameStatistics.setStars(gameStatistics.getStars() + numCaughtStars);
     gameStatistics.setTaps(gameStatistics.getTaps() + numTaps);
     super.gameOver();
+  }
+
+  public double getNumSeconds() {
+    return numSeconds;
   }
 }

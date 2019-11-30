@@ -1,6 +1,7 @@
 package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.presenter.applegame.AppleResult;
 import com.example.game1.presentation.presenter.common.MovementInfo;
 import com.example.game1.presentation.presenter.common.Result;
 
@@ -21,8 +22,8 @@ public class Basket extends AnimatedGameItem {
     setPosition(x, getYCoordinate());
   }
 
-  public Result update(MovementInfo jumpingMovementInfo) {
-    return (new Result());
+  public AppleResult update(MovementInfo jumpingMovementInfo) {
+    return (new AppleResult());
   }
 
   public Result animate(MovementInfo movementInfo) {

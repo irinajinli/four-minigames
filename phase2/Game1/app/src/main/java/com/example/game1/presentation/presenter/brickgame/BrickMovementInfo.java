@@ -16,7 +16,7 @@ import java.util.List;
 
 public class BrickMovementInfo extends MovementInfo {
 
-  double numSeconds;
+  //double numSeconds;
   private Ball ball;
   private List<Brick> bricks;
   private List<Star> stars;
@@ -37,6 +37,7 @@ public class BrickMovementInfo extends MovementInfo {
   private final double STAR_PROBABILITY = 0.8;
 
   public BrickMovementInfo(Ball ball, List<Brick> bricks, List<Star> stars, Paddle paddle, List<GameItem> gameItems, int screenHeight, int screenWidth, List<Bitmap> starBmps, double numSeconds) {
+    super(numSeconds);
     this.ball = ball;
     this.bricks = bricks;
     this.stars = stars;
@@ -45,7 +46,7 @@ public class BrickMovementInfo extends MovementInfo {
     this.screenHeight = screenHeight;
     this.screenWidth = screenWidth;
     this.starBmps = starBmps;
-    this.numSeconds = numSeconds;
+   // this.numSeconds = numSeconds;
     continueGame = true;
   }
 
@@ -154,7 +155,7 @@ public class BrickMovementInfo extends MovementInfo {
     }
   }
 
-  public double getNumSeconds() {
-    return numSeconds;
-  }
+//  public double getNumSeconds() {
+//    return numSeconds;
+//  }
 }

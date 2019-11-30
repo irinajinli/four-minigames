@@ -10,7 +10,8 @@ public class AppleMovementInfo extends MovementInfo {
   int screenHeight;
   Basket basket;
 
-  public AppleMovementInfo(int screenWidth, int screenHeight, Basket basket) {
+  public AppleMovementInfo(int screenWidth, int screenHeight, Basket basket, double numSeconds) {
+    super(numSeconds);
     this.screenWidth = screenWidth;
     this.screenHeight = screenHeight;
     this.basket = basket;
