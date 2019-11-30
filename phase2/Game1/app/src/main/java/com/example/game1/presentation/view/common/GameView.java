@@ -124,33 +124,33 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
    * @param canvas the canvas on which to draw this item.
    */
 
-  public abstract void drawItem(Canvas canvas, GameItem item);
+//  public abstract void drawItem(Canvas canvas, GameItem item);
 
-//  public void drawItem(Canvas canvas, GameItem item) {
-//
-//    paintText = new Paint();
-//    paintText.setTypeface(Typeface.DEFAULT_BOLD);
-//    paintText.setTextSize(36);
-//    Object appearance = item.getDescription();
-//    double xCoordinate = item.getXCoordinate();
-//    double yCoordinate = item.getYCoordinate();
-//    if (appearance.getClass() == String.class) {
-//
-//      // TODO NEW: remove * charWidth?
-//      canvas.drawText(
-//              (String) appearance,
-//              (float) xCoordinate * GameView.charWidth,
-//              (float) yCoordinate * GameView.charHeight,
-//              paintText);
-//
-//    } else if (appearance.getClass() == Bitmap.class) {
-//      canvas.drawBitmap(
-//              (Bitmap) appearance,
-//              (int) Math.round(xCoordinate),
-//              (int) Math.round(yCoordinate),
-//              paintText);
-//    }
-//  }
+  public void drawItem(Canvas canvas, GameItem item) {
+
+    paintText = new Paint();
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    paintText.setTextSize(36);
+    Object appearance = item.getDescription();
+    double xCoordinate = item.getXCoordinate();
+    double yCoordinate = item.getYCoordinate();
+    if (appearance.getClass() == String.class) {
+
+      // TODO NEW: remove * charWidth?
+      canvas.drawText(
+              (String) appearance,
+              (float) xCoordinate * GameView.charWidth,
+              (float) yCoordinate * GameView.charHeight,
+              paintText);
+
+    } else if (appearance.getClass() == Bitmap.class) {
+      canvas.drawBitmap(
+              (Bitmap) appearance,
+              (int) Math.round(xCoordinate),
+              (int) Math.round(yCoordinate),
+              paintText);
+    }
+  }
 
   /**
    * Draw this GameItem.
