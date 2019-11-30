@@ -99,6 +99,13 @@ public class StatisticsActivity extends AppCompatActivity {
     }
   }
 
+  /** Called when the user taps the Android device's Back button */
+  @Override
+  public void onBackPressed() {
+    Intent intent = new Intent(this, UserMenuActivity.class);
+    startActivity(intent);
+  }
+
   /** Called when the user taps the Back button */
   public void goBack(View view) {
     Intent intent = new Intent(this, UserMenuActivity.class);
