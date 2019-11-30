@@ -9,6 +9,7 @@ import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.brickgame.Ball;
 import com.example.game1.presentation.model.brickgame.Brick;
+import com.example.game1.presentation.model.brickgame.BrickMovementInfo;
 import com.example.game1.presentation.model.brickgame.Paddle;
 import com.example.game1.presentation.model.brickgame.Star;
 import com.example.game1.presentation.model.common.AnimatedGameItem;

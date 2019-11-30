@@ -1,4 +1,4 @@
-package com.example.game1.presentation.presenter.brickgame;
+package com.example.game1.presentation.model.brickgame;
 
 import com.example.game1.presentation.model.brickgame.Ball;
 import com.example.game1.presentation.model.brickgame.Brick;

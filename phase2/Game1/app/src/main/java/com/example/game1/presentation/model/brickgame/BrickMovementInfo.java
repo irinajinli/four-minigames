@@ -1,4 +1,4 @@
-package com.example.game1.presentation.presenter.brickgame;
+package com.example.game1.presentation.model.brickgame;
 
 import android.graphics.Bitmap;
 
@@ -8,6 +8,7 @@ import com.example.game1.presentation.model.brickgame.Paddle;
 import com.example.game1.presentation.model.brickgame.Star;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
+import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,8 @@ public class BrickMovementInfo extends MovementInfo {
   public int getNumStars(){
     return numStars;
   }
-  boolean continueGame() {
+
+  public boolean continueGame() {
     return continueGame;
   }
 
