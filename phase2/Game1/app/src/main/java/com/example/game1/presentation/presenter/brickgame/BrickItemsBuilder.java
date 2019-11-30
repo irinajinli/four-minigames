@@ -43,7 +43,7 @@ public class BrickItemsBuilder {
       paddleBmps = paddleBlueBmps;
     }
 
-    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH, paddleBmps);
+    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH);
   }
 
   void createBricks(
@@ -56,7 +56,7 @@ public class BrickItemsBuilder {
     int brickWidth = screenWidth / NUM_BRICKS_HORIZONTAL;
     for (int i = 0; i < NUM_BRICK_LAYERS; i++) {
       for (int j = 0; j < NUM_BRICKS_HORIZONTAL; j++) {
-        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth, brickBmp);
+        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth);
         newBrick.setPosition(j * brickWidth, i * BRICK_HEIGHT);
         bricks.add(newBrick);
       }
@@ -72,7 +72,7 @@ public class BrickItemsBuilder {
       int NUM_BRICK_LAYERS,
       double BALL_VELOCITY_X,
       double BALL_VELOCITY_Y) {
-    ball = new Ball(BALL_WIDTH, BALL_HEIGHT, ballBmps);
+    ball = new Ball(BALL_WIDTH, BALL_HEIGHT);
     ball.setPosition(screenWidth / 2, BRICK_HEIGHT * (NUM_BRICK_LAYERS + 1));
     ball.setXVelocity(BALL_VELOCITY_X);
     ball.setYVelocity(BALL_VELOCITY_Y);

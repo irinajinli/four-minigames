@@ -18,8 +18,6 @@ public abstract class AnimatedGameItem extends GameItem {
   // private Object appearance;
   /** The current frame this object's appearance is at */
   private int currentFrame = 0;
-  /** The various appearances of this object's animation (one per frame) */
-  private List appearances;
   /**
    * Constructs a AnimatedGameItem with the specified height and width.
    *
@@ -33,10 +31,10 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Constructs a AnimatedGameItem with the specified height and width.
    *
-   * @param appearance the appearance of this GameItem
+   * @param description the appearance of this GameItem
    */
-  protected AnimatedGameItem(Object appearance) {
-    super(appearance);
+  protected AnimatedGameItem(String description) {
+    super(description);
   }
 
   /**
@@ -44,31 +42,14 @@ public abstract class AnimatedGameItem extends GameItem {
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearances the appearances of this GameItem
-   */
-  protected AnimatedGameItem(int height, int width, List appearances) {
-    super(height, width, appearances.get(0));
-    this.appearances = appearances;
-  }
-
-  /**
-   * Constructs a AnimatedGameItem with the specified height and width.
    *
-   * @param height the height of this GameItem
-   * @param width the width of this GameItem
    */
   protected AnimatedGameItem(int height, int width) {
     super(height, width);
+
   }
 
-  /** Advances the current appearance of the item so that it moves onto the next "frame" */
-  public void advanceFrame() {
-    currentFrame += 1;
-    if (currentFrame >= appearances.size()) {
-      currentFrame = 0;
-    }
-    setDescription(appearances.get(currentFrame));
-  }
+
 
   /** @return velocity of this GameItem at x axis direction */
   public double getXVelocity() {
@@ -138,7 +119,7 @@ public abstract class AnimatedGameItem extends GameItem {
     double newYVelocity = getYVelocity() + getYAcceleration() * numOfSeconds;
     setYVelocity(newYVelocity);
     // @TODO maybe this call can be moved elsewhere
-    advanceFrame();
+
   }
 
   public abstract Result animate(MovementInfo movementInfo);

@@ -16,11 +16,10 @@ public class Ball extends AnimatedGameItem {
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearances the appearances of this GameItem
    */
-  public Ball(int width, int height, List appearances) {
+  public Ball(int width, int height) {
 
-    super(width, height, appearances);
+    super(width, height);
   }
 
   @Override

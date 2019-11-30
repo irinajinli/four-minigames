@@ -20,11 +20,10 @@ public class AppleStar extends AnimatedGameItem {
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearances the appearances of this GameItem
    */
-  public AppleStar(int width, int height, List appearances) {
+  public AppleStar(int width, int height) {
 
-    super(width, height, appearances);
+    super(width, height);
   }
 
   /**

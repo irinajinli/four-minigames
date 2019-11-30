@@ -200,14 +200,14 @@ public class AppleGameManager extends GameManager {
   }
 
   private void spawnStar(int spawnCoordinate) {
-    AppleStar nextItem = new AppleStar(80, 80, starBmps);
+    AppleStar nextItem = new AppleStar(80, 80);
     nextItem.setYVelocity(250);
     place(nextItem);
     nextItem.setPosition(spawnCoordinate, 0);
   }
 
   private void spawnApple(int spawnCoordinate) {
-    Apple nextItem = new Apple(80, 80, appleBmps);
+    Apple nextItem = new Apple(80, 80);
     nextItem.setYVelocity(350);
     place(nextItem);
     nextItem.setPosition(spawnCoordinate, 0);

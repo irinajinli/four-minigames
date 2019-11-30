@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Apple extends AnimatedGameItem {
 
-  public Apple(int width, int height, List appearances) {
-    super(width, height, appearances);
+  public Apple(int width, int height) {
+    super(width, height);
   }
 
   public AppleResult update(MovementInfo appleMovementInfo) {

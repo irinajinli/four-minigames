@@ -26,13 +26,13 @@ public class AppleItemsBuilder {
   }
 
   public void createBasket(List basketBmps, List basketBlueBmps, List basketYellowBmps) {
-    this.basket = new Basket(100, 100, basketBmps);
+    this.basket = new Basket(100, 100);
     // set color of basket
     if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      this.basket = new Basket(100, 100, basketBlueBmps);
+      this.basket = new Basket(100, 100);
     } else if (customization.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      this.basket = new Basket(100, 100, basketYellowBmps);
-    } else this.basket = new Basket(100, 100, basketBmps);
+      this.basket = new Basket(100, 100);
+    } else this.basket = new Basket(100, 100);
   }
 
   public void createPointsCounter() {

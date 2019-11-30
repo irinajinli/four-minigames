@@ -12,11 +12,10 @@ public class Terrain extends GameItem {
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearance the appearance of this GameItem
    */
-  public Terrain(int height, int width, Object appearance) {
+  public Terrain(int height, int width) {
 
-    super(height, width, appearance);
+    super(height, width);
   }
 
   @Override

@@ -127,7 +127,7 @@ public class BrickMovementInfo extends MovementInfo {
           numBroken++;
           if (Math.random() > STAR_PROBABILITY) {
             Star star =
-                    new Star(BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT, starBmps);
+                    new Star(BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
             star.setPosition(
                     brick.getXCoordinate() + brick.getWidth() / 2 - BrickGameManager.STAR_WIDTH / 2,
                     brick.getYCoordinate());

@@ -22,10 +22,9 @@ public class Brick extends GameItem {
    *
    * @param width the width of this GameItem
    * @param height the height of this GameItem
-   * @param appearance the appearance of this GameItem
    */
-  public Brick(int width, int height, Bitmap appearance) {
-    super(width, height, appearance);
+  public Brick(int width, int height) {
+    super(width, height);
     damageLevel = STARTING_DAMAGE_LEVEL;
   }
 

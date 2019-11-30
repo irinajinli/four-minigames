@@ -3,8 +3,9 @@ package com.example.game1.presentation.presenter.applegame;
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.presenter.common.MovementInfo;
 
+/** A class for passing information to AppleGameManager.update. */
 public class AppleMovementInfo extends MovementInfo {
-  /** A class for passing information to AppleGameManager.update. */
+
   int screenWidth;
 
   int screenHeight;

@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Basket extends AnimatedGameItem {
 
-  public Basket(int height, int width, List appearances) {
-    super(height, width, appearances);
+  public Basket(int height, int width) {
+    super(height, width);
   }
 
   /**

@@ -15,10 +15,9 @@ public class Jumper extends AnimatedGameItem {
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearances the appearances of this GameItem
    */
-  public Jumper(int height, int width, List appearances) {
-    super(height, width, appearances);
+  public Jumper(int height, int width) {
+    super(height, width);
   }
 
   @Override

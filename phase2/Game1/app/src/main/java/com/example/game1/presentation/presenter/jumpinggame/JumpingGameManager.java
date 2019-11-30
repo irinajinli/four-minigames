@@ -1,5 +1,7 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
+import android.graphics.Bitmap;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Customization;
@@ -16,6 +18,10 @@ import com.example.game1.presentation.presenter.common.Result;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A GameManager for a Jumping minigame. Includes an extra variable numDroppedApples and extra
+ * methods for handling GameObjects.
+ */
 public class JumpingGameManager extends GameManager {
   public static final int JUMPER_WIDTH = 100;
   public static final int JUMPER_HEIGHT = 200;
@@ -24,10 +30,7 @@ public class JumpingGameManager extends GameManager {
   public static final int STAR_WIDTH = 80;
   public static final int STAR_HEIGHT = 80;
 
-  /**
-   * A GameManager for a Jumping minigame. Includes an extra variable numDroppedApples and extra
-   * methods for handling GameObjects.
-   */
+
   private Terrain terrain;
   private Jumper jumper;
   private Obstacle obstacle1;
@@ -43,11 +46,11 @@ public class JumpingGameManager extends GameManager {
   private boolean isRunning;
   private List obstacleAppearances;
   private List starAppearances;
-  private Object terrainAppearance;
-  private List<Object> jumperBlueAppearances;
-  private List<Object> jumperRedAppearances;
-  private List<Object> jumperYellowAppearances;
-  private List<Object> jumperAppearances;
+  private Bitmap terrainAppearance;
+  private List<Bitmap> jumperBlueAppearances;
+  private List<Bitmap> jumperRedAppearances;
+  private List<Bitmap> jumperYellowAppearances;
+  private List<Bitmap> jumperAppearances;
   private double numSeconds;
 
   private int currFrame;
@@ -58,7 +61,7 @@ public class JumpingGameManager extends GameManager {
     // this.game = new Game(Game.GameName.JUMPING);
   }
 
-  private Object getNextJumperFrame() {
+  private Bitmap getNextJumperFrame() {
     currFrame += 1;
     if (currFrame >= jumperAppearances.size()) {
       currFrame = 0;
@@ -186,26 +189,26 @@ public class JumpingGameManager extends GameManager {
       setSkyColor(skyColorLight);
     }
 
-    terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2, terrainAppearance);
+    terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2);
     setTerrainPosition(terrain);
     place(terrain);
 
     // @TODO changed
-    jumper = new Jumper(JUMPER_HEIGHT, JUMPER_WIDTH, jumperAppearances);
+    jumper = new Jumper(JUMPER_HEIGHT, JUMPER_WIDTH);
     setJumperPosition(jumper);
     place(jumper);
 
-    obstacle1 = new Obstacle(100, 100, obstacleAppearances);
+    obstacle1 = new Obstacle(100, 100);
     setObstaclePosition(obstacle1, getScreenWidth() * 8 / 5);
     place(obstacle1);
-    obstacle2 = new Obstacle(100, 100, obstacleAppearances);
+    obstacle2 = new Obstacle(100, 100);
     setObstaclePosition(obstacle2, getScreenWidth() * 3 / 5);
     place(obstacle2);
-    obstacle3 = new Obstacle(100, 100, obstacleAppearances);
+    obstacle3 = new Obstacle(100, 100);
     setObstaclePosition(obstacle3, getScreenWidth() * 6 / 5);
     place(obstacle3);
 
-    Star star = new Star(80, 80, starAppearances);
+    Star star = new Star(80, 80);
 
     setStarPosition(star, getScreenWidth() * 3 / 5);
     place(star);
@@ -263,7 +266,7 @@ public class JumpingGameManager extends GameManager {
           numStars += 1;
         }
         if (jumpingResult.isNeedNewStar()) {
-          Star newStar = new Star(80, 80, starAppearances);
+          Star newStar = new Star(80, 80);
           autoSetStarPosition(newStar);
           newItems.add(newStar);
         }
@@ -282,7 +285,7 @@ public class JumpingGameManager extends GameManager {
       }
     }
 
-    jumper.setDescription(getNextJumperFrame());
+    //jumper.setDescription(getNextJumperFrame());
     // TODO: temporary return true; decide when you want to return true/false
     return true;
   }
@@ -342,7 +345,7 @@ public class JumpingGameManager extends GameManager {
   public void setAppearance(
       List obstacleAppearances,
       List starAppearances,
-      Object terrainAppearance,
+      Bitmap terrainAppearance,
       List jumperBlueAppearances,
       List jumperYellowAppearances,
       List jumperRedAppearances) {

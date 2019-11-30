@@ -14,10 +14,9 @@ public class Paddle extends AnimatedGameItem {
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearances the appearance of this GameItem
    */
-  public Paddle(int height, int width, List appearances) {
-    super(height, width, appearances);
+  public Paddle(int height, int width) {
+    super(height, width);
   }
 
   @Override

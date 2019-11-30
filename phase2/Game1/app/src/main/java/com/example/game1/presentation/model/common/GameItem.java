@@ -11,7 +11,7 @@ public abstract class GameItem {
   /** This item's Paint. */
 //  public Paint paintText = new Paint();
   /** Description of this item. */
-  private Object description;
+  private String description;
   /** the width of this item */
   private int width;
   /** the height of this item */
@@ -28,7 +28,7 @@ public abstract class GameItem {
    *
    * @param description the description of this GameItemOld
    */
-  public GameItem(Object description) {
+  public GameItem(String description) {
     this.description = description;
   }
 
@@ -61,7 +61,7 @@ public abstract class GameItem {
    * @param width the width of this GameItem
    * @param description the description of this GameItem
    */
-  public GameItem(int height, int width, Object description) {
+  public GameItem(int height, int width, String description) {
     this.description = description;
     this.height = height;
     this.width = width;
@@ -72,7 +72,7 @@ public abstract class GameItem {
    *
    * @return the description of this GameItem
    */
-  public Object getDescription() {
+  public String getDescription() {
     return description;
   }
 
@@ -81,7 +81,7 @@ public abstract class GameItem {
    *
    * @param description the description of this GameItem
    */
-  public void setDescription(Object description) {
+  public void setDescription(String description) {
     this.description = description;
   }
 
