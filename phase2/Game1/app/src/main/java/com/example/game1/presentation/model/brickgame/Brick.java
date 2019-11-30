@@ -77,6 +77,14 @@ public class Brick extends GameItem {
     return damageLevel == APPEARANCE_CHANGE_CUTOFF;
   }
 
+  /**
+   * Return true iff this brick has passed the cutoff to be considered damaged.
+   * @return true iff this brick has passed the cutoff to be considered damaged.
+   */
+  public boolean isDamaged(){
+    return damageLevel <= APPEARANCE_CHANGE_CUTOFF;
+  }
+
   public void move() {}
 
   @Override

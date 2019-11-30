@@ -1,5 +1,9 @@
 package com.example.game1.presentation.presenter.brickgame;
 
+import com.example.game1.presentation.model.brickgame.Ball;
+import com.example.game1.presentation.model.brickgame.Brick;
+import com.example.game1.presentation.model.brickgame.Paddle;
+import com.example.game1.presentation.model.brickgame.Star;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.Result;
 
@@ -8,68 +12,79 @@ import java.util.List;
 
 public class BrickResult extends Result {
 
-  /** A class to store infromation that is needed for game manager to update the list */
+  double numSeconds;
+  private Ball ball;
+  private List<Brick> bricks;
+  private List<Star> stars;
+  private Paddle paddle;
+  private List<GameItem> gameItems;
 
-  /** Items to be added to the list */
-  List<GameItem> newItems = new ArrayList<>();
-  /** Items to be removed from the list */
-  List<GameItem> oldItems = new ArrayList<>();
+  private int screenHeight;
+  private int screenWidth;
+  private boolean continueGame;
 
-  /** if result need to be updated */
-  int bricksBroken = 0;
+  private int numBroken;
+  private int numStars;
+  private int numTaps;
 
-  /** if result need to be updated */
-  boolean starCollected = false;
-
-  /** if result need to be updated */
-  boolean needNewStar = false;
-
-  /** if game is over */
-  boolean gameOver = false;
-
-  public List<GameItem> getNewItems() {
-    return newItems;
+  public void setBall(Ball ball) {
+    this.ball = ball;
   }
 
-  public void setNewItems(List<GameItem> newItems) {
-    this.newItems = newItems;
+  public void setBricks(List<Brick> bricks) {
+    this.bricks = bricks;
   }
 
-  public void addNewItem(GameItem item) {
-    this.newItems.add(item);
+  public void setStars(List<Star> stars) {
+    this.stars = stars;
   }
 
-  public List<GameItem> getOldItems() {
-    return oldItems;
-  }
-
-  public void setOldItems(List<GameItem> oldItems) {
-    this.oldItems = oldItems;
-  }
-
-  public void addOldItem(GameItem item) {
-    this.oldItems.add(item);
-  }
-
-  public boolean isGameOver() {
-    return gameOver;
-  }
-
-  public void setGameOver(boolean gameOver) {
-    this.gameOver = gameOver;
-  }
   /**
-   * public boolean isObstacleJumped() { return obstacleJumped; }
+   * Returns the Paddle in this brick game
    *
-   * <p>public void setObstacleJumped(boolean obstacleJumped) { this.obstacleJumped =
-   * obstacleJumped; }
-   *
-   * <p>public boolean isStarCollected() { return starCollected; }
-   *
-   * <p>public void setStarCollected(boolean starCollected) { this.starCollected = starCollected; }
-   *
-   * <p>public boolean isNeedNewStar() { return needNewStar; }
-   *
-   * <p>public void setNeedNewStar(boolean needNewStar) { this.needNewStar = needNewStar; }
+   * @return the Paddle in this brick game
    */
+  public Paddle getPaddle() {
+    return paddle;
+  }
+
+  public void setPaddle(Paddle paddle) {
+    this.paddle = paddle;
+  }
+
+  /**
+   * returns the number of successful jumps performed by the player.
+   *
+   * @return the number of obstacles jumped by the player
+   */
+  public int getNumBroken() {
+    return numBroken;
+  }
+
+  /**
+   * Sets the number of successful jumps made by this user.
+   *
+   * @param numBroken the new number of jumps to set
+   */
+  public void setNumBroken(int numBroken) {
+    this.numBroken = numBroken;
+  }
+
+  /**
+   * returns the number of stars collected by the player in this game
+   *
+   * @return the number of stars collected by the player in this game
+   */
+  public int getNumStars() {
+    return numStars;
+  }
+
+  /**
+   * sets the number of stars collected by this player
+   *
+   * @param numStars the new number to set
+   */
+  public void setNumStars(int numStars) {
+    this.numStars = numStars;
+  }
 }

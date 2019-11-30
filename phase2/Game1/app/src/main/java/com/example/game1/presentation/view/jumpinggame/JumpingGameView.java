@@ -89,7 +89,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
     //        ((JumpingGameManager)gameManager).setSkyColors(SKY_COLOR_DARK, SKY_COLOR_LIGHT);
 
-    extractBmpFiles();
+    //extractBmpFiles();
     generateCharacterColor();
 
     setSkyColorDark(SKY_COLOR_DARK);

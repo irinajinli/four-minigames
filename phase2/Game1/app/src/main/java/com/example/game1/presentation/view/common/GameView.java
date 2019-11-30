@@ -133,18 +133,34 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
       // TODO NEW: remove * charWidth?
       canvas.drawText(
-          (String) appearance,
-          (float) xCoordinate * GameView.charWidth,
-          (float) yCoordinate * GameView.charHeight,
-          paintText);
+              (String) appearance,
+              (float) xCoordinate * GameView.charWidth,
+              (float) yCoordinate * GameView.charHeight,
+              paintText);
 
     } else if (appearance.getClass() == Bitmap.class) {
       canvas.drawBitmap(
-          (Bitmap) appearance,
-          (int) Math.round(xCoordinate),
-          (int) Math.round(yCoordinate),
-          paintText);
+              (Bitmap) appearance,
+              (int) Math.round(xCoordinate),
+              (int) Math.round(yCoordinate),
+              paintText);
     }
+  }
+
+  /**
+   * Draw this GameItem.
+   *
+   * @param canvas the canvas on which to draw this item.
+   */
+  public void drawItem(Canvas canvas, GameItem item, Bitmap appearance) {
+    double xCoordinate = item.getXCoordinate();
+    double yCoordinate = item.getYCoordinate();
+
+    canvas.drawBitmap(
+            appearance,
+            (int) Math.round(xCoordinate),
+            (int) Math.round(yCoordinate),
+            paintText);
   }
 
   /**

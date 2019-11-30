@@ -10,7 +10,12 @@ import android.view.View;
 
 import com.example.game1.AppManager;
 import com.example.game1.R;
+import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
+import com.example.game1.presentation.model.brickgame.Ball;
+import com.example.game1.presentation.model.brickgame.Brick;
+import com.example.game1.presentation.model.brickgame.Paddle;
+import com.example.game1.presentation.model.brickgame.Star;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
 import com.example.game1.presentation.view.common.GameThread;
@@ -34,6 +39,15 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   private List<Bitmap> paddleBlueBmps;
   private List<Bitmap> paddleRedBmps;
   private List<Bitmap> paddleYellowBmps;
+
+  // keys for Map from item string to it's bitmap image
+  private final String BALL_KEY = "ball";
+  private final String STAR_KEY = "star";
+  private final String BRICK_KEY = "brick";
+  private final String BRICK_DAMAGED_KEY = "brick_damaged";
+  private final String PADDLE_RED_KEY = "paddle_red";
+  private final String PADDLE_BLUE_KEY = "paddle_red";
+  private final String PADDLE_YELLOW_KEY = "paddle_red";
   /**
    * creates a new BrickView *
    *
@@ -46,15 +60,15 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     thread = new GameThread(getHolder(), this);
     setFocusable(true);
     this.listener =
-        new OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            if (true) {
-              numTaps++;
-              ((BrickGameManager) gameManager).setNumTaps(numTaps);
-            }
-          }
-        };
+            new OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                if (true) {
+                  numTaps++;
+                  ((BrickGameManager) gameManager).setNumTaps(numTaps);
+                }
+              }
+            };
   }
 
   /**
@@ -65,12 +79,12 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
     gameManager =
-        AppManager.getInstance()
-            .buildGameManager(
-                Game.GameName.BRICK,
-                (int) (getScreenHeight() / charHeight),
-                (int) (getScreenWidth() / charWidth),
-                activity);
+            AppManager.getInstance()
+                    .buildGameManager(
+                            Game.GameName.BRICK,
+                            (int) (getScreenHeight() / charHeight),
+                            (int) (getScreenWidth() / charWidth),
+                            activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
     ((BrickGameManager) gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
@@ -78,14 +92,14 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     extractBmpFiles();
 
     ((BrickGameManager) gameManager)
-        .setBmpfiles(
-            ballBmps,
-            starBmps,
-            brickBmp,
-            brickDamagedBmp,
-            paddleBlueBmps,
-            paddleRedBmps,
-            paddleYellowBmps);
+            .setBmpfiles(
+                    ballBmps,
+                    starBmps,
+                    brickBmp,
+                    brickDamagedBmp,
+                    paddleBlueBmps,
+                    paddleRedBmps,
+                    paddleYellowBmps);
     setSkyColorDark(SKY_COLOR_DARK);
     setSkyColorLight(SKY_COLOR_LIGHT);
 
@@ -126,11 +140,44 @@ public class BrickGameView extends GameView implements View.OnClickListener {
       List<GameItem> items = gameManager.getGameItems();
       for (GameItem item : items) {
 
-        drawItem(canvas, item);
+        drawItem(canvas, item, getAppearance(item));
       }
     }
   }
 
+  private Bitmap getAppearance(GameItem item){
+    String key = null;
+    if (item instanceof Paddle){
+      Customization cust = gameManager.getGame().getCustomization();
+      if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)){
+        key = PADDLE_BLUE_KEY;
+      }
+      else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)){
+        key = PADDLE_RED_KEY;
+      }
+      else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)){
+        key = PADDLE_YELLOW_KEY;
+      }
+    }
+    else if (item instanceof Ball){
+      key = BALL_KEY;
+    }
+    else if (item instanceof Brick){
+      if (((Brick)item).isDamaged()){
+        key = BRICK_DAMAGED_KEY;
+      }
+      else{
+        key = BRICK_KEY;
+      }
+    }
+    else if (item instanceof Star){
+      key = STAR_KEY;
+    }
+    if (key == null){
+      return null;
+    }
+    return getAppearance(key);
+  }
   /**
    * Handles the jumper's jump when the user taps the screen
    *
@@ -171,15 +218,15 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   public void extractBmpFiles() {
 
     brickBmp =
-        getNewBitmap(
-            R.drawable.brick_blue,
-            getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL,
-            BrickGameManager.BRICK_HEIGHT);
+            getNewBitmap(
+                    R.drawable.brick_blue,
+                    getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL,
+                    BrickGameManager.BRICK_HEIGHT);
     brickDamagedBmp =
-        getNewBitmap(
-            R.drawable.brick_blue_damaged,
-            getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL,
-            BrickGameManager.BRICK_HEIGHT);
+            getNewBitmap(
+                    R.drawable.brick_blue_damaged,
+                    getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL,
+                    BrickGameManager.BRICK_HEIGHT);
 
     int[] ballFiles = {R.drawable.ball_blue};
     int[] starFiles = {R.drawable.star_6};
@@ -194,23 +241,33 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     paddleYellowBmps = new ArrayList<Bitmap>();
 
     generateAnimatedBmps(
-        ballBmps, ballFiles, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
+            ballBmps, ballFiles, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
     generateAnimatedBmps(
-        starBmps, starFiles, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
+            starBmps, starFiles, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
     generateAnimatedBmps(
-        paddleBlueBmps,
-        paddleBlueFiles,
-        BrickGameManager.PADDLE_WIDTH,
-        BrickGameManager.PADDLE_HEIGHT);
+            paddleBlueBmps,
+            paddleBlueFiles,
+            BrickGameManager.PADDLE_WIDTH,
+            BrickGameManager.PADDLE_HEIGHT);
     generateAnimatedBmps(
-        paddleRedBmps,
-        paddleRedFiles,
-        BrickGameManager.PADDLE_WIDTH,
-        BrickGameManager.PADDLE_HEIGHT);
+            paddleRedBmps,
+            paddleRedFiles,
+            BrickGameManager.PADDLE_WIDTH,
+            BrickGameManager.PADDLE_HEIGHT);
     generateAnimatedBmps(
-        paddleYellowBmps,
-        paddleYellowFiles,
-        BrickGameManager.PADDLE_WIDTH,
-        BrickGameManager.PADDLE_HEIGHT);
+            paddleYellowBmps,
+            paddleYellowFiles,
+            BrickGameManager.PADDLE_WIDTH,
+            BrickGameManager.PADDLE_HEIGHT);
+
+    addGameItemAppearance(BRICK_KEY, brickBmp);
+    addGameItemAppearance(BRICK_DAMAGED_KEY, brickDamagedBmp);
+    addGameItemAppearances(BALL_KEY, ballBmps);
+    addGameItemAppearances(PADDLE_BLUE_KEY, paddleBlueBmps);
+    addGameItemAppearances(PADDLE_RED_KEY, paddleRedBmps);
+    addGameItemAppearances(PADDLE_YELLOW_KEY, paddleYellowBmps);
+    addGameItemAppearances(STAR_KEY, starBmps);
   }
+
+
 }

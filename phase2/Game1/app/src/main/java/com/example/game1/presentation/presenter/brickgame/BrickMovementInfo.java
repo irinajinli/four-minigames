@@ -27,7 +27,7 @@ public class BrickMovementInfo extends MovementInfo {
   private int screenWidth;
   private boolean continueGame;
 
-  int numBroken;
+  private int numBroken;
   private int numStars;
   private int numTaps;
 

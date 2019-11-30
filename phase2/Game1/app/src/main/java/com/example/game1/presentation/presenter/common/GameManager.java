@@ -49,7 +49,9 @@ public abstract class GameManager extends Observable {
   public void place(GameItem item) {
     gameItems.add(item);
   }
-
+  public Game getGame() {
+    return game;
+  }
   /** Updates this GameManager by moving all GameItems in it. */
   public abstract boolean update();
 
@@ -61,9 +63,7 @@ public abstract class GameManager extends Observable {
   /** Creates some GameItems and adds them to this GameManager. */
   public abstract void createGameItems();
 
-  public Game getGame() {
-    return game;
-  }
+
 
   public void setGame(Game game) {
     this.game = game;
