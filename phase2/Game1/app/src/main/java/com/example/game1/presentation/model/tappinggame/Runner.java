@@ -32,7 +32,7 @@ public class Runner extends AnimatedGameItem {
 
   /**
    * public Runner(List appearances, int x, int y) { super(x, y, appearances); setPosition(x, y);
-   * setAppearance(appearance); canRun = true; }
+   * setDescription(appearance); canRun = true; }
    */
   public void move() {}
   /**

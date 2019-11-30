@@ -126,7 +126,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     paintText = new Paint();
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
     paintText.setTextSize(36);
-    Object appearance = item.getAppearance();
+    Object appearance = item.getDescription();
     double xCoordinate = item.getXCoordinate();
     double yCoordinate = item.getYCoordinate();
     if (appearance.getClass() == String.class) {

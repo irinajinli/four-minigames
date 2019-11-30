@@ -3,7 +3,6 @@ package com.example.game1.presentation.model.applegame;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.applegame.AppleResult;
 import com.example.game1.presentation.presenter.common.MovementInfo;
-import com.example.game1.presentation.presenter.common.Result;
 
 /** A counter for points earned. */
 public class PointsCounter extends GameItem {
@@ -32,7 +31,7 @@ public class PointsCounter extends GameItem {
    */
   public void addPoints(int points) {
     numPoints += points;
-    setAppearance("apples: " + numPoints);
+    setDescription("apples: " + numPoints);
   }
 
   public AppleResult update(MovementInfo jumpingMovementInfo) {

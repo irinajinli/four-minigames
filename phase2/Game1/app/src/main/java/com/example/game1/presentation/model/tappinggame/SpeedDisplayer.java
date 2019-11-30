@@ -11,12 +11,10 @@ public class SpeedDisplayer extends GameItem {
   private int speed;
 
   public SpeedDisplayer(int x, int y) {
-    // Call super() to set appearance, location (x, y), appearance and
-    // type face.
+    // Call super() to set location (x, y)
     super("Your average tapping speed: ");
     setPosition(x, y);
     this.speed = 0;
-    paintText.setColor(Color.CYAN);
   }
 
   public int getSpeed() {
@@ -25,7 +23,7 @@ public class SpeedDisplayer extends GameItem {
 
   public void setSpeed(int speed) {
     this.speed = speed;
-    setAppearance("Your average tapping speed: " + this.speed);
+    setDescription("Your average tapping speed: " + this.speed);
   }
 
   @Override

@@ -9,9 +9,9 @@ import com.example.game1.presentation.presenter.common.Result;
 public abstract class GameItem {
 
   /** This item's Paint. */
-  public Paint paintText = new Paint();
-  /** How this item appears on the screen. */
-  private Object appearance;
+//  public Paint paintText = new Paint();
+  /** Description of this item. */
+  private Object description;
   /** the width of this item */
   private int width;
   /** the height of this item */
@@ -24,14 +24,12 @@ public abstract class GameItem {
   private double yCoordinate;
 
   /**
-   * Constructs a GameItemOld with the specified appearance.
+   * Constructs a GameItemOld with the specified description.
    *
-   * @param appearance the appearance of this GameItemOld
+   * @param description the description of this GameItemOld
    */
-  public GameItem(Object appearance) {
-    this.appearance = appearance;
-    paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    paintText.setTextSize(36);
+  public GameItem(Object description) {
+    this.description = description;
   }
 
   /**
@@ -46,52 +44,45 @@ public abstract class GameItem {
   }
 
   /**
-   * /** Constructs a GameItem with the specified appearance.
+   * /** Constructs a GameItem with the specified description.
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
    */
   public GameItem(int height, int width) {
-
     this.height = height;
     this.width = width;
-    // to be deleted
-    paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    paintText.setTextSize(36);
   }
 
   /**
-   * Constructs a GameItem with the specified appearance, height, width.
+   * Constructs a GameItem with the specified description, height, width.
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
-   * @param appearance the appearance of this GameItem
+   * @param description the description of this GameItem
    */
-  public GameItem(int height, int width, Object appearance) {
-    this.appearance = appearance;
+  public GameItem(int height, int width, Object description) {
+    this.description = description;
     this.height = height;
     this.width = width;
-    // to be deleted
-    paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    paintText.setTextSize(36);
   }
 
   /**
-   * Get the appearance of this GameItem.
+   * Get the description of this GameItem.
    *
-   * @return the appearance of this GameItem
+   * @return the description of this GameItem
    */
-  public Object getAppearance() {
-    return appearance;
+  public Object getDescription() {
+    return description;
   }
 
   /**
-   * Sets the appearance of this GameItem.
+   * Sets the description of this GameItem.
    *
-   * @param appearance the appearance of this GameItem
+   * @param description the description of this GameItem
    */
-  public void setAppearance(Object appearance) {
-    this.appearance = appearance;
+  public void setDescription(Object description) {
+    this.description = description;
   }
 
   /**
@@ -177,8 +168,4 @@ public abstract class GameItem {
   }
 
   public abstract Result update(MovementInfo movementInfo);
-
-  public void setColor(int color) {
-    paintText.setColor(color);
-  }
 }

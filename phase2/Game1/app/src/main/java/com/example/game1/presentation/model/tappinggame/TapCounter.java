@@ -16,7 +16,6 @@ public class TapCounter extends GameItem {
     super("Number of Taps: ");
     setPosition(x, y);
     this.numTaps = 0;
-    paintText.setColor(Color.CYAN);
   }
 
   public int getNumTaps() {
@@ -25,7 +24,7 @@ public class TapCounter extends GameItem {
 
   public void setNumTaps(int numTaps) {
     this.numTaps = numTaps;
-    setAppearance("Number of Taps: " + this.numTaps);
+    setDescription("Number of Taps: " + this.numTaps);
   }
 
   @Override

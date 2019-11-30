@@ -67,7 +67,7 @@ public abstract class AnimatedGameItem extends GameItem {
     if (currentFrame >= appearances.size()) {
       currentFrame = 0;
     }
-    setAppearance(appearances.get(currentFrame));
+    setDescription(appearances.get(currentFrame));
   }
 
   /** @return velocity of this GameItem at x axis direction */

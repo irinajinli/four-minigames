@@ -1,8 +1,5 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Customization;
@@ -27,8 +24,6 @@ public class JumpingGameManager extends GameManager {
   public static final int STAR_WIDTH = 80;
   public static final int STAR_HEIGHT = 80;
 
-  private final int DARK_COLOR = Color.rgb(83, 92, 104);
-  private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
   /**
    * A GameManager for a Jumping minigame. Includes an extra variable numDroppedApples and extra
    * methods for handling GameObjects.
@@ -38,7 +33,7 @@ public class JumpingGameManager extends GameManager {
   private Obstacle obstacle1;
   private Obstacle obstacle2;
   private Obstacle obstacle3;
-  private double cameraVelocityX = 450; // 450
+  private double cameraVelocityX = 450;
   private int numJumped = 0;
   private int numStars = 0;
   private int numTaps = 0;
@@ -54,7 +49,7 @@ public class JumpingGameManager extends GameManager {
   private List<Object> jumperYellowAppearances;
   private List<Object> jumperAppearances;
   private double numSeconds;
-  private List<Bitmap> jumperSprites;
+
   private int currFrame;
 
   /** Constructs a JumpingGameManager with the specified height, width, game, and activity. */
@@ -287,7 +282,7 @@ public class JumpingGameManager extends GameManager {
       }
     }
 
-    jumper.setAppearance(getNextJumperFrame());
+    jumper.setDescription(getNextJumperFrame());
     // TODO: temporary return true; decide when you want to return true/false
     return true;
   }

@@ -118,20 +118,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     }
   }
 
-  //  /**
-  //   * draws this game view on the canvas
-  //   *
-  //   * @param canvas the canvas on which to draw
-  //   */
-  //  @Override
-  //  public void draw(Canvas canvas) {
-  //    super.draw(canvas);
-  //    if (canvas != null) {
-  //      canvas.drawColor(((JumpingGameManager) gameManager).getSkyColor());
-  //      gameManager.draw(canvas);
-  //
-  //    }
-  //  }
+
 
   /**
    * Handles the jumper's jump when the user taps the screen
@@ -180,7 +167,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     setupPaintText();
     Bitmap appearance;
     String key;
-    // Object appearance = item.getAppearance();
+    // Object appearance = item.getDescription();
     double xCoordinate = item.getXCoordinate();
     double yCoordinate = item.getYCoordinate();
     if (item instanceof Jumper) {
@@ -189,25 +176,11 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     } else {
       key = item.getClass().getSimpleName();
       appearance = getAppearance(key);
-//      if (item instanceof Terrain) {
-//      appearance = terrainBmp;
-//    } else if (item instanceof Obstacle) {
-//      appearance = obstacleBmps.get(0);
-//    } else {
-//      appearance = starBmps.get(0);
     }
-
-    // canvas.drawText((String) appearance, x * TappingGameView.charWidth, y *
-    // TappingGameView.charHeight, paintText);
-    //        } else if (appearance.getClass() == Bitmap.class) {
     canvas.drawBitmap(
         appearance, (int) Math.round(xCoordinate), (int) Math.round(yCoordinate), paintText);
   }
-  //      canvas.drawText(
-  //              (String) appearance,
-  //              (float) xCoordinate * GameView.charWidth,
-  //              (float) yCoordinate * GameView.charHeight,
-  //              paintText);
+
 
   public void extractBmpFiles() {
     //terrainBmp = getNewBitmap(R.drawable.grass, getScreenWidth(), getScreenHeight() / 2);
@@ -221,12 +194,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     int[] terrainFiles = {R.drawable.grass};
     int[] obstacleFiles = {R.drawable.wooden_blocks_1};
     int[] starFiles = {R.drawable.star_6};
-    // int[] starFiles = {R.drawable.glowing_star_1, R.drawable.glowing_star_1,
-    // R.drawable.glowing_star_1,R.drawable.glowing_star_1, R.drawable.glowing_star_1,
-    // R.drawable.glowing_star_2, R.drawable.glowing_star_2, R.drawable.glowing_star_2,
-    // R.drawable.glowing_star_2, R.drawable.glowing_star_2, R.drawable.glowing_star_3,
-    // R.drawable.glowing_star_3, R.drawable.glowing_star_3, R.drawable.glowing_star_3,
-    // R.drawable.glowing_star_3};
     int[] jumperBlueFiles = {
       R.drawable.jumper_blue_1,
       R.drawable.jumper_blue_2,

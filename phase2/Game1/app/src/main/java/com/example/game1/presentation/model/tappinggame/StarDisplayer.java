@@ -16,7 +16,6 @@ public class StarDisplayer extends GameItem {
     super("You current star number: ");
     setPosition(x, y);
     this.numStar = 0;
-    paintText.setColor(Color.CYAN);
   }
 
   public int getNumStar() {
@@ -25,7 +24,7 @@ public class StarDisplayer extends GameItem {
 
   public void setNumStar(int numStar) {
     this.numStar = numStar;
-    setAppearance("You current star number: " + this.numStar);
+    setDescription("You current star number: " + this.numStar);
   }
 
   @Override

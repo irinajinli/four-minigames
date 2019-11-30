@@ -19,7 +19,6 @@ import com.example.game1.presentation.model.applegame.AppleStar;
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
-import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.applegame.AppleGameManager;
 import com.example.game1.presentation.view.common.GameThread;
@@ -117,7 +116,7 @@ public class AppleGameView extends GameView implements View.OnClickListener {
     double yCoordinate = item.getYCoordinate();
     if (item instanceof LivesCounter || item instanceof PointsCounter) { // String appearance
       setupPaintText();
-      Object appearance = item.getAppearance();
+      Object appearance = item.getDescription();
       if (appearance instanceof String) {
         paintText.setColor(Color.WHITE);
       }

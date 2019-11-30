@@ -135,7 +135,7 @@ public class BrickMovementInfo extends MovementInfo {
             stars.add(star);
           }
         } else if (brick.needChangeAppearance()) {
-          // brick.setAppearance(brickDamagedBmp);
+          // brick.setDescription(brickDamagedBmp);
         }
         ball.setYVelocity(Math.abs(ball.getYVelocity()));
       }

@@ -21,7 +21,7 @@ public class TimerDisplayer extends GameItem {
 
   public void setSecondsLeft(int secondsLeft) {
     this.secondsLeft = secondsLeft;
-    setAppearance("Your seconds left: " + this.secondsLeft);
+    setDescription("Your seconds left: " + this.secondsLeft);
   }
 
   @Override

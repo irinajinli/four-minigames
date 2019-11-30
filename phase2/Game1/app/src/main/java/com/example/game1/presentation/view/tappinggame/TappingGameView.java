@@ -203,7 +203,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
           appearance, (int) Math.round(xCoordinate), (int) Math.round(yCoordinate), paintText);
     } else {
       canvas.drawText(
-          (String) item.getAppearance(),
+          (String) item.getDescription(),
           (float) xCoordinate * GameView.charWidth,
           (float) yCoordinate * GameView.charHeight,
           paintText);

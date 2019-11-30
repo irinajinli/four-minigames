@@ -3,7 +3,6 @@ package com.example.game1.presentation.model.applegame;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.applegame.AppleResult;
 import com.example.game1.presentation.presenter.common.MovementInfo;
-import com.example.game1.presentation.presenter.common.Result;
 
 public class LivesCounter extends GameItem {
   /** A counter for points earned. */
@@ -29,7 +28,7 @@ public class LivesCounter extends GameItem {
   /** Removes a life from this LivesCounter. */
   public void subtractLife() {
     livesRemaining -= 1;
-    setAppearance("lives: " + livesRemaining);
+    setDescription("lives: " + livesRemaining);
   }
 
   public AppleResult update(MovementInfo jumpingMovementInfo) {
