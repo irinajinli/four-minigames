@@ -166,43 +166,6 @@ public class BrickGameManager extends GameManager {
     builder.placeItems(this);
 
     setRunning(true);
-
-    // create background according to Customization
-    //    Customization cust = game.getCustomization();
-    //    setTheme(cust.getColourScheme());
-
-    //    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-    //      this.paddleBmps = paddleBlueBmps;
-    //    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-    //      this.paddleBmps = paddleRedBmps;
-    //    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-    //      this.paddleBmps = paddleYellowBmps;
-    //    } else {
-    //      this.paddleBmps = paddleBlueBmps;
-    //    }
-    //
-    //    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH, paddleBmps);
-    //    setPaddlePosition(paddle);
-    //    place(paddle);
-
-    //    bricks = new ArrayList<Brick>();
-    //    int brickWidth = getScreenWidth() / NUM_BRICKS_HORIZONTAL;
-    //    for (int i = 0; i < NUM_BRICK_LAYERS; i++) {
-    //      for (int j = 0; j < NUM_BRICKS_HORIZONTAL; j++) {
-    //        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth, brickBmp);
-    //        newBrick.setPosition(j * brickWidth, i * BRICK_HEIGHT);
-    //        place(newBrick);
-    //        bricks.add(newBrick);
-    //      }
-    //    }
-
-    //    ball = new Ball(BALL_WIDTH, BALL_HEIGHT, ballBmps);
-    //    ball.setPosition(getScreenWidth() / 2, BRICK_HEIGHT * (NUM_BRICK_LAYERS + 1));
-    //    ball.setXVelocity(BALL_VELOCITY_X);
-    //    ball.setYVelocity(BALL_VELOCITY_Y);
-    //    place(ball);
-
-    //    stars = new ArrayList<>();
   }
 
   /**
@@ -238,12 +201,12 @@ public class BrickGameManager extends GameManager {
   @Override
   public boolean update() {
 
-    BrickMovementInfo result = new BrickMovementInfo(ball, bricks, stars, paddle,  gameItems, getScreenHeight(), getScreenWidth(),  starBmps, getNumSeconds());
+    BrickMovementInfo result = new BrickMovementInfo(ball, bricks, stars, paddle,  gameItems, getScreenHeight(), getScreenWidth(),  getNumSeconds());
     result.animate();
 
-    numBroken = result.getNumBroken();
-    numTaps = result.getNumTaps();
-    numStars = result.getNumStars();
+    numBroken += result.getNumBroken();
+    numTaps += result.getNumTaps();
+    numStars += result.getNumStars();
     for (GameItem item: gameItems){
       if (item instanceof AnimatedGameItem)
         ((AnimatedGameItem)item).updatePositionAndVelocity(numSeconds);

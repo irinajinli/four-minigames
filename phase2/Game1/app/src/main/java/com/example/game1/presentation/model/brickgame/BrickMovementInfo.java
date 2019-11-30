@@ -22,8 +22,6 @@ public class BrickMovementInfo extends MovementInfo {
   private Paddle paddle;
   private List<GameItem> gameItems;
 
-  private int screenHeight;
-  private int screenWidth;
   private boolean continueGame;
 
   private int numBroken;
@@ -35,17 +33,13 @@ public class BrickMovementInfo extends MovementInfo {
 
   private final double STAR_PROBABILITY = 0.8;
 
-  public BrickMovementInfo(Ball ball, List<Brick> bricks, List<Star> stars, Paddle paddle, List<GameItem> gameItems, int screenHeight, int screenWidth, List<Bitmap> starBmps, double numSeconds) {
-    super(numSeconds);
+  public BrickMovementInfo(Ball ball, List<Brick> bricks, List<Star> stars, Paddle paddle, List<GameItem> gameItems, int screenHeight, int screenWidth, double numSeconds) {
+    super(numSeconds, screenHeight, screenWidth);
     this.ball = ball;
     this.bricks = bricks;
     this.stars = stars;
     this.paddle = paddle;
     this.gameItems = gameItems;
-    this.screenHeight = screenHeight;
-    this.screenWidth = screenWidth;
-    this.starBmps = starBmps;
-   // this.numSeconds = numSeconds;
     continueGame = true;
   }
 
@@ -56,7 +50,6 @@ public class BrickMovementInfo extends MovementInfo {
     List<GameItem> oldItems = new ArrayList<>();
     // note, right now, stars are the only object that get removed
 
-    //processItemChanges(newItems, oldItems);
 
     // update ball and check if game is over
     if (!updateBall()) {
@@ -90,7 +83,7 @@ public class BrickMovementInfo extends MovementInfo {
   }
 
   private boolean updateBall() {
-    if (ball.getXCoordinate() + ball.getWidth() >= screenWidth || ball.getXCoordinate() < 0) {
+    if (ball.getXCoordinate() + ball.getWidth() >= getScreenWidth() || ball.getXCoordinate() < 0) {
       ball.setXVelocity(-ball.getXVelocity());
     }
     // out of top boundary
@@ -103,7 +96,7 @@ public class BrickMovementInfo extends MovementInfo {
             < paddle.getYCoordinate() + paddle.getHeight() / 2) {
       ball.setYVelocity((-Math.abs(ball.getYVelocity())));
     }
-    if (ball.getYCoordinate() > screenHeight) {
+    if (ball.getYCoordinate() > getScreenHeight()) {
       return false;
     }
     return true;
@@ -155,7 +148,4 @@ public class BrickMovementInfo extends MovementInfo {
     }
   }
 
-//  public double getNumSeconds() {
-//    return numSeconds;
-//  }
 }
