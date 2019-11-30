@@ -9,11 +9,13 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.jumpinggame.Jumper;
+import com.example.game1.presentation.model.jumpinggame.JumpingMovementInfo;
+import com.example.game1.presentation.model.jumpinggame.JumpingResult;
 import com.example.game1.presentation.model.jumpinggame.Obstacle;
 import com.example.game1.presentation.model.jumpinggame.Star;
 import com.example.game1.presentation.model.jumpinggame.Terrain;
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.presenter.common.Result;
+import com.example.game1.presentation.model.common.Result;
 
 import java.util.ArrayList;
 import java.util.List;

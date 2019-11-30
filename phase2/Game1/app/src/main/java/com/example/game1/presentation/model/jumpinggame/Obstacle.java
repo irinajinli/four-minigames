@@ -1,11 +1,7 @@
 package com.example.game1.presentation.model.jumpinggame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.common.MovementInfo;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingMovementInfo;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
-
-import java.util.List;
+import com.example.game1.presentation.model.common.MovementInfo;
 
 public class Obstacle extends AnimatedGameItem {
 

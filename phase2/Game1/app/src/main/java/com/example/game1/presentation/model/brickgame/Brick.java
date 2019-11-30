@@ -1,10 +1,8 @@
 package com.example.game1.presentation.model.brickgame;
 
-import android.graphics.Bitmap;
-
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.brickgame.BrickResult;
-import com.example.game1.presentation.presenter.common.MovementInfo;
+import com.example.game1.presentation.model.common.MovementInfo;
 
 public class Brick extends GameItem {
 

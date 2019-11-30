@@ -1,8 +1,7 @@
 package com.example.game1.presentation.model.jumpinggame;
 
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.MovementInfo;
-import com.example.game1.presentation.presenter.jumpinggame.JumpingResult;
+import com.example.game1.presentation.model.common.MovementInfo;
 
 public class Terrain extends GameItem {
   /** The terrain. */

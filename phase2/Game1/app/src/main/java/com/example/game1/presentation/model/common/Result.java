@@ -1,4 +1,4 @@
-package com.example.game1.presentation.presenter.common;
+package com.example.game1.presentation.model.common;
 
 import com.example.game1.presentation.model.common.GameItem;
 

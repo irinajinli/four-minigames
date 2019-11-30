@@ -6,10 +6,8 @@ import com.example.game1.presentation.model.brickgame.Ball;
 import com.example.game1.presentation.model.brickgame.Brick;
 import com.example.game1.presentation.model.brickgame.Paddle;
 import com.example.game1.presentation.model.brickgame.Star;
-import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.MovementInfo;
-import com.example.game1.presentation.presenter.common.Result;
+import com.example.game1.presentation.model.common.MovementInfo;
 
 import java.util.ArrayList;
 import java.util.List;

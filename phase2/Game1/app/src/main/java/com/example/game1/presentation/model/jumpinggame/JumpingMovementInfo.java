@@ -1,8 +1,8 @@
-package com.example.game1.presentation.presenter.jumpinggame;
+package com.example.game1.presentation.model.jumpinggame;
 
 import com.example.game1.presentation.model.jumpinggame.Jumper;
 import com.example.game1.presentation.model.jumpinggame.Terrain;
-import com.example.game1.presentation.presenter.common.MovementInfo;
+import com.example.game1.presentation.model.common.MovementInfo;
 
 public class JumpingMovementInfo extends MovementInfo {
 

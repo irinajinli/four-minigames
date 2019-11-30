@@ -8,13 +8,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.Statistics;
 import com.example.game1.presentation.model.applegame.Apple;
+import com.example.game1.presentation.model.applegame.AppleMovementInfo;
+import com.example.game1.presentation.model.applegame.AppleResult;
 import com.example.game1.presentation.model.applegame.AppleStar;
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.presenter.common.Result;
+import com.example.game1.presentation.model.common.Result;
 
 import java.util.ArrayList;
 import java.util.List;

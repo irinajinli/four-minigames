@@ -2,9 +2,7 @@ package com.example.game1.presentation.model.brickgame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.presenter.brickgame.BrickResult;
-import com.example.game1.presentation.presenter.common.MovementInfo;
-
-import java.util.List;
+import com.example.game1.presentation.model.common.MovementInfo;
 
 public class Paddle extends AnimatedGameItem {
   /** The jumper. */

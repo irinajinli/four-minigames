@@ -1,8 +1,7 @@
 package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.applegame.AppleResult;
-import com.example.game1.presentation.presenter.common.MovementInfo;
+import com.example.game1.presentation.model.common.MovementInfo;
 
 /** A counter for points earned. */
 public class PointsCounter extends GameItem {

@@ -1,8 +1,8 @@
 package com.example.game1.presentation.model.tappinggame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.common.MovementInfo;
-import com.example.game1.presentation.presenter.common.Result;
+import com.example.game1.presentation.model.common.MovementInfo;
+import com.example.game1.presentation.model.common.Result;
 
 /** Runner of the tapping game */
 public class Runner extends AnimatedGameItem {

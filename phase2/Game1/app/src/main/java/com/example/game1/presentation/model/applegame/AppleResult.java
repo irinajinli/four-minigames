@@ -1,6 +1,6 @@
-package com.example.game1.presentation.presenter.applegame;
+package com.example.game1.presentation.model.applegame;
 
-import com.example.game1.presentation.presenter.common.Result;
+import com.example.game1.presentation.model.common.Result;
 
 public class AppleResult extends Result {
 

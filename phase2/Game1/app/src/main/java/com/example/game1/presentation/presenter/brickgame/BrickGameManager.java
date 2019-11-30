@@ -14,9 +14,7 @@ import com.example.game1.presentation.model.brickgame.Star;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
-import com.example.game1.presentation.presenter.common.Result;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BrickGameManager extends GameManager {

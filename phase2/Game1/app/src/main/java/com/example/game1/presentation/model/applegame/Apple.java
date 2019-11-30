@@ -1,12 +1,8 @@
 package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.applegame.AppleMovementInfo;
-import com.example.game1.presentation.presenter.applegame.AppleResult;
-import com.example.game1.presentation.presenter.common.MovementInfo;
-import com.example.game1.presentation.presenter.common.Result;
-
-import java.util.List;
+import com.example.game1.presentation.model.common.MovementInfo;
+import com.example.game1.presentation.model.common.Result;
 
 public class Apple extends AnimatedGameItem {
 
