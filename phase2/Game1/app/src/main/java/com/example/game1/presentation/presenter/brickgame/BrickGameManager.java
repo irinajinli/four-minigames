@@ -31,7 +31,6 @@ public class BrickGameManager extends GameManager {
   public static final int BALL_HEIGHT = 80;
   public static final double BALL_VELOCITY_X = 900;
   public static final double BALL_VELOCITY_Y = 900;
-  public static final double STAR_PROBABILITY = 0.8;
   private final int DARK_COLOR = Color.rgb(83, 92, 104);
   private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
   /**
@@ -239,127 +238,26 @@ public class BrickGameManager extends GameManager {
   /** updates all items in this game */
   @Override
   public boolean update() {
-    // newItems list stores GameItem to be added to gameItems
-    List<GameItem> newItems = new ArrayList<>();
-    // oldItem list stores GameItem to be removed from gameItems
-    List<GameItem> oldItems = new ArrayList<>();
-    // note, right now, stars are the only object that get removed
 
-    processItemChanges(newItems, oldItems);
+    BrickMovementInfo result = new BrickMovementInfo(ball, bricks, stars, paddle,  gameItems, getScreenHeight(), getScreenWidth(),  starBmps, getNumSeconds());
+    result.animate();
 
-    // update ball and check if game is over
-    if (!updateBall()) {
-      return false;
+    numBroken = result.getNumBroken();
+    numTaps = result.getNumTaps();
+    numStars = result.getNumStars();
+    for (GameItem item: gameItems){
+      if (item instanceof AnimatedGameItem)
+        ((AnimatedGameItem)item).updatePositionAndVelocity(numSeconds);
     }
 
-    updateStars(oldItems);
-    updateBricks(oldItems);
 
-    for (GameItem newItem : newItems) {
-      place(newItem);
-    }
-
-    removeOldItems(oldItems);
-
-    return true;
-  }
-
-  private boolean updateBall() {
-    if (ball.getXCoordinate() + ball.getWidth() >= getScreenWidth() || ball.getXCoordinate() < 0) {
-      ball.setXVelocity(-ball.getXVelocity());
-    }
-    // out of top boundary
-    if (ball.getYCoordinate() < 0) {
-      ball.setYVelocity(Math.abs(ball.getYVelocity()));
-    }
-    // overlapping and not more than halfway through
-    if (ball.isOverlapping(paddle)
-        && ball.getYCoordinate() + ball.getHeight()
-            < paddle.getYCoordinate() + paddle.getHeight() / 2) {
-      ball.setYVelocity((-Math.abs(ball.getYVelocity())));
-    }
-    if (ball.getYCoordinate() > getScreenHeight()) {
+    if (!result.continueGame()){
       gameOver();
-      return false;
     }
-    return true;
+    return result.continueGame();
   }
 
-  private void updateStars(List<GameItem> oldItems) {
-    for (Star star : stars) {
-      if (ball.isOverlapping(star)) {
-        oldItems.add(star);
-        numStars += 1;
-      }
-    }
-  }
 
-  public void updateBricks(List<GameItem> oldItems) {
-    for (Brick brick : bricks) {
-      if (ball.isOverlapping(brick)) {
-        boolean broken = brick.damageBrick();
-        if (broken) {
-          oldItems.add(brick);
-          numBroken++;
-          if (Math.random() > STAR_PROBABILITY) {
-            Star star = new Star(STAR_WIDTH, STAR_HEIGHT, starBmps);
-            star.setPosition(
-                brick.getXCoordinate() + brick.getWidth() / 2 - STAR_WIDTH / 2,
-                brick.getYCoordinate());
-            place(star);
-            stars.add(star);
-          }
-        } else if (brick.needChangeAppearance()) {
-          brick.setAppearance(brickDamagedBmp);
-        }
-        ball.setYVelocity(Math.abs(ball.getYVelocity()));
-      }
-    }
-  }
-
-  public void processItemChanges(List<GameItem> newItems, List<GameItem> oldItems) {
-    Result result;
-
-    List<GameItem> gameItems = getGameItems();
-    BrickMovementInfo brickImportInfo =
-        new BrickMovementInfo(
-            getScreenHeight(),
-            getScreenWidth(),
-            this.ball,
-            this.bricks,
-            this.paddle,
-            getNumSeconds());
-
-    for (GameItem item : gameItems) {
-      if (item instanceof AnimatedGameItem) {
-        result = ((AnimatedGameItem) item).animate(brickImportInfo);
-        // process result
-        BrickResult brickResult = (BrickResult) result;
-
-        if (brickResult.getNewItems() != null) {
-          for (GameItem newItem : brickResult.getNewItems()) {
-            newItems.add(newItem);
-          }
-        }
-        if (brickResult.getOldItems() != null) {
-          for (GameItem oldItem : brickResult.getOldItems()) {
-            oldItems.add(oldItem);
-          }
-        }
-      }
-    }
-  }
-
-  public void removeOldItems(List<GameItem> oldItems) {
-    for (GameItem oldItem : oldItems) {
-      removeItem(oldItem);
-      if (oldItem instanceof Brick) {
-        bricks.remove(oldItem);
-      } else if (oldItem instanceof Star) {
-        stars.remove(oldItem);
-      }
-    }
-  }
 
   /** Handles the jumper's jump when the screen is tapped */
   public void onTouchEvent(double xCoordinate) {

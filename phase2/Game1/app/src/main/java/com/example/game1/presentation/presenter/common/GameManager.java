@@ -8,6 +8,7 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -21,7 +22,7 @@ public abstract class GameManager extends Observable {
   /* The state of this GameManager. */
   private State state;
   /* The list of GameItems in this GameManager. */
-  private ArrayList<GameItem> gameItems = new ArrayList<>();
+  protected List<GameItem> gameItems = new ArrayList<>();
   /* The width of the game display. */
   private int width;
   /* The height of the game display. */
@@ -40,7 +41,7 @@ public abstract class GameManager extends Observable {
   }
 
   /** Returns gameItems. */
-  public ArrayList<GameItem> getGameItems() {
+  public List<GameItem> getGameItems() {
     return gameItems;
   }
 
