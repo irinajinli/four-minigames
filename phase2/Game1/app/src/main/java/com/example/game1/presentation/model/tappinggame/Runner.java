@@ -21,13 +21,7 @@ public class Runner extends AnimatedGameItem {
     super(xCoordinate, yCoordinate, width, height);
   }
 
-//  public boolean isCanRun() {
-//    return canRun;
-//  }
-//
-//  public void setCanRun(boolean canRun) {
-//    this.canRun = canRun;
-//  }
+
 
   /** Constructs a runner at the specified cursor location (x, y). */
 
@@ -50,9 +44,7 @@ public class Runner extends AnimatedGameItem {
           < (tappingMovementInfo.getScreenWidth() - getWidth())) {
         double newX = getXCoordinate() + getXVelocity();
         setPosition(newX, getYCoordinate());
-//        result.setCanRun(true);
       } else {
-//        result.setCanRun(true);
       }
 
     }

@@ -7,6 +7,9 @@ public abstract class GameItem {
 //  public Paint paintText = new Paint();
   /** Description of this item. */
   private String description;
+
+
+
   /** the width of this item */
   private int width;
   /** the height of this item */
