@@ -145,7 +145,7 @@ public class ScoreboardActivity extends AppCompatActivity {
                 userManager.getCurrentUser().getCustomization().getColourScheme().toString())) {
             setTheme(android.R.style.Theme_Material_Light_NoActionBar);
             getSupportActionBar().setTitle(Html.fromHtml(
-                    "<font color='#ffffff'>Game1</font>"));
+                    "<font color='#ffffff'>" + getString(R.string.app_name) + "</font>"));
         }
     }
 
