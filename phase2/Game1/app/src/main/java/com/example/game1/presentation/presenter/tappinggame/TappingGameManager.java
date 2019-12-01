@@ -17,8 +17,8 @@ import java.util.List;
 
 public class TappingGameManager extends GameManager {
 
-  public static final double RUNNER_WIDTH_MULTIPLIER = 0.2;
-  public static final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
+  private final double RUNNER_WIDTH_MULTIPLIER = 0.2;
+  private final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
   private int runnerWidth;
   private int runnerHeight;
 
@@ -29,11 +29,7 @@ public class TappingGameManager extends GameManager {
   public StarDisplayer starDisplayer;
   public SpeedDisplayer speedDisplayer;
   private int secondsLeft;
-  private  int tappingSpeed;
-
-
-//  private int numTaps;
-
+  private int tappingSpeed;
 
   /** Constructs a TappingGameManager with the specified height, width, game, and activity. */
   public TappingGameManager(int height, int width, Game game, AppCompatActivity activity) {
@@ -42,26 +38,26 @@ public class TappingGameManager extends GameManager {
 
 
 
-
-
   /** execute animation on each item in myFishTank and update myFishTank accordingly. */
   public boolean update() {
-    //Result result;
+    // Result result;
     List<GameItem> Items = getGameItems();
     TappingMovementInfo tappingMovementInfo =
-            new TappingMovementInfo(
-                    getScreenHeight(), getScreenWidth(), tappingSpeed, secondsLeft, getNumTaps(), getNumSeconds());
+        new TappingMovementInfo(
+            getScreenHeight(),
+            getScreenWidth(),
+            tappingSpeed,
+            secondsLeft,
+            getNumTaps(),
+            getNumSeconds());
     for (GameItem item : Items) {
       item.update(tappingMovementInfo);
-      }
+    }
     // TODO: temporary return true; decide when you want to return true/false
     return true;
   }
 
   public void createGameItems() {
-
-
-
     this.tappingCircle = new TappingCircle(0.0, 0.0);
     place(tappingCircle);
     this.runner = new Runner(0.0, 1550.0, runnerWidth, runnerHeight);
@@ -85,7 +81,6 @@ public class TappingGameManager extends GameManager {
     super.gameOver();
   }
 
-
   public void setSecondsLeft(int secondsLeft) {
     this.secondsLeft = secondsLeft;
   }
@@ -94,10 +89,17 @@ public class TappingGameManager extends GameManager {
     this.tappingSpeed = tappingSpeed;
   }
 
-    public void setRunnerWidthAndHeight(int runnerWidth, int runnerHeight){
+  public void setRunnerWidthAndHeight(int runnerWidth, int runnerHeight) {
     this.runnerWidth = runnerWidth;
     this.runnerHeight = runnerHeight;
 
   }
 
+  public double getRunnerWidthMultiplier() {
+    return RUNNER_WIDTH_MULTIPLIER;
+  }
+
+  public double getRunnerHeightMultiplier() {
+    return RUNNER_HEIGHT_MULTIPLIER;
+  }
 }

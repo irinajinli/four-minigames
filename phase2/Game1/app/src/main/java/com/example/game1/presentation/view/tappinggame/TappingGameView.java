@@ -36,10 +36,34 @@ public class TappingGameView extends GameView implements View.OnClickListener {
   private Bitmap tappingCircleBmp;
   private List<Bitmap> yellowPugs;
   private List<Bitmap> blueBirds;
-  private List<Bitmap> redFishs;
+  private List<Bitmap> redFishes;
   private OnClickListener listener;
   private CountDownTimer myTimer;
   private int currentFrameRunner = 0;
+
+  // images used for game objects
+  private int[] YELLOW_PUG_FILES = {
+          R.drawable.dog_yellow_1,
+          R.drawable.dog_yellow_2,
+          R.drawable.dog_yellow_3,
+          R.drawable.dog_yellow_4,
+          R.drawable.dog_yellow_5,
+          R.drawable.dog_yellow_6,
+          R.drawable.dog_yellow_7,
+          R.drawable.dog_yellow_8
+  };
+  private int[] BLUE_BIRD_FILES = {
+          R.drawable.bird_blue_1, R.drawable.bird_blue_2, R.drawable.bird_blue_3, R.drawable.bird_blue_4
+  }; // R.drawable.blue_bird};
+  private int[] RED_FISHES_FILES = {
+          R.drawable.fish_red_1,
+          R.drawable.fish_red_2,
+          R.drawable.fish_red_3,
+          R.drawable.fish_red_4,
+          R.drawable.fish_red_5,
+          R.drawable.fish_red_6
+  };
+
   /**
    * Create a new fish tank in the context environment.
    *
@@ -185,46 +209,26 @@ public class TappingGameView extends GameView implements View.OnClickListener {
   }
 
   public void extractBmpFiles() {
+    TappingGameManager tappingGameManager = (TappingGameManager)gameManager;
     tappingCircleBmp = getNewBitmap(R.drawable.circle, getScreenWidth(), getScreenHeight() / 2);
-    int runnerWidth = (int) (getScreenWidth() * TappingGameManager.RUNNER_WIDTH_MULTIPLIER);
-    int runnerHeight = (int) (getScreenWidth() * TappingGameManager.RUNNER_HEIGHT_MULTIPLIER);
+    int runnerWidth = (int) (getScreenWidth() *tappingGameManager.getRunnerWidthMultiplier());
+    int runnerHeight = (int) (getScreenWidth() * tappingGameManager.getRunnerHeightMultiplier());
     if (gameManager instanceof TappingGameManager){
       ((TappingGameManager) gameManager).setRunnerWidthAndHeight(runnerWidth, runnerHeight);
     }
-    int[] yellowPugFiles = {
-      R.drawable.dog_yellow_1,
-      R.drawable.dog_yellow_2,
-      R.drawable.dog_yellow_3,
-      R.drawable.dog_yellow_4,
-      R.drawable.dog_yellow_5,
-      R.drawable.dog_yellow_6,
-      R.drawable.dog_yellow_7,
-      R.drawable.dog_yellow_8
-    };
-    int[] blueBirdFiles = {
-      R.drawable.bird_blue_1, R.drawable.bird_blue_2, R.drawable.bird_blue_3, R.drawable.bird_blue_4
-    };
-    int[] redFishsFiles = {
-      R.drawable.fish_red_1,
-      R.drawable.fish_red_2,
-      R.drawable.fish_red_3,
-      R.drawable.fish_red_4,
-      R.drawable.fish_red_5,
-      R.drawable.fish_red_6
-    };
 
     yellowPugs = new ArrayList<>();
     blueBirds = new ArrayList<>();
-    redFishs = new ArrayList<>();
+    redFishes = new ArrayList<>();
 
-    generateAnimatedBmps(yellowPugs, yellowPugFiles, runnerWidth, runnerHeight);
-    generateAnimatedBmps(blueBirds, blueBirdFiles, runnerWidth, runnerHeight);
-    generateAnimatedBmps(redFishs, redFishsFiles, runnerWidth, runnerHeight);
+    generateAnimatedBmps(yellowPugs, YELLOW_PUG_FILES, runnerWidth, runnerHeight);
+    generateAnimatedBmps(blueBirds, BLUE_BIRD_FILES, runnerWidth, runnerHeight);
+    generateAnimatedBmps(redFishes, RED_FISHES_FILES, runnerWidth, runnerHeight);
 
     addGameItemAppearance("TappingCircle", tappingCircleBmp);
     addGameItemAppearances("RunnerYellow", yellowPugs);
     addGameItemAppearances("RunnerBlue", blueBirds);
-    addGameItemAppearances("RunnerRed", redFishs);
+    addGameItemAppearances("RunnerRed", redFishes);
   }
 
   public void setupPaintText() {

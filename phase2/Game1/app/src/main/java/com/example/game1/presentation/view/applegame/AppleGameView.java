@@ -40,6 +40,14 @@ public class AppleGameView extends GameView implements View.OnClickListener {
   private final int BACKGROUND_COLOR_LIGHT = Color.LTGRAY;
 
   private OnClickListener listener;
+  
+  // image files for game objects
+  private final int[] APPLE_FILES = {R.drawable.apple_red};
+  private final int[] STAR_FILES = {R.drawable.star_6};
+  private final int[] BASKET_FILES = {R.drawable.basket_red};
+  private final int[] BASKET_BLUE_FILES = {R.drawable.basket_blue};
+  private final int[] basketYellowFiles = {R.drawable.basket_yellow};
+  private final int[] BASKET_RED_FILES = {R.drawable.basket_red};
 
   /** Construct an AppleGameView with the specified Context. */
   public AppleGameView(Context context) {
@@ -141,13 +149,6 @@ public class AppleGameView extends GameView implements View.OnClickListener {
   }
 
   public void extractBmpFiles() {
-    int[] appleFiles = {R.drawable.apple_red};
-    int[] starFiles = {R.drawable.star_6};
-    int[] basketFiles = {R.drawable.basket_red};
-    int[] basketBlueFiles = {R.drawable.basket_blue};
-    int[] basketYellowFiles = {R.drawable.basket_yellow};
-    int[] basketRedFiles = {R.drawable.basket_red};
-
     // animated items require a list of bitmaps for each of their frames
     appleBmps = new ArrayList<Bitmap>();
     starBmps = new ArrayList<Bitmap>();
@@ -158,14 +159,14 @@ public class AppleGameView extends GameView implements View.OnClickListener {
     basketRedBmps = new ArrayList<Bitmap>();
 
     generateAnimatedBmps(
-        appleBmps, appleFiles, AppleGameManager.APPLE_WIDTH, AppleGameManager.APPLE_HEIGHT);
+        appleBmps, APPLE_FILES, AppleGameManager.APPLE_WIDTH, AppleGameManager.APPLE_HEIGHT);
     generateAnimatedBmps(
-        starBmps, starFiles, AppleGameManager.STAR_WIDTH, AppleGameManager.STAR_HEIGHT);
+        starBmps, STAR_FILES, AppleGameManager.STAR_WIDTH, AppleGameManager.STAR_HEIGHT);
     generateAnimatedBmps(
-        basketBmps, basketFiles, AppleGameManager.BASKET_WIDTH, AppleGameManager.BASKET_HEIGHT);
+        basketBmps, BASKET_FILES, AppleGameManager.BASKET_WIDTH, AppleGameManager.BASKET_HEIGHT);
     generateAnimatedBmps(
         basketBlueBmps,
-        basketBlueFiles,
+        BASKET_BLUE_FILES,
         AppleGameManager.BASKET_WIDTH,
         AppleGameManager.BASKET_HEIGHT);
     generateAnimatedBmps(
@@ -175,7 +176,7 @@ public class AppleGameView extends GameView implements View.OnClickListener {
         AppleGameManager.BASKET_HEIGHT);
     generateAnimatedBmps(
         basketRedBmps,
-        basketRedFiles,
+        BASKET_RED_FILES,
         AppleGameManager.BASKET_WIDTH,
         AppleGameManager.BASKET_HEIGHT);
 
