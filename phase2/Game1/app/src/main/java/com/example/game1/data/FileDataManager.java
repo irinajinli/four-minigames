@@ -28,7 +28,7 @@ import java.util.Scanner;
  */
 public class FileDataManager implements DataManagerIntf {
 
-  /* For logging output. */
+  /* Keys for writing to and reading from the file */
   private static final String USERNAME = "UserName";
   private static final String PASSWORD = "Password";
   private static final String CHARAC_COLOUR = "CharacterColour";
@@ -46,56 +46,15 @@ public class FileDataManager implements DataManagerIntf {
   private static final String LAST_COMP_LVL = "LastCompletedLevel";
   private static final String TAG = "Data Manager";
 
-  /* The file to write and read. */
+  /* The file to write and read */
   private static final String DATA_FILE = "game_data.txt";
-  //    private static final String DATA_FILE = "migrationTest1.txt";
-  //    private static final String DATA_FILE = "scoreboardTest1.txt";
 
-  /* The map that stores all the users. */
+  /* The map that stores all the users */
   private Map<String, User> userMap = new HashMap<>();
 
   /** Constructs a DataManager */
   public FileDataManager() {
     readFromFile();
-
-    testPrintTopIndividualStatistics(); // TESTING PURPOSES
-  }
-
-  private void testPrintTopIndividualStatistics() {
-    // Test prints
-    System.out.println("------------------------ SORT BY POINTS ------------------------");
-    List<User> lst = sortUsersByPoints();
-    for (User user : lst) {
-      System.out.println(
-          "Username: "
-              + user.getUserName()
-              + " Points: "
-              + user.getTopIndividualStats().getPoints());
-    }
-    System.out.println("------------------------ SORT BY STARS ------------------------");
-    lst = sortUsersByStars();
-    for (User user : lst) {
-      System.out.println(
-          "Username: " + user.getUserName() + " Stars: " + user.getTopIndividualStats().getStars());
-    }
-    System.out.println("------------------------ SORT BY TAPS ------------------------");
-    lst = sortUsersByTaps();
-    for (User user : lst) {
-      System.out.println(
-          "Username: " + user.getUserName() + " Taps: " + user.getTopIndividualStats().getTaps());
-    }
-    System.out.println("------------------------ SORT BY SCORE ------------------------");
-    lst = sortUsersByScore();
-    for (User user : lst) {
-      System.out.println(
-          "Username: "
-              + user.getUserName()
-              + " Score: "
-              + ScoreCalculator.calculateScore(
-                  user.getStatsOfTopGame().getPoints(),
-                  user.getStatsOfTopGame().getStars(),
-                  user.getStatsOfTopGame().getTaps()));
-    }
   }
 
   /** Writes all the users to DATA_FILE. */
@@ -104,9 +63,6 @@ public class FileDataManager implements DataManagerIntf {
 
     try {
       String filePath = AppManager.getInstance().getContext().getFilesDir().getPath() + DATA_FILE;
-      System.out.println("*****************************************");
-      System.out.println(filePath);
-
       File file = new File(filePath);
       FileOutputStream outStream = new FileOutputStream(file);
       out = new PrintWriter(outStream);
@@ -134,18 +90,12 @@ public class FileDataManager implements DataManagerIntf {
       out.println(CURR_GAME_TAPS + ":" + user.getStatsOfCurrentGame().getTaps());
       out.println(LAST_COMP_LVL + ":" + user.getLastCompletedLevel());
     }
-
     out.close();
   }
 
   /** Reads the information in DATA_FILE. */
   private void readFromFile() {
-    StringBuffer buffer = new StringBuffer(); // TESTING PURPOSES
     String filePath = AppManager.getInstance().getContext().getFilesDir().getPath() + DATA_FILE;
-
-    System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-    System.out.println("PATH: " + filePath);
-
     userMap.clear();
 
     try (Scanner scanner = new Scanner(new FileInputStream(filePath))) {
@@ -159,7 +109,6 @@ public class FileDataManager implements DataManagerIntf {
           if (USERNAME.equals(key)) {
             if (line.length > 1) {
               value = line[1];
-              buffer.append(key + ": " + value).append('\n'); // TESTING PURPOSES
               user = new User(value, "");
               userMap.put(value.toLowerCase(), user);
             } else {
@@ -167,7 +116,6 @@ public class FileDataManager implements DataManagerIntf {
             }
           } else if (user != null && line.length > 1) {
             value = line[1];
-            buffer.append(key + ": " + value).append('\n'); // TESTING PURPOSES
             if (PASSWORD.equals(key)) {
               user.setPassword(value);
             } else if (CHARAC_COLOUR.equals(key)) {
@@ -225,13 +173,6 @@ public class FileDataManager implements DataManagerIntf {
       e.printStackTrace();
       Log.e(TAG, "Error encountered trying to open file for reading: " + DATA_FILE);
     }
-
-    System.out.println("----------------------------------------");
-    System.out.println("----------------------------------------");
-    System.out.println("----------------------------------------");
-    System.out.println("----------------------------------------");
-    System.out.println("----------------------------------------");
-    System.out.println(buffer.toString()); // TESTING PURPOSES
   }
 
   /** Adds the given user to userMap and write userMap to file. */
@@ -239,21 +180,12 @@ public class FileDataManager implements DataManagerIntf {
     userMap.put(user.getUserName().toLowerCase(), user);
     Collection<User> users = userMap.values();
     writeToFile(users);
-
-    // TESTING PURPOSES (to see if the user was actually added to userMap and written to file
-    // correctly
-    readFromFile();
   }
 
   /** Adds the given user's updated information to userMap and write userMap to file. */
   public void updateUser(User user) {
-    // Update the statistics of the user's top game
     updateUsersTopGameStats(user);
-
-    // Update the user's top individual statistics
     updateUsersTopIndStats(user);
-
-    // Add the user to userMap and write userMap to file
     createUser(user);
   }
 
@@ -270,12 +202,12 @@ public class FileDataManager implements DataManagerIntf {
 
   /** Updates the given user's top individual statistics. */
   private void updateUsersTopIndStats(User user) {
-    // Get the user's current statistics
     int currentPoints = user.getStatsOfCurrentGame().getPoints();
     int currentStars = user.getStatsOfCurrentGame().getStars();
     int currentTaps = user.getStatsOfCurrentGame().getTaps();
 
-    // Update the user's top individual statistics
+    // If the user's current individual statistic is higher than their top individual statistic,
+    // update it
     if (currentPoints > user.getTopIndividualStats().getPoints()) {
       user.getTopIndividualStats().setPoints(currentPoints);
     }
@@ -292,7 +224,7 @@ public class FileDataManager implements DataManagerIntf {
     return userMap.get(userName);
   }
 
-  /** Returns the given's user's top score. */
+  /** Returns the given user's top score. */
   public int getTopScore(User user) {
     return ScoreCalculator.calculateScore(
         user.getStatsOfTopGame().getPoints(),
@@ -300,7 +232,7 @@ public class FileDataManager implements DataManagerIntf {
         user.getStatsOfTopGame().getTaps());
   }
 
-  /** Returns the given's user's top score. */
+  /** Returns the given user's top score. */
   public int getCurrentScore(User user) {
     return ScoreCalculator.calculateScore(
         user.getStatsOfCurrentGame().getPoints(),
