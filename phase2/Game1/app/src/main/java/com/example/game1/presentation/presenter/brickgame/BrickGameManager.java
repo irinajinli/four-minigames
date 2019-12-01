@@ -220,10 +220,7 @@ public class BrickGameManager extends GameManager {
     numTaps += brickMovementInfo.getNumTaps();
     numStars += brickMovementInfo.getNumStars();
     for (GameItem item: gameItems){
-      //item.update(brickMovementInfo);
-      if (item instanceof AnimatedGameItem){
-        ((AnimatedGameItem)item).updatePositionAndVelocity(numSeconds);
-      }
+      item.update(brickMovementInfo);
     }
     int b = 0;
     for (double[] coordinates: brickMovementInfo.getStarsToAdd()){
