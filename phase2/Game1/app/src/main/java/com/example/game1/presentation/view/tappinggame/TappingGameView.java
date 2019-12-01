@@ -25,8 +25,8 @@ import java.util.List;
 
 public class TappingGameView extends GameView implements View.OnClickListener {
 
-  private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
-  private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
+  private final int BACKGROUND_COLOR_DARK = Color.BLACK;
+  private final int BACKGROUND_COLOR_LIGHT = Color.GRAY;
   private final double RUNNER_WIDTH_MULTIPLIER = 0.2;
   private final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
   protected int numTaps;

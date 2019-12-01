@@ -22,21 +22,19 @@ import java.util.List;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
-  private int appleWidth = 100;
-  private int appleHeight = 100;
-  private int starWidth = 80;
-  private int starHeight = 80;
-  private int basketWidth = 100;
-  private int basketHeight = 100;
+  private int appleWidth;
+  private int appleHeight;
+  private int starWidth;
+  private int starHeight;
+  private int basketWidth;
+  private int basketHeight;
   /** A GameManager for an Apple minigame. */
 
 
   private double numSeconds;
-
   private Basket basket;
   private PointsCounter points;
   private LivesCounter livesCounter;
-//  private int numTaps;
   private int numCaughtStars = 0;
 
 
@@ -58,10 +56,6 @@ public class AppleGameManager extends GameManager {
   }
 
 
-//  public int getNumTaps() {
-//    return numTaps;
-//  }
-
 
 
   public void setNumSeconds(double numSeconds) {
@@ -71,6 +65,7 @@ public class AppleGameManager extends GameManager {
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
     AppleItemsBuilder builder = new AppleItemsBuilder(game.getCustomization());
+    builder.setBasketSize(basketWidth, basketHeight);
     builder.createPointsCounter();
     builder.createLivesCounter();
     builder.createBasket();
@@ -89,49 +84,29 @@ public class AppleGameManager extends GameManager {
   /** Moves, removes, and catches GameItems. */
   public boolean update() {
     // check if the game is over
-    if (livesCounter.getLivesRemaining() <= 0) {
-      gameOver();
-      return false;
-    }
-
+    boolean hasLives =checkLivesRemaining();
     // oldItems list stores GameItem to be removed from gameItems
     List<GameItem> oldItems = new ArrayList<>();
-    // note, right now, stars are the only object that get removed
-    Result result;
 
-    List<GameItem> gameItems = getGameItems();
     AppleMovementInfo appleMovementInfo =
         new AppleMovementInfo(getScreenWidth(), getScreenHeight(), basket, getNumSeconds());
-    for (GameItem item : gameItems) {
-      result = item.update(appleMovementInfo);
+    for (GameItem item : getGameItems()) {
+      Result result = item.update(appleMovementInfo);
 
       if (result.getOldItems() != null) {
         for (GameItem oldItem : result.getOldItems()) {
           oldItems.add(oldItem);
         }
       }
-
       if (result instanceof AppleResult) {
-        AppleResult ar = (AppleResult) result;
-        if (ar.isAppleCollected()) {
-          catchApple();
-        }
-        if (ar.isAppleDropped()) {
-          livesCounter.subtractLife();
-        }
-        if (ar.isStarCollected()){
-          catchStar();
-        }
+        updateStatistics((AppleResult)result);
       }
-
     }
+    removeOldItems(oldItems);
 
-    for (GameItem oldItem : oldItems) {
-      removeItem(oldItem);
-    }
     spawnNew();
 
-    return true;
+    return hasLives;
   }
 
   private void catchApple() {
@@ -163,14 +138,14 @@ public class AppleGameManager extends GameManager {
   }
 
   private void spawnStar(int spawnCoordinate) {
-    AppleStar nextItem = new AppleStar(80, 80);
+    AppleStar nextItem = new AppleStar(starWidth, starHeight);
     nextItem.setYVelocity(250);
     place(nextItem);
     nextItem.setPosition(spawnCoordinate, 0);
   }
 
   private void spawnApple(int spawnCoordinate) {
-    Apple nextItem = new Apple(80, 80);
+    Apple nextItem = new Apple(appleWidth, appleHeight);
     nextItem.setYVelocity(350);
     place(nextItem);
     nextItem.setPosition(spawnCoordinate, 0);
@@ -197,4 +172,31 @@ public class AppleGameManager extends GameManager {
     this.basketWidth = basketWidth;
     this.basketHeight = basketHeight;
   }
+
+  public boolean checkLivesRemaining(){
+    if (livesCounter.getLivesRemaining() <= 0) {
+      gameOver();
+      return false;
+    }
+    return true;
+  }
+
+  public void removeOldItems(List<GameItem> oldItems){
+    for (GameItem oldItem : oldItems) {
+      removeItem(oldItem);
+    }
+  }
+
+  public void updateStatistics(AppleResult result){
+    if (result.isAppleCollected()) {
+      catchApple();
+    }
+    if (result.isAppleDropped()) {
+      livesCounter.subtractLife();
+    }
+    if (result.isStarCollected()){
+      catchStar();
+    }
+  }
+
 }

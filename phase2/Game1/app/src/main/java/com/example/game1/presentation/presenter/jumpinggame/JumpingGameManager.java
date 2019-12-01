@@ -35,9 +35,8 @@ public class JumpingGameManager extends GameManager {
   private double cameraVelocityX = 450;
   private int numJumped = 0;
   private int numStars = 0;
-  private int numTaps = 0;
 
-  private boolean isRunning;
+//  private boolean isRunning;
 
   private double numSeconds;
 
@@ -66,23 +65,6 @@ public class JumpingGameManager extends GameManager {
     this.numStars = numStars;
   }
 
-  public int getNumTaps() {
-    return numTaps;
-  }
-
-  public void setNumTaps(int numTaps) {
-    this.numTaps = numTaps;
-  }
-
-
-  /**
-   * Sets whether or not this game is running
-   *
-   * @param isRunning whether or not this game is running
-   */
-  public void setRunning(boolean isRunning) {
-    this.isRunning = isRunning;
-  }
 
   public double getNumSeconds() {
     return numSeconds;
@@ -146,10 +128,10 @@ public class JumpingGameManager extends GameManager {
     List<GameItem> newItems = new ArrayList<>();
     // oldItems list stores GameItem to be removed from gameItems
     List<GameItem> oldItems = new ArrayList<>();
+    boolean gameConinue = true;
     JumpingMovementInfo jumpingMovementInfo =
         new JumpingMovementInfo(
             getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumSeconds());
-
     for (GameItem item : getGameItems()) {
       Result result = item.update(jumpingMovementInfo);
       JumpingResult jumpingResult = (JumpingResult) result;
@@ -158,13 +140,13 @@ public class JumpingGameManager extends GameManager {
           oldItems.add(oldItem);
         }
       }
-      isRunning = updateStatistics(jumpingResult);
+      gameConinue = updateStatistics(jumpingResult);
       if (jumpingResult.isNeedNewStar()) {
         newItems.add(generateNewStar());
       }
     }
     processLists(oldItems, newItems);
-    return isRunning;
+    return gameConinue;
   }
 
   /** Handles the jumper's jump when teh screen is tapped */
@@ -181,8 +163,8 @@ public class JumpingGameManager extends GameManager {
     // set points here
     game.getStatistics().setPoints(numJumped);
     game.getStatistics().setStars(numStars);
-    game.getStatistics().setTaps(numTaps);
-    System.out.println(numJumped + "  " + numStars + "  " + numTaps);
+    game.getStatistics().setTaps(getNumTaps());
+    System.out.println(numJumped + "  " + numStars + "  " + getNumTaps());
 
     super.gameOver();
   }
@@ -240,22 +222,6 @@ public class JumpingGameManager extends GameManager {
     for (GameItem oldItem : oldItems) {
       removeItem(oldItem);
     }
-  }
-
-  public int getJumperWidth() {
-    return jumperWidth;
-  }
-
-  public int getJumperHeight() {
-    return jumperHeight;
-  }
-
-  public int getObstacleWidth() {
-    return obstacleWidth;
-  }
-
-  public int getObstacleHeight() {
-    return obstacleHeight;
   }
 
   public int getStarWidth() {

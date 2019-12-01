@@ -17,7 +17,6 @@ import java.util.List;
 
 public class TappingGameManager extends GameManager {
 
-
   private int runnerWidth;
   private int runnerHeight;
 
@@ -35,11 +34,8 @@ public class TappingGameManager extends GameManager {
     super(height, width, game, activity);
   }
 
-
-
   /** execute animation on each item in myFishTank and update myFishTank accordingly. */
   public boolean update() {
-    // Result result;
     List<GameItem> Items = getGameItems();
     TappingMovementInfo tappingMovementInfo =
         new TappingMovementInfo(
@@ -59,16 +55,16 @@ public class TappingGameManager extends GameManager {
   public void createGameItems() {
     this.tappingCircle = new TappingCircle(0.0, 0.0);
     place(tappingCircle);
-    this.runner = new Runner(0.0, 1550.0, runnerWidth, runnerHeight);
+    this.runner = new Runner(0.0, getScreenHeight() * 3 / 4, runnerWidth, runnerHeight);
     // runner.setPosition(0, 1550);
     place(runner);
     this.tapCounter = new TapCounter(10.0, 30.0);
     place(tapCounter);
-    this.timerDisplayer = new TimerDisplayer(10.0, 31.0);
+    this.timerDisplayer = new TimerDisplayer(10, 31 );
     place(timerDisplayer);
-    this.speedDisplayer = new SpeedDisplayer(10.0, 32.0);
+    this.speedDisplayer = new SpeedDisplayer(10, 32);
     place(speedDisplayer);
-    this.starDisplayer = new StarDisplayer(10.0, 33.0);
+    this.starDisplayer = new StarDisplayer(10, 33);
     place(starDisplayer);
   }
 
@@ -91,7 +87,5 @@ public class TappingGameManager extends GameManager {
   public void setItemSize(int runnerWidth, int runnerHeight) {
     this.runnerWidth = runnerWidth;
     this.runnerHeight = runnerHeight;
-
   }
-
 }

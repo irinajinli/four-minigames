@@ -11,6 +11,8 @@ public class AppleItemsBuilder {
   private Basket basket;
   private PointsCounter pointsCounter;
   private LivesCounter livesCounter;
+  private int basketWidth;
+  private int basketHeight;
 
   public AppleItemsBuilder(Customization customization) {
     this.customization = customization;
@@ -18,13 +20,7 @@ public class AppleItemsBuilder {
 
 
   public void createBasket() {
-    this.basket = new Basket(100, 100);
-    // set color of basket
-    if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      this.basket = new Basket(100, 100);
-    } else if (customization.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      this.basket = new Basket(100, 100);
-    } else this.basket = new Basket(100, 100);
+    this.basket = new Basket(basketHeight, basketWidth);
   }
 
   public void createPointsCounter() {
@@ -56,5 +52,10 @@ public class AppleItemsBuilder {
     appleGameManager.setLivesCounter(livesCounter);
     appleGameManager.place(livesCounter);
     livesCounter.setPosition(appleGameManager.getGridWidth() - 250, 150);
+  }
+
+  public void setBasketSize(int basketWidth, int basketHeight){
+    this.basketWidth = basketWidth;
+    this.basketHeight = basketHeight;
   }
 }
