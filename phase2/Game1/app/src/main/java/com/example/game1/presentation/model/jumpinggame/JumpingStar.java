@@ -10,8 +10,8 @@ public class JumpingStar extends AnimatedGameItem {
   /**
    * Constructs a JumpingStar with the specified height, width and appearance.
    *
-   * @param height the height of this GameItem
-   * @param width the width of this GameItem
+   * @param height the height of this JumpingStar
+   * @param width the width of this JumpingStar
    */
   public JumpingStar(int height, int width) {
 

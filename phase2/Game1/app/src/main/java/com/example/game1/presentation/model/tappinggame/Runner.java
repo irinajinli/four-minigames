@@ -6,47 +6,38 @@ import com.example.game1.presentation.model.common.Result;
 
 /** Runner of the tapping game */
 public class Runner extends AnimatedGameItem {
-
-//  // private int speed;
-//  private boolean canRun;
-
   /**
-   * Constructs a Jumper with the specified height, width, and appearance.
+   * Constructs a Jumper with the specified x and y coordinates and its height, width.
    *
-   * @param xCoordinate xCoordinate of the GameItem
-   * @param yCoordinate yCoordinate of the GameItem
+   * @param xCoordinate xCoordinate of the Runner
+   * @param yCoordinate yCoordinate of the Runner
+   * @param width the width of this Runner
+   * @param height the height of this Runner
    */
   public Runner(double xCoordinate, double yCoordinate, int width, int height) {
-
     super(xCoordinate, yCoordinate, width, height);
   }
 
-
-
-  /** Constructs a runner at the specified cursor location (x, y). */
-
+  @Override
   /**
-   * public Runner(List appearances, int x, int y) { super(x, y, appearances); setPosition(x, y);
-   * setDescription(appearance); canRun = true; }
-   */
-  public void move() {}
-
-  /**
-   * Move Runner according to the speed.
+   * Perform update based on the information given by the movement info
    *
-   * @return
+   * @param tappingMovementInfo
+   * @return result needed by the tapping game manager.
    */
   public Result update(MovementInfo tappingMovementInfo) {
     Result result = new Result();
+    // Perform check
     if (tappingMovementInfo instanceof TappingMovementInfo) {
+      // Get tapping Speed from tappingMovementInfo
       setXVelocity(((TappingMovementInfo) tappingMovementInfo).getTappingSpeed());
+      // If runner is still in the screen, update it's velocity at x axis direction and its
+      // xCoordinate
       if ((getXCoordinate() + getXVelocity())
           < (tappingMovementInfo.getScreenWidth() - getWidth())) {
-        double newX = getXCoordinate() + getXVelocity();
-        setPosition(newX, getYCoordinate());
-      } else {
+        double newXCoordinate = getXCoordinate() + getXVelocity();
+        setXCoordinate(newXCoordinate);
       }
-
     }
     return result;
   }
