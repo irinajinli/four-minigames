@@ -30,10 +30,10 @@ public class AppleGameManager extends GameManager {
   public static final int BASKET_WIDTH = 100;
   public static final int BASKET_HEIGHT = 100;
   /** A GameManager for an Apple minigame. */
-  private int skyColor;
-
-  private int skyColorDark = Color.BLACK;
-  private int skyColorLight = Color.LTGRAY;
+//  private int skyColor;
+//
+//  private int skyColorDark = Color.BLACK;
+//  private int skyColorLight = Color.LTGRAY;
 
   private double numSeconds;
 
@@ -65,21 +65,21 @@ public class AppleGameManager extends GameManager {
     this.livesCounter = livesCounter;
   }
 
-  public Object getSkyColor() {
-    return skyColor;
-  }
-
-  void setSkyColor(int skyColor) {
-    this.skyColor = skyColor;
-  }
-
-  int getSkyColorDark() {
-    return skyColorDark;
-  }
-
-  int getSkyColorLight() {
-    return skyColorLight;
-  }
+//  public Object getSkyColor() {
+//    return skyColor;
+//  }
+//
+//  void setSkyColor(int skyColor) {
+//    this.skyColor = skyColor;
+//  }
+//
+//  int getSkyColorDark() {
+//    return skyColorDark;
+//  }
+//
+//  int getSkyColorLight() {
+//    return skyColorLight;
+//  }
 
   public int getNumTaps() {
     return numTaps;
@@ -112,7 +112,7 @@ public class AppleGameManager extends GameManager {
     builder.createPointsCounter();
     builder.createLivesCounter();
     builder.createBasket(basketBmps, basketBlueBmps, basketYellowBmps);
-    builder.setTheme(this);
+//    builder.setTheme(this);
     builder.placeItems(this);
   }
 

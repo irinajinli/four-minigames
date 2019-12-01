@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
-import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.jumpinggame.Jumper;
 import com.example.game1.presentation.model.jumpinggame.JumpingMovementInfo;
@@ -128,18 +127,7 @@ public class JumpingGameManager extends GameManager {
     this.numTaps = numTaps;
   }
 
-//  /**
-//   * Returns the colour of the sky
-//   *
-//   * @return the colour of the sky
-//   */
-//  public Object getSkyColor() {
-//    return this.skyColor;
-//  }
-//
-//  public void setSkyColor(Object skyColor) {
-//    this.skyColor = skyColor;
-//  }
+
 
   /**
    * Returns whether this game is running
@@ -180,11 +168,7 @@ public class JumpingGameManager extends GameManager {
       this.jumperAppearances = jumperYellowAppearances;
     }
 
-//    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-//      setSkyColor(skyColorDark);
-//    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-//      setSkyColor(skyColorLight);
-//    }
+
 
     terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2);
     setTerrainPosition(terrain);

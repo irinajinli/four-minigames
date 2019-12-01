@@ -17,13 +17,13 @@ public class AppleItemsBuilder {
     this.customization = customization;
   }
 
-  public void setTheme(AppleGameManager appleGameManager) {
-    if (customization.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-      appleGameManager.setSkyColor(appleGameManager.getSkyColorDark());
-    } else if (customization.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-      appleGameManager.setSkyColor(appleGameManager.getSkyColorLight());
-    }
-  }
+//  public void setTheme(AppleGameManager appleGameManager) {
+//    if (customization.getColourScheme().equals(Customization.ColourScheme.DARK)) {
+//      appleGameManager.setSkyColor(appleGameManager.getSkyColorDark());
+//    } else if (customization.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+//      appleGameManager.setSkyColor(appleGameManager.getSkyColorLight());
+//    }
+//  }
 
   public void createBasket(List basketBmps, List basketBlueBmps, List basketYellowBmps) {
     this.basket = new Basket(100, 100);
