@@ -30,7 +30,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
   private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
   private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
-  private GameThread thread;
   private OnClickListener listener;
   private int numTaps = 0;
   private List<Bitmap> obstacleBmps;
@@ -228,6 +227,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
       R.drawable.jumper_yellow_7,
       R.drawable.jumper_yellow_8
     };
+    JumpingGameManager jgm = (JumpingGameManager)gameManager;
     generateAnimatedBmps(
             terrainBmps,
             terrainFiles,
@@ -237,7 +237,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     generateAnimatedBmps(
         obstacleBmps,
         obstacleFiles,
-        JumpingGameManager.OBSTACLE_WIDTH,
+        jgm.OBSTACLE_WIDTH,
         JumpingGameManager.OBSTACLE_HEIGHT);
     generateAnimatedBmps(
         starBmps, starFiles, JumpingGameManager.STAR_WIDTH, JumpingGameManager.STAR_HEIGHT);
