@@ -36,7 +36,7 @@ public class AppleGameManager extends GameManager {
   private Basket basket;
   private PointsCounter points;
   private LivesCounter livesCounter;
-  private int numTaps;
+//  private int numTaps;
   private int numCaughtStars = 0;
 
 
@@ -58,13 +58,11 @@ public class AppleGameManager extends GameManager {
   }
 
 
-  public int getNumTaps() {
-    return numTaps;
-  }
+//  public int getNumTaps() {
+//    return numTaps;
+//  }
 
-  public void incrementNumTaps() {
-    numTaps += 1;
-  }
+
 
   public void setNumSeconds(double numSeconds) {
     this.numSeconds = numSeconds;
@@ -183,7 +181,7 @@ public class AppleGameManager extends GameManager {
     Statistics gameStatistics = game.getStatistics();
     gameStatistics.setPoints(gameStatistics.getPoints() + points.getNumPoints());
     gameStatistics.setStars(gameStatistics.getStars() + numCaughtStars);
-    gameStatistics.setTaps(gameStatistics.getTaps() + numTaps);
+    gameStatistics.setTaps(gameStatistics.getTaps() + getNumTaps());
     super.gameOver();
   }
 

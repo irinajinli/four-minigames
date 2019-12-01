@@ -1,6 +1,5 @@
 package com.example.game1.presentation.model.common;
 
-import com.example.game1.presentation.model.common.GameItem;
 
 public class MovementInfo {
     private double numSeconds;

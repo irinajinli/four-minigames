@@ -157,7 +157,9 @@ public abstract class GameManager extends Observable {
     public void setNumTaps(int numTaps){
       this.numTaps = numTaps;
     }
-
+  public void incrementNumTaps() {
+    numTaps += 1;
+  }
 
   /* The possible states of a GameManager. */
   public enum State {

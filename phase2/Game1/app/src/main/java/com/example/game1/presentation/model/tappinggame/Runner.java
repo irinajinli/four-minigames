@@ -50,8 +50,4 @@ public class Runner extends AnimatedGameItem {
     }
     return result;
   }
-
-  public Result animate(MovementInfo movementInfo) {
-    return new Result();
-  }
 }
