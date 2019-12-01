@@ -6,10 +6,8 @@ import com.example.game1.presentation.model.common.MovementInfo;
 public class TappingMovementInfo extends MovementInfo {
   /** Napping Speed */
   int tappingSpeed;
-
   /** Number of seconds left */
   int secondsLeft;
-
   /** Number of taps */
   int numTaps;
 
