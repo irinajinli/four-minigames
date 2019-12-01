@@ -9,8 +9,8 @@ public class Runner extends AnimatedGameItem {
   /**
    * Constructs a Jumper with the specified x and y coordinates and its height, width.
    *
-   * @param xCoordinate xCoordinate of the Runner
-   * @param yCoordinate yCoordinate of the Runner
+   * @param xCoordinate xCoordinate of this Runner
+   * @param yCoordinate yCoordinate of this Runner
    * @param width the width of this Runner
    * @param height the height of this Runner
    */
