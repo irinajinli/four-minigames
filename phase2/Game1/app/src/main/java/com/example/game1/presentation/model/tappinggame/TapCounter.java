@@ -41,7 +41,9 @@ public class TapCounter extends GameItem {
    */
   public Result update(MovementInfo tappingMovementInfo) {
     if (tappingMovementInfo instanceof TappingMovementInfo) {
+      // Extract number of taps from tapping
       this.numTaps = ((TappingMovementInfo) tappingMovementInfo).getNumTaps();
+      // Update description
       setDescription("Number of Taps: " + this.numTaps);
     }
     return new Result();

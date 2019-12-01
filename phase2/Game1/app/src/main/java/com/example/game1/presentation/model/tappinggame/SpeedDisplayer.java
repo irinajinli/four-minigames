@@ -29,7 +29,7 @@ public class SpeedDisplayer extends GameItem {
    */
   public Result update(MovementInfo tappingMovementInfo) {
     if (tappingMovementInfo instanceof TappingMovementInfo) {
-      // Extract tapping speed for tapping movement info
+      // Extract tapping speed from tapping movement info
       this.tappingSpeed = ((TappingMovementInfo) tappingMovementInfo).getTappingSpeed();
       // Update description
       setDescription("Your average tapping speed: " + this.tappingSpeed);
