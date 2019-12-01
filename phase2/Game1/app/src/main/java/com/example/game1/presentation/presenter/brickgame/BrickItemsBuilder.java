@@ -13,8 +13,6 @@ import java.util.List;
 
 /** A builder that builds the items necessary for a Brick minigame. */
 class BrickItemsBuilder {
-  private Customization cust;
-  private List paddleBmps;
   private Paddle paddle;
   private ArrayList<Brick> bricks;
   private Ball ball;
@@ -22,11 +20,8 @@ class BrickItemsBuilder {
 
   /**
    * Creates a builder item based on the customization setting selected by the user
-   *
-   * @param cust the customization setting selected by the user
    */
-  BrickItemsBuilder(Customization cust) {
-    this.cust = cust;
+  BrickItemsBuilder() {
     stars = new ArrayList<>();
   }
 
@@ -35,26 +30,8 @@ class BrickItemsBuilder {
    *
    * @param paddleHeight the height of the paddle
    * @param paddleWidth the width of the paddle
-   * @param paddleBlueBmps the bmps for a blue paddle
-   * @param paddleRedBmps the bmps for a red paddle
-   * @param paddleYellowBmps the bmps for a yellow paddle
    */
-  void createPaddle(
-      int paddleHeight,
-      int paddleWidth,
-      List paddleBlueBmps,
-      List paddleRedBmps,
-      List paddleYellowBmps) {
-    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      paddleBmps = paddleBlueBmps;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-      paddleBmps = paddleRedBmps;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW)) {
-      paddleBmps = paddleYellowBmps;
-    } else { // default blue
-      paddleBmps = paddleBlueBmps;
-    }
-
+  void createPaddle(int paddleHeight, int paddleWidth) {
     paddle = new Paddle(paddleHeight, paddleWidth);
   }
 

@@ -40,7 +40,6 @@ public class BrickGameManager extends GameManager {
   private List<Brick> bricks;
   private List<Star> stars;
   private int numBroken = 0;
-  private boolean isRunning;
   private List<Bitmap> paddleBlueBmps;
   private List<Bitmap> paddleRedBmps;
   private List<Bitmap> paddleYellowBmps;
@@ -147,30 +146,13 @@ public class BrickGameManager extends GameManager {
     this.numBroken = numBroken;
   }
 
-  /**
-   * Returns whether this game is running
-   *
-   * @return whether this game is running
-   */
-  public boolean getRunning() {
-    return this.isRunning;
-  }
 
-  /**
-   * Sets whether or not this game is running
-   *
-   * @param isRunning whether or not this game is running
-   */
-  public void setRunning(boolean isRunning) {
-    this.isRunning = isRunning;
-  }
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    BrickItemsBuilder builder = new BrickItemsBuilder(game.getCustomization());
+    BrickItemsBuilder builder = new BrickItemsBuilder();
 
-    builder.createPaddle(
-        PADDLE_HEIGHT, PADDLE_WIDTH, paddleBlueBmps, paddleRedBmps, paddleYellowBmps);
+    builder.createPaddle(PADDLE_HEIGHT, PADDLE_WIDTH);
     builder.createBricks(
         getScreenWidth(), NUM_BRICKS_HORIZONTAL, NUM_BRICK_LAYERS, BRICK_HEIGHT);
     builder.createBall(
@@ -187,14 +169,6 @@ public class BrickGameManager extends GameManager {
   }
 
 
-
-  /**
-   * Adds the specified star to this game at the given position
-   *
-   * @param star the star whose position needs to be set
-   * @param xCoordinate the position at which to add the star
-   */
-  public void setStarPosition(Star star, int xCoordinate) {}
 
   /** updates all items in this game */
   @Override
