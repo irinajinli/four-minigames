@@ -14,7 +14,7 @@ public class TapCounter extends GameItem {
   private int numTaps;
 
   /**
-   * Construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate).
+   * Construct a Tap Counter with the specified x and y coordinates
    * @param xCoordinate xCoordinate of this TapCounter
    * @param yCoordinate yCoordinate of this TapCounter
    */
@@ -41,7 +41,9 @@ public class TapCounter extends GameItem {
    */
   public Result update(MovementInfo tappingMovementInfo) {
     if (tappingMovementInfo instanceof TappingMovementInfo) {
+      // Extract number of taps from tapping
       this.numTaps = ((TappingMovementInfo) tappingMovementInfo).getNumTaps();
+      // Update description
       setDescription("Number of Taps: " + this.numTaps);
     }
     return new Result();

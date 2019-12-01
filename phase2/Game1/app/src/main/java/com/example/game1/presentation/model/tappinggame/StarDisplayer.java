@@ -38,9 +38,13 @@ public class StarDisplayer extends GameItem {
    */
   public Result update(MovementInfo tappingMovementInfo) {
     if (tappingMovementInfo instanceof TappingMovementInfo) {
+      // If the number of Star is less than the tapping speed stored in the tapping movement info
       if (this.numStar < ((TappingMovementInfo) tappingMovementInfo).getTappingSpeed()) {
+        // Extract tapping speed from tapping movement info and set the number of star to it.
+        // The star earned is the maximum tapping speed extracted from tapping movement info
         this.numStar = ((TappingMovementInfo) tappingMovementInfo).getTappingSpeed();
       }
+      // Update description
       setDescription("You current star number: " + this.numStar);
     }
     return new Result();

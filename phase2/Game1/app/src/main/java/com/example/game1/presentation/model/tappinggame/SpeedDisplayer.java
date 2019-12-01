@@ -10,7 +10,7 @@ public class SpeedDisplayer extends GameItem {
   private int tappingSpeed;
 
   /**
-   * Construct a SpeedDisplayer according to specified xCoordinate, yCoordinate
+   * Construct a SpeedDisplayer with the specified x and y coordinates
    *
    * @param xCoordinate xCoordinate of this SpeedDisplayer
    * @param yCoordinate yCoordinate of this SpeedDisplayer
@@ -29,7 +29,7 @@ public class SpeedDisplayer extends GameItem {
    */
   public Result update(MovementInfo tappingMovementInfo) {
     if (tappingMovementInfo instanceof TappingMovementInfo) {
-      // Extract tapping speed for tapping movement info
+      // Extract tapping speed from tapping movement info
       this.tappingSpeed = ((TappingMovementInfo) tappingMovementInfo).getTappingSpeed();
       // Update description
       setDescription("Your average tapping speed: " + this.tappingSpeed);
