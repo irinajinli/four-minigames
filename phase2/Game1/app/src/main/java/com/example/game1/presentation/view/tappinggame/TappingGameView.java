@@ -139,7 +139,9 @@ public class TappingGameView extends GameView implements View.OnClickListener {
           @Override
           public void onTick(long millisUntilFinished) {
             secondLeft--;
-            ((TappingGameManager) gameManager).timerDisplayer.setSecondsLeft(secondLeft);
+            if (gameManager instanceof TappingGameManager) {
+              ((TappingGameManager) gameManager).setSecondsLeft(secondLeft);
+            }
             // display the remaining time
             long timeTillEnd = (millisUntilFinished / 1000) + 1;
             long secondsPassed = 10 - timeTillEnd;
@@ -148,7 +150,6 @@ public class TappingGameView extends GameView implements View.OnClickListener {
               speed = (int) (numTaps / secondsPassed);
               if (gameManager instanceof TappingGameManager) {
                 ((TappingGameManager) gameManager).setTappingSpeed(speed);
-                ((TappingGameManager) gameManager).setSecondsLeft(secondLeft);
               }
             }
           }
