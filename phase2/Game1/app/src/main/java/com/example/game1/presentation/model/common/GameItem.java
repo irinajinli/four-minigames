@@ -1,6 +1,6 @@
 package com.example.game1.presentation.model.common;
 
-/** An item which can be in a GameManager. */
+/** A game item which can be in a GameManager. */
 public abstract class GameItem {
 
   /** Description of this item. */
@@ -115,7 +115,6 @@ public abstract class GameItem {
     this.yCoordinate = yCoordinate;
   }
 
-
   /**
    * Get the xCoordinate of this GameItem
    *
@@ -172,8 +171,9 @@ public abstract class GameItem {
 
   /**
    * Check if this item is overlap with another game item
+   *
    * @param other another game item
-   * @return
+   * @return if this item is overlap with another game item
    */
   public boolean isOverlapping(GameItem other) {
     double thisItemLeftBoundary = this.xCoordinate;
@@ -193,11 +193,13 @@ public abstract class GameItem {
   }
 
   /**
+   * A default method provided for the game item to update itself using the information in
+   * movementInfo and give update result back for further process
    *
    * @param movementInfo: information needed by this game item to execute update
-   * @return result: information needed by game manager to update game items and statistics
+   * @return information needed by game manager to update game items and statistics
    */
-  public Result update(MovementInfo movementInfo){
+  public Result update(MovementInfo movementInfo) {
     return new Result();
   }
 }
