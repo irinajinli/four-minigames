@@ -3,16 +3,16 @@ package com.example.game1.presentation.model.tappinggame;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 import com.example.game1.presentation.model.common.Result;
+import com.example.game1.presentation.model.jumpinggame.TappingResult;
 
 public class TapCounter extends GameItem {
   /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
   private int numTaps;
 
-  public TapCounter(int x, int y) {
+  public TapCounter(double xCoordinate, double yCoordinate) {
     // Call super() to set appearance, location (x, yCoordinate), appearance and
     // type face.
-    super("Number of Taps: ");
-    setPosition(x, y);
+    super(xCoordinate, yCoordinate, "Number of Taps: ");
     this.numTaps = 0;
   }
 
@@ -26,7 +26,13 @@ public class TapCounter extends GameItem {
   }
 
   @Override
-  public Result update(MovementInfo jumpingMovementInfo) {
-    return (new Result());
+  public TappingResult update(MovementInfo tappingMovementInfo) {
+    //TappingResult result = new TappingResult();
+    if (tappingMovementInfo instanceof TappingMovementInfo) {
+      this.numTaps = ((TappingMovementInfo) tappingMovementInfo).getNumTaps();
+      setDescription("Number of Taps: " + this.numTaps);
+    }
+    return new TappingResult();
   }
+
 }

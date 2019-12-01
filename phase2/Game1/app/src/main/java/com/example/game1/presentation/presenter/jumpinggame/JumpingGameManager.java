@@ -247,8 +247,8 @@ public class JumpingGameManager extends GameManager {
             getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumSeconds());
 
     for (GameItem item : gameItems) {
-      if (item instanceof AnimatedGameItem) {
-        result = ((AnimatedGameItem) item).animate(jumpingMovementInfo);
+
+        result = item.update(jumpingMovementInfo);
         // process result
         JumpingResult jumpingResult = (JumpingResult) result;
         if (jumpingResult.getNewItems() != null) {
@@ -285,7 +285,7 @@ public class JumpingGameManager extends GameManager {
       for (GameItem oldItem : oldItems) {
         removeItem(oldItem);
       }
-    }
+
 
     //jumper.setDescription(getNextJumperFrame());
     // TODO: temporary return true; decide when you want to return true/false

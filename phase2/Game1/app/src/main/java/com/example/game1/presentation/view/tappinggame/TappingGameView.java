@@ -64,7 +64,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
           public void onClick(View v) {
             if (gameStarted) {
               numTaps++;
-              ((TappingGameManager) gameManager).tapCounter.setNumTaps(numTaps);
+              ((TappingGameManager) gameManager).setNumTaps(numTaps);
             }
           }
         };
@@ -121,17 +121,19 @@ public class TappingGameView extends GameView implements View.OnClickListener {
             // int star = 0;
 
             if (0 == secondsPassed) {
-              speed = 0;
-              ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
+              //              speed = 0;
+              //              ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
             } else {
               speed = (int) (numTaps / secondsPassed);
-              ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
-              ((TappingGameManager) gameManager).runner.setSpeed(speed);
+              if (gameManager instanceof TappingGameManager) {
 
-              // set star to be the maximum speed reached for now
-              if (numStars < speed) {
-                numStars = speed;
-                ((TappingGameManager) gameManager).starDisplayer.setNumStar(numStars);
+                // set star to be the maximum speed reached for now
+//                if (numStars < speed) {
+//                  numStars = speed;
+//
+//                }
+                ((TappingGameManager) gameManager).setTappingSpeed(speed);
+                ((TappingGameManager) gameManager).setSecondsLeft(secondLeft);
               }
             }
           }
@@ -144,11 +146,11 @@ public class TappingGameView extends GameView implements View.OnClickListener {
             // tv_info.setText("Game Over!");
 
             // check the high score and save the new result if better
-            if (numTaps > bestResult) {
-              bestResult = numTaps;
-            }
+//            if (numTaps > bestResult) {
+//              bestResult = numTaps;
+//            }
             if (!gameStarted) {
-              ((TappingGameManager) gameManager).gameOver(numTaps, numStars);
+              ((TappingGameManager) gameManager).gameOver();
             }
           }
         };
@@ -163,16 +165,18 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     myTimer.cancel();
   }
 
-  /** Update the fish tank. */
-  public void update() {
-    gameManager.update();
-  }
+//  /** Update the fish tank. */
+//  public void update() {
+//    gameManager.update();
+//  }
 
   @Override
   public void onClick(View v) {
     if (gameStarted) {
       numTaps++;
-      ((TappingGameManager) gameManager).tapCounter.setNumTaps(numTaps);
+      if (gameManager instanceof TappingGameManager){
+        ((TappingGameManager) gameManager).setNumTaps(numTaps);
+      }
     }
   }
 
@@ -203,7 +207,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
           appearance, (int) Math.round(xCoordinate), (int) Math.round(yCoordinate), paintText);
     } else {
       canvas.drawText(
-          (String) item.getDescription(),
+          item.getDescription(),
           (float) xCoordinate * GameView.charWidth,
           (float) yCoordinate * GameView.charHeight,
           paintText);
@@ -214,7 +218,9 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     tappingCircleBmp = getNewBitmap(R.drawable.circle, getScreenWidth(), getScreenHeight() / 2);
     int runnerWidth = (int) (getScreenWidth() * TappingGameManager.RUNNER_WIDTH_MULTIPLIER);
     int runnerHeight = (int) (getScreenWidth() * TappingGameManager.RUNNER_HEIGHT_MULTIPLIER);
-
+    if (gameManager instanceof TappingGameManager){
+      ((TappingGameManager) gameManager).setRunnerWidthAndHeight(runnerWidth, runnerHeight);
+    }
     int[] yellowPugFiles = {
       R.drawable.dog_yellow_1,
       R.drawable.dog_yellow_2,
@@ -245,11 +251,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     generateAnimatedBmps(blueBirds, blueBirdFiles, runnerWidth, runnerHeight);
     generateAnimatedBmps(redFishs, redFishsFiles, runnerWidth, runnerHeight);
 
-    //      yellowPugs.add(yellowPug);
-    //      blueBirds.add(blueBird);
-    //      redFishs.add(redFish);
     addGameItemAppearance("TappingCircle", tappingCircleBmp);
-
     addGameItemAppearances("RunnerYellow", yellowPugs);
     addGameItemAppearances("RunnerBlue", blueBirds);
     addGameItemAppearances("RunnerRed", redFishs);

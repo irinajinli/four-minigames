@@ -35,7 +35,7 @@ public class BrickMovementInfo extends MovementInfo {
   private final double STAR_PROBABILITY = 0.8;
 
   public BrickMovementInfo(Ball ball, List<Brick> bricks, List<Star> stars, Paddle paddle, List<GameItem> gameItems, int screenHeight, int screenWidth, List<Bitmap> starBmps, double numSeconds) {
-    super(numSeconds);
+    super(numSeconds, screenWidth, screenHeight);
     this.ball = ball;
     this.bricks = bricks;
     this.stars = stars;

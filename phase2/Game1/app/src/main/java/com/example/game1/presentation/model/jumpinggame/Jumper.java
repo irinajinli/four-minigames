@@ -22,20 +22,33 @@ public class Jumper extends AnimatedGameItem {
    * @return the info needed by game manager after the animation
    */
   public JumpingResult animate(MovementInfo jumpingMovementInfo) {
-    JumpingResult jumpingResult = new JumpingResult();
-    // Jumper land on the terrain
-    Terrain terrain = ((JumpingMovementInfo) jumpingMovementInfo).getTerrain();
-    updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumSeconds());
-    if (this.isOverlapping(terrain)) {
-      this.setYCoordinate(terrain.getYCoordinate() - this.getHeight());
-      this.setYVelocity(0);
-      this.setYAcceleration(0);
-    }
-    return jumpingResult;
+    return (new JumpingResult());
+//    JumpingResult jumpingResult = new JumpingResult();
+//    // Jumper land on the terrain
+//    Terrain terrain = ((JumpingMovementInfo) jumpingMovementInfo).getTerrain();
+//    updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumSeconds());
+//    if (this.isOverlapping(terrain)) {
+//      this.setYCoordinate(terrain.getYCoordinate() - this.getHeight());
+//      this.setYVelocity(0);
+//      this.setYAcceleration(0);
+//    }
+//    return jumpingResult;
   }
 
   @Override
   public JumpingResult update(MovementInfo jumpingMovementInfo) {
-    return (new JumpingResult());
+    updatePositionAndVelocity(jumpingMovementInfo.getNumSeconds());
+    JumpingResult jumpingResult = new JumpingResult();
+    // Jumper land on the terrain
+    if (jumpingMovementInfo instanceof JumpingMovementInfo){
+    Terrain terrain = ((JumpingMovementInfo) jumpingMovementInfo).getTerrain();
+
+    if (this.isOverlapping(terrain)) {
+      this.setYCoordinate(terrain.getYCoordinate() - this.getHeight());
+      this.setYVelocity(0);
+      this.setYAcceleration(0);
+    }}
+    return jumpingResult;
+//    return (new JumpingResult());
   }
 }

@@ -39,6 +39,31 @@ public abstract class GameItem {
   }
 
   /**
+   * Constructs a GameItem with the specified coordinates
+   *
+   * @param xCoordinate xCoordinate of the GameItem
+   * @param yCoordinate yCoordinate of the GameItem
+   */
+  public GameItem(double xCoordinate, double yCoordinate, String description) {
+    this.xCoordinate = xCoordinate;
+    this.yCoordinate = yCoordinate;
+    this.description = description;
+  }
+
+  /**
+   * Constructs a GameItem with the specified coordinates
+   *
+   * @param xCoordinate xCoordinate of the GameItem
+   * @param yCoordinate yCoordinate of the GameItem
+   */
+  public GameItem(double xCoordinate, double yCoordinate, int width, int height) {
+    this.xCoordinate = xCoordinate;
+    this.yCoordinate = yCoordinate;
+    this.width = width;
+    this.height = height;
+  }
+
+  /**
    * /** Constructs a GameItem with the specified description.
    *
    * @param height the height of this GameItem
@@ -90,6 +115,7 @@ public abstract class GameItem {
     this.xCoordinate = xCoordinate;
     this.yCoordinate = yCoordinate;
   }
+
 
   /**
    * Get the xCoordinate of this GameItem

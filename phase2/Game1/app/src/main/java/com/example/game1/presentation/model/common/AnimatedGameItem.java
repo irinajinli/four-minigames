@@ -26,6 +26,17 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Constructs a AnimatedGameItem with the specified height and width.
    *
+   * @param xCoordinate xCoordinate of the GameItem
+   * @param yCoordinate yCoordinate of the GameItem
+   */
+  protected AnimatedGameItem(double xCoordinate, double yCoordinate, int width, int height) {
+    super(xCoordinate, yCoordinate, width, height);
+  }
+
+
+  /**
+   * Constructs a AnimatedGameItem with the specified height and width.
+   *
    * @param description the appearance of this GameItem
    */
   protected AnimatedGameItem(String description) {

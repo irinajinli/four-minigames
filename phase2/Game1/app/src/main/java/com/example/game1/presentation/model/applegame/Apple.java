@@ -37,7 +37,4 @@ public class Apple extends AnimatedGameItem {
     return new Result();
   }
 
-  //public void animate(double numSeconds) {
-//    updatePositionAndVelocity(numSeconds);
-//  }
 }

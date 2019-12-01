@@ -6,7 +6,7 @@ import com.example.game1.presentation.model.common.MovementInfo;
 
 public class JumpingMovementInfo extends MovementInfo {
 
-  //double numSeconds;
+  // double numSeconds;
   Jumper jumper;
 
   Terrain terrain;
@@ -15,17 +15,13 @@ public class JumpingMovementInfo extends MovementInfo {
 
   public JumpingMovementInfo(
       int screenHeight, int screenWidth, Jumper jumper, Terrain terrain, double numSeconds) {
-    // this.numSeconds = numSeconds;
-    // this.item = item;
-    super(numSeconds);
+
+    super(numSeconds, screenWidth, screenHeight);
     this.screenHeight = screenHeight;
     this.screenWidth = screenWidth;
     this.jumper = jumper;
     this.terrain = terrain;
-
   }
-
-
 
   public int getScreenHeight() {
     return screenHeight;
