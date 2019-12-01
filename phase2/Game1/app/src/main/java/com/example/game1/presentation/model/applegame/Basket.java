@@ -8,10 +8,10 @@ public class Basket extends AnimatedGameItem {
   /**
    * Construct a basket with specifed width and height
    *
-   * @param width
-   * @param height
+   * @param height height of this basket
+   * @param width width of this basket
    */
-  public Basket(int width, int height) {
+  public Basket(int height, int width) {
     super(height, width);
   }
 

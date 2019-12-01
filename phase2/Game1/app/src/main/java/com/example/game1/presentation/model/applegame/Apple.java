@@ -9,10 +9,10 @@ public class Apple extends AnimatedGameItem {
   /**
    * Construct an apple with specified width and height
    *
-   * @param width
-   * @param height
+   * @param height of this apple
+   * @param width of this apple
    */
-  public Apple(int width, int height) {
+  public Apple(int height, int width) {
     super(height, width);
   }
 

@@ -2,7 +2,7 @@ package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.MovementInfo;
 
-/** A class for passing information to AppleGameManager.update. */
+/** A class for passing information for apple game items to process update. */
 public class AppleMovementInfo extends MovementInfo {
   /** the basket */
   Basket basket;
@@ -12,7 +12,7 @@ public class AppleMovementInfo extends MovementInfo {
    *
    * @param screenWidth width of the screen
    * @param screenHeight height of the screen
-   * @param basket the basket
+   * @param basket basket
    * @param numSeconds time period for updating coordinates
    */
   public AppleMovementInfo(int screenWidth, int screenHeight, Basket basket, double numSeconds) {

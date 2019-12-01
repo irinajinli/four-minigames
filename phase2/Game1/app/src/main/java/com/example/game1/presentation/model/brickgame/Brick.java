@@ -24,36 +24,6 @@ public class Brick extends GameItem {
     super(width, height);
     damageLevel = STARTING_DAMAGE_LEVEL;
   }
-
-  /**
-   * @param brickMovementInfo: importInfo needed for this jumper to animate
-   * @return the info needed by game manager after the animation
-   */
-  public BrickResult animate(MovementInfo brickMovementInfo) {
-    // updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumSeconds());
-    BrickResult brickResult = new BrickResult();
-
-    // Set gameover to be true in the jumping result if jumper touches the obstacle
-    // Jumper jumper = ((JumpingMovementInfo) jumpingImportInfo).getJumper();
-    // if (this.isOverlapping(jumper)) {
-    //     jumpingResult.setGameOver(true);
-
-    // reset obstacle's xCoordinate if it is out of the screen
-    // } else if (this.getxCoordinate() + this.getWidth() < 0) {
-    //     this.setXCoordinate(((JumpingMovementInfo) jumpingImportInfo).getScreenWidth() * 4 / 3);
-    //     jumpingResult.setObstacleJumped(true);
-
-    // randomly add new star
-    //    if (Math.random() > 0.7) {
-    //        jumpingResult.setNeedNewStar(true);
-    //    }
-    // }
-    //    else{
-    //      setXCoordinate(getxCoordinate() - 15);
-    //    }
-    return brickResult;
-  }
-
   /**
    * Causes this brick to take damage.
    *
@@ -61,7 +31,7 @@ public class Brick extends GameItem {
    */
   public boolean damageBrick() {
     damageLevel -= 1;
-      return damageLevel == DESTROYED_CUTOFF;
+    return damageLevel == DESTROYED_CUTOFF;
   }
 
   /**
@@ -75,11 +45,10 @@ public class Brick extends GameItem {
 
   /**
    * Return true iff this brick has passed the cutoff to be considered damaged.
+   *
    * @return true iff this brick has passed the cutoff to be considered damaged.
    */
-  public boolean isDamaged(){
+  public boolean isDamaged() {
     return damageLevel <= APPEARANCE_CHANGE_CUTOFF;
   }
-
-  public void move() {}
 }
