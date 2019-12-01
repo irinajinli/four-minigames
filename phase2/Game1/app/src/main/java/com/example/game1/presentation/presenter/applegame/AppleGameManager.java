@@ -64,7 +64,7 @@ public class AppleGameManager extends GameManager {
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    AppleItemsBuilder builder = new AppleItemsBuilder(game.getCustomization());
+    AppleItemsBuilder builder = new AppleItemsBuilder();
     builder.setBasketSize(basketWidth, basketHeight);
     builder.createPointsCounter();
     builder.createLivesCounter();

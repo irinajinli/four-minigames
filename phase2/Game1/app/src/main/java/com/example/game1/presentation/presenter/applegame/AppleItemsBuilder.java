@@ -7,16 +7,14 @@ import com.example.game1.presentation.model.applegame.PointsCounter;
 
 
 public class AppleItemsBuilder {
-  private Customization customization;
+
   private Basket basket;
   private PointsCounter pointsCounter;
   private LivesCounter livesCounter;
   private int basketWidth;
   private int basketHeight;
 
-  public AppleItemsBuilder(Customization customization) {
-    this.customization = customization;
-  }
+
 
 
   public void createBasket() {
