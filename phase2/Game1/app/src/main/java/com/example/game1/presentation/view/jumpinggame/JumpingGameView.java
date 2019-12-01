@@ -36,6 +36,47 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   private List<Bitmap> jumperRedBmps;
   private List<Bitmap> jumperYellowBmps;
   private int currentFrameJumper = 0;
+  
+  // image files for game objects
+  private final int[] TERRAIN_FILES = {R.drawable.grass};
+  private final int[] OBSTACLE_FILES = {R.drawable.wooden_blocks_1};
+  private final int[] STAR_FILES = {R.drawable.star_6};
+  private final int[] JUMPER_BLUE_FILES = {
+          R.drawable.jumper_blue_1,
+          R.drawable.jumper_blue_2,
+          R.drawable.jumper_blue_3,
+          R.drawable.jumper_blue_4,
+          R.drawable.jumper_blue_5,
+          R.drawable.jumper_blue_6,
+          R.drawable.jumper_blue_7,
+          R.drawable.jumper_blue_8,
+          R.drawable.jumper_blue_9,
+          R.drawable.jumper_blue_10
+  };
+  private final int[] JUMPER_RED_FILES = {
+          R.drawable.jumper_red_1,
+          R.drawable.jumper_red_2,
+          R.drawable.jumper_red_3,
+          R.drawable.jumper_red_4,
+          R.drawable.jumper_red_5,
+          R.drawable.jumper_red_6,
+          R.drawable.jumper_red_7,
+          R.drawable.jumper_red_8,
+          R.drawable.jumper_red_9,
+          R.drawable.jumper_red_10
+  };
+  private final int[] JUMPER_YELLOW_FILES = {
+          R.drawable.jumper_yellow_1,
+          R.drawable.jumper_yellow_2,
+          R.drawable.jumper_yellow_3,
+          R.drawable.jumper_yellow_4,
+          R.drawable.jumper_yellow_5,
+          R.drawable.jumper_yellow_6,
+          R.drawable.jumper_yellow_7,
+          R.drawable.jumper_yellow_8
+  };
+  
+  
   /**
    * creates a new JumpingView *
    *
@@ -74,7 +115,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
                 activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
-    ((JumpingGameManager) gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
+    gameManager.setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     extractBmpFiles();
 
@@ -175,65 +216,28 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     jumperBlueBmps = new ArrayList<>();
     jumperRedBmps = new ArrayList<>();
     jumperYellowBmps = new ArrayList<>();
-    int[] terrainFiles = {R.drawable.grass};
-    int[] obstacleFiles = {R.drawable.wooden_blocks_1};
-    int[] starFiles = {R.drawable.star_6};
-    int[] jumperBlueFiles = {
-      R.drawable.jumper_blue_1,
-      R.drawable.jumper_blue_2,
-      R.drawable.jumper_blue_3,
-      R.drawable.jumper_blue_4,
-      R.drawable.jumper_blue_5,
-      R.drawable.jumper_blue_6,
-      R.drawable.jumper_blue_7,
-      R.drawable.jumper_blue_8,
-      R.drawable.jumper_blue_9,
-      R.drawable.jumper_blue_10
-    };
-    int[] jumperRedFiles = {
-      R.drawable.jumper_red_1,
-      R.drawable.jumper_red_2,
-      R.drawable.jumper_red_3,
-      R.drawable.jumper_red_4,
-      R.drawable.jumper_red_5,
-      R.drawable.jumper_red_6,
-      R.drawable.jumper_red_7,
-      R.drawable.jumper_red_8,
-      R.drawable.jumper_red_9,
-      R.drawable.jumper_red_10
-    };
-    int[] jumperYellowFiles = {
-      R.drawable.jumper_yellow_1,
-      R.drawable.jumper_yellow_2,
-      R.drawable.jumper_yellow_3,
-      R.drawable.jumper_yellow_4,
-      R.drawable.jumper_yellow_5,
-      R.drawable.jumper_yellow_6,
-      R.drawable.jumper_yellow_7,
-      R.drawable.jumper_yellow_8
-    };
     JumpingGameManager jumpingGameManager = (JumpingGameManager) gameManager;
-    generateAnimatedBmps(terrainBmps, terrainFiles, getScreenWidth(), getScreenHeight() / 2);
+    generateAnimatedBmps(terrainBmps, TERRAIN_FILES, getScreenWidth(), getScreenHeight() / 2);
     generateAnimatedBmps(
         obstacleBmps,
-        obstacleFiles,
+        OBSTACLE_FILES,
         jumpingGameManager.getObstacleWidth(),
         jumpingGameManager.getObstacleHeight());
     generateAnimatedBmps(
-        starBmps, starFiles, jumpingGameManager.getStarWidth(), jumpingGameManager.getStarHeight());
+        starBmps, STAR_FILES, jumpingGameManager.getStarWidth(), jumpingGameManager.getStarHeight());
     generateAnimatedBmps(
         jumperBlueBmps,
-        jumperBlueFiles,
+        JUMPER_BLUE_FILES,
         jumpingGameManager.getJumperWidth(),
         jumpingGameManager.getJumperHeight());
     generateAnimatedBmps(
         jumperRedBmps,
-        jumperRedFiles,
+        JUMPER_RED_FILES,
         jumpingGameManager.getJumperWidth(),
         jumpingGameManager.getJumperHeight());
     generateAnimatedBmps(
         jumperYellowBmps,
-        jumperYellowFiles,
+        JUMPER_YELLOW_FILES,
         jumpingGameManager.getJumperWidth(),
         jumpingGameManager.getJumperHeight());
 

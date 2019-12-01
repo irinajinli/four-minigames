@@ -40,7 +40,14 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   private List<Bitmap> paddleBlueBmps;
   private List<Bitmap> paddleRedBmps;
   private List<Bitmap> paddleYellowBmps;
-
+    
+  // images for game objects
+  private final int[] BALL_FILES = {R.drawable.ball_blue};
+    private final   int[] STAR_FILES = {R.drawable.star_6};
+    private final   int[] PADDLE_BLUE_FILES = {R.drawable.paddle_blue};
+    private final   int[] PADDLE_RED_FILES = {R.drawable.paddle_red};
+    private final   int[] PADDLE_YELLOW_FILES = {R.drawable.paddle_yellow};
+    
   // keys for Map from item string to it's bitmap image
   private final String BALL_KEY = "ball";
   private final String STAR_KEY = "star";
@@ -228,12 +235,6 @@ public class BrickGameView extends GameView implements View.OnClickListener {
             getScreenWidth() / brickGameManager.getNumBricksHorizontal(),
             brickGameManager.getBrickHeight());
 
-    int[] ballFiles = {R.drawable.ball_blue};
-    int[] starFiles = {R.drawable.star_6};
-    int[] paddleBlueFiles = {R.drawable.paddle_blue};
-    int[] paddleRedFiles = {R.drawable.paddle_red};
-    int[] paddleYellowFiles = {R.drawable.paddle_yellow};
-
     ballBmps = new ArrayList<Bitmap>();
     starBmps = new ArrayList<Bitmap>();
     paddleBlueBmps = new ArrayList<Bitmap>();
@@ -241,22 +242,22 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     paddleYellowBmps = new ArrayList<Bitmap>();
 
     generateAnimatedBmps(
-        ballBmps, ballFiles, brickGameManager.getBallWidth(), brickGameManager.getBallHeight());
+        ballBmps, BALL_FILES, brickGameManager.getBallWidth(), brickGameManager.getBallHeight());
     generateAnimatedBmps(
-        starBmps, starFiles, brickGameManager.getStarWidth(), brickGameManager.getStarHeight());
+        starBmps, STAR_FILES, brickGameManager.getStarWidth(), brickGameManager.getStarHeight());
     generateAnimatedBmps(
         paddleBlueBmps,
-        paddleBlueFiles,
+        PADDLE_BLUE_FILES,
         brickGameManager.getPaddleWidth(),
         brickGameManager.getPaddleHeight());
     generateAnimatedBmps(
         paddleRedBmps,
-        paddleRedFiles,
+        PADDLE_RED_FILES,
         brickGameManager.getPaddleWidth(),
         brickGameManager.getPaddleHeight());
     generateAnimatedBmps(
         paddleYellowBmps,
-        paddleYellowFiles,
+        PADDLE_YELLOW_FILES,
         brickGameManager.getPaddleWidth(),
         brickGameManager.getPaddleHeight());
 
