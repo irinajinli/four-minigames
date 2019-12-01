@@ -4,9 +4,8 @@ import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 
+/** An obstacle */
 public class Obstacle extends AnimatedGameItem {
-
-  /** The Obstacle. */
 
   /**
    * Constructs a Obstacle with the specified height and width.
@@ -18,16 +17,22 @@ public class Obstacle extends AnimatedGameItem {
     super(height, width);
   }
 
-
   @Override
+  /**
+   * Perform update based on the information given by the movement info
+   *
+   * @param jumpingMovementInfo information needed for the obstacle to execute update
+   * @return update result information
+   */
   public JumpingResult update(MovementInfo jumpingMovementInfo) {
+    // Update x and y coordinates of this apple based on specified time period
     updatePositionAndVelocity(jumpingMovementInfo.getNumSeconds());
-    JumpingResult jumpingResult = new JumpingResult();
 
-    // Set gameover to be true in the jumping result if jumper touches the obstacle
+    JumpingResult jumpingResult = new JumpingResult();
     if (jumpingMovementInfo instanceof JumpingMovementInfo) {
-      GameItem character = ((JumpingMovementInfo) jumpingMovementInfo).getJumper();
-      if (this.isOverlapping(character)) {
+      Jumper jumper = ((JumpingMovementInfo) jumpingMovementInfo).getJumper();
+      // If jumper touches the obstacle, set obstacleTouched to be true in the jumping result
+      if (this.isOverlapping(jumper)) {
         jumpingResult.setObstacleTouched(true);
 
         // reset obstacle's xCoordinate if it is out of the screen
