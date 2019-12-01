@@ -64,6 +64,17 @@ public abstract class AnimatedGameItem extends GameItem {
   }
 
   /**
+   * Constructs a AnimatedGameItem with the specified height, width, description.
+   *
+   * @param height the height of this GameItem
+   * @param width the width of this GameItem
+   * @param description the description of this GameItem
+   */
+  public AnimatedGameItem(int height, int width, String description) {
+    super(height, width, description);
+  }
+
+  /**
    * Set the velocity at x axis direction
    *
    * @param xVelocity
