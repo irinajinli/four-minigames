@@ -91,8 +91,8 @@ public class BrickGameView extends GameView implements View.OnClickListener {
         AppManager.getInstance()
             .buildGameManager(
                 Game.GameName.BRICK,
-                (int) (getScreenHeight() / charHeight),
-                (int) (getScreenWidth() / charWidth),
+                (int) (getScreenHeight() / getCharHeight()),
+                (int) (getScreenWidth() / getCharWidth()),
                 activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());

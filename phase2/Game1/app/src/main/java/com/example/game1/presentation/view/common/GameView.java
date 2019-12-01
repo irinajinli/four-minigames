@@ -27,9 +27,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   // TODO: make variables private where possible
 
   /** The width of a character. */
-  public static float charWidth;
+  private float charWidth;
   /** The height of a character. */
-  public static float charHeight;
+  private float charHeight;
   /** The manager. */
   public GameManager gameManager;
   /** The part of the program that manages time. */
@@ -65,17 +65,37 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     itemAppearances = new HashMap<>();
   }
 
+  /**
+   * Returns the width of this game view
+   * @return the width of this game view
+   */
   public int getScreenWidth() {
     return screenWidth;
   }
 
+  /**
+   * Returns the height of this game view
+   * @return the height of this game view
+   */
   public int getScreenHeight() {
     return screenHeight;
   }
 
+
+  /**
+   * Initializes the game view when it is created
+   * @param holder the holder holding this game view
+   */
   @Override
   public abstract void surfaceCreated(SurfaceHolder holder);
 
+  /**
+   * Adjusts the game view when a change is made to the surface.
+   * @param holder the holder containing this game view
+   * @param format the format of the surface
+   * @param width the width of the surface
+   * @param height the height of the surface
+   */
   @Override
   public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
 
@@ -150,12 +170,10 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     double xCoordinate = item.getXCoordinate();
     double yCoordinate = item.getYCoordinate();
     if (appearance.getClass() == String.class) {
-
-      // TODO NEW: remove * charWidth?
       canvas.drawText(
           (String) appearance,
-          (float) xCoordinate * GameView.charWidth,
-          (float) yCoordinate * GameView.charHeight,
+          (float) xCoordinate * charWidth,
+          (float) yCoordinate * charHeight,
           paintText);
 
     } else if (appearance.getClass() == Bitmap.class) {
@@ -240,11 +258,19 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
    */
   public abstract void extractBmpFiles();
 
-
+  /**
+   * Returns the map of items to appearances in this game view
+   * @return the map of items to appearances in this game view
+   */
   public HashMap<String, List<Bitmap>> getItemAppearances() {
     return itemAppearances;
   }
 
+  /**
+   * Maps gameItemName to the appearance image
+   * @param gameItemName the name of the item whose appearances is mapped
+   * @param image the bitmap image of the item
+   */
   public void addGameItemAppearance(String gameItemName, Bitmap image) {
     if (itemAppearances.containsKey(gameItemName)) {
       itemAppearances.get(gameItemName).add(image);
@@ -255,6 +281,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Maps a list of item appearances (one for each frame) to a given item
+   * @param gameItemName the item whose appearances need to be mapped
+   * @param images the list of images of the item
+   */
   public void addGameItemAppearances(String gameItemName, List<Bitmap> images) {
     if (itemAppearances.containsKey(gameItemName)) {
       for (Bitmap image : images) {
@@ -265,14 +296,27 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Returns the appearances associated with a given game item.
+   * @param key the key for the given game item
+   * @return a list of images for that item
+   */
   public List<Bitmap> getAppearances(String key) {
     return itemAppearances.get(key);
   }
 
+  /**
+   * Returns the bitmap image appearance associated with a given game item.
+   * @param key the key for the given game item
+   * @return the image of the item
+   */
   public Bitmap getAppearance(String key) {
     return itemAppearances.get(key).get(0);
   }
 
+  /**
+   * Initializes the background colour scheme based on the user's selection.
+   */
   public void generateBackgroundColorScheme() {
 
     Customization cust = gameManager.getGame().getCustomization();
@@ -283,6 +327,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Initializes the character's colour settings based on the user's customization settings.
+   */
   public void generateCharacterColor() {
     Customization cust = gameManager.getGame().getCustomization();
     if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
@@ -294,6 +341,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Sets the background colour based upon the user's selection
+   */
   public void generateBackgroundColor() {
     generateBackgroundColorScheme();
     if (this.backgroundColorScheme.equals("Dark")) {
@@ -303,32 +353,88 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Returns the background colour for this game
+   * @return the background colour for this game
+   */
   public int getBackgroundColor() {
     return backgroundColor;
   }
 
+  /**
+   * Sets the background colour for this game
+   * @param backgroundColor the background colour to set
+   */
   public void setScreenBackgroundColor(int backgroundColor) {
     this.backgroundColor = backgroundColor;
   }
 
+  /**
+   * sets the colour designated as the dark background colour
+   * @param backgroundColorDark the colour to designate as the dark background colour
+   */
   public void setBackgroundColorDark(int backgroundColorDark) {
     this.backgroundColorDark = backgroundColorDark;
   }
 
+  /**
+   * sets the colour designated as the light background colour
+   * @param backgroundColorLight the colour to designate as the light background colour
+   */
   public void setBackgroundColorLight(int backgroundColorLight) {
     this.backgroundColorLight = backgroundColorLight;
   }
 
+  /**
+   * Returns the character colour scheme for this game
+   * @return the character colour scheme for this game
+   */
   public String getCharacterColorScheme() {
     return characterColorScheme;
   }
 
-  /** */
+  /**
+   * Returns the next index in a given game item's animation. Loops from 0 to the end of the list storing it's appearances
+   * @param index the current index
+   * @param length the length of the list containing the item's appearances.
+   * */
   public int updateIndex(int index, int length) {
     index += 1;
     if (index == length) {
       index = 0;
     }
     return index;
+  }
+
+  /** Returns the width of a character in this game view.
+   *
+    * @return the width of a character in this game view.
+   */
+  public float getCharWidth(){
+    return charWidth;
+  }
+
+  /** Returns the height of a character in this game view.
+   *
+   * @return the height of a character in this game view.
+   */
+  public float getCharHeight(){
+    return charHeight;
+  }
+
+  /**
+   * Sets the character width for this game view
+   * @param charWidth the character width
+   */
+  public void setCharWidth(float charWidth){
+    this.charWidth = charWidth;
+  }
+
+  /**
+   * Sets the character height for this game view
+   * @param charHeight the character height to set
+   */
+  public void setCharHeight(float charHeight){
+    this.charHeight = charHeight;
   }
 }

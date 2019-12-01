@@ -115,8 +115,8 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
         AppManager.getInstance()
             .buildGameManager(
                 Game.GameName.JUMPING,
-                (int) (getScreenHeight() / charHeight),
-                (int) (getScreenWidth() / charWidth),
+                (int) (getScreenHeight() / getCharHeight()),
+                (int) (getScreenWidth() / getCharWidth()),
                 activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());

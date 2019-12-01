@@ -101,21 +101,21 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     Paint paintText = new Paint();
     paintText.setTextSize(36);
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    charWidth = paintText.measureText("W");
-    charHeight = -paintText.ascent() + paintText.descent();
+    setCharWidth(paintText.measureText("W"));
+    setCharHeight(-paintText.ascent() + paintText.descent());
 
     gameManager =
         AppManager.getInstance()
             .buildGameManager(
                 Game.GameName.TAPPING,
-                (int) (getScreenHeight() / charHeight),
-                (int) (getScreenWidth() / charWidth),
+                (int) (getScreenHeight() / getCharHeight()),
+                (int) (getScreenWidth() / getCharWidth()),
                 activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
     if (gameManager instanceof TappingGameManager){
-      ((TappingGameManager) gameManager).setGridWidthHeight((int)(getScreenWidth() / charWidth),
-              (int)(getScreenHeight() / charHeight));
+      ((TappingGameManager) gameManager).setGridWidthHeight((int)(getScreenWidth() / getCharWidth()),
+              (int)(getScreenHeight() / getCharHeight()));
     }
 
     extractBmpFiles();
@@ -205,8 +205,8 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     } else {
       canvas.drawText(
           item.getDescription(),
-          (float) xCoordinate * GameView.charWidth,
-          (float) yCoordinate * GameView.charHeight,
+          (float) xCoordinate * getCharWidth(),
+          (float) yCoordinate * getCharHeight(),
           paintText);
     }
   }
