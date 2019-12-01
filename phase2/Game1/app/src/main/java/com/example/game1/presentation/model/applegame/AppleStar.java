@@ -1,6 +1,7 @@
 package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
+import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 
 /** A Star that is used in the apple game */
@@ -19,8 +20,10 @@ public class AppleStar extends AnimatedGameItem {
 
   @Override
   /**
+   * Perform update based on the information given by the movement info
+   *
    * @param appleMovementInfo
-   * @return result: result needed by the game manager.
+   * @return result needed by the apple game manager.
    */
   public AppleResult update(MovementInfo appleMovementInfo) {
     // Update x and y coordinates of this apple based on specified time period
@@ -28,11 +31,11 @@ public class AppleStar extends AnimatedGameItem {
     AppleResult result = new AppleResult();
 
     if (appleMovementInfo instanceof AppleMovementInfo) {
-      AppleMovementInfo ami = (AppleMovementInfo) appleMovementInfo;
-      Basket basket = ami.getBasket();
-      // If this star is collected by the basket, update the result and put this star to the list
-      // of game items that will be removed later.
-      if (this.isOverlapping(basket)) {
+      // get the starCollector from appleMovementInfo. In this game, it's the basket
+      GameItem starCollector = ((AppleMovementInfo) appleMovementInfo).getBasket();
+      // If this star is collected by the star collector, update the result and put this star to the
+      // list that will be removed from gameItems in this game later.
+      if (this.isOverlapping(starCollector)) {
         result.setStarCollected(true);
         result.addOldItem(this);
       }
