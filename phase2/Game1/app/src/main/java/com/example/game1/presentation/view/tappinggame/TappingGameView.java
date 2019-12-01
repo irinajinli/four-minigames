@@ -113,6 +113,10 @@ public class TappingGameView extends GameView implements View.OnClickListener {
                 activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
+    if (gameManager instanceof TappingGameManager){
+      ((TappingGameManager) gameManager).setGridWidthHeight((int)(getScreenWidth() / charWidth),
+              (int)(getScreenHeight() / charHeight));
+    }
 
     extractBmpFiles();
     generateCharacterColor();
