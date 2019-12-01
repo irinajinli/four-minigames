@@ -3,6 +3,10 @@ package com.example.game1.presentation.model.common;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Information generated after a Game Item performed update. This information will be sent to game
+ * manager for further process
+ */
 public class Result {
   /** A class to store infromation that is needed for game manager to update the list */
 

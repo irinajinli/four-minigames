@@ -1,5 +1,8 @@
 package com.example.game1.presentation.model.common;
 
+/**
+ * Information needed by Game Item to perform update
+ */
 public class MovementInfo {
   /**
    * A period of time In this game it is the number of seconds used to refresh new xCoordinate,
