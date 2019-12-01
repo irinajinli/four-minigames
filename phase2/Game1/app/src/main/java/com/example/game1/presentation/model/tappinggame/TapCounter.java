@@ -14,7 +14,7 @@ public class TapCounter extends GameItem {
   private int numTaps;
 
   /**
-   * Construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate).
+   * Construct a Tap Counter with the specified x and y coordinates
    * @param xCoordinate xCoordinate of this TapCounter
    * @param yCoordinate yCoordinate of this TapCounter
    */
