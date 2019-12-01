@@ -3,8 +3,6 @@ package com.example.game1.presentation.model.tappinggame;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 import com.example.game1.presentation.model.common.Result;
-import com.example.game1.presentation.model.jumpinggame.TappingResult;
-
 public class StarDisplayer extends GameItem {
   /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
   private int numStar;
@@ -30,7 +28,7 @@ public class StarDisplayer extends GameItem {
   }
 
   @Override
-  public TappingResult update(MovementInfo tappingMovementInfo) {
+  public Result update(MovementInfo tappingMovementInfo) {
     // TappingResult result = new TappingResult();
     if (tappingMovementInfo instanceof TappingMovementInfo) {
       if (this.numStar < ((TappingMovementInfo) tappingMovementInfo).getTappingSpeed()) {
@@ -38,6 +36,6 @@ public class StarDisplayer extends GameItem {
       }
       setDescription("You current star number: " + this.numStar);
     }
-    return new TappingResult();
+    return new Result();
   }
 }

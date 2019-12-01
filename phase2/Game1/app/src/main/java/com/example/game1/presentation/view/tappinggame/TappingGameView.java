@@ -150,7 +150,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 //              bestResult = numTaps;
 //            }
             if (!gameStarted) {
-              ((TappingGameManager) gameManager).gameOver();
+              (gameManager).gameOver();
             }
           }
         };
