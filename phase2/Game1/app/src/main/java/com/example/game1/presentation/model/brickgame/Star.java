@@ -1,8 +1,6 @@
 package com.example.game1.presentation.model.brickgame;
 
 import com.example.game1.presentation.model.common.AnimatedGameItem;
-import com.example.game1.presentation.presenter.brickgame.BrickMovementInfo;
-import com.example.game1.presentation.presenter.brickgame.BrickResult;
 import com.example.game1.presentation.model.common.MovementInfo;
 
 public class Star extends AnimatedGameItem {
