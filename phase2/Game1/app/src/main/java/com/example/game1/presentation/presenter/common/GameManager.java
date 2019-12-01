@@ -32,6 +32,8 @@ public abstract class GameManager extends Observable {
   /* The music player of the game that this GameManager manages. */
   private MediaPlayer musicPlayer;
 
+  private int numTaps;
+
   private double numSeconds;
 
   /** Constructs a GameManager with the specified height, width, game, and activity. */
@@ -148,8 +150,13 @@ public abstract class GameManager extends Observable {
     this.numSeconds = numSeconds;
   }
 
+    public int getNumTaps(){
+      return numTaps;
+    }
 
-  //public abstract Object getSkyColor();
+    public void setNumTaps(int numTaps){
+      this.numTaps = numTaps;
+    }
 
 
   /* The possible states of a GameManager. */
