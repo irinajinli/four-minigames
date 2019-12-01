@@ -128,5 +128,5 @@ public abstract class AnimatedGameItem extends GameItem {
 
   }
 
-  public abstract Result animate(MovementInfo movementInfo);
+//  public abstract Result animate(MovementInfo movementInfo);
 }

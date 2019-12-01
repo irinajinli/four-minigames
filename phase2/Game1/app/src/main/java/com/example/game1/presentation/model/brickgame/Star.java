@@ -18,29 +18,29 @@ public class Star extends AnimatedGameItem {
     super(width, height);
   }
 
-  @Override
-  /**
-   * @param jumper
-   * @return result: result needed by the game manager.
-   */
-  public BrickResult animate(MovementInfo brickMovementInfo) {
-    updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumSeconds());
-    BrickResult result = new BrickResult();
-
-    // Jumper jumper = ((JumpingMovementInfo) jumpingImportInfo).getJumper();
-    // if star is collected by the jumper,
-    // inform the jumping result to remove the star in the view
-    // and increment the numStar collected in the game manager
-    // if (this.isOverlapping(jumper)) {
-    //  result.setStarCollected(true);
-    //  result.addOldItem(this);
-    // }
-    //    else{
-    //      setXCoordinate(getxCoordinate() - 15);
-    //    }
-
-    return result;
-  }
+//  @Override
+//  /**
+//   * @param jumper
+//   * @return result: result needed by the game manager.
+//   */
+//  public BrickResult animate(MovementInfo brickMovementInfo) {
+//    updatePositionAndVelocity(((BrickMovementInfo) brickMovementInfo).getNumSeconds());
+//    BrickResult result = new BrickResult();
+//
+//    // Jumper jumper = ((JumpingMovementInfo) jumpingImportInfo).getJumper();
+//    // if star is collected by the jumper,
+//    // inform the jumping result to remove the star in the view
+//    // and increment the numStar collected in the game manager
+//    // if (this.isOverlapping(jumper)) {
+//    //  result.setStarCollected(true);
+//    //  result.addOldItem(this);
+//    // }
+//    //    else{
+//    //      setXCoordinate(getxCoordinate() - 15);
+//    //    }
+//
+//    return result;
+//  }
 
   @Override
   public BrickResult update(MovementInfo brickMovementInfo) {
