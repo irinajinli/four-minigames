@@ -13,8 +13,8 @@ public class StarDisplayer extends GameItem {
 
   /**
    * Construct a StarDisplayer according to specified xCoordinate, yCoordinate
-   * @param xCoordinate
-   * @param yCoordinate
+   * @param xCoordinate xCoordinate of this StarDisplayer
+   * @param yCoordinate yCoordinate of this StarDisplayer
    */
   public StarDisplayer(double xCoordinate, double yCoordinate) {
     super(xCoordinate, yCoordinate, "You current star number: ");

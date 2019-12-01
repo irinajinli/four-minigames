@@ -12,8 +12,8 @@ public class SpeedDisplayer extends GameItem {
   /**
    * Construct a SpeedDisplayer according to specified xCoordinate, yCoordinate
    *
-   * @param xCoordinate
-   * @param yCoordinate
+   * @param xCoordinate xCoordinate of this SpeedDisplayer
+   * @param yCoordinate yCoordinate of this SpeedDisplayer
    */
   public SpeedDisplayer(double xCoordinate, double yCoordinate) {
     super(xCoordinate, yCoordinate, "Your average tapping speed: ");
