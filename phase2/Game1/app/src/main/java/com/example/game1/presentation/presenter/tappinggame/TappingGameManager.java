@@ -122,11 +122,11 @@ public class TappingGameManager extends GameManager {
 //    this.skyColorLight = skyColorLight;
 //  }
 
-//  public Object getSkyColor() {
+//  public Object getBackgroundColor() {
 //    return skyColor;
 //  }
 //
-//  public void setSkyColor(Object skyColor) {
+//  public void setScreenBackgroundColor(Object skyColor) {
 //    this.skyColor = skyColor;
 //  }
 

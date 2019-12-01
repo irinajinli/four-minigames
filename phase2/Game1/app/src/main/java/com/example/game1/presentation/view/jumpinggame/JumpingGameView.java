@@ -15,8 +15,6 @@ import com.example.game1.R;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.jumpinggame.Jumper;
-import com.example.game1.presentation.model.jumpinggame.Obstacle;
-import com.example.game1.presentation.model.jumpinggame.Terrain;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
@@ -28,8 +26,8 @@ import java.util.List;
 /** The view of the jumping game presented to the user. */
 public class JumpingGameView extends GameView implements View.OnClickListener {
 
-  private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
-  private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
+  private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
+  private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
   private OnClickListener listener;
   private int numTaps = 0;
   private List<Bitmap> obstacleBmps;
@@ -87,15 +85,15 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
         .setAppearance(
             obstacleBmps, starBmps, terrainBmp, jumperBlueBmps, jumperYellowBmps, jumperRedBmps);
 
-    //        ((JumpingGameManager)gameManager).setSkyColors(SKY_COLOR_DARK, SKY_COLOR_LIGHT);
+    //        ((JumpingGameManager)gameManager).setSkyColors(BACKGROUND_COLOR_DARK, BACKGROUND_COLOR_LIGHT);
 
     //extractBmpFiles();
     generateCharacterColor();
 
-    setSkyColorDark(SKY_COLOR_DARK);
-    setSkyColorLight(SKY_COLOR_LIGHT);
+    setBackgroundColorDark(BACKGROUND_COLOR_DARK);
+    setBackgroundColorLight(BACKGROUND_COLOR_LIGHT);
 
-    generateSkyColor();
+    generateBackgroundColor();
     gameManager.createGameItems();
     gameManager.startMusic();
 

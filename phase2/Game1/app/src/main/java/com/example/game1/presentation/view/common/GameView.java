@@ -48,9 +48,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   private String characterColorScheme;
 
   private String backgroundColorScheme;
-  private int skyColor;
-  private int skyColorDark;
-  private int skyColorLight;
+  private int backgroundColor;
+  private int backgroundColorDark;
+  private int backgroundColorLight;
 
   /**
    * Constructs a GameView with the given context.
@@ -115,7 +115,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void draw(Canvas canvas) {
     super.draw(canvas);
     if (canvas != null) {
-      canvas.drawColor(getSkyColor());
+      canvas.drawColor(getBackgroundColor());
       drawItems(canvas);
     }
   }
@@ -239,7 +239,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return itemAppearances.get(key).get(0);
   }
 
-  public void generateBackgroundColor() {
+  public void generateBackgroundColorScheme() {
 
     Customization cust = gameManager.getGame().getCustomization();
     if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
@@ -260,42 +260,34 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-  public void setSkyColors(int skyColorDark, int skyColorLight) {
-    this.skyColorDark = skyColorDark;
-    this.skyColorLight = skyColorLight;
-  }
 
-  public void generateSkyColor() {
-    generateBackgroundColor();
+  public void generateBackgroundColor() {
+    generateBackgroundColorScheme();
     if (this.backgroundColorScheme.equals("Dark")) {
-      setSkyColor(skyColorDark);
+      setScreenBackgroundColor(backgroundColorDark);
     } else if (this.backgroundColorScheme.equals("Light")) {
-      setSkyColor(skyColorLight);
+      setScreenBackgroundColor(backgroundColorLight);
     }
   }
 
-  public int getSkyColor() {
-    return skyColor;
+  public int getBackgroundColor() {
+    return backgroundColor;
   }
 
-  public void setSkyColor(int skyColor) {
-    this.skyColor = skyColor;
+  public void setScreenBackgroundColor(int backgroundColor) {
+    this.backgroundColor = backgroundColor;
   }
 
-  public int getSkyColorDark() {
-    return skyColorDark;
+
+
+  public void setBackgroundColorDark(int backgroundColorDark) {
+    this.backgroundColorDark = backgroundColorDark;
   }
 
-  public void setSkyColorDark(int skyColorDark) {
-    this.skyColorDark = skyColorDark;
-  }
 
-  public int getSkyColorLight() {
-    return skyColorLight;
-  }
 
-  public void setSkyColorLight(int skyColorLight) {
-    this.skyColorLight = skyColorLight;
+  public void setBackgroundColorLight(int backgroundColorLight) {
+    this.backgroundColorLight = backgroundColorLight;
   }
 
   public String getCharacterColorScheme() {

@@ -27,8 +27,8 @@ import java.util.List;
 /** The view of the jumping game presented to the user. */
 public class BrickGameView extends GameView implements View.OnClickListener {
 
-  private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
-  private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
+  private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
+  private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
   private GameThread thread;
   private OnClickListener listener;
   private int numTaps = 0;
@@ -100,10 +100,10 @@ public class BrickGameView extends GameView implements View.OnClickListener {
                     paddleBlueBmps,
                     paddleRedBmps,
                     paddleYellowBmps);
-    setSkyColorDark(SKY_COLOR_DARK);
-    setSkyColorLight(SKY_COLOR_LIGHT);
+    setBackgroundColorDark(BACKGROUND_COLOR_DARK);
+    setBackgroundColorLight(BACKGROUND_COLOR_LIGHT);
 
-    generateSkyColor();
+    generateBackgroundColor();
 
     gameManager.createGameItems();
     gameManager.startMusic();

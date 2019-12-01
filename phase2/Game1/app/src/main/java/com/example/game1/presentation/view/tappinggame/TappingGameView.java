@@ -25,8 +25,8 @@ import java.util.List;
 
 public class TappingGameView extends GameView implements View.OnClickListener {
 
-  private final int SKY_COLOR_DARK = Color.rgb(83, 92, 104);
-  private final int SKY_COLOR_LIGHT = Color.rgb(223, 249, 251);
+  private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
+  private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
   protected int numTaps;
   protected int numStars;
   protected boolean gameStarted;
@@ -92,10 +92,10 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     extractBmpFiles();
     generateCharacterColor();
 
-    setSkyColorDark(SKY_COLOR_DARK);
-    setSkyColorLight(SKY_COLOR_LIGHT);
+    setBackgroundColorDark(BACKGROUND_COLOR_DARK);
+    setBackgroundColorLight(BACKGROUND_COLOR_LIGHT);
 
-    generateSkyColor();
+    generateBackgroundColor();
 
     gameManager.createGameItems();
     gameManager.startMusic();

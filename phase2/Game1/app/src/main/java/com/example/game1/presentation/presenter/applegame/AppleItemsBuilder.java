@@ -19,9 +19,9 @@ public class AppleItemsBuilder {
 
 //  public void setTheme(AppleGameManager appleGameManager) {
 //    if (customization.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-//      appleGameManager.setSkyColor(appleGameManager.getSkyColorDark());
+//      appleGameManager.setScreenBackgroundColor(appleGameManager.getSkyColorDark());
 //    } else if (customization.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-//      appleGameManager.setSkyColor(appleGameManager.getSkyColorLight());
+//      appleGameManager.setScreenBackgroundColor(appleGameManager.getSkyColorLight());
 //    }
 //  }
 

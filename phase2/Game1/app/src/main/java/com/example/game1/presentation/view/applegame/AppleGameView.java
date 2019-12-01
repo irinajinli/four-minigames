@@ -36,9 +36,9 @@ public class AppleGameView extends GameView implements View.OnClickListener {
   private List<Bitmap> basketBlueBmps;
   private List<Bitmap> basketYellowBmps;
   private List<Bitmap> basketRedBmps;
-  private int skyColorDark;
-  private int skyColorLight;
-  private int skyColorDefault;
+  private final int BACKGROUND_COLOR_DARK = Color.BLACK;
+  private final int BACKGROUND_COLOR_LIGHT = Color.LTGRAY;
+
   private OnClickListener listener;
 
   /** Construct an AppleGameView with the specified Context. */
@@ -75,11 +75,11 @@ public class AppleGameView extends GameView implements View.OnClickListener {
     ((AppleGameManager) gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     // TODO: new for colors
-    extractSkyColors();
-    setSkyColorDark(skyColorDark);
-    setSkyColorLight(skyColorLight);
+//    extractSkyColors();
+    setBackgroundColorDark(BACKGROUND_COLOR_DARK);
+    setBackgroundColorLight(BACKGROUND_COLOR_LIGHT);
 
-    generateSkyColor();
+    generateBackgroundColor();
     gameManager.createGameItems();
     thread.setRunning(true);
     thread.start();
@@ -199,9 +199,5 @@ public class AppleGameView extends GameView implements View.OnClickListener {
     paintText.setTextSize(36);
   }
 
-  public void extractSkyColors() {
-    skyColorDark = Color.BLACK;
-    skyColorLight = Color.LTGRAY;
-    skyColorDefault = Color.BLACK;
-  }
+
 }
