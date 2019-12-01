@@ -49,41 +49,11 @@ public class JumpingGameManager extends GameManager {
     // this.game = new Game(Game.GameName.JUMPING);
   }
 
-  /**
-   * returns the terrain in this jumping game
-   *
-   * @return the terrain in this jumping game
-   */
-  public Terrain getTerrain() {
-    return terrain;
-  }
 
-  /**
-   * Returns the jumper in this Jumping game
-   *
-   * @return the jumper in this Jumping game
-   */
-  public Jumper getJumper() {
-    return jumper;
-  }
 
-  /**
-   * returns the number of successful jumps performed by the player.
-   *
-   * @return the number of obstacles jumped by the player
-   */
-  public int getNumJumped() {
-    return numJumped;
-  }
 
-  /**
-   * Sets the number of successful jumps made by this user.
-   *
-   * @param numJumped the new number of jumps to set
-   */
-  public void setNumJumped(int numJumped) {
-    this.numJumped = numJumped;
-  }
+
+
 
   /**
    * returns the number of stars collected by the player in this game
@@ -111,14 +81,6 @@ public class JumpingGameManager extends GameManager {
     this.numTaps = numTaps;
   }
 
-//  /**
-//   * Returns whether this game is running
-//   *
-//   * @return whether this game is running
-//   */
-//  public boolean getRunning() {
-//    return this.isRunning;
-//  }
 
   /**
    * Sets whether or not this game is running
@@ -165,7 +127,7 @@ public class JumpingGameManager extends GameManager {
       place(obstacle);
     }
 
-    JumpingStar jumpingStar = new JumpingStar(80, 80);
+    JumpingStar jumpingStar = new JumpingStar(getStarWidth(), getStarHeight());
 
     setStarPosition(jumpingStar, getScreenWidth() * 3 / 5);
     place(jumpingStar);
@@ -179,11 +141,9 @@ public class JumpingGameManager extends GameManager {
    * @param xCoordinate the position at which to add the jumpingStar
    */
   private void setStarPosition(JumpingStar jumpingStar, int xCoordinate) {
-    //    JumpingStar jumpingStar = new JumpingStar(80, 80, this);
     jumpingStar.setYCoordinate(terrain.getYCoordinate() - 4 * obstacles.get(0).getHeight());
     jumpingStar.setXCoordinate(xCoordinate);
     jumpingStar.setXVelocity(-cameraVelocityX);
-    // stars.add(jumpingStar);
   }
 
   /** updates all items in this game */
@@ -239,11 +199,7 @@ public class JumpingGameManager extends GameManager {
     terrain.setYCoordinate(getScreenHeight() / 2);
   }
 
-  public void setObstaclexCoordinate(Obstacle obstacle) {
-    if (obstacle.getXCoordinate() + obstacle.getWidth() < 0) {
-      obstacle.setXCoordinate(getScreenWidth() * 4 / 3);
-    }
-  }
+
 
   public void setObstaclePosition(Obstacle obstacle, double xCoordinate) {
     obstacle.setYCoordinate(terrain.getYCoordinate() - obstacle.getHeight());
@@ -254,7 +210,6 @@ public class JumpingGameManager extends GameManager {
   public void autoSetStarPosition(JumpingStar jumpingStar) {
     double xCoordinate = getScreenWidth() * 4 / 3 + jumpingStar.getWidth() / 2 - 80 / 2;
     jumpingStar.setXCoordinate(xCoordinate);
-    // JumpingStar jumpingStar = new JumpingStar(80, 80, this);
     double yCoordinate = terrain.getYCoordinate() - 4 * obstacles.get(0).getHeight();
     jumpingStar.setYCoordinate(yCoordinate);
     jumpingStar.setXVelocity(-cameraVelocityX);
@@ -262,7 +217,7 @@ public class JumpingGameManager extends GameManager {
 
   public void setJumperPosition(Jumper jumper) {
     jumper.setYCoordinate(terrain.getYCoordinate() - JUMPER_HEIGHT);
-    jumper.setXVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
+    jumper.setXVelocity(-cameraVelocityX + cameraVelocityX);
   }
 
   public boolean updateStatistics(JumpingResult result) {
@@ -285,7 +240,7 @@ public class JumpingGameManager extends GameManager {
     return newJumpingStar;
   }
 
-  public void processLists(List<GameItem> oldItems, List<GameItem> newItems){
+  public void processLists(List<GameItem> oldItems, List<GameItem> newItems) {
     for (GameItem newItem : newItems) {
       place(newItem);
     }
