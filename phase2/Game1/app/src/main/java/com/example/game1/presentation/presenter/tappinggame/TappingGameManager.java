@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.model.common.Result;
 import com.example.game1.presentation.model.tappinggame.Runner;
 import com.example.game1.presentation.model.tappinggame.SpeedDisplayer;
 import com.example.game1.presentation.model.tappinggame.StarDisplayer;
@@ -29,16 +28,7 @@ public class TappingGameManager extends GameManager {
   public TimerDisplayer timerDisplayer;
   public StarDisplayer starDisplayer;
   public SpeedDisplayer speedDisplayer;
-//  private Object tappingCircleAppearance;
-//  private List runnerAppearances;
-//  private List yellowPugAppearances;
-//  private List blueBirdAppearances;
-//  private List redFishAppearances;
   private boolean canRun;
-//  private Object skyColor;
-//  private Object skyColorDark;
-//  private Object skyColorLight;
-
   private int secondsLeft;
   private  int tappingSpeed;
 
@@ -56,25 +46,11 @@ public class TappingGameManager extends GameManager {
     this.canRun = true;
   }
 
-  public boolean isCanRun() {
-    return canRun;
-  }
 
   public void setCanRun(boolean canRun) {
     this.canRun = canRun;
   }
 
-//  public void setAppearance(
-//      Object tappingCircleAppearance,
-//      List yellowPugAppearances,
-//      List blueBirdAppearances,
-//      List redFishAppearances) {
-//    this.tappingCircleAppearance = tappingCircleAppearance;
-//    this.yellowPugAppearances = yellowPugAppearances;
-//    this.blueBirdAppearances = blueBirdAppearances;
-//    this.redFishAppearances = redFishAppearances;
-//    this.runnerAppearances = yellowPugAppearances;
-//  }
 
   /** execute animation on each item in myFishTank and update myFishTank accordingly. */
   public boolean update() {
@@ -117,29 +93,9 @@ public class TappingGameManager extends GameManager {
     super.gameOver();
   }
 
-//  public void setSkyColors(Object skyColorDark, Object skyColorLight) {
-//    this.skyColorDark = skyColorDark;
-//    this.skyColorLight = skyColorLight;
-//  }
-
-//  public Object getBackgroundColor() {
-//    return skyColor;
-//  }
-//
-//  public void setScreenBackgroundColor(Object skyColor) {
-//    this.skyColor = skyColor;
-//  }
-
-  public int getSecondsLeft() {
-    return secondsLeft;
-  }
 
   public void setSecondsLeft(int secondsLeft) {
     this.secondsLeft = secondsLeft;
-  }
-
-  public int getTappingSpeed() {
-    return tappingSpeed;
   }
 
   public void setTappingSpeed(int tappingSpeed) {
@@ -166,9 +122,4 @@ public class TappingGameManager extends GameManager {
     this.runnerHeight = runnerHeight;
   }
 
-  public void updateTappingMovementInfo(TappingMovementInfo tmi){
-    tmi.setNumTaps(this.numTaps);
-    tmi.setSecondsLeft(this.secondsLeft);
-    tmi.setTappingSpeed(this.tappingSpeed);
-  }
 }

@@ -8,7 +8,7 @@ public class Star extends AnimatedGameItem {
   /** The star. */
 
   /**
-   * Constructs a Star with the specified height, width and appearance.
+   * Constructs a JumpingStar with the specified height, width and appearance.
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem

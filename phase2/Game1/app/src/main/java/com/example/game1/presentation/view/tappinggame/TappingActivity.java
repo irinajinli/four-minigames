@@ -145,7 +145,7 @@ public class TappingActivity extends AppCompatActivity {
   //            // Set TextView to its info accordingly
   //            tv_result.setText("Time Remaining: " + timeTillEnd);
   //            tv_speed.setText("Current Speed: " + speed);
-  //            tv_star.setText("Current Star: " + star);
+  //            tv_star.setText("Current JumpingStar: " + star);
   //            tv_points.setText("Current Points: " + points);
   //          }
   //

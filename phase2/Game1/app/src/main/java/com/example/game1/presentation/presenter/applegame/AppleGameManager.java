@@ -149,11 +149,11 @@ public class AppleGameManager extends GameManager {
   }
 
   private void spawnNew() {
-    // get a random x-coordinate to spawn the new Apple/Star at
+    // get a random x-coordinate to spawn the new Apple/JumpingStar at
     Random randCoordinate = new Random();
     int spawnCoordinate = randCoordinate.nextInt(getGridWidth() - 80);
 
-    // decide whether to spawn an Apple or a Star or nothing
+    // decide whether to spawn an Apple or a JumpingStar or nothing
     Random randItem = new Random();
     int randint = randItem.nextInt(200);
     if (randint < 2) {

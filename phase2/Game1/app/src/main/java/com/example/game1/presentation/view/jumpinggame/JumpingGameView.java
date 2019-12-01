@@ -257,7 +257,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     addGameItemAppearances("JumperBlue", jumperBlueBmps);
     addGameItemAppearances("JumperRed", jumperRedBmps);
     addGameItemAppearances("Obstacle", obstacleBmps);
-    addGameItemAppearances("Star", starBmps);
+    addGameItemAppearances("JumpingStar", starBmps);
     addGameItemAppearances("Terrain", terrainBmps);
   }
 
