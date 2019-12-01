@@ -1,22 +1,25 @@
 package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.model.common.MovementInfo;
 
+/** A counter for to shown lives remaining. */
 public class LivesCounter extends GameItem {
-  /** A counter for points earned. */
 
-  // variables
-  /** How many lives are remaining. */
-  private int livesRemaining = 10;
+  /** Lives remaining. At the begining there are 10 lives remaining. */
+  private int livesRemaining;
 
-  /** Constructs a LivesCounter with white text. */
+  /**
+   * Constructs a LivesCounter with text description.
+   *
+   * @param startingLives
+   */
   public LivesCounter(int startingLives) {
     super("lives: " + startingLives);
+    livesRemaining = startingLives;
   }
 
   /**
-   * Gets livesRemaining.
+   * Gets the number of livesRemaining.
    *
    * @return number of lives remaining
    */
@@ -24,17 +27,9 @@ public class LivesCounter extends GameItem {
     return livesRemaining;
   }
 
-  /** Removes a life from this LivesCounter. */
+  /** Decrement liveRemaining by 1 in this LivesCounter. */
   public void subtractLife() {
     livesRemaining -= 1;
     setDescription("lives: " + livesRemaining);
   }
-
-  public AppleResult update(MovementInfo jumpingMovementInfo) {
-    return (new AppleResult());
-  }
-
-//  public Result animate(MovementInfo movementInfo) {
-//    return new Result();
-//  }
 }

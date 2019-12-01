@@ -1,17 +1,17 @@
 package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.model.common.MovementInfo;
 
 /** A counter for points earned. */
 public class PointsCounter extends GameItem {
 
   /** How many points have been counted. */
-  private int numPoints = 0;
+  private int numPoints;
 
   /** Construct a PointsCounter with white text. */
   public PointsCounter() {
     super("apples: 0");
+    numPoints = 0;
   }
 
   /**
@@ -32,12 +32,4 @@ public class PointsCounter extends GameItem {
     numPoints += points;
     setDescription("apples: " + numPoints);
   }
-
-  public AppleResult update(MovementInfo jumpingMovementInfo) {
-    return (new AppleResult());
-  }
-
-//  public Result animate(MovementInfo movementInfo) {
-//    return new Result();
-//  }
 }
