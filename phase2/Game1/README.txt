@@ -1,3 +1,5 @@
+There is no special setup required to run the project.
+
 
 Work done by Luqiong Xie for phase 2 but git pushed to phase 1 folder:
 
@@ -9,8 +11,12 @@ Work done by Luqiong Xie for phase 2 but git pushed to phase 1 folder:
 
 Classes created: SpeedDisplayer, StarDisplayer, 
 Classes updated: all tapping game .java files are updated, including TappingActivity,  TappingGameView, TappingCircle, GameItem, TappingGameManager
-*****************************************************Here is the git log from Nov 2 2019 to Nov 14 2019. 
-*****************************************************commit dede32d5405105b1cb1b92e24e05f21edfff7d60
+
+*****************************************************
+Here is the git log from Nov 2 2019 to Nov 14 2019. 
+*****************************************************
+
+commit dede32d5405105b1cb1b92e24e05f21edfff7d60
 Author: Luqiong Xie <luqiong.xie@mail.utoronto.ca>
 Date:   Thu Nov 14 10:41:04 2019 -0500
 
