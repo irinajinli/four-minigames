@@ -193,12 +193,11 @@ public class JumpingGameManager extends GameManager {
     List<GameItem> newItems = new ArrayList<>();
     // oldItems list stores GameItem to be removed from gameItems
     List<GameItem> oldItems = new ArrayList<>();
-    List<GameItem> gameItems = getGameItems();
     JumpingMovementInfo jumpingMovementInfo =
         new JumpingMovementInfo(
             getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumSeconds());
 
-    for (GameItem item : gameItems) {
+    for (GameItem item : getGameItems()) {
       Result result = item.update(jumpingMovementInfo);
       JumpingResult jumpingResult = (JumpingResult) result;
       if (jumpingResult.getOldItems() != null) {
