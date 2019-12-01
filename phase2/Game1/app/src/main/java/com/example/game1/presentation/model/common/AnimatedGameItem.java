@@ -14,7 +14,7 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Constructs a AnimatedGameItem with the specified height and width.
    *
-   * @param description the appearance of this GameItem
+   * @param description the appearance of this AnimatedGameItem
    */
   protected AnimatedGameItem(String description) {
     super(description);
@@ -23,8 +23,8 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Constructs a AnimatedGameItem with the specified coordinates.
    *
-   * @param xCoordinate xCoordinate of the GameItem
-   * @param yCoordinate yCoordinate of the GameItem
+   * @param xCoordinate xCoordinate of this AnimatedGameItem
+   * @param yCoordinate yCoordinate of this AnimatedGameItem
    */
   protected AnimatedGameItem(double xCoordinate, double yCoordinate) {
     super(xCoordinate, yCoordinate);
@@ -33,9 +33,9 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Construct an animated game item with the specified coordinates and description
    *
-   * @param xCoordinate
-   * @param yCoordinate
-   * @param description
+   * @param xCoordinate xCoordinate of this AnimatedGameItem
+   * @param yCoordinate yCoordinate of this AnimatedGameItem
+   * @param description Description of this AnimatedGameItem
    */
   public AnimatedGameItem(double xCoordinate, double yCoordinate, String description) {
     super(xCoordinate, yCoordinate, description);
@@ -44,10 +44,10 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Constructs a AnimatedGameItem with the specified coordinates, width and height.
    *
-   * @param xCoordinate xCoordinate of the GameItem
-   * @param yCoordinate yCoordinate of the GameItem
-   * @param width the width of this GameItem
-   * @param height the height of this GameItem
+   * @param xCoordinate xCoordinate of this AnimatedGameItem
+   * @param yCoordinate yCoordinate of this AnimatedGameItem
+   * @param width the width of this AnimatedGameItem
+   * @param height the height of this AnimatedGameItem
    */
   protected AnimatedGameItem(double xCoordinate, double yCoordinate, int width, int height) {
     super(xCoordinate, yCoordinate, width, height);
@@ -56,8 +56,8 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Constructs a AnimatedGameItem with the specified height and width.
    *
-   * @param height the height of this GameItem
-   * @param width the width of this GameItem
+   * @param height the height of this AnimatedGameItem
+   * @param width the width of this AnimatedGameItem
    */
   protected AnimatedGameItem(int height, int width) {
     super(height, width);
@@ -66,9 +66,9 @@ public abstract class AnimatedGameItem extends GameItem {
   /**
    * Constructs a AnimatedGameItem with the specified height, width, description.
    *
-   * @param height the height of this GameItem
-   * @param width the width of this GameItem
-   * @param description the description of this GameItem
+   * @param height the height of this AnimatedGameItem
+   * @param width the width of this AnimatedGameItem
+   * @param description the description of this AnimatedGameItem
    */
   public AnimatedGameItem(int height, int width, String description) {
     super(height, width, description);

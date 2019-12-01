@@ -10,8 +10,8 @@ public class Obstacle extends AnimatedGameItem {
   /**
    * Constructs a Obstacle with the specified height and width.
    *
-   * @param height the height of this GameItem
-   * @param width the width of this GameItem
+   * @param height the height of this Obstacle
+   * @param width the width of this Obstacle
    */
   public Obstacle(int height, int width) {
     super(height, width);

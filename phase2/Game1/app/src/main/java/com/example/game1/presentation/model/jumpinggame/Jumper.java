@@ -17,6 +17,12 @@ public class Jumper extends AnimatedGameItem {
   }
 
   @Override
+  /**
+   * Perform update based on the information given by the movement info
+   *
+   * @param jumpingMovementInfo
+   * @return result needed by the jumping game manager.
+   */
   public JumpingResult update(MovementInfo jumpingMovementInfo) {
 
     // Update x and y coordinates of this apple based on specified time period

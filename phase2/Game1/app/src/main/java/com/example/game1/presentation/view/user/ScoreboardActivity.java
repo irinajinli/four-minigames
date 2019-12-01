@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ScoreboardActivity extends AppCompatActivity {
 
-    private final String[] spinnerChoices = {"Total Score", "Points", "Stars", "Taps"};
+    private String[] spinnerChoices = {"Total Score", "Points", "Stars", "Taps"};
     private UserManager userManager = AppManager.getInstance().getUserManager();
 
     @Override

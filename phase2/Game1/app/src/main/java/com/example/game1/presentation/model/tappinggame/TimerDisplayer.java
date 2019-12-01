@@ -4,30 +4,33 @@ import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 import com.example.game1.presentation.model.common.Result;
 
+/** A Time Displayer */
 public class TimerDisplayer extends GameItem {
-  /** construct a Tap Counter at the specified cursor location (xCoordinate, yCoordinate). */
+  /** Number of seconds left */
   private int secondsLeft;
 
+  /**
+   * Construct a Time Displayer according to specified xCoordinate, yCoordinate
+   *
+   * @param xCoordinate xCoordinate of this TimeDisplayer
+   * @param yCoordinate yCoordinate of this TimeDisplayer
+   */
   public TimerDisplayer(double xCoordinate, double yCoordinate) {
-    // Call super() to set appearance, location (x, y)
     super(xCoordinate, yCoordinate, "Your seconds left: 10");
-//    setPosition(xCoordinate, yCoordinate);
+    // set initial value to 10 seconds
     this.secondsLeft = 10;
   }
 
-  public int getSecondsLeft() {
-    return secondsLeft;
-  }
-
-  public void setSecondsLeft(int secondsLeft) {
-    this.secondsLeft = secondsLeft;
-    setDescription("Your seconds left: " + this.secondsLeft);
-  }
-
   @Override
+  /**
+   * Perform update based on the information given by the movement info
+   *
+   * @param tappingMovementInfo
+   * @return result needed by the tapping game manager.
+   */
   public Result update(MovementInfo tappingMovementInfo) {
-    //TappingResult result = new TappingResult();
     if (tappingMovementInfo instanceof TappingMovementInfo) {
+      // Extract seconds Left from tapping movement info and update the secodnsLeft and description
       this.secondsLeft = ((TappingMovementInfo) tappingMovementInfo).getSecondsLeft();
       setDescription("Your seconds left: " + this.secondsLeft);
     }
