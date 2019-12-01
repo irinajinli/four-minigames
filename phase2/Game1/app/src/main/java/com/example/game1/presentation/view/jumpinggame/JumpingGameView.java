@@ -27,6 +27,12 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
   private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
   private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
+  private final int JUMPER_WIDTH = 100;
+  private final int JUMPER_HEIGHT = 200;
+  private final int OBSTACLE_WIDTH = 100;
+  private final int OBSTACLE_HEIGHT = 100;
+  private final int STAR_WIDTH = 80;
+  private final int STAR_HEIGHT = 80;
   private OnClickListener listener;
   private List<Bitmap> obstacleBmps;
   private List<Bitmap> starBmps;
@@ -116,6 +122,9 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     gameManager.setScreenWidth(this.getScreenWidth());
     gameManager.setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
+    if (gameManager instanceof JumpingGameManager){
+      ((JumpingGameManager) gameManager).setItemSize(JUMPER_WIDTH, JUMPER_HEIGHT, OBSTACLE_WIDTH, OBSTACLE_HEIGHT, STAR_WIDTH, STAR_HEIGHT);
+    }
     extractBmpFiles();
     generateCharacterColor();
 

@@ -22,12 +22,12 @@ import java.util.List;
  * methods for handling GameObjects.
  */
 public class JumpingGameManager extends GameManager {
-  private final int JUMPER_WIDTH = 100;
-  private final int JUMPER_HEIGHT = 200;
-  private final int OBSTACLE_WIDTH = 100;
-  private final int OBSTACLE_HEIGHT = 100;
-  private final int STAR_WIDTH = 80;
-  private final int STAR_HEIGHT = 80;
+  private int jumperWidth;
+  private int jumperHeight;
+  private int obstacleWidth;
+  private int obstacleHeight;
+  private int starWidth ;
+  private int starHeight;
 
   private Terrain terrain;
   private Jumper jumper;
@@ -102,15 +102,15 @@ public class JumpingGameManager extends GameManager {
     place(terrain);
 
     // @TODO changed
-    jumper = new Jumper(JUMPER_HEIGHT, JUMPER_WIDTH);
+    jumper = new Jumper(jumperHeight, jumperWidth);
     setJumperPosition(jumper);
     place(jumper);
 
-    Obstacle obstacle1 = new Obstacle(OBSTACLE_HEIGHT, OBSTACLE_WIDTH);
+    Obstacle obstacle1 = new Obstacle(obstacleHeight, obstacleWidth);
     setObstaclePosition(obstacle1, getScreenWidth() * 8 / 5);
-    Obstacle obstacle2 = new Obstacle(OBSTACLE_HEIGHT, OBSTACLE_WIDTH);
+    Obstacle obstacle2 = new Obstacle(obstacleHeight, obstacleWidth);
     setObstaclePosition(obstacle2, getScreenWidth() * 3 / 5);
-    Obstacle obstacle3 = new Obstacle(OBSTACLE_HEIGHT, OBSTACLE_WIDTH);
+    Obstacle obstacle3 = new Obstacle(obstacleHeight, obstacleWidth);
     setObstaclePosition(obstacle3, getScreenWidth() * 6 / 5);
     obstacles = new ArrayList<>();
     obstacles.add(obstacle1);
@@ -209,7 +209,7 @@ public class JumpingGameManager extends GameManager {
   }
 
   public void setJumperPosition(Jumper jumper) {
-    jumper.setYCoordinate(terrain.getYCoordinate() - JUMPER_HEIGHT);
+    jumper.setYCoordinate(terrain.getYCoordinate() - jumperHeight);
     jumper.setXVelocity(-cameraVelocityX + cameraVelocityX);
   }
 
@@ -243,26 +243,36 @@ public class JumpingGameManager extends GameManager {
   }
 
   public int getJumperWidth() {
-    return JUMPER_WIDTH;
+    return jumperWidth;
   }
 
   public int getJumperHeight() {
-    return JUMPER_HEIGHT;
+    return jumperHeight;
   }
 
   public int getObstacleWidth() {
-    return OBSTACLE_WIDTH;
+    return obstacleWidth;
   }
 
   public int getObstacleHeight() {
-    return OBSTACLE_HEIGHT;
+    return obstacleHeight;
   }
 
   public int getStarWidth() {
-    return STAR_WIDTH;
+    return starWidth;
   }
 
   public int getStarHeight() {
-    return STAR_HEIGHT;
+    return starHeight;
+  }
+
+  public void setItemSize(int jumperWidth, int jumperHeight, int obstacleWidth,
+                          int obstacleHeight, int starWidth, int starHeight){
+    this.jumperWidth = jumperWidth;
+    this.jumperHeight = jumperHeight;
+    this.obstacleWidth = obstacleWidth;
+    this.obstacleHeight = obstacleHeight;
+    this.starWidth = starWidth;
+    this.starHeight = starHeight;
   }
 }
