@@ -128,5 +128,10 @@ public abstract class AnimatedGameItem extends GameItem {
 
   }
 
-  public abstract Result animate(MovementInfo movementInfo);
+  //@Override
+  public Result update(MovementInfo movementInfo) {
+    updatePositionAndVelocity(movementInfo.getNumSeconds());
+    return new Result();
+  }
+  //public abstract Result animate(MovementInfo movementInfo);
 }

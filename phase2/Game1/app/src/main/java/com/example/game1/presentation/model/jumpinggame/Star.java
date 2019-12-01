@@ -19,7 +19,7 @@ public class Star extends AnimatedGameItem {
     super(width, height);
   }
 
-  @Override
+
   /**
    * @param jumper
    * @return result: result needed by the game manager.

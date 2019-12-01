@@ -17,7 +17,6 @@ public class Terrain extends GameItem {
     super(height, width);
   }
 
-  @Override
   /**
    * @param jumpingMovementInfo: import info needed for this terrain to animate
    * @return the info needed by game manager after the animation

@@ -188,5 +188,8 @@ public abstract class GameItem {
         || otherItemLowerBoundary < thisItemUpperBoundary);
   }
 
-  public abstract Result update(MovementInfo movementInfo);
+  public Result update(MovementInfo movementInfo){
+    return new Result();
+  }
+
 }

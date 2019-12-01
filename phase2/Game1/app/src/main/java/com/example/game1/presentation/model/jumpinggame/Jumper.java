@@ -16,7 +16,6 @@ public class Jumper extends AnimatedGameItem {
     super(height, width);
   }
 
-  @Override
   /**
    * @param jumpingMovementInfo: importInfo needed for this jumper to animate
    * @return the info needed by game manager after the animation

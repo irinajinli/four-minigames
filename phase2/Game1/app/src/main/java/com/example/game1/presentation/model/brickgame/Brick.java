@@ -82,9 +82,4 @@ public class Brick extends GameItem {
   }
 
   public void move() {}
-
-  @Override
-  public BrickResult update(MovementInfo movementInfo) {
-    return (new BrickResult());
-  }
 }
