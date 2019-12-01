@@ -3,36 +3,35 @@ package com.example.game1.presentation.model.applegame;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 
+/** A Star that is used in the apple game */
 public class AppleStar extends AnimatedGameItem {
 
-  /** The star. */
-
   /**
-   * Constructs a JumpingStar with the specified height, width and appearance.
+   * Constructs an AppleStar with the specified width and height.
    *
-   * @param height the height of this GameItem
    * @param width the width of this GameItem
+   * @param height the height of this GameItem
    */
   public AppleStar(int width, int height) {
 
-    super(width, height);
+    super(height, width);
   }
 
+  @Override
   /**
    * @param appleMovementInfo
    * @return result: result needed by the game manager.
    */
   public AppleResult update(MovementInfo appleMovementInfo) {
+    // Update x and y coordinates of this apple based on specified time period
     updatePositionAndVelocity(((appleMovementInfo).getNumSeconds()));
     AppleResult result = new AppleResult();
 
     if (appleMovementInfo instanceof AppleMovementInfo) {
-
       AppleMovementInfo ami = (AppleMovementInfo) appleMovementInfo;
       Basket basket = ami.getBasket();
-      // if star is collected by the jumper,
-      // inform the jumping result to remove the star in the view
-      // and increment the numStar collected in the game manager
+      // If this star is collected by the basket, update the result and put this star to the list
+      // of game items that will be removed later.
       if (this.isOverlapping(basket)) {
         result.setStarCollected(true);
         result.addOldItem(this);
@@ -40,10 +39,4 @@ public class AppleStar extends AnimatedGameItem {
     }
     return result;
   }
-
-  public AppleResult animate(MovementInfo movementInfo) {
-    return  (new AppleResult());
-  }
-
-
 }

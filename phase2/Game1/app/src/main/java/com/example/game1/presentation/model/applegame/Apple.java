@@ -16,6 +16,7 @@ public class Apple extends AnimatedGameItem {
     super(height, width);
   }
 
+  @Override
   /**
    * Perform update based on the information given by the movement info
    *
