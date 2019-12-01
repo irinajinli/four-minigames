@@ -31,7 +31,7 @@ public class JumpingGameManager extends GameManager {
   public static final int OBSTACLE_HEIGHT = 100;
   public static final int STAR_WIDTH = 80;
   public static final int STAR_HEIGHT = 80;
-  public final double TERRAIN_HEIGHT_MULTIPLIER = 0.5;
+
 
 
   private Terrain terrain;
@@ -41,13 +41,9 @@ public class JumpingGameManager extends GameManager {
   private int numJumped = 0;
   private int numStars = 0;
   private int numTaps = 0;
-  private Object skyColor;
-  private int skyColorLight;
-  private int skyColorDark;
+
   private boolean isRunning;
-  private List obstacleAppearances;
-  private List starAppearances;
-  private Bitmap terrainAppearance;
+
   private List<Bitmap> jumperBlueAppearances;
   private List<Bitmap> jumperRedAppearances;
   private List<Bitmap> jumperYellowAppearances;
@@ -132,18 +128,18 @@ public class JumpingGameManager extends GameManager {
     this.numTaps = numTaps;
   }
 
-  /**
-   * Returns the colour of the sky
-   *
-   * @return the colour of the sky
-   */
-  public Object getSkyColor() {
-    return this.skyColor;
-  }
-
-  public void setSkyColor(Object skyColor) {
-    this.skyColor = skyColor;
-  }
+//  /**
+//   * Returns the colour of the sky
+//   *
+//   * @return the colour of the sky
+//   */
+//  public Object getSkyColor() {
+//    return this.skyColor;
+//  }
+//
+//  public void setSkyColor(Object skyColor) {
+//    this.skyColor = skyColor;
+//  }
 
   /**
    * Returns whether this game is running
@@ -184,11 +180,11 @@ public class JumpingGameManager extends GameManager {
       this.jumperAppearances = jumperYellowAppearances;
     }
 
-    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-      setSkyColor(skyColorDark);
-    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-      setSkyColor(skyColorLight);
-    }
+//    if (cust.getColourScheme().equals(Customization.ColourScheme.DARK)) {
+//      setSkyColor(skyColorDark);
+//    } else if (cust.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
+//      setSkyColor(skyColorLight);
+//    }
 
     terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2);
     setTerrainPosition(terrain);
@@ -355,16 +351,13 @@ public class JumpingGameManager extends GameManager {
       List jumperBlueAppearances,
       List jumperYellowAppearances,
       List jumperRedAppearances) {
-    this.obstacleAppearances = obstacleAppearances;
-    this.starAppearances = starAppearances;
-    this.terrainAppearance = terrainAppearance;
+//    this.obstacleAppearances = obstacleAppearances;
+//    this.starAppearances = starAppearances;
+//    this.terrainAppearance = terrainAppearance;
     this.jumperBlueAppearances = jumperBlueAppearances;
     this.jumperYellowAppearances = jumperYellowAppearances;
     this.jumperRedAppearances = jumperRedAppearances;
   }
 
-  public void setSkyColors(int skyColorDark, int skyColorLight) {
-    this.skyColorDark = skyColorDark;
-    this.skyColorLight = skyColorLight;
-  }
+
 }

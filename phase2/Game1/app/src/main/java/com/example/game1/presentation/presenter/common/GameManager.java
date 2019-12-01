@@ -129,7 +129,7 @@ public abstract class GameManager extends Observable {
     notifyObservers(this);
   }
 
-  public abstract Object getSkyColor();
+
 
   /* The possible states of a GameManager. */
   public enum State {

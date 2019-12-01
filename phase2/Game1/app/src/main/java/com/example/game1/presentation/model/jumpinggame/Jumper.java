@@ -16,7 +16,23 @@ public class Jumper extends AnimatedGameItem {
     super(height, width);
   }
 
-
+  /**
+   * @param jumpingMovementInfo: importInfo needed for this jumper to animate
+   * @return the info needed by game manager after the animation
+   */
+  public JumpingResult animate(MovementInfo jumpingMovementInfo) {
+    return (new JumpingResult());
+//    JumpingResult jumpingResult = new JumpingResult();
+//    // Jumper land on the terrain
+//    Terrain terrain = ((JumpingMovementInfo) jumpingMovementInfo).getTerrain();
+//    updatePositionAndVelocity(((JumpingMovementInfo) jumpingMovementInfo).getNumSeconds());
+//    if (this.isOverlapping(terrain)) {
+//      this.setYCoordinate(terrain.getYCoordinate() - this.getHeight());
+//      this.setYVelocity(0);
+//      this.setYAcceleration(0);
+//    }
+//    return jumpingResult;
+  }
 
   @Override
   public JumpingResult update(MovementInfo jumpingMovementInfo) {
