@@ -25,7 +25,7 @@ public class AppleItemsBuilder {
 //    }
 //  }
 
-  public void createBasket(List basketBmps, List basketBlueBmps, List basketYellowBmps) {
+  public void createBasket() {
     this.basket = new Basket(100, 100);
     // set color of basket
     if (customization.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
