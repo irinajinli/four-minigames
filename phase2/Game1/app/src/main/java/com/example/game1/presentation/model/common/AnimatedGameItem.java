@@ -175,4 +175,14 @@ public abstract class AnimatedGameItem extends GameItem {
     double newYVelocity = getYVelocity() + getYAcceleration() * numOfSeconds;
     setYVelocity(newYVelocity);
   }
+
+  @Override
+  /**
+   * A default method for animated game item to update its coordinates based on specified time
+   * period given in the movement info
+   */
+  public Result update(MovementInfo movementInfo) {
+    updatePositionAndVelocity(movementInfo.getNumSeconds());
+    return (new Result());
+  }
 }
