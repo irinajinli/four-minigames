@@ -3,7 +3,6 @@ package com.example.game1.presentation.model.tappinggame;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 import com.example.game1.presentation.model.common.Result;
-import com.example.game1.presentation.model.jumpinggame.TappingResult;
 
 /** a tapping circle */
 public class TappingCircle extends GameItem {
@@ -15,8 +14,8 @@ public class TappingCircle extends GameItem {
   }
 
   @Override
-  public TappingResult update(MovementInfo tappingMovementInfo) {
-    return (new TappingResult());
+  public Result update(MovementInfo tappingMovementInfo) {
+    return (new Result());
   }
 
 }
