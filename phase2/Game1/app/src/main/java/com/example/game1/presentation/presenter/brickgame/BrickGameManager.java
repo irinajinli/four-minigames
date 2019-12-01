@@ -34,15 +34,12 @@ public class BrickGameManager extends GameManager {
   private final int BALL_HEIGHT = 80;
   private final double BALL_VELOCITY_X = 900;
   private final double BALL_VELOCITY_Y = 900;
-  private final int DARK_COLOR = Color.rgb(83, 92, 104);
-  private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
 
   private Paddle paddle;
   private Ball ball;
   private List<Brick> bricks;
   private List<Star> stars;
   private int numBroken = 0;
-  private int backgroundColor;
   private boolean isRunning;
   private List<Bitmap> paddleBlueBmps;
   private List<Bitmap> paddleRedBmps;
@@ -171,7 +168,7 @@ public class BrickGameManager extends GameManager {
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
     BrickItemsBuilder builder = new BrickItemsBuilder(game.getCustomization());
-    builder.setTheme(this);
+
     builder.createPaddle(
         PADDLE_HEIGHT, PADDLE_WIDTH, paddleBlueBmps, paddleRedBmps, paddleYellowBmps);
     builder.createBricks(
@@ -189,27 +186,7 @@ public class BrickGameManager extends GameManager {
     setRunning(true);
   }
 
-  /**
-   * Set the theme of this game
-   *
-   * @param theme the theme to set
-   */
-  void setTheme(Customization.ColourScheme theme) {
-    if (theme.equals(Customization.ColourScheme.DARK)) {
-      backgroundColor = DARK_COLOR;
-    } else { // (theme.equals((Customization.ColourScheme.LIGHT)))
-      backgroundColor = LIGHT_COLOR;
-    }
-  }
 
-  /**
-   * Returns the colour of the backgroud
-   *
-   * @return the colour of the background
-   */
-  public int getBackgroundColor() {
-    return this.backgroundColor;
-  }
 
   /**
    * Adds the specified star to this game at the given position

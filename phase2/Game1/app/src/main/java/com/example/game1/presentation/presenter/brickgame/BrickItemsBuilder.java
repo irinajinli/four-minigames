@@ -31,15 +31,6 @@ class BrickItemsBuilder {
   }
 
   /**
-   * Sets the theme of the game
-   *
-   * @param brickGameManager the game manager for the game
-   */
-  void setTheme(BrickGameManager brickGameManager) {
-    brickGameManager.setTheme(cust.getColourScheme());
-  }
-
-  /**
    * creates a paddle for the game
    *
    * @param paddleHeight the height of the paddle
