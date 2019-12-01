@@ -32,7 +32,7 @@ public class TappingGameManager extends GameManager {
   private  int tappingSpeed;
 
 
-  private int numTaps;
+//  private int numTaps;
 
 
   /** Constructs a TappingGameManager with the specified height, width, game, and activity. */
@@ -50,7 +50,7 @@ public class TappingGameManager extends GameManager {
     List<GameItem> Items = getGameItems();
     TappingMovementInfo tappingMovementInfo =
             new TappingMovementInfo(
-                    getScreenHeight(), getScreenWidth(), tappingSpeed, secondsLeft, numTaps, getNumSeconds());
+                    getScreenHeight(), getScreenWidth(), tappingSpeed, secondsLeft, getNumTaps(), getNumSeconds());
     for (GameItem item : Items) {
       item.update(tappingMovementInfo);
       }
@@ -92,14 +92,6 @@ public class TappingGameManager extends GameManager {
 
   public void setTappingSpeed(int tappingSpeed) {
     this.tappingSpeed = tappingSpeed;
-  }
-
-  public int getNumTaps() {
-    return numTaps;
-  }
-
-  public void setNumTaps(int numTaps) {
-    this.numTaps = numTaps;
   }
 
     public void setRunnerWidthAndHeight(int runnerWidth, int runnerHeight){

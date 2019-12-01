@@ -50,7 +50,7 @@ public class AppleGameView extends GameView implements View.OnClickListener {
           @Override
           public void onClick(View v) {
             if (true) {
-              ((AppleGameManager) gameManager).incrementNumTaps();
+              gameManager.incrementNumTaps();
             }
           }
         };

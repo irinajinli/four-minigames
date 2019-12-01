@@ -28,10 +28,6 @@ public class TappingMovementInfo extends MovementInfo {
         return tappingSpeed;
     }
 
-    public void setTappingSpeed(int tappingSpeed) {
-
-        this.tappingSpeed = tappingSpeed;
-    }
     public int getNumTaps() {
         return numTaps;
     }
@@ -44,7 +40,5 @@ public class TappingMovementInfo extends MovementInfo {
         return secondsLeft;
     }
 
-    public void setSecondsLeft(int secondsLeft) {
-        this.secondsLeft = secondsLeft;
-    }
+
 }

@@ -125,10 +125,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
           @Override
           public void onFinish() {
-            gameStarted = false;
-            if (!gameStarted) {
               (gameManager).gameOver();
-            }
           }
         };
     myTimer = timer;
@@ -148,7 +145,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     if (gameStarted) {
       numTaps++;
       if (gameManager instanceof TappingGameManager){
-        ((TappingGameManager) gameManager).setNumTaps(numTaps);
+        gameManager.setNumTaps(numTaps);
       }
     }
   }

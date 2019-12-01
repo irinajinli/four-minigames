@@ -1,6 +1,5 @@
 package com.example.game1.presentation.model.applegame;
 
-import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.common.MovementInfo;
 
 /** A class for passing information to AppleGameManager.update. */
