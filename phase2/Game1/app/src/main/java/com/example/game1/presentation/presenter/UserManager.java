@@ -137,12 +137,6 @@ public class UserManager {
     userService.updateUser(currentUser);
   }
 
-  /** Redirects the user to the user menu screen */
-  void goToUserMenu(AppCompatActivity activity) {
-    Intent intent = new Intent(activity, UserMenuActivity.class);
-    activity.startActivity(intent);
-  }
-
   /** Redirects the user to the statistics page */
   void goToStatsPage(AppCompatActivity activity) {
     Intent intent = new Intent(activity, StatisticsActivity.class);
