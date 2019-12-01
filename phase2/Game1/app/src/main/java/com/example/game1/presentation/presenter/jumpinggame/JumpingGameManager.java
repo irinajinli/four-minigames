@@ -31,13 +31,12 @@ public class JumpingGameManager extends GameManager {
   public static final int OBSTACLE_HEIGHT = 100;
   public static final int STAR_WIDTH = 80;
   public static final int STAR_HEIGHT = 80;
+  public final double TERRAIN_HEIGHT_MULTIPLIER = 0.5;
 
 
   private Terrain terrain;
   private Jumper jumper;
-  private Obstacle obstacle1;
-  private Obstacle obstacle2;
-  private Obstacle obstacle3;
+  private List<Obstacle> obstacles;
   private double cameraVelocityX = 450;
   private int numJumped = 0;
   private int numStars = 0;
@@ -200,15 +199,20 @@ public class JumpingGameManager extends GameManager {
     setJumperPosition(jumper);
     place(jumper);
 
-    obstacle1 = new Obstacle(100, 100);
+    Obstacle obstacle1 = new Obstacle(OBSTACLE_HEIGHT, OBSTACLE_WIDTH);
     setObstaclePosition(obstacle1, getScreenWidth() * 8 / 5);
-    place(obstacle1);
-    obstacle2 = new Obstacle(100, 100);
+    Obstacle obstacle2 = new Obstacle(OBSTACLE_HEIGHT, OBSTACLE_WIDTH);
     setObstaclePosition(obstacle2, getScreenWidth() * 3 / 5);
-    place(obstacle2);
-    obstacle3 = new Obstacle(100, 100);
+    Obstacle obstacle3 = new Obstacle(OBSTACLE_HEIGHT, OBSTACLE_WIDTH);
     setObstaclePosition(obstacle3, getScreenWidth() * 6 / 5);
-    place(obstacle3);
+    obstacles = new ArrayList<>();
+    obstacles.add(obstacle1);
+    obstacles.add(obstacle2);
+    obstacles.add(obstacle3);
+    for (Obstacle obstacle: obstacles){
+      place(obstacle);
+    }
+
 
     Star star = new Star(80, 80);
 
@@ -225,7 +229,7 @@ public class JumpingGameManager extends GameManager {
    */
   private void setStarPosition(Star star, int xCoordinate) {
     //    Star star = new Star(80, 80, this);
-    star.setYCoordinate(terrain.getYCoordinate() - 4 * obstacle1.getHeight());
+    star.setYCoordinate(terrain.getYCoordinate() - 4 * obstacles.get(0).getHeight());
     star.setXCoordinate(xCoordinate);
     star.setXVelocity(-cameraVelocityX);
     // stars.add(star);
@@ -334,7 +338,7 @@ public class JumpingGameManager extends GameManager {
     double xCoordinate = getScreenWidth() * 4 / 3 + star.getWidth() / 2 - 80 / 2;
     star.setXCoordinate(xCoordinate);
     // Star star = new Star(80, 80, this);
-    double yCoordinate = terrain.getYCoordinate() - 4 * obstacle1.getHeight();
+    double yCoordinate = terrain.getYCoordinate() - 4 * obstacles.get(0).getHeight();
     star.setYCoordinate(yCoordinate);
     star.setXVelocity(-cameraVelocityX);
   }
