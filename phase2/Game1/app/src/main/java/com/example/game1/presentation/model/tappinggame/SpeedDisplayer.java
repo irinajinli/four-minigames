@@ -10,7 +10,7 @@ public class SpeedDisplayer extends GameItem {
   private int tappingSpeed;
 
   /**
-   * construct a speedDisplayer at the specified cursor location (xCoordinate, yCoordinate
+   * Construct a SpeedDisplayer according to specified xCoordinate, yCoordinate
    *
    * @param xCoordinate
    * @param yCoordinate
