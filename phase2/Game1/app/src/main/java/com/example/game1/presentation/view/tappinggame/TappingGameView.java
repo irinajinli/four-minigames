@@ -43,25 +43,25 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
   // images used for game objects
   private int[] YELLOW_PUG_FILES = {
-          R.drawable.dog_yellow_1,
-          R.drawable.dog_yellow_2,
-          R.drawable.dog_yellow_3,
-          R.drawable.dog_yellow_4,
-          R.drawable.dog_yellow_5,
-          R.drawable.dog_yellow_6,
-          R.drawable.dog_yellow_7,
-          R.drawable.dog_yellow_8
+    R.drawable.dog_yellow_1,
+    R.drawable.dog_yellow_2,
+    R.drawable.dog_yellow_3,
+    R.drawable.dog_yellow_4,
+    R.drawable.dog_yellow_5,
+    R.drawable.dog_yellow_6,
+    R.drawable.dog_yellow_7,
+    R.drawable.dog_yellow_8
   };
   private int[] BLUE_BIRD_FILES = {
-          R.drawable.bird_blue_1, R.drawable.bird_blue_2, R.drawable.bird_blue_3, R.drawable.bird_blue_4
-  }; // R.drawable.blue_bird};
+    R.drawable.bird_blue_1, R.drawable.bird_blue_2, R.drawable.bird_blue_3, R.drawable.bird_blue_4
+  };
   private int[] RED_FISHES_FILES = {
-          R.drawable.fish_red_1,
-          R.drawable.fish_red_2,
-          R.drawable.fish_red_3,
-          R.drawable.fish_red_4,
-          R.drawable.fish_red_5,
-          R.drawable.fish_red_6
+    R.drawable.fish_red_1,
+    R.drawable.fish_red_2,
+    R.drawable.fish_red_3,
+    R.drawable.fish_red_4,
+    R.drawable.fish_red_5,
+    R.drawable.fish_red_6
   };
 
   /**
@@ -87,7 +87,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
           public void onClick(View v) {
             if (gameStarted) {
               numTaps++;
-              ((TappingGameManager) gameManager).setNumTaps(numTaps);
+              gameManager.setNumTaps(numTaps);
             }
           }
         };
@@ -149,7 +149,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
           @Override
           public void onFinish() {
-              (gameManager).gameOver();
+            (gameManager).gameOver();
           }
         };
     myTimer = timer;
@@ -163,14 +163,11 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     myTimer.cancel();
   }
 
-
   @Override
   public void onClick(View v) {
     if (gameStarted) {
       numTaps++;
-      if (gameManager instanceof TappingGameManager){
-        gameManager.setNumTaps(numTaps);
-      }
+      gameManager.setNumTaps(numTaps);
     }
   }
 
@@ -191,7 +188,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
       } catch (Exception e) {
         System.out.println("No Key");
       }
-        Bitmap appearance;
+      Bitmap appearance;
       if (item instanceof Runner) {
         appearance = getCurrentAppearance(key);
       } else {
@@ -209,11 +206,11 @@ public class TappingGameView extends GameView implements View.OnClickListener {
   }
 
   public void extractBmpFiles() {
-    TappingGameManager tappingGameManager = (TappingGameManager)gameManager;
+    TappingGameManager tappingGameManager = (TappingGameManager) gameManager;
     tappingCircleBmp = getNewBitmap(R.drawable.circle, getScreenWidth(), getScreenHeight() / 2);
-    int runnerWidth = (int) (getScreenWidth() *tappingGameManager.getRunnerWidthMultiplier());
+    int runnerWidth = (int) (getScreenWidth() * tappingGameManager.getRunnerWidthMultiplier());
     int runnerHeight = (int) (getScreenWidth() * tappingGameManager.getRunnerHeightMultiplier());
-    if (gameManager instanceof TappingGameManager){
+    if (gameManager instanceof TappingGameManager) {
       ((TappingGameManager) gameManager).setRunnerWidthAndHeight(runnerWidth, runnerHeight);
     }
 

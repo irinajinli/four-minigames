@@ -16,7 +16,6 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.jumpinggame.Jumper;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
-import com.example.game1.presentation.presenter.tappinggame.TappingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
@@ -92,9 +91,9 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
         new OnClickListener() {
           @Override
           public void onClick(View v) {
-            if (true) {
+
               gameManager.setNumTaps(gameManager.getNumTaps() + 1);
-            }
+
           }
         };
   }
@@ -118,8 +117,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     gameManager.setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     extractBmpFiles();
-
-    // extractBmpFiles();
     generateCharacterColor();
 
     setBackgroundColorDark(BACKGROUND_COLOR_DARK);
@@ -150,10 +147,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
   @Override
   public void onClick(View v) {
-
-    if (true) {
-      ((TappingGameManager) gameManager).tapCounter.setNumTaps(gameManager.getNumTaps());
-    }
+      gameManager.setNumTaps(gameManager.getNumTaps() + 1);
   }
 
   @Override
@@ -166,7 +160,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     setupPaintText();
     Bitmap appearance;
     String key;
-    // Object appearance = item.getDescription();
     double xCoordinate = item.getXCoordinate();
     double yCoordinate = item.getYCoordinate();
     if (item instanceof Jumper) {
