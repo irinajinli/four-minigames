@@ -29,10 +29,8 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
   private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
   private OnClickListener listener;
-  private int numTaps = 0;
   private List<Bitmap> obstacleBmps;
   private List<Bitmap> starBmps;
-  private Bitmap terrainBmp;
   private List<Bitmap> terrainBmps;
   private List<Bitmap> jumperBlueBmps;
   private List<Bitmap> jumperRedBmps;
@@ -54,8 +52,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
           @Override
           public void onClick(View v) {
             if (true) {
-              numTaps++;
-              ((JumpingGameManager) gameManager).setNumTaps(numTaps);
+              gameManager.setNumTaps(gameManager.getNumTaps() + 1);
             }
           }
         };
@@ -81,11 +78,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
     extractBmpFiles();
 
-
-
-
-
-    //extractBmpFiles();
+    // extractBmpFiles();
     generateCharacterColor();
 
     setBackgroundColorDark(BACKGROUND_COLOR_DARK);
@@ -112,8 +105,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
       thread.setRunning(false);
     }
   }
-
-
 
   /**
    * Handles the jumper's jump when the user taps the screen
@@ -147,8 +138,7 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
   public void onClick(View v) {
 
     if (true) {
-      numTaps++;
-      ((TappingGameManager) gameManager).tapCounter.setNumTaps(numTaps);
+      ((TappingGameManager) gameManager).tapCounter.setNumTaps(gameManager.getNumTaps());
     }
   }
 
@@ -176,9 +166,8 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
         appearance, (int) Math.round(xCoordinate), (int) Math.round(yCoordinate), paintText);
   }
 
-
   public void extractBmpFiles() {
-    //terrainBmp = getNewBitmap(R.drawable.grass, getScreenWidth(), getScreenHeight() / 2);
+    // terrainBmp = getNewBitmap(R.drawable.grass, getScreenWidth(), getScreenHeight() / 2);
     terrainBmps = new ArrayList<>();
     obstacleBmps = new ArrayList<>();
     starBmps = new ArrayList<>();
@@ -223,35 +212,30 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
       R.drawable.jumper_yellow_7,
       R.drawable.jumper_yellow_8
     };
-    JumpingGameManager jgm = (JumpingGameManager)gameManager;
-    generateAnimatedBmps(
-            terrainBmps,
-            terrainFiles,
-            getScreenWidth(),
-            getScreenHeight()/2
-    );
+    JumpingGameManager jumpingGameManager = (JumpingGameManager) gameManager;
+    generateAnimatedBmps(terrainBmps, terrainFiles, getScreenWidth(), getScreenHeight() / 2);
     generateAnimatedBmps(
         obstacleBmps,
         obstacleFiles,
-        jgm.OBSTACLE_WIDTH,
-        JumpingGameManager.OBSTACLE_HEIGHT);
+        jumpingGameManager.getObstacleWidth(),
+        jumpingGameManager.getObstacleHeight());
     generateAnimatedBmps(
-        starBmps, starFiles, JumpingGameManager.STAR_WIDTH, JumpingGameManager.STAR_HEIGHT);
+        starBmps, starFiles, jumpingGameManager.getStarWidth(), jumpingGameManager.getStarHeight());
     generateAnimatedBmps(
         jumperBlueBmps,
         jumperBlueFiles,
-        JumpingGameManager.JUMPER_WIDTH,
-        JumpingGameManager.JUMPER_HEIGHT);
+        jumpingGameManager.getJumperWidth(),
+        jumpingGameManager.getJumperHeight());
     generateAnimatedBmps(
         jumperRedBmps,
         jumperRedFiles,
-        JumpingGameManager.JUMPER_WIDTH,
-        JumpingGameManager.JUMPER_HEIGHT);
+        jumpingGameManager.getJumperWidth(),
+        jumpingGameManager.getJumperHeight());
     generateAnimatedBmps(
         jumperYellowBmps,
         jumperYellowFiles,
-        JumpingGameManager.JUMPER_WIDTH,
-        JumpingGameManager.JUMPER_HEIGHT);
+        jumpingGameManager.getJumperWidth(),
+        jumpingGameManager.getJumperHeight());
 
     addGameItemAppearances("JumperYellow", jumperYellowBmps);
     addGameItemAppearances("JumperBlue", jumperBlueBmps);
@@ -266,8 +250,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
     paintText.setTextSize(36);
   }
-
-
 
   public Bitmap getCurrentAppearance(String key) {
     List<Bitmap> appearances = getAppearances(key);

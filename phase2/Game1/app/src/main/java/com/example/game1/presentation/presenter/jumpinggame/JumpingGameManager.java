@@ -23,12 +23,12 @@ import java.util.List;
  * methods for handling GameObjects.
  */
 public class JumpingGameManager extends GameManager {
-  public static final int JUMPER_WIDTH = 100;
-  public static final int JUMPER_HEIGHT = 200;
-  public static final int OBSTACLE_WIDTH = 100;
-  public static final int OBSTACLE_HEIGHT = 100;
-  public static final int STAR_WIDTH = 80;
-  public static final int STAR_HEIGHT = 80;
+  private final int JUMPER_WIDTH = 100;
+  private final int JUMPER_HEIGHT = 200;
+  private final int OBSTACLE_WIDTH = 100;
+  private final int OBSTACLE_HEIGHT = 100;
+  private final int STAR_WIDTH = 80;
+  private final int STAR_HEIGHT = 80;
 
 
 
@@ -312,5 +312,28 @@ public class JumpingGameManager extends GameManager {
 
 
 
+  public int getJumperWidth(){
+    return JUMPER_WIDTH;
+  }
+
+  public int getJumperHeight(){
+    return JUMPER_HEIGHT;
+  }
+
+  public int getObstacleWidth(){
+    return OBSTACLE_WIDTH;
+  }
+
+  public int getObstacleHeight(){
+    return OBSTACLE_HEIGHT;
+  }
+
+  public int getStarWidth(){
+    return STAR_WIDTH;
+  }
+
+  public int getStarHeight(){
+    return STAR_HEIGHT;
+  }
 
 }
