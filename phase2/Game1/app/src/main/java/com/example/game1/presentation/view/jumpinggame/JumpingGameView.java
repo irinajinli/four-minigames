@@ -81,11 +81,9 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
 
     extractBmpFiles();
 
-    ((JumpingGameManager) gameManager)
-        .setAppearance(
-            obstacleBmps, starBmps, terrainBmp, jumperBlueBmps, jumperYellowBmps, jumperRedBmps);
 
-    //        ((JumpingGameManager)gameManager).setSkyColors(BACKGROUND_COLOR_DARK, BACKGROUND_COLOR_LIGHT);
+
+
 
     //extractBmpFiles();
     generateCharacterColor();

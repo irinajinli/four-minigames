@@ -1,6 +1,5 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
-import android.graphics.Bitmap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,10 +42,7 @@ public class JumpingGameManager extends GameManager {
 
   private boolean isRunning;
 
-  private List<Bitmap> jumperBlueAppearances;
-  private List<Bitmap> jumperRedAppearances;
-  private List<Bitmap> jumperYellowAppearances;
-  private List<Bitmap> jumperAppearances;
+
   private double numSeconds;
 
   private int currFrame;
@@ -57,13 +53,6 @@ public class JumpingGameManager extends GameManager {
     // this.game = new Game(Game.GameName.JUMPING);
   }
 
-  private Bitmap getNextJumperFrame() {
-    currFrame += 1;
-    if (currFrame >= jumperAppearances.size()) {
-      currFrame = 0;
-    }
-    return jumperAppearances.get(currFrame);
-  }
 
   /**
    * returns the terrain in this jumping game
@@ -160,13 +149,7 @@ public class JumpingGameManager extends GameManager {
     // create background according to Customization
     Customization cust = game.getCustomization();
 
-    if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
-      this.jumperAppearances = jumperBlueAppearances;
-    } else if (cust.getCharacterColour().equals(Customization.CharacterColour.RED)) {
-      this.jumperAppearances = jumperRedAppearances;
-    } else { // (cust.getCharacterColour().equals(Customization.CharacterColour.YELLOW))
-      this.jumperAppearances = jumperYellowAppearances;
-    }
+
 
 
 
@@ -282,7 +265,6 @@ public class JumpingGameManager extends GameManager {
       jumper.setYVelocity(-2000);
       jumper.setYAcceleration(5000);
     }
-    // numTaps += 1;
   }
 
   /** Ends this minigame. */
@@ -328,20 +310,7 @@ public class JumpingGameManager extends GameManager {
     jumper.setXVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
   }
 
-  public void setAppearance(
-      List obstacleAppearances,
-      List starAppearances,
-      Bitmap terrainAppearance,
-      List jumperBlueAppearances,
-      List jumperYellowAppearances,
-      List jumperRedAppearances) {
-//    this.obstacleAppearances = obstacleAppearances;
-//    this.starAppearances = starAppearances;
-//    this.terrainAppearance = terrainAppearance;
-    this.jumperBlueAppearances = jumperBlueAppearances;
-    this.jumperYellowAppearances = jumperYellowAppearances;
-    this.jumperRedAppearances = jumperRedAppearances;
-  }
+
 
 
 }

@@ -5,7 +5,6 @@ import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
 
-import java.util.List;
 
 public class AppleItemsBuilder {
   private Customization customization;
@@ -17,13 +16,6 @@ public class AppleItemsBuilder {
     this.customization = customization;
   }
 
-//  public void setTheme(AppleGameManager appleGameManager) {
-//    if (customization.getColourScheme().equals(Customization.ColourScheme.DARK)) {
-//      appleGameManager.setScreenBackgroundColor(appleGameManager.getSkyColorDark());
-//    } else if (customization.getColourScheme().equals(Customization.ColourScheme.LIGHT)) {
-//      appleGameManager.setScreenBackgroundColor(appleGameManager.getSkyColorLight());
-//    }
-//  }
 
   public void createBasket() {
     this.basket = new Basket(100, 100);

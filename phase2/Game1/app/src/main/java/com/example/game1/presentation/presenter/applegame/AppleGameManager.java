@@ -1,6 +1,5 @@
 package com.example.game1.presentation.presenter.applegame;
 
-import android.graphics.Bitmap;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,11 +38,7 @@ public class AppleGameManager extends GameManager {
   private LivesCounter livesCounter;
   private int numTaps;
   private int numCaughtStars = 0;
-//  private List<Bitmap> appleBmps;
-//  private List<Bitmap> starBmps;
-//  private List<Bitmap> basketBmps;
-//  private List<Bitmap> basketBlueBmps;
-//  private List<Bitmap> basketYellowBmps;
+
 
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   public AppleGameManager(int height, int width, Game game, AppCompatActivity activity) {
@@ -75,26 +70,12 @@ public class AppleGameManager extends GameManager {
     this.numSeconds = numSeconds;
   }
 
-//  public void setBMPFiles(
-//      List<Bitmap> appleBmps,
-//      List<Bitmap> starBmps,
-//      List<Bitmap> basketBmps,
-//      List<Bitmap> basketBlueBmps,
-//      List<Bitmap> basketYellowBmps) {
-//    this.appleBmps = appleBmps;
-//    this.starBmps = starBmps;
-//    this.basketBmps = basketBmps;
-//    this.basketBlueBmps = basketBlueBmps;
-//    this.basketYellowBmps = basketYellowBmps;
-//  }
-
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
     AppleItemsBuilder builder = new AppleItemsBuilder(game.getCustomization());
     builder.createPointsCounter();
     builder.createLivesCounter();
     builder.createBasket();
-//    builder.setTheme(this);
     builder.placeItems(this);
   }
 

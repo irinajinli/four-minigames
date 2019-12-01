@@ -70,8 +70,6 @@ public class AppleGameView extends GameView implements View.OnClickListener {
 
     extractBmpFiles();
     generateCharacterColor();
-//    ((AppleGameManager) gameManager)
-//        .setBMPFiles(appleBmps, starBmps, basketBmps, basketBlueBmps, basketYellowBmps);
     ((AppleGameManager) gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
 
     // TODO: new for colors
