@@ -15,7 +15,7 @@ import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.brickgame.Ball;
 import com.example.game1.presentation.model.brickgame.Brick;
 import com.example.game1.presentation.model.brickgame.Paddle;
-import com.example.game1.presentation.model.brickgame.Star;
+import com.example.game1.presentation.model.brickgame.BrickStar;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
 import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
@@ -162,7 +162,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
       } else {
         key = BRICK_KEY;
       }
-    } else if (item instanceof Star) {
+    } else if (item instanceof BrickStar) {
       key = STAR_KEY;
     }
     if (key == null) {

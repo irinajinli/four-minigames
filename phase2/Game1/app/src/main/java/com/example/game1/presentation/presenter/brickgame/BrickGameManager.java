@@ -11,7 +11,7 @@ import com.example.game1.presentation.model.brickgame.Ball;
 import com.example.game1.presentation.model.brickgame.Brick;
 import com.example.game1.presentation.model.brickgame.BrickMovementInfo;
 import com.example.game1.presentation.model.brickgame.Paddle;
-import com.example.game1.presentation.model.brickgame.Star;
+import com.example.game1.presentation.model.brickgame.BrickStar;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 
@@ -38,7 +38,7 @@ public class BrickGameManager extends GameManager {
   private Paddle paddle;
   private Ball ball;
   private List<Brick> bricks;
-  private List<Star> stars;
+  private List<BrickStar> stars;
   private int numBroken = 0;
   private List<Bitmap> paddleBlueBmps;
   private List<Bitmap> paddleRedBmps;
@@ -97,7 +97,7 @@ public class BrickGameManager extends GameManager {
    *
    * @param stars the stars in this game
    */
-  public void setStars(List<Star> stars) {
+  public void setStars(List<BrickStar> stars) {
     this.stars = stars;
   }
 
@@ -106,7 +106,7 @@ public class BrickGameManager extends GameManager {
    *
    * @return the stars in this game
    */
-  public List<Star> getStars() {
+  public List<BrickStar> getStars() {
     return stars;
   }
 
@@ -187,7 +187,6 @@ public class BrickGameManager extends GameManager {
     brickMovementInfo.animate();
 
     numBroken += brickMovementInfo.getNumBroken();
-    setNumTaps(getNumTaps() + brickMovementInfo.getNumTaps());
     setNumStars(getNumStars() + brickMovementInfo.getNumStars());
     for (GameItem item : gameItems) {
       item.update(brickMovementInfo);
@@ -209,7 +208,7 @@ public class BrickGameManager extends GameManager {
    * @param coordinates stores the coordinates at which to add the stars
    */
   private void addStar(double[] coordinates) {
-    Star star = new Star(STAR_WIDTH, STAR_HEIGHT);
+    BrickStar star = new BrickStar(STAR_WIDTH, STAR_HEIGHT);
     star.setPosition(
         coordinates[0] + getScreenWidth() / NUM_BRICKS_HORIZONTAL / 2 - STAR_WIDTH / 2,
         coordinates[1]);

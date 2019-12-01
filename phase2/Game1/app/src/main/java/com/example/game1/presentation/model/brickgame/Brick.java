@@ -3,19 +3,21 @@ package com.example.game1.presentation.model.brickgame;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 
+/**
+ * Represents a brick in the brick minigame
+ */
 public class Brick extends GameItem {
 
   private final int STARTING_DAMAGE_LEVEL = 2;
   private final int APPEARANCE_CHANGE_CUTOFF = 1;
   private final int DESTROYED_CUTOFF = 0;
 
+  // how much damage the brick has taken
   private int damageLevel;
-  // private Bitmap damagedAppearance;
 
-  /** The Obstacle. */
 
   /**
-   * Constructs a Obstacle with the specified width and height.
+   * Constructs a brick with the specified width and height.
    *
    * @param width the width of this GameItem
    * @param height the height of this GameItem

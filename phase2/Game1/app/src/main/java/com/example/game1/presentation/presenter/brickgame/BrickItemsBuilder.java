@@ -6,7 +6,7 @@ import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.brickgame.Ball;
 import com.example.game1.presentation.model.brickgame.Brick;
 import com.example.game1.presentation.model.brickgame.Paddle;
-import com.example.game1.presentation.model.brickgame.Star;
+import com.example.game1.presentation.model.brickgame.BrickStar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ class BrickItemsBuilder {
   private Paddle paddle;
   private ArrayList<Brick> bricks;
   private Ball ball;
-  private ArrayList<Star> stars;
+  private ArrayList<BrickStar> stars;
 
   /**
    * Creates a builder item based on the customization setting selected by the user
