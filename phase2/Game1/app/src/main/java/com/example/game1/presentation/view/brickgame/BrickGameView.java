@@ -18,6 +18,7 @@ import com.example.game1.presentation.model.brickgame.Paddle;
 import com.example.game1.presentation.model.brickgame.Star;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.brickgame.BrickGameManager;
+import com.example.game1.presentation.presenter.jumpinggame.JumpingGameManager;
 import com.example.game1.presentation.view.common.GameThread;
 import com.example.game1.presentation.view.common.GameView;
 
@@ -60,15 +61,15 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     thread = new GameThread(getHolder(), this);
     setFocusable(true);
     this.listener =
-            new OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                if (true) {
-                  numTaps++;
-                  ((BrickGameManager) gameManager).setNumTaps(numTaps);
-                }
-              }
-            };
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            if (true) {
+              numTaps++;
+              ((BrickGameManager) gameManager).setNumTaps(numTaps);
+            }
+          }
+        };
   }
 
   /**
@@ -79,12 +80,12 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
     gameManager =
-            AppManager.getInstance()
-                    .buildGameManager(
-                            Game.GameName.BRICK,
-                            (int) (getScreenHeight() / charHeight),
-                            (int) (getScreenWidth() / charWidth),
-                            activity);
+        AppManager.getInstance()
+            .buildGameManager(
+                Game.GameName.BRICK,
+                (int) (getScreenHeight() / charHeight),
+                (int) (getScreenWidth() / charWidth),
+                activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
     ((BrickGameManager) gameManager).setNumSeconds(GameThread.FRAME_DURATION_NS / 1000000000.);
@@ -127,7 +128,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   }
 
   @Override
-  public void drawItems(Canvas canvas){
+  public void drawItems(Canvas canvas) {
     List<GameItem> items = gameManager.getGameItems();
     for (GameItem item : items) {
       drawItem(canvas, item, getAppearance(item));
@@ -215,17 +216,17 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   }
 
   public void extractBmpFiles() {
-
+    BrickGameManager brickGameManager = (BrickGameManager) gameManager;
     brickBmp =
-            getNewBitmap(
-                    R.drawable.brick_blue,
-                    getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL,
-                    BrickGameManager.BRICK_HEIGHT);
+        getNewBitmap(
+            R.drawable.brick_blue,
+            getScreenWidth() / brickGameManager.getNumBricksHorizontal(),
+            brickGameManager.getBrickHeight());
     brickDamagedBmp =
-            getNewBitmap(
-                    R.drawable.brick_blue_damaged,
-                    getScreenWidth() / BrickGameManager.NUM_BRICKS_HORIZONTAL,
-                    BrickGameManager.BRICK_HEIGHT);
+        getNewBitmap(
+            R.drawable.brick_blue_damaged,
+            getScreenWidth() / brickGameManager.getNumBricksHorizontal(),
+            brickGameManager.getBrickHeight());
 
     int[] ballFiles = {R.drawable.ball_blue};
     int[] starFiles = {R.drawable.star_6};
@@ -240,24 +241,24 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     paddleYellowBmps = new ArrayList<Bitmap>();
 
     generateAnimatedBmps(
-            ballBmps, ballFiles, BrickGameManager.BALL_WIDTH, BrickGameManager.BALL_HEIGHT);
+        ballBmps, ballFiles, brickGameManager.getBallWidth(), brickGameManager.getBallHeight());
     generateAnimatedBmps(
-            starBmps, starFiles, BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
+        starBmps, starFiles, brickGameManager.getStarWidth(), brickGameManager.getStarHeight());
     generateAnimatedBmps(
-            paddleBlueBmps,
-            paddleBlueFiles,
-            BrickGameManager.PADDLE_WIDTH,
-            BrickGameManager.PADDLE_HEIGHT);
+        paddleBlueBmps,
+        paddleBlueFiles,
+        brickGameManager.getPaddleWidth(),
+        brickGameManager.getPaddleHeight());
     generateAnimatedBmps(
-            paddleRedBmps,
-            paddleRedFiles,
-            BrickGameManager.PADDLE_WIDTH,
-            BrickGameManager.PADDLE_HEIGHT);
+        paddleRedBmps,
+        paddleRedFiles,
+        brickGameManager.getPaddleWidth(),
+        brickGameManager.getPaddleHeight());
     generateAnimatedBmps(
-            paddleYellowBmps,
-            paddleYellowFiles,
-            BrickGameManager.PADDLE_WIDTH,
-            BrickGameManager.PADDLE_HEIGHT);
+        paddleYellowBmps,
+        paddleYellowFiles,
+        brickGameManager.getPaddleWidth(),
+        brickGameManager.getPaddleHeight());
 
     addGameItemAppearance(BRICK_KEY, brickBmp);
     addGameItemAppearance(BRICK_DAMAGED_KEY, brickDamagedBmp);
@@ -267,6 +268,4 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     addGameItemAppearances(PADDLE_YELLOW_KEY, paddleYellowBmps);
     addGameItemAppearances(STAR_KEY, starBmps);
   }
-
-
 }

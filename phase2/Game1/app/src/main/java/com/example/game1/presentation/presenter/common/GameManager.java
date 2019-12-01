@@ -32,6 +32,8 @@ public abstract class GameManager extends Observable {
   /* The music player of the game that this GameManager manages. */
   private MediaPlayer musicPlayer;
 
+  private double numSeconds;
+
   /** Constructs a GameManager with the specified height, width, game, and activity. */
   public GameManager(int height, int width, Game game, AppCompatActivity activity) {
     this.height = height;
@@ -130,6 +132,25 @@ public abstract class GameManager extends Observable {
   }
 
 
+  /** Returns the duration in seconds of a single game frame
+   *
+   * @return the duration in seconds of a single game frame
+   */
+  public double getNumSeconds() {
+    return numSeconds;
+  }
+
+  /**
+   * Sets the duration in seconds of a single game frame
+   * @param numSeconds the duration in seconds of a single game frame
+   */
+  public void setNumSeconds(double numSeconds) {
+    this.numSeconds = numSeconds;
+  }
+
+
+  //public abstract Object getSkyColor();
+
 
   /* The possible states of a GameManager. */
   public enum State {
@@ -138,4 +159,6 @@ public abstract class GameManager extends Observable {
     STOP,
     RESUME
   }
+
+
 }

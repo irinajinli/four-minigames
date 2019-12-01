@@ -33,10 +33,6 @@ public class TappingGameManager extends GameManager {
   private  int tappingSpeed;
 
 
-
-  private double numSeconds;
-
-
   private int numTaps;
 
 
@@ -58,7 +54,7 @@ public class TappingGameManager extends GameManager {
     List<GameItem> Items = getGameItems();
     TappingMovementInfo tappingMovementInfo =
             new TappingMovementInfo(
-                    getScreenHeight(), getScreenWidth(), tappingSpeed, secondsLeft, numTaps, numSeconds);
+                    getScreenHeight(), getScreenWidth(), tappingSpeed, secondsLeft, numTaps, getNumSeconds());
     for (GameItem item : Items) {
       item.update(tappingMovementInfo);
       }
@@ -110,14 +106,7 @@ public class TappingGameManager extends GameManager {
     this.numTaps = numTaps;
   }
 
-  public double getNumSeconds() {
-    return numSeconds;
-  }
-
-  public void setNumSeconds(double numSeconds) {
-    this.numSeconds = numSeconds;
-  }
-  public void setRunnerWidthAndHeight(int runnerWidth, int runnerHeight){
+    public void setRunnerWidthAndHeight(int runnerWidth, int runnerHeight){
     this.runnerWidth = runnerWidth;
     this.runnerHeight = runnerHeight;
   }

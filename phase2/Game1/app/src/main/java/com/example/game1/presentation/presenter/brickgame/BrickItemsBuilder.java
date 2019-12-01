@@ -11,7 +11,7 @@ import com.example.game1.presentation.model.brickgame.Star;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrickItemsBuilder {
+class BrickItemsBuilder {
   private Customization cust;
   private List paddleBmps;
   private Paddle paddle;
@@ -23,13 +23,13 @@ public class BrickItemsBuilder {
     this.cust = cust;
   }
 
-  public void setTheme(BrickGameManager brickGameManager) {
+  void setTheme(BrickGameManager brickGameManager) {
     brickGameManager.setTheme(cust.getColourScheme());
   }
 
   void createPaddle(
-      int PADDLE_HEIGHT,
-      int PADDLE_WIDTH,
+      int paddleHeight,
+      int paddleWidth,
       List paddleBlueBmps,
       List paddleRedBmps,
       List paddleYellowBmps) {
@@ -43,46 +43,46 @@ public class BrickItemsBuilder {
       paddleBmps = paddleBlueBmps;
     }
 
-    paddle = new Paddle(PADDLE_HEIGHT, PADDLE_WIDTH);
+    paddle = new Paddle(paddleHeight, paddleWidth);
   }
 
   void createBricks(
       int screenWidth,
-      int NUM_BRICKS_HORIZONTAL,
-      int NUM_BRICK_LAYERS,
-      int BRICK_HEIGHT,
+      int numBricksHorizontal,
+      int numBrickLayers,
+      int brickHeight,
       Bitmap brickBmp) {
     bricks = new ArrayList<Brick>();
-    int brickWidth = screenWidth / NUM_BRICKS_HORIZONTAL;
-    for (int i = 0; i < NUM_BRICK_LAYERS; i++) {
-      for (int j = 0; j < NUM_BRICKS_HORIZONTAL; j++) {
-        Brick newBrick = new Brick(BRICK_HEIGHT, brickWidth);
-        newBrick.setPosition(j * brickWidth, i * BRICK_HEIGHT);
+    int brickWidth = screenWidth / numBricksHorizontal;
+    for (int i = 0; i < numBrickLayers; i++) {
+      for (int j = 0; j < numBricksHorizontal; j++) {
+        Brick newBrick = new Brick(brickHeight, brickWidth);
+        newBrick.setPosition(j * brickWidth, i * brickHeight);
         bricks.add(newBrick);
       }
     }
   }
 
   void createBall(
-      int BALL_WIDTH,
-      int BALL_HEIGHT,
+      int ballWidth,
+      int ballHeight,
       List ballBmps,
       int screenWidth,
-      int BRICK_HEIGHT,
-      int NUM_BRICK_LAYERS,
-      double BALL_VELOCITY_X,
-      double BALL_VELOCITY_Y) {
-    ball = new Ball(BALL_WIDTH, BALL_HEIGHT);
-    ball.setPosition(screenWidth / 2, BRICK_HEIGHT * (NUM_BRICK_LAYERS + 1));
-    ball.setXVelocity(BALL_VELOCITY_X);
-    ball.setYVelocity(BALL_VELOCITY_Y);
+      int brickHeight,
+      int numBrickLayers,
+      double ballXVelocity,
+      double ballYVelocity) {
+    ball = new Ball(ballWidth, ballHeight);
+    ball.setPosition(screenWidth / 2, brickHeight * (numBrickLayers + 1));
+    ball.setXVelocity(ballXVelocity);
+    ball.setYVelocity(ballYVelocity);
   }
 
   void createStar() {
     stars = new ArrayList<Star>();
   }
 
-  public void placeItems(BrickGameManager brickGameManager) {
+  void placeItems(BrickGameManager brickGameManager) {
     // paddle
     brickGameManager.setPaddle(paddle);
     brickGameManager.setPaddlePosition(paddle);

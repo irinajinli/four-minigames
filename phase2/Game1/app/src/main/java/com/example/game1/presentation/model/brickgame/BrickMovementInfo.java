@@ -21,17 +21,22 @@ public class BrickMovementInfo extends MovementInfo {
   private List<Star> stars;
   private Paddle paddle;
   private List<GameItem> gameItems;
+  private List<double[]> starsToAdd;
 
   private boolean continueGame;
 
   private int numBroken;
   private int numStars;
   private int numTaps;
+  private boolean needNewStar;
+  private int newStarX, newStarY;
 
   // @TODO remove this
   List<Bitmap> starBmps;
 
   private final double STAR_PROBABILITY = 0.8;
+
+
 
   public BrickMovementInfo(Ball ball, List<Brick> bricks, List<Star> stars, Paddle paddle, List<GameItem> gameItems, int screenHeight, int screenWidth, double numSeconds) {
     super(numSeconds, screenHeight, screenWidth);
@@ -49,7 +54,7 @@ public class BrickMovementInfo extends MovementInfo {
     // oldItem list stores GameItem to be removed from gameItems
     List<GameItem> oldItems = new ArrayList<>();
     // note, right now, stars are the only object that get removed
-
+    starsToAdd = new ArrayList<>();
 
     // update ball and check if game is over
     if (!updateBall()) {
@@ -119,13 +124,8 @@ public class BrickMovementInfo extends MovementInfo {
           oldItems.add(brick);
           numBroken++;
           if (Math.random() > STAR_PROBABILITY) {
-            Star star =
-                    new Star(BrickGameManager.STAR_WIDTH, BrickGameManager.STAR_HEIGHT);
-            star.setPosition(
-                    brick.getXCoordinate() + brick.getWidth() / 2 - BrickGameManager.STAR_WIDTH / 2,
-                    brick.getYCoordinate());
-            gameItems.add(star);
-            stars.add(star);
+            double [] coordinates = {brick.getXCoordinate(), brick.getYCoordinate()};
+            starsToAdd.add(coordinates);
           }
         } else if (brick.needChangeAppearance()) {
           // brick.setDescription(brickDamagedBmp);
@@ -148,4 +148,7 @@ public class BrickMovementInfo extends MovementInfo {
     }
   }
 
+  public List<double[]> getStarsToAdd(){
+    return starsToAdd;
+  }
 }

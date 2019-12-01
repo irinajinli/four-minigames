@@ -19,17 +19,17 @@ import com.example.game1.presentation.presenter.common.GameManager;
 import java.util.List;
 
 public class BrickGameManager extends GameManager {
-  public static final int NUM_BRICK_LAYERS = 3;
-  public static final int NUM_BRICKS_HORIZONTAL = 6;
-  public static final int BRICK_HEIGHT = 80;
-  public static final int STAR_WIDTH = 80;
-  public static final int STAR_HEIGHT = 80;
-  public static final int PADDLE_WIDTH = 300; // 1550
-  public static final int PADDLE_HEIGHT = 60;
-  public static final int BALL_WIDTH = 80;
-  public static final int BALL_HEIGHT = 80;
-  public static final double BALL_VELOCITY_X = 900;
-  public static final double BALL_VELOCITY_Y = 900;
+  private final int NUM_BRICK_LAYERS = 3;
+  private final int NUM_BRICKS_HORIZONTAL = 6;
+  private final int BRICK_HEIGHT = 80;
+  private final int STAR_WIDTH = 80;
+  private final int STAR_HEIGHT = 80;
+  private final int PADDLE_WIDTH = 300; // 1550
+  private final int PADDLE_HEIGHT = 60;
+  private final int BALL_WIDTH = 80;
+  private final int BALL_HEIGHT = 80;
+  private final double BALL_VELOCITY_X = 900;
+  private final double BALL_VELOCITY_Y = 900;
   private final int DARK_COLOR = Color.rgb(83, 92, 104);
   private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
   /**
@@ -71,12 +71,24 @@ public class BrickGameManager extends GameManager {
     this.ball = ball;
   }
 
+  public Ball getBall(){
+    return ball;
+  }
+
   public void setBricks(List<Brick> bricks) {
     this.bricks = bricks;
   }
 
+  public List<Brick> getBricks(){
+    return bricks;
+  }
+
   public void setStars(List<Star> stars) {
     this.stars = stars;
+  }
+
+  public List<Star> getStars(){
+    return stars;
   }
 
   /**
@@ -201,24 +213,37 @@ public class BrickGameManager extends GameManager {
   @Override
   public boolean update() {
 
-    BrickMovementInfo result = new BrickMovementInfo(ball, bricks, stars, paddle,  gameItems, getScreenHeight(), getScreenWidth(),  getNumSeconds());
-    result.animate();
+    BrickMovementInfo brickMovementInfo = new BrickMovementInfo(ball, bricks, stars, paddle,  gameItems, getScreenHeight(), getScreenWidth(),  getNumSeconds());
+    brickMovementInfo.animate();
 
-    numBroken += result.getNumBroken();
-    numTaps += result.getNumTaps();
-    numStars += result.getNumStars();
+    numBroken += brickMovementInfo.getNumBroken();
+    numTaps += brickMovementInfo.getNumTaps();
+    numStars += brickMovementInfo.getNumStars();
     for (GameItem item: gameItems){
-      if (item instanceof AnimatedGameItem)
+      //item.update(brickMovementInfo);
+      if (item instanceof AnimatedGameItem){
         ((AnimatedGameItem)item).updatePositionAndVelocity(numSeconds);
+      }
     }
-
-
-    if (!result.continueGame()){
+    int b = 0;
+    for (double[] coordinates: brickMovementInfo.getStarsToAdd()){
+      addStar(coordinates);
+    }
+    int a = 0;
+    if (!brickMovementInfo.continueGame()){
       gameOver();
     }
-    return result.continueGame();
+    return brickMovementInfo.continueGame();
   }
 
+  private void addStar(double[] coordinates){
+    Star star =
+            new Star(STAR_WIDTH, STAR_HEIGHT);
+    star.setPosition(coordinates[0] + getScreenWidth()/ NUM_BRICKS_HORIZONTAL /2 - STAR_WIDTH / 2,
+            coordinates[1]);
+    gameItems.add(star);
+    stars.add(star);
+  }
 
 
   /** Handles the jumper's jump when the screen is tapped */
@@ -280,5 +305,41 @@ public class BrickGameManager extends GameManager {
   public Object getSkyColor() {
     return 0;
     // TODO FOR ABDUL: decide what to do with this method (it overrides abstract method of parent)
+  }
+
+  public int getNumBrickLayers() {
+    return NUM_BRICK_LAYERS;
+  }
+
+  public int getNumBricksHorizontal(){
+    return NUM_BRICKS_HORIZONTAL;
+  }
+
+  public int getBrickHeight(){
+    return BRICK_HEIGHT;
+  }
+
+  public int getStarWidth(){
+    return STAR_WIDTH;
+  }
+
+  public int getStarHeight(){
+    return STAR_HEIGHT;
+  }
+
+  public int getPaddleWidth(){
+    return PADDLE_WIDTH;
+  }
+
+  public int getPaddleHeight(){
+    return PADDLE_HEIGHT;
+  }
+
+  public int getBallWidth(){
+    return BALL_WIDTH;
+  }
+
+  public int getBallHeight(){
+    return BALL_HEIGHT;
   }
 }
