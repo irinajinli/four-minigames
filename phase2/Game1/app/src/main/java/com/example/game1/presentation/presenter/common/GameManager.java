@@ -33,6 +33,7 @@ public abstract class GameManager extends Observable {
   private MediaPlayer musicPlayer;
 
   private int numTaps;
+  private int numStars;
 
   private double numSeconds;
 
@@ -53,6 +54,7 @@ public abstract class GameManager extends Observable {
   public void place(GameItem item) {
     gameItems.add(item);
   }
+
   public Game getGame() {
     return game;
   }
@@ -67,65 +69,120 @@ public abstract class GameManager extends Observable {
   /** Creates some GameItems and adds them to this GameManager. */
   public abstract void createGameItems();
 
-
-
+  /**
+   * Sets the game being played
+   * @param game the game being played
+   */
   public void setGame(Game game) {
     this.game = game;
   }
 
+  /**
+   * returns the current state of the game
+   * @return the current state of the game
+   */
   public State getState() {
     return state;
   }
 
+  /**
+   * Sets the current state of the game
+   * @param state the state to set
+   */
   public void setState(State state) {
     this.state = state;
   }
 
+  /**
+   * Returns the activity associated with this game.
+   * @return the activity associated with this game.
+   */
   public AppCompatActivity getActivity() {
     return activity;
   }
 
+  /**
+   * Sets the activity associated with this game.
+   * @param activity the activity to associate with this game.
+   */
   public void setActivity(AppCompatActivity activity) {
     this.activity = activity;
   }
 
+  /**
+   * Returns the width of the screen the game is being played on
+   * @return the width of the screen the game is being played on
+   */
   public int getScreenWidth() {
     return width;
   }
 
+  /**
+   * Sets the width of the screen the game is being played on
+   * @param width the screen width to set for this game
+   */
   public void setScreenWidth(int width) {
     this.width = width;
   }
 
+  /**
+   * Returns the height of the screen the game is being played on
+   * @return the height of the screen the game is being played on
+   */
   public int getScreenHeight() {
     return height;
   }
 
+  /**
+   * Sets the height of the screen the game is being played on
+   * @param height the screen height to set for this game
+   */
   public void setScreenHeight(int height) {
     this.height = height;
   }
 
+  /**
+   * Returns the grid width of the screen the game is being played on
+   * @return the grid width of the screen the game is being played on
+   */
   public int getGridWidth() {
     return width;
   }
 
+  /**
+   * Returns the grid height of the screen the game is being played on
+   * @return the grid height of the screen the game is being played on
+   */
   public int getGridHeight() {
     return height;
   }
 
+  /**
+   * Sets the music player for this game
+   * @param musicPlayer the music player to set for this game
+   */
   public void setMusicPlayer(MediaPlayer musicPlayer) {
     this.musicPlayer = musicPlayer;
   }
 
+  /**
+   * Starts playing the music for this game.
+   */
   public void startMusic() {
     musicPlayer.start();
   }
 
+  /**
+   * Stops playing the music for this game.
+   */
   public void stopMusic() {
     musicPlayer.stop();
     musicPlayer.release();
   }
 
+  /**
+   * Ends this game
+   */
   public void gameOver() {
     stopMusic();
     state = State.STOP;
@@ -133,8 +190,8 @@ public abstract class GameManager extends Observable {
     notifyObservers(this);
   }
 
-
-  /** Returns the duration in seconds of a single game frame
+  /**
+   * Returns the duration in seconds of a single game frame
    *
    * @return the duration in seconds of a single game frame
    */
@@ -144,30 +201,62 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the duration in seconds of a single game frame
+   *
    * @param numSeconds the duration in seconds of a single game frame
    */
   public void setNumSeconds(double numSeconds) {
     this.numSeconds = numSeconds;
   }
 
-    public int getNumTaps(){
-      return numTaps;
-    }
+  /**
+   * Returns the number of screen taps so far in this game.
+   * @return the number of screen taps so far in this game.
+   */
+  public int getNumTaps() {
+    return numTaps;
+  }
 
-    public void setNumTaps(int numTaps){
-      this.numTaps = numTaps;
-    }
+  /**
+   * Sets the number of screen taps so far in this game.
+   * @param numTaps the number of screen taps to set so far in this game.
+   */
+  public void setNumTaps(int numTaps) {
+    this.numTaps = numTaps;
+  }
+
+  /**
+   * returns the number of stars collected by the player in this game
+   *
+   * @return the number of stars collected by the player in this game
+   */
+  public int getNumStars() {
+    return numStars;
+  }
+
+  /**
+   * sets the number of stars collected by this player
+   *
+   * @param numStars the new number to set
+   */
+  public void setNumStars(int numStars) {
+    this.numStars = numStars;
+  }
+
+  /**
+   * Increments the number of taps so far in this game by 1
+   */
   public void incrementNumTaps() {
     numTaps += 1;
   }
 
-  /* The possible states of a GameManager. */
+
+  /**
+   * The possible states of a GameManager.
+   * */
   public enum State {
     START,
     PAUSE,
     STOP,
     RESUME
   }
-
-
 }

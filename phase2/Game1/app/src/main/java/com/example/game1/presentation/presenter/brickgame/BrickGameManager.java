@@ -12,13 +12,17 @@ import com.example.game1.presentation.model.brickgame.Brick;
 import com.example.game1.presentation.model.brickgame.BrickMovementInfo;
 import com.example.game1.presentation.model.brickgame.Paddle;
 import com.example.game1.presentation.model.brickgame.Star;
-import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.presenter.common.GameManager;
 
 import java.util.List;
 
+/**
+ * A GameManager for a Brick Breaking minigame. Includes extra variables and methods for handling
+ * game-specific features.
+ */
 public class BrickGameManager extends GameManager {
+  // constants
   private final int NUM_BRICK_LAYERS = 3;
   private final int NUM_BRICKS_HORIZONTAL = 6;
   private final int BRICK_HEIGHT = 80;
@@ -32,62 +36,81 @@ public class BrickGameManager extends GameManager {
   private final double BALL_VELOCITY_Y = 900;
   private final int DARK_COLOR = Color.rgb(83, 92, 104);
   private final int LIGHT_COLOR = Color.rgb(223, 249, 251);
-  /**
-   * A GameManager for a Brick Breaking minigame. Includes extra variables and methods for handling
-   * game-specific features..
-   */
-  private Paddle paddle;
 
+  private Paddle paddle;
   private Ball ball;
   private List<Brick> bricks;
   private List<Star> stars;
   private int numBroken = 0;
-  private int numStars = 0;
-  private int numTaps = 0;
   private int backgroundColor;
   private boolean isRunning;
-  private Bitmap brickBmp;
-  private Bitmap brickDamagedBmp;
-  private List<Bitmap> starBmps;
-  private List<Bitmap> ballBmps;
-  private List<Bitmap> paddleBmps;
   private List<Bitmap> paddleBlueBmps;
   private List<Bitmap> paddleRedBmps;
   private List<Bitmap> paddleYellowBmps;
-  private double numSeconds;
 
   /**
    * Constructs a BrickGameManager with the specified height and width.
    *
-   * @param height the height of the JumpingGameManager
-   * @param width the width of the JumpingGameManager
+   * @param height the height of the BrickGameManager
+   * @param width the width of the BrickGameManager
+   * @param game the game being played
+   * @param activity the activity containing the game
    */
   public BrickGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
-    // this.game = new Game(Game.GameName.JUMPING);
   }
 
-  public void setBall(Ball ball) {
+  /**
+   * Sets the ball in this game.
+   *
+   * @param ball the ball to set.
+   */
+  void setBall(Ball ball) {
     this.ball = ball;
   }
 
-  public Ball getBall(){
+  /**
+   * Returns the ball in this game
+   *
+   * @return the ball in this game
+   */
+  public Ball getBall() {
     return ball;
   }
 
-  public void setBricks(List<Brick> bricks) {
+  /**
+   * Sets the bricks in this game
+   *
+   * @param bricks the bricks in this game
+   */
+  void setBricks(List<Brick> bricks) {
     this.bricks = bricks;
   }
 
-  public List<Brick> getBricks(){
+  /**
+   * Returns the bricks in this game
+   *
+   * @return the bricks in this game
+   */
+  public List<Brick> getBricks() {
     return bricks;
   }
 
+  /**
+   * Sets the stars in this game
+   *
+   * @param stars the stars in this game
+   */
   public void setStars(List<Star> stars) {
     this.stars = stars;
   }
 
-  public List<Star> getStars(){
+  /**
+   * Returns the stars in this game
+   *
+   * @return the stars in this game
+   */
+  public List<Star> getStars() {
     return stars;
   }
 
@@ -100,7 +123,12 @@ public class BrickGameManager extends GameManager {
     return paddle;
   }
 
-  public void setPaddle(Paddle paddle) {
+  /**
+   * Sets the paddle in this game
+   *
+   * @param paddle the paddle in this game
+   */
+  void setPaddle(Paddle paddle) {
     this.paddle = paddle;
   }
 
@@ -120,24 +148,6 @@ public class BrickGameManager extends GameManager {
    */
   public void setNumBroken(int numBroken) {
     this.numBroken = numBroken;
-  }
-
-  /**
-   * returns the number of stars collected by the player in this game
-   *
-   * @return the number of stars collected by the player in this game
-   */
-  public int getNumStars() {
-    return numStars;
-  }
-
-  /**
-   * sets the number of stars collected by this player
-   *
-   * @param numStars the new number to set
-   */
-  public void setNumStars(int numStars) {
-    this.numStars = numStars;
   }
 
   /**
@@ -165,11 +175,10 @@ public class BrickGameManager extends GameManager {
     builder.createPaddle(
         PADDLE_HEIGHT, PADDLE_WIDTH, paddleBlueBmps, paddleRedBmps, paddleYellowBmps);
     builder.createBricks(
-        getScreenWidth(), NUM_BRICKS_HORIZONTAL, NUM_BRICK_LAYERS, BRICK_HEIGHT, brickBmp);
+        getScreenWidth(), NUM_BRICKS_HORIZONTAL, NUM_BRICK_LAYERS, BRICK_HEIGHT);
     builder.createBall(
         BALL_WIDTH,
         BALL_HEIGHT,
-        ballBmps,
         getScreenWidth(),
         BRICK_HEIGHT,
         NUM_BRICK_LAYERS,
@@ -194,9 +203,9 @@ public class BrickGameManager extends GameManager {
   }
 
   /**
-   * Returns the colour of the sky
+   * Returns the colour of the backgroud
    *
-   * @return the colour of the sky
+   * @return the colour of the background
    */
   public int getBackgroundColor() {
     return this.backgroundColor;
@@ -205,6 +214,7 @@ public class BrickGameManager extends GameManager {
   /**
    * Adds the specified star to this game at the given position
    *
+   * @param star the star whose position needs to be set
    * @param xCoordinate the position at which to add the star
    */
   public void setStarPosition(Star star, int xCoordinate) {}
@@ -213,41 +223,56 @@ public class BrickGameManager extends GameManager {
   @Override
   public boolean update() {
 
-    BrickMovementInfo brickMovementInfo = new BrickMovementInfo(ball, bricks, stars, paddle,  gameItems, getScreenHeight(), getScreenWidth(),  getNumSeconds());
+    BrickMovementInfo brickMovementInfo =
+        new BrickMovementInfo(
+            ball,
+            bricks,
+            stars,
+            paddle,
+            gameItems,
+            getScreenHeight(),
+            getScreenWidth(),
+            getNumSeconds());
     brickMovementInfo.animate();
 
     numBroken += brickMovementInfo.getNumBroken();
-    numTaps += brickMovementInfo.getNumTaps();
-    numStars += brickMovementInfo.getNumStars();
-    for (GameItem item: gameItems){
+    setNumTaps(getNumTaps() + brickMovementInfo.getNumTaps());
+    setNumStars(getNumStars() + brickMovementInfo.getNumStars());
+    for (GameItem item : gameItems) {
       item.update(brickMovementInfo);
     }
-    int b = 0;
-    for (double[] coordinates: brickMovementInfo.getStarsToAdd()){
+
+    for (double[] coordinates : brickMovementInfo.getStarsToAdd()) {
       addStar(coordinates);
     }
-    int a = 0;
-    if (!brickMovementInfo.continueGame()){
+
+    if (!brickMovementInfo.continueGame()) {
       gameOver();
     }
     return brickMovementInfo.continueGame();
   }
 
-  private void addStar(double[] coordinates){
-    Star star =
-            new Star(STAR_WIDTH, STAR_HEIGHT);
-    star.setPosition(coordinates[0] + getScreenWidth()/ NUM_BRICKS_HORIZONTAL /2 - STAR_WIDTH / 2,
-            coordinates[1]);
+  /**
+   * Adds the stars at the specified coordinates.
+   *
+   * @param coordinates stores the coordinates at which to add the stars
+   */
+  private void addStar(double[] coordinates) {
+    Star star = new Star(STAR_WIDTH, STAR_HEIGHT);
+    star.setPosition(
+        coordinates[0] + getScreenWidth() / NUM_BRICKS_HORIZONTAL / 2 - STAR_WIDTH / 2,
+        coordinates[1]);
     gameItems.add(star);
     stars.add(star);
   }
 
-
-  /** Handles the jumper's jump when the screen is tapped */
+  /**
+   * Moves the paddle when the screen is tapped
+   *
+   * @param xCoordinate the x coordinate at which to move the paddle's centre
+   */
   public void onTouchEvent(double xCoordinate) {
     paddle.setXCoordinate(xCoordinate - paddle.getWidth() / 2);
-
-    // numTaps += 1;
   }
 
   /** Ends this minigame. */
@@ -255,88 +280,116 @@ public class BrickGameManager extends GameManager {
     setRunning(false);
     // set points here
     game.getStatistics().setPoints(numBroken);
-    game.getStatistics().setStars(numStars);
-    game.getStatistics().setTaps(numTaps);
+    game.getStatistics().setStars(getNumStars());
+    game.getStatistics().setTaps(getNumTaps());
 
     super.gameOver();
   }
 
+  /**
+   * Sets the paddle to it's default starting position
+   *
+   * @param paddle the paddle to set
+   */
   public void setPaddlePosition(Paddle paddle) {
     paddle.setXCoordinate((getScreenWidth() - PADDLE_WIDTH) / 2);
     paddle.setYCoordinate(getScreenHeight() - PADDLE_HEIGHT * 6);
   }
 
-  public int getNumTaps() {
-    return numTaps;
-  }
-
-  public void setNumTaps(int numTaps) {
-    this.numTaps = numTaps;
-  }
-
+  /**
+   * sets the bmp files to use for this game's items
+   *
+   * @param paddleBlueBmps bmp files for the blue paddle
+   * @param paddleRedBmps bmp files for the red paddle
+   * @param paddleYellowBmps bmp files for the yellow paddle
+   */
   public void setBmpfiles(
-      List<Bitmap> ballBmps,
-      List<Bitmap> starBmps,
-      Bitmap brickBmp,
-      Bitmap brickDamagedBmp,
       List<Bitmap> paddleBlueBmps,
       List<Bitmap> paddleRedBmps,
       List<Bitmap> paddleYellowBmps) {
-    this.ballBmps = ballBmps;
-    this.brickBmp = brickBmp;
-    this.brickDamagedBmp = brickDamagedBmp;
-    this.starBmps = starBmps;
     this.paddleBlueBmps = paddleBlueBmps;
     this.paddleYellowBmps = paddleYellowBmps;
     this.paddleRedBmps = paddleRedBmps;
   }
 
-  public double getNumSeconds() {
-    return numSeconds;
-  }
-
-  public void setNumSeconds(double numSeconds) {
-    this.numSeconds = numSeconds;
-  }
-
-  public Object getSkyColor() {
-    return 0;
-    // TODO FOR ABDUL: decide what to do with this method (it overrides abstract method of parent)
-  }
-
+  /**
+   * Returns the number of brick layers in this game.
+   *
+   * @return the number of brick layers in this game.
+   */
   public int getNumBrickLayers() {
     return NUM_BRICK_LAYERS;
   }
 
-  public int getNumBricksHorizontal(){
+  /**
+   * Returns the number of bricks horizontally in this game
+   *
+   * @return the number of bricks horizontally in this game
+   */
+  public int getNumBricksHorizontal() {
     return NUM_BRICKS_HORIZONTAL;
   }
 
-  public int getBrickHeight(){
+  /**
+   * Returns the brick height in this game
+   *
+   * @return the brick height in this game
+   */
+  public int getBrickHeight() {
     return BRICK_HEIGHT;
   }
 
-  public int getStarWidth(){
+  /**
+   * Returns the star width in this game
+   *
+   * @return the star width in this game
+   */
+  public int getStarWidth() {
     return STAR_WIDTH;
   }
 
-  public int getStarHeight(){
+  /**
+   * Returns the star height in this game
+   *
+   * @return the star height in this game
+   */
+  public int getStarHeight() {
     return STAR_HEIGHT;
   }
 
-  public int getPaddleWidth(){
+  /**
+   * Returns the paddle width in this game
+   *
+   * @return the paddle width in this game
+   */
+  public int getPaddleWidth() {
     return PADDLE_WIDTH;
   }
 
-  public int getPaddleHeight(){
+  /**
+   * Returns the paddle height in this game
+   *
+   * @return the paddle height in this game
+   */
+  public int getPaddleHeight() {
     return PADDLE_HEIGHT;
   }
 
-  public int getBallWidth(){
+  /**
+   * Returns the ball width in this game
+   *
+   * @return the ball width in this game
+   */
+  public int getBallWidth() {
     return BALL_WIDTH;
   }
 
-  public int getBallHeight(){
+  /**
+   * Returns the ball height in this game
+   *
+   * @return the ball height in this game
+   */
+  public int getBallHeight() {
     return BALL_HEIGHT;
   }
 }
