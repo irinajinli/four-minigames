@@ -17,8 +17,7 @@ import java.util.List;
 
 public class TappingGameManager extends GameManager {
 
-  private final double RUNNER_WIDTH_MULTIPLIER = 0.2;
-  private final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
+
   private int runnerWidth;
   private int runnerHeight;
 
@@ -89,17 +88,10 @@ public class TappingGameManager extends GameManager {
     this.tappingSpeed = tappingSpeed;
   }
 
-  public void setRunnerWidthAndHeight(int runnerWidth, int runnerHeight) {
+  public void setItemSize(int runnerWidth, int runnerHeight) {
     this.runnerWidth = runnerWidth;
     this.runnerHeight = runnerHeight;
 
   }
 
-  public double getRunnerWidthMultiplier() {
-    return RUNNER_WIDTH_MULTIPLIER;
-  }
-
-  public double getRunnerHeightMultiplier() {
-    return RUNNER_HEIGHT_MULTIPLIER;
-  }
 }

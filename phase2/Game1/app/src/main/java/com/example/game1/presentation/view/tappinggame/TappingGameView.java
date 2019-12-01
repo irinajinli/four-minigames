@@ -27,6 +27,8 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
   private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
   private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
+  private final double RUNNER_WIDTH_MULTIPLIER = 0.2;
+  private final double RUNNER_HEIGHT_MULTIPLIER = 0.2;
   protected int numTaps;
   protected int numStars;
   protected boolean gameStarted;
@@ -208,10 +210,10 @@ public class TappingGameView extends GameView implements View.OnClickListener {
   public void extractBmpFiles() {
     TappingGameManager tappingGameManager = (TappingGameManager) gameManager;
     tappingCircleBmp = getNewBitmap(R.drawable.circle, getScreenWidth(), getScreenHeight() / 2);
-    int runnerWidth = (int) (getScreenWidth() * tappingGameManager.getRunnerWidthMultiplier());
-    int runnerHeight = (int) (getScreenWidth() * tappingGameManager.getRunnerHeightMultiplier());
+    int runnerWidth = (int) (getScreenWidth() * RUNNER_WIDTH_MULTIPLIER);
+    int runnerHeight = (int) (getScreenWidth() * RUNNER_HEIGHT_MULTIPLIER);
     if (gameManager instanceof TappingGameManager) {
-      ((TappingGameManager) gameManager).setRunnerWidthAndHeight(runnerWidth, runnerHeight);
+      ((TappingGameManager) gameManager).setItemSize(runnerWidth, runnerHeight);
     }
 
     yellowPugs = new ArrayList<>();

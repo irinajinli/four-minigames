@@ -22,12 +22,12 @@ import java.util.List;
 import java.util.Random;
 
 public class AppleGameManager extends GameManager {
-  public static final int APPLE_WIDTH = 100;
-  public static final int APPLE_HEIGHT = 100;
-  public static final int STAR_WIDTH = 80;
-  public static final int STAR_HEIGHT = 80;
-  public static final int BASKET_WIDTH = 100;
-  public static final int BASKET_HEIGHT = 100;
+  private int appleWidth = 100;
+  private int appleHeight = 100;
+  private int starWidth = 80;
+  private int starHeight = 80;
+  private int basketWidth = 100;
+  private int basketHeight = 100;
   /** A GameManager for an Apple minigame. */
 
 
@@ -187,5 +187,14 @@ public class AppleGameManager extends GameManager {
 
   public double getNumSeconds() {
     return numSeconds;
+  }
+
+  public void setItemSize(int appleWidth, int appleHeight, int starWidth, int starHeight, int basketWidth, int basketHeight){
+    this.appleWidth = appleWidth;
+    this.appleHeight = appleHeight;
+    this.starWidth = starWidth;
+    this.starHeight = starHeight;
+    this.basketWidth = basketWidth;
+    this.basketHeight = basketHeight;
   }
 }

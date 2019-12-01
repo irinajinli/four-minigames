@@ -196,25 +196,25 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     generateAnimatedBmps(
         obstacleBmps,
         OBSTACLE_FILES,
-        jumpingGameManager.getObstacleWidth(),
-        jumpingGameManager.getObstacleHeight());
+        OBSTACLE_WIDTH,
+        OBSTACLE_HEIGHT);
     generateAnimatedBmps(
         starBmps, STAR_FILES, jumpingGameManager.getStarWidth(), jumpingGameManager.getStarHeight());
     generateAnimatedBmps(
         jumperBlueBmps,
         JUMPER_BLUE_FILES,
-        jumpingGameManager.getJumperWidth(),
-        jumpingGameManager.getJumperHeight());
+        JUMPER_WIDTH,
+        JUMPER_HEIGHT);
     generateAnimatedBmps(
         jumperRedBmps,
         JUMPER_RED_FILES,
-        jumpingGameManager.getJumperWidth(),
-        jumpingGameManager.getJumperHeight());
+        JUMPER_WIDTH,
+        JUMPER_HEIGHT);
     generateAnimatedBmps(
         jumperYellowBmps,
         JUMPER_YELLOW_FILES,
-        jumpingGameManager.getJumperWidth(),
-        jumpingGameManager.getJumperHeight());
+        JUMPER_WIDTH,
+        JUMPER_HEIGHT);
 
     addGameItemAppearances("JumperYellow", jumperYellowBmps);
     addGameItemAppearances("JumperBlue", jumperBlueBmps);
