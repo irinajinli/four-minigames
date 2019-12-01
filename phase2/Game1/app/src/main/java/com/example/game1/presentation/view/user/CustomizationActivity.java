@@ -16,9 +16,9 @@ import com.example.game1.presentation.presenter.UserManager;
 public class CustomizationActivity extends AppCompatActivity {
 
   /* The customization choices that appear in the spinners */
-  private final String[] characterColours = {"Blue", "Red", "Yellow"};
-  private final String[] colourSchemes = {"Dark", "Light"};
-  private final String[] musicChoices = {"Chibi Ninja", "Arpanauts", "A Night Of Dizzy Spells"};
+  private String[] characterColours = {"Blue", "Red", "Yellow"};
+  private String[] colourSchemes = {"Dark", "Light"};
+  private String[] musicChoices = {"Chibi Ninja", "Arpanauts", "A Night Of Dizzy Spells"};
   private UserManager userManager = AppManager.getInstance().getUserManager();
 
   @Override
