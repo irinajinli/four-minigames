@@ -2,7 +2,6 @@ package com.example.game1.presentation.presenter.jumpinggame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.game1.presentation.model.Customization;
 import com.example.game1.presentation.model.Game;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.jumpinggame.Jumper;
@@ -194,7 +193,7 @@ public class JumpingGameManager extends GameManager {
     if (result.isStarCollected()) {
       numStars += 1;
     }
-    if (result.isGameOver()) {
+    if (result.isObstacleTouched()) {
       gameOver();
       return false;
     }

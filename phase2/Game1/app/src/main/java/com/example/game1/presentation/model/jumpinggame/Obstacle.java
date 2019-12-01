@@ -28,7 +28,7 @@ public class Obstacle extends AnimatedGameItem {
     if (jumpingMovementInfo instanceof JumpingMovementInfo) {
       GameItem character = ((JumpingMovementInfo) jumpingMovementInfo).getJumper();
       if (this.isOverlapping(character)) {
-        jumpingResult.setGameOver(true);
+        jumpingResult.setObstacleTouched(true);
 
         // reset obstacle's xCoordinate if it is out of the screen
       } else if (this.getXCoordinate() + this.getWidth() < 0) {
