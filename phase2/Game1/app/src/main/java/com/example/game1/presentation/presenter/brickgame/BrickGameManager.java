@@ -150,10 +150,9 @@ public class BrickGameManager extends GameManager {
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    BrickItemsBuilder builder = new BrickItemsBuilder(game.getCustomization());
+    BrickItemsBuilder builder = new BrickItemsBuilder();
 
-    builder.createPaddle(
-        PADDLE_HEIGHT, PADDLE_WIDTH, paddleBlueBmps, paddleRedBmps, paddleYellowBmps);
+    builder.createPaddle(PADDLE_HEIGHT, PADDLE_WIDTH);
     builder.createBricks(
         getScreenWidth(), NUM_BRICKS_HORIZONTAL, NUM_BRICK_LAYERS, BRICK_HEIGHT);
     builder.createBall(

@@ -240,10 +240,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
    */
   public abstract void extractBmpFiles();
 
-  /**
-   *
-   * @return
-   */
+
   public HashMap<String, List<Bitmap>> getItemAppearances() {
     return itemAppearances;
   }
