@@ -37,6 +37,8 @@ public abstract class GameManager extends Observable {
 
   private double numSeconds;
 
+  private boolean isRunning;
+
   /** Constructs a GameManager with the specified height, width, game, and activity. */
   public GameManager(int height, int width, Game game, AppCompatActivity activity) {
     this.height = height;
@@ -249,6 +251,23 @@ public abstract class GameManager extends Observable {
     numTaps += 1;
   }
 
+  /**
+   * Sets whether or not this game is running
+   *
+   * @param isRunning whether or not this game is running
+   */
+  public void setRunning(boolean isRunning) {
+    this.isRunning = isRunning;
+  }
+
+  /**
+   * Returns whether this game is running
+   *
+   * @return whether this game is running
+   */
+  public boolean getRunning() {
+    return this.isRunning;
+  }
 
   /**
    * The possible states of a GameManager.

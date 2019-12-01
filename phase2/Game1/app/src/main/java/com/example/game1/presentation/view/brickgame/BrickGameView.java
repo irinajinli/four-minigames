@@ -38,6 +38,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   private List<Bitmap> paddleRedBmps;
   private List<Bitmap> paddleYellowBmps;
 
+  // background colours
   private final int BACKGROUND_COLOR_DARK = Color.rgb(83, 92, 104);
   private final int BACKGROUND_COLOR_LIGHT = Color.rgb(223, 249, 251);
 
@@ -114,18 +115,10 @@ public class BrickGameView extends GameView implements View.OnClickListener {
     this.setOnClickListener(this.listener);
   }
 
-  /** Updates this game view */
-  @Override
-  public void update() {
-    // get amount of time in seconds);
-
-    boolean updated = gameManager.update();
-    // stop thread if update fails
-    if (!updated) {
-      thread.setRunning(false);
-    }
-  }
-
+    /**
+     * Draws all of the items in this brick game
+     * @param canvas
+     */
   @Override
   public void drawItems(Canvas canvas) {
     List<GameItem> items = gameManager.getGameItems();
@@ -133,6 +126,7 @@ public class BrickGameView extends GameView implements View.OnClickListener {
       drawItem(canvas, item, getAppearance(item));
     }
   }
+
   /**
    * draws this game view on the canvas
    *
@@ -187,27 +181,6 @@ public class BrickGameView extends GameView implements View.OnClickListener {
   public boolean onTouchEvent(MotionEvent event) {
     ((BrickGameManager) gameManager).onTouchEvent(event.getX());
     return super.onTouchEvent(event);
-  }
-
-  /**
-   * Stops the game when the game view is closed
-   *
-   * @param holder the SurfaceHolder holding this game view
-   */
-  @Override
-  public void surfaceDestroyed(SurfaceHolder holder) {
-    boolean retry = true;
-    while (retry) {
-      try {
-        thread.setRunning(false);
-        thread.join();
-        gameManager.gameOver();
-
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-      retry = false;
-    }
   }
 
   /**

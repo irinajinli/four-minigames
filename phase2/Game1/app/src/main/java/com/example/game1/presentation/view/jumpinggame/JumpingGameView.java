@@ -135,18 +135,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     this.setOnClickListener(this.listener);
   }
 
-  /** Updates this game view */
-  @Override
-  public void update() {
-    // get amount of time in seconds);
-
-    boolean updated = gameManager.update();
-    // stop thread if update fails
-    if (!updated) {
-      thread.setRunning(false);
-    }
-  }
-
   /**
    * Handles the jumper's jump when the user taps the screen
    *
@@ -159,21 +147,6 @@ public class JumpingGameView extends GameView implements View.OnClickListener {
     return super.onTouchEvent(event);
   }
 
-  @Override
-  public void surfaceDestroyed(SurfaceHolder holder) {
-    boolean retry = true;
-    while (retry) {
-      try {
-        thread.setRunning(false);
-        thread.join();
-        gameManager.gameOver();
-
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-      retry = false;
-    }
-  }
 
   @Override
   public void onClick(View v) {

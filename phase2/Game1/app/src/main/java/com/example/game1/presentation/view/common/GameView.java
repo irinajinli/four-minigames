@@ -79,6 +79,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   @Override
   public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
 
+  /**
+   * Stops the game when the game view is closed
+   *
+   * @param holder the SurfaceHolder holding this game view
+   */
   @Override
   public void surfaceDestroyed(SurfaceHolder holder) {
     boolean retry = true;
@@ -86,7 +91,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
       try {
         thread.setRunning(false);
         thread.join();
-        gameManager.stopMusic();
+        gameManager.gameOver();
 
       } catch (InterruptedException e) {
         e.printStackTrace();
@@ -104,6 +109,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * draws all the items in this game
+   *
+   * @param canvas the canvas on which to draw
+   */
   public void drawItems(Canvas canvas) {
     List<GameItem> items = gameManager.getGameItems();
     for (GameItem item : items) {
@@ -111,6 +121,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Draws this entire game view
+   *
+   * @param canvas the canvas on which to draw
+   */
   @Override
   public void draw(Canvas canvas) {
     super.draw(canvas);
@@ -124,10 +139,8 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
    * Draw this GameItem.
    *
    * @param canvas the canvas on which to draw this item.
+   * @param item the item to draw
    */
-
-  //  public abstract void drawItem(Canvas canvas, GameItem item);
-
   public void drawItem(Canvas canvas, GameItem item) {
 
     paintText = new Paint();
@@ -192,21 +205,45 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return resizedBitmap;
   }
 
+  /**
+   * Returns a bitmap image from the given resource with width and height given by the parameters
+   * width and height respectively
+   *
+   * @param resource the image resource to draw
+   * @param width the desired width
+   * @param height the desired height
+   * @return a resized bitmap image using the given resource
+   */
   public Bitmap getNewBitmap(int resource, int width, int height) {
     Bitmap newBmp = BitmapFactory.decodeResource(getResources(), resource);
     newBmp = getResizedBitmap(newBmp, width, height);
     return newBmp;
   }
 
+  /**
+   * Generates a list of resized bitmap image for an animated item (one image for each frame of its
+   * animation) and stores them in dest
+   *
+   * @param dest the destination list to store all the bitmap image frames
+   * @param files the files for each frame of the animation
+   * @param width the width of the desired images
+   * @param height the height of the desired images
+   */
   public void generateAnimatedBmps(List<Bitmap> dest, int[] files, int width, int height) {
-
     for (int i : files) {
       dest.add(getNewBitmap(i, width, height));
     }
   }
 
+  /**
+   * Maps each item in the game to its associated bitmap images
+   */
   public abstract void extractBmpFiles();
 
+  /**
+   *
+   * @return
+   */
   public HashMap<String, List<Bitmap>> getItemAppearances() {
     return itemAppearances;
   }
@@ -260,7 +297,6 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-
   public void generateBackgroundColor() {
     generateBackgroundColorScheme();
     if (this.backgroundColorScheme.equals("Dark")) {
@@ -278,13 +314,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     this.backgroundColor = backgroundColor;
   }
 
-
-
   public void setBackgroundColorDark(int backgroundColorDark) {
     this.backgroundColorDark = backgroundColorDark;
   }
-
-
 
   public void setBackgroundColorLight(int backgroundColorLight) {
     this.backgroundColorLight = backgroundColorLight;

@@ -43,7 +43,7 @@ public class BrickGameManager extends GameManager {
   private List<Star> stars;
   private int numBroken = 0;
   private int backgroundColor;
-  private boolean isRunning;
+
   private List<Bitmap> paddleBlueBmps;
   private List<Bitmap> paddleRedBmps;
   private List<Bitmap> paddleYellowBmps;
@@ -142,7 +142,7 @@ public class BrickGameManager extends GameManager {
   }
 
   /**
-   * Sets the number of successful jumps made by this user.
+   * Sets the number of successful bricks broken made by this user.
    *
    * @param numBroken the new number of jumps to set
    */
@@ -150,23 +150,7 @@ public class BrickGameManager extends GameManager {
     this.numBroken = numBroken;
   }
 
-  /**
-   * Returns whether this game is running
-   *
-   * @return whether this game is running
-   */
-  public boolean getRunning() {
-    return this.isRunning;
-  }
 
-  /**
-   * Sets whether or not this game is running
-   *
-   * @param isRunning whether or not this game is running
-   */
-  public void setRunning(boolean isRunning) {
-    this.isRunning = isRunning;
-  }
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
@@ -210,14 +194,6 @@ public class BrickGameManager extends GameManager {
   public int getBackgroundColor() {
     return this.backgroundColor;
   }
-
-  /**
-   * Adds the specified star to this game at the given position
-   *
-   * @param star the star whose position needs to be set
-   * @param xCoordinate the position at which to add the star
-   */
-  public void setStarPosition(Star star, int xCoordinate) {}
 
   /** updates all items in this game */
   @Override
