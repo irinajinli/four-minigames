@@ -127,16 +127,18 @@ public class JumpingGameManager extends GameManager {
             getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumSeconds());
     for (GameItem item : getGameItems()) {
       Result result = item.update(jumpingMovementInfo);
-      JumpingResult jumpingResult = (JumpingResult) result;
-      if (jumpingResult.getOldItems() != null) {
-        for (GameItem oldItem : jumpingResult.getOldItems()) {
+      if (result.getOldItems() != null) {
+        for (GameItem oldItem : result.getOldItems()) {
           oldItems.add(oldItem);
         }
       }
+      if (result instanceof JumpingResult){
+      JumpingResult jumpingResult = (JumpingResult) result;
+
       gameConinue = updateStatistics(jumpingResult);
       if (jumpingResult.isNeedNewStar()) {
         newItems.add(generateNewStar());
-      }
+      }}
     }
     processLists(oldItems, newItems);
     return gameConinue;
@@ -237,4 +239,6 @@ public class JumpingGameManager extends GameManager {
     this.starWidth = starWidth;
     this.starHeight = starHeight;
   }
+
+
 }
