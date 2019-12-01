@@ -41,18 +41,11 @@ public class JumpingGameManager extends GameManager {
 
   private double numSeconds;
 
-  private int currFrame;
 
   /** Constructs a JumpingGameManager with the specified height, width, game, and activity. */
   public JumpingGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
-    // this.game = new Game(Game.GameName.JUMPING);
   }
-
-
-
-
-
 
 
   /**
