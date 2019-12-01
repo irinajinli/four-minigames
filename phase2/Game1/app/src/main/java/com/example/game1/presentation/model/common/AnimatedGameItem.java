@@ -9,10 +9,7 @@ public abstract class AnimatedGameItem extends GameItem {
   private double xAcceleration;
   /** This item's acceleration for y coordinate. */
   private double yAcceleration;
-  /** This item's customization info passed by view. */
-  // private Object appearance;
-  /** The current frame this object's appearance is at */
-  private int currentFrame = 0;
+
   /**
    * Constructs a AnimatedGameItem with the specified height and width.
    *
@@ -124,14 +121,6 @@ public abstract class AnimatedGameItem extends GameItem {
 
     double newYVelocity = getYVelocity() + getYAcceleration() * numOfSeconds;
     setYVelocity(newYVelocity);
-    // @TODO maybe this call can be moved elsewhere
-
-  }
-
-  //@Override
-  public Result update(MovementInfo movementInfo) {
-    updatePositionAndVelocity(movementInfo.getNumSeconds());
-    return new Result();
   }
 
 }

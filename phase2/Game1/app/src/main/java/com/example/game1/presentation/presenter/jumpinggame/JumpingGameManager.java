@@ -26,7 +26,7 @@ public class JumpingGameManager extends GameManager {
   private int jumperHeight;
   private int obstacleWidth;
   private int obstacleHeight;
-  private int starWidth ;
+  private int starWidth;
   private int starHeight;
 
   private Terrain terrain;
@@ -36,16 +36,14 @@ public class JumpingGameManager extends GameManager {
   private int numJumped = 0;
   private int numStars = 0;
 
-//  private boolean isRunning;
+  //  private boolean isRunning;
 
   private double numSeconds;
-
 
   /** Constructs a JumpingGameManager with the specified height, width, game, and activity. */
   public JumpingGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
   }
-
 
   /**
    * returns the number of stars collected by the player in this game
@@ -65,7 +63,6 @@ public class JumpingGameManager extends GameManager {
     this.numStars = numStars;
   }
 
-
   public double getNumSeconds() {
     return numSeconds;
   }
@@ -76,9 +73,6 @@ public class JumpingGameManager extends GameManager {
 
   /** Creates GameItems required at the beginning of the minigame. */
   public void createGameItems() {
-    // create background according to Customization
-    Customization cust = game.getCustomization();
-
     terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2);
     setTerrainPosition(terrain);
     place(terrain);
@@ -174,8 +168,6 @@ public class JumpingGameManager extends GameManager {
     terrain.setYCoordinate(getScreenHeight() / 2);
   }
 
-
-
   public void setObstaclePosition(Obstacle obstacle, double xCoordinate) {
     obstacle.setYCoordinate(terrain.getYCoordinate() - obstacle.getHeight());
     obstacle.setXCoordinate(xCoordinate);
@@ -232,8 +224,13 @@ public class JumpingGameManager extends GameManager {
     return starHeight;
   }
 
-  public void setItemSize(int jumperWidth, int jumperHeight, int obstacleWidth,
-                          int obstacleHeight, int starWidth, int starHeight){
+  public void setItemSize(
+      int jumperWidth,
+      int jumperHeight,
+      int obstacleWidth,
+      int obstacleHeight,
+      int starWidth,
+      int starHeight) {
     this.jumperWidth = jumperWidth;
     this.jumperHeight = jumperHeight;
     this.obstacleWidth = obstacleWidth;

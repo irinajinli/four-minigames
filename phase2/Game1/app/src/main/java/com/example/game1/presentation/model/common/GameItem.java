@@ -3,28 +3,21 @@ package com.example.game1.presentation.model.common;
 /** An item which can be in a GameManager. */
 public abstract class GameItem {
 
-  /** This item's Paint. */
-//  public Paint paintText = new Paint();
   /** Description of this item. */
   private String description;
-
-
-
   /** the width of this item */
   private int width;
   /** the height of this item */
   private int height;
   /** This item's position: x coordinate. */
   private double xCoordinate;
-
-  // variables to be deleted
   /** This item's position: y coordinate. */
   private double yCoordinate;
 
   /**
-   * Constructs a GameItemOld with the specified description.
+   * Constructs a GameItem with the specified description.
    *
-   * @param description the description of this GameItemOld
+   * @param description the description of this GameItem
    */
   public GameItem(String description) {
     this.description = description;
@@ -42,10 +35,11 @@ public abstract class GameItem {
   }
 
   /**
-   * Constructs a GameItem with the specified coordinates
+   * Constructs a GameItem with the specified coordinates and description
    *
    * @param xCoordinate xCoordinate of the GameItem
    * @param yCoordinate yCoordinate of the GameItem
+   * @param description the description of this GameItem
    */
   public GameItem(double xCoordinate, double yCoordinate, String description) {
     this.xCoordinate = xCoordinate;
@@ -54,10 +48,12 @@ public abstract class GameItem {
   }
 
   /**
-   * Constructs a GameItem with the specified coordinates
+   * Constructs a GameItem with the specified coordinates, width and height
    *
    * @param xCoordinate xCoordinate of the GameItem
    * @param yCoordinate yCoordinate of the GameItem
+   * @param width the width of this GameItem
+   * @param height the height of this GameItem
    */
   public GameItem(double xCoordinate, double yCoordinate, int width, int height) {
     this.xCoordinate = xCoordinate;
@@ -67,7 +63,7 @@ public abstract class GameItem {
   }
 
   /**
-   * /** Constructs a GameItem with the specified description.
+   * /** Constructs a GameItem with the specified width and height
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
@@ -78,7 +74,7 @@ public abstract class GameItem {
   }
 
   /**
-   * Constructs a GameItem with the specified description, height, width.
+   * Constructs a GameItem with the specified height, width, description.
    *
    * @param height the height of this GameItem
    * @param width the width of this GameItem
@@ -174,6 +170,11 @@ public abstract class GameItem {
     return this.height;
   }
 
+  /**
+   * Check if this item is overlap with another game item
+   * @param other another game item
+   * @return
+   */
   public boolean isOverlapping(GameItem other) {
     double thisItemLeftBoundary = this.xCoordinate;
     double thisItemRightBoundary = this.xCoordinate + this.width;
@@ -191,8 +192,12 @@ public abstract class GameItem {
         || otherItemLowerBoundary < thisItemUpperBoundary);
   }
 
+  /**
+   *
+   * @param movementInfo: information needed by this game item to execute update
+   * @return result: information needed by game manager to update game items and statistics
+   */
   public Result update(MovementInfo movementInfo){
     return new Result();
   }
-
 }

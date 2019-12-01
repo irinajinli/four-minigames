@@ -42,7 +42,6 @@ public class TappingGameManager extends GameManager {
   private int gridWidth;
   private int gridHeight;
 
-
   /** Constructs a TappingGameManager with the specified height, width, game, and activity. */
   public TappingGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
@@ -70,15 +69,14 @@ public class TappingGameManager extends GameManager {
     this.tappingCircle = new TappingCircle(0.0, 0.0);
     place(tappingCircle);
     this.runner = new Runner(0.0, getScreenHeight() * 3 / 4, runnerWidth, runnerHeight);
-    // runner.setPosition(0, 1550);
     place(runner);
-    this.tapCounter = new TapCounter(getGridWidth()*1/3, getGridHeight()*5/8 );
+    this.tapCounter = new TapCounter(getGridWidth() * 1 / 3, getGridHeight() * 5 / 8);
     place(tapCounter);
-    this.timerDisplayer = new TimerDisplayer(getGridWidth()*1/3, getGridHeight()*5/8 + 1);
+    this.timerDisplayer = new TimerDisplayer(getGridWidth() * 1 / 3, getGridHeight() * 5 / 8 + 1);
     place(timerDisplayer);
-    this.speedDisplayer = new SpeedDisplayer(getGridWidth()*1/3, getGridHeight()*5/8 + 2);
+    this.speedDisplayer = new SpeedDisplayer(getGridWidth() * 1 / 3, getGridHeight() * 5 / 8 + 2);
     place(speedDisplayer);
-    this.starDisplayer = new StarDisplayer(getGridWidth()*1/3, getGridHeight()*5/8 + 3);
+    this.starDisplayer = new StarDisplayer(getGridWidth() * 1 / 3, getGridHeight() * 5 / 8 + 3);
     place(starDisplayer);
   }
 
@@ -103,7 +101,7 @@ public class TappingGameManager extends GameManager {
     this.runnerHeight = runnerHeight;
   }
 
-  public void setGridWidthHeight(int gridWidth, int gridHeight){
+  public void setGridWidthHeight(int gridWidth, int gridHeight) {
     this.gridWidth = gridWidth;
     this.gridHeight = gridHeight;
   }
