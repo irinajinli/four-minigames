@@ -1,6 +1,5 @@
 package com.example.game1.presentation.presenter.jumpinggame;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game1.presentation.model.Customization;
@@ -30,8 +29,6 @@ public class JumpingGameManager extends GameManager {
   private final int STAR_WIDTH = 80;
   private final int STAR_HEIGHT = 80;
 
-
-
   private Terrain terrain;
   private Jumper jumper;
   private List<Obstacle> obstacles;
@@ -42,7 +39,6 @@ public class JumpingGameManager extends GameManager {
 
   private boolean isRunning;
 
-
   private double numSeconds;
 
   private int currFrame;
@@ -52,7 +48,6 @@ public class JumpingGameManager extends GameManager {
     super(height, width, game, activity);
     // this.game = new Game(Game.GameName.JUMPING);
   }
-
 
   /**
    * returns the terrain in this jumping game
@@ -116,16 +111,14 @@ public class JumpingGameManager extends GameManager {
     this.numTaps = numTaps;
   }
 
-
-
-  /**
-   * Returns whether this game is running
-   *
-   * @return whether this game is running
-   */
-  public boolean getRunning() {
-    return this.isRunning;
-  }
+//  /**
+//   * Returns whether this game is running
+//   *
+//   * @return whether this game is running
+//   */
+//  public boolean getRunning() {
+//    return this.isRunning;
+//  }
 
   /**
    * Sets whether or not this game is running
@@ -149,10 +142,6 @@ public class JumpingGameManager extends GameManager {
     // create background according to Customization
     Customization cust = game.getCustomization();
 
-
-
-
-
     terrain = new Terrain(getScreenWidth(), getScreenHeight() / 2);
     setTerrainPosition(terrain);
     place(terrain);
@@ -172,10 +161,9 @@ public class JumpingGameManager extends GameManager {
     obstacles.add(obstacle1);
     obstacles.add(obstacle2);
     obstacles.add(obstacle3);
-    for (Obstacle obstacle: obstacles){
+    for (Obstacle obstacle : obstacles) {
       place(obstacle);
     }
-
 
     JumpingStar jumpingStar = new JumpingStar(80, 80);
 
@@ -205,58 +193,26 @@ public class JumpingGameManager extends GameManager {
     List<GameItem> newItems = new ArrayList<>();
     // oldItems list stores GameItem to be removed from gameItems
     List<GameItem> oldItems = new ArrayList<>();
-    // note, right now, stars are the only object that get removed
-    Result result;
-
     List<GameItem> gameItems = getGameItems();
     JumpingMovementInfo jumpingMovementInfo =
         new JumpingMovementInfo(
             getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumSeconds());
 
     for (GameItem item : gameItems) {
-
-        result = item.update(jumpingMovementInfo);
-        // process result
-        JumpingResult jumpingResult = (JumpingResult) result;
-        if (jumpingResult.getNewItems() != null) {
-          for (GameItem newItem : jumpingResult.getNewItems()) {
-            newItems.add(newItem);
-          }
-        }
-        if (jumpingResult.getOldItems() != null) {
-          for (GameItem oldItem : jumpingResult.getOldItems()) {
-            oldItems.add(oldItem);
-          }
-        }
-        if (jumpingResult.isObstacleJumped()) {
-          numJumped += 1;
-        }
-        if (jumpingResult.isStarCollected()) {
-          numStars += 1;
-        }
-        if (jumpingResult.isNeedNewStar()) {
-          JumpingStar newJumpingStar = new JumpingStar(80, 80);
-          autoSetStarPosition(newJumpingStar);
-          newItems.add(newJumpingStar);
-        }
-        if (jumpingResult.isGameOver()) {
-          gameOver();
-          return false;
+      Result result = item.update(jumpingMovementInfo);
+      JumpingResult jumpingResult = (JumpingResult) result;
+      if (jumpingResult.getOldItems() != null) {
+        for (GameItem oldItem : jumpingResult.getOldItems()) {
+          oldItems.add(oldItem);
         }
       }
-
-      for (GameItem newItem : newItems) {
-        place(newItem);
+      isRunning = updateStatistics(jumpingResult);
+      if (jumpingResult.isNeedNewStar()) {
+        newItems.add(generateNewStar());
       }
-
-      for (GameItem oldItem : oldItems) {
-        removeItem(oldItem);
-      }
-
-
-    //jumper.setDescription(getNextJumperFrame());
-    // TODO: temporary return true; decide when you want to return true/false
-    return true;
+    }
+    processLists(oldItems, newItems);
+    return isRunning;
   }
 
   /** Handles the jumper's jump when teh screen is tapped */
@@ -310,30 +266,56 @@ public class JumpingGameManager extends GameManager {
     jumper.setXVelocity(-cameraVelocityX + cameraVelocityX); // 0 but left here for modifications
   }
 
+  public boolean updateStatistics(JumpingResult result) {
+    if (result.isObstacleJumped()) {
+      numJumped += 1;
+    }
+    if (result.isStarCollected()) {
+      numStars += 1;
+    }
+    if (result.isGameOver()) {
+      gameOver();
+      return false;
+    }
+    return true;
+  }
 
+  public JumpingStar generateNewStar() {
+    JumpingStar newJumpingStar = new JumpingStar(80, 80);
+    autoSetStarPosition(newJumpingStar);
+    return newJumpingStar;
+  }
 
-  public int getJumperWidth(){
+  public void processLists(List<GameItem> oldItems, List<GameItem> newItems){
+    for (GameItem newItem : newItems) {
+      place(newItem);
+    }
+    for (GameItem oldItem : oldItems) {
+      removeItem(oldItem);
+    }
+  }
+
+  public int getJumperWidth() {
     return JUMPER_WIDTH;
   }
 
-  public int getJumperHeight(){
+  public int getJumperHeight() {
     return JUMPER_HEIGHT;
   }
 
-  public int getObstacleWidth(){
+  public int getObstacleWidth() {
     return OBSTACLE_WIDTH;
   }
 
-  public int getObstacleHeight(){
+  public int getObstacleHeight() {
     return OBSTACLE_HEIGHT;
   }
 
-  public int getStarWidth(){
+  public int getStarWidth() {
     return STAR_WIDTH;
   }
 
-  public int getStarHeight(){
+  public int getStarHeight() {
     return STAR_HEIGHT;
   }
-
 }
