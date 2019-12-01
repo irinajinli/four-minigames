@@ -16,7 +16,7 @@ public class TappingMovementInfo extends MovementInfo {
     public TappingMovementInfo(
             int screenHeight, int screenWidth, int tappingSpeed, int secondsLeft, int numTaps, double numSeconds) {
 
-        super(numSeconds, screenWidth, screenHeight);
+        super(numSeconds, screenHeight, screenWidth);
 
         this.tappingSpeed = tappingSpeed;
         this.secondsLeft = secondsLeft;

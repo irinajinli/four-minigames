@@ -50,7 +50,6 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     getHolder().addCallback(this);
     thread = new GameThread(getHolder(), this);
     setFocusable(true);
-    //      itemAppearances = new HashMap<>();
     numTaps = 0;
     numStars = 0;
     gameStarted = false;
@@ -103,7 +102,6 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     thread.setRunning(true);
     thread.start();
 
-    ((TappingGameManager) gameManager).setCanRun(false);
     this.setOnClickListener(this.listener);
     CountDownTimer timer =
         new CountDownTimer(10000, 1000) {
@@ -115,23 +113,10 @@ public class TappingGameView extends GameView implements View.OnClickListener {
             // display the remaining time
             long timeTillEnd = (millisUntilFinished / 1000) + 1;
             long secondsPassed = 10 - timeTillEnd;
-
-            // add logic to catch speed for the time passed.
-            // double speed;
-            // int star = 0;
-
             if (0 == secondsPassed) {
-              //              speed = 0;
-              //              ((TappingGameManager) gameManager).speedDisplayer.setSpeed(speed);
             } else {
               speed = (int) (numTaps / secondsPassed);
               if (gameManager instanceof TappingGameManager) {
-
-                // set star to be the maximum speed reached for now
-//                if (numStars < speed) {
-//                  numStars = speed;
-//
-//                }
                 ((TappingGameManager) gameManager).setTappingSpeed(speed);
                 ((TappingGameManager) gameManager).setSecondsLeft(secondLeft);
               }
@@ -140,15 +125,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
 
           @Override
           public void onFinish() {
-            // the game is over
-            // iv_tap.setEnabled(false);
             gameStarted = false;
-            // tv_info.setText("Game Over!");
-
-            // check the high score and save the new result if better
-//            if (numTaps > bestResult) {
-//              bestResult = numTaps;
-//            }
             if (!gameStarted) {
               (gameManager).gameOver();
             }
@@ -165,10 +142,6 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     myTimer.cancel();
   }
 
-//  /** Update the fish tank. */
-//  public void update() {
-//    gameManager.update();
-//  }
 
   @Override
   public void onClick(View v) {
@@ -233,7 +206,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     };
     int[] blueBirdFiles = {
       R.drawable.bird_blue_1, R.drawable.bird_blue_2, R.drawable.bird_blue_3, R.drawable.bird_blue_4
-    }; // R.drawable.blue_bird};
+    };
     int[] redFishsFiles = {
       R.drawable.fish_red_1,
       R.drawable.fish_red_2,

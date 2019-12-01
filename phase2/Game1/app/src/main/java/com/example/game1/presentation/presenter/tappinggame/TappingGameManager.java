@@ -28,7 +28,6 @@ public class TappingGameManager extends GameManager {
   public TimerDisplayer timerDisplayer;
   public StarDisplayer starDisplayer;
   public SpeedDisplayer speedDisplayer;
-  private boolean canRun;
   private int secondsLeft;
   private  int tappingSpeed;
 
@@ -39,13 +38,10 @@ public class TappingGameManager extends GameManager {
   /** Constructs a TappingGameManager with the specified height, width, game, and activity. */
   public TappingGameManager(int height, int width, Game game, AppCompatActivity activity) {
     super(height, width, game, activity);
-    this.canRun = true;
   }
 
 
-  public void setCanRun(boolean canRun) {
-    this.canRun = canRun;
-  }
+
 
 
   /** execute animation on each item in myFishTank and update myFishTank accordingly. */
@@ -109,6 +105,7 @@ public class TappingGameManager extends GameManager {
     public void setRunnerWidthAndHeight(int runnerWidth, int runnerHeight){
     this.runnerWidth = runnerWidth;
     this.runnerHeight = runnerHeight;
+
   }
 
 }
