@@ -20,7 +20,7 @@ public class Customization {
     private MusicPath musicPath;
 
     /**
-     * Constructs a new Customization with default choices.
+     * Constructs a new Customization object with default choices.
      */
     public Customization() {
         characterColour = CharacterColour.BLUE;
@@ -28,26 +28,56 @@ public class Customization {
         musicPath = MusicPath.SONG1;
     }
 
+    /**
+     * Returns the character colour of this Customization
+     *
+     * @return the character colour of this Customization
+     */
     public CharacterColour getCharacterColour() {
         return characterColour;
     }
 
+    /**
+     * Sets the character colour of this Customization
+     *
+     * @param characterColour the new character colour of this Customization
+     */
     public void setCharacterColour(CharacterColour characterColour) {
         this.characterColour = characterColour;
     }
 
+    /**
+     * Returns the colour scheme of this Customization
+     *
+     * @return the colour scheme of this Customization
+     */
     public ColourScheme getColourScheme() {
         return colourScheme;
     }
 
+    /**
+     * Sets the colour scheme of this Customization
+     *
+     * @param colourScheme the new colour scheme of this Customization
+     */
     public void setColourScheme(ColourScheme colourScheme) {
         this.colourScheme = colourScheme;
     }
 
+    /**
+     * Returns the music of this Customization
+     *
+     * @return the music of this Customization
+     */
     public MusicPath getMusicPath() {
         return musicPath;
     }
 
+    /**
+     * Sets the music of this Customization
+     *
+     * @param musicPath the new music of this Customization
+     */
     public void setMusicPath(MusicPath musicPath) {
         this.musicPath = musicPath;
     }
