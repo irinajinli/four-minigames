@@ -17,267 +17,299 @@ import java.util.Observable;
  */
 public abstract class GameManager extends Observable {
 
-  /* The Game that this GameManager manages */
-  public Game game;
-  /* The state of this GameManager. */
-  private State state;
-  /* The list of GameItems in this GameManager. */
-  protected List<GameItem> gameItems = new ArrayList<>();
-  /* The width of the game display. */
-  private int width;
-  /* The height of the game display. */
-  private int height;
-  /* The Activity class of the game this GameManager manages.*/
-  private AppCompatActivity activity;
-  /* The music player of the game that this GameManager manages. */
-  private MediaPlayer musicPlayer;
+    /* The Game that this GameManager manages */
+    public Game game;
 
-  private int numTaps;
-  private int numStars;
+    /* The possible states of this GameManager.*/
+    public enum State {START, PAUSE, STOP, RESUME}
 
-  private double numSeconds;
+    /* The state of this GameManager. */
+    private State state;
+    /* The list of GameItems in this GameManager. */
+    protected List<GameItem> gameItems = new ArrayList<>();
+    /* The width of the game display. */
+    private int width;
+    /* The height of the game display. */
+    private int height;
+    /* The Activity class of the game this GameManager manages.*/
+    private AppCompatActivity activity;
+    /* The music player of the game that this GameManager manages. */
+    private MediaPlayer musicPlayer;
 
-  private boolean isRunning;
+    private int numTaps;
+    private int numStars;
+    private double numSeconds;
+    private boolean isRunning;
 
-  /** Constructs a GameManager with the specified height, width, game, and activity. */
-  public GameManager(int height, int width, Game game, AppCompatActivity activity) {
-    this.height = height;
-    this.width = width;
-    this.game = game;
-    this.activity = activity;
-  }
+    /**
+     * Constructs a GameManager with the specified height, width, game, and activity.
+     *
+     * @param height   the height of the game display
+     * @param width    the width of the game display
+     * @param game     the Game class corresponding to the game that the GameManager manages
+     * @param activity the Activity class corresponding to the game that the GameManager manages
+     */
+    public GameManager(int height, int width, Game game, AppCompatActivity activity) {
+        this.height = height;
+        this.width = width;
+        this.game = game;
+        this.activity = activity;
+    }
 
-  /** Returns gameItems. */
-  public List<GameItem> getGameItems() {
-    return gameItems;
-  }
+    /**
+     * Returns gameItems.
+     *
+     * @return a list of GameItem objects
+     */
+    public List<GameItem> getGameItems() {
+        return gameItems;
+    }
 
-  /** Adds the specified item to gameItems. */
-  public void place(GameItem item) {
-    gameItems.add(item);
-  }
+    /**
+     * Adds the specified item to gameItems.
+     *
+     * @param item the GameItem object to be added to gameItems
+     */
+    public void place(GameItem item) {
+        gameItems.add(item);
+    }
 
-  public Game getGame() {
-    return game;
-  }
-  /** Updates this GameManager by moving all GameItems in it. */
-  public abstract boolean update();
+    /**
+     * Returns the Game of this GameManager
+     *
+     * @return the Game object of this GameManager
+     */
+    public Game getGame() {
+        return game;
+    }
 
-  /** Removes the specified item from gameItems. */
-  protected void removeItem(GameItem item) {
-    gameItems.remove(item);
-  }
+    /**
+     * Updates this GameManager by moving all GameItems in it.
+     */
+    public abstract boolean update();
 
-  /** Creates some GameItems and adds them to this GameManager. */
-  public abstract void createGameItems();
+    /**
+     * Removes the specified item from gameItems.
+     */
+    protected void removeItem(GameItem item) {
+        gameItems.remove(item);
+    }
 
-  /**
-   * Sets the game being played
-   * @param game the game being played
-   */
-  public void setGame(Game game) {
-    this.game = game;
-  }
+    /**
+     * Creates some GameItems and adds them to this GameManager.
+     */
+    public abstract void createGameItems();
 
-  /**
-   * returns the current state of the game
-   * @return the current state of the game
-   */
-  public State getState() {
-    return state;
-  }
+    /**
+     * Sets the game being played
+     *
+     * @param game the game being played
+     */
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
-  /**
-   * Sets the current state of the game
-   * @param state the state to set
-   */
-  public void setState(State state) {
-    this.state = state;
-  }
+    /**
+     * returns the current state of the game
+     *
+     * @return the current state of the game
+     */
+    public State getState() {
+        return state;
+    }
 
-  /**
-   * Returns the activity associated with this game.
-   * @return the activity associated with this game.
-   */
-  public AppCompatActivity getActivity() {
-    return activity;
-  }
+    /**
+     * Sets the current state of the game
+     *
+     * @param state the state to set
+     */
+    public void setState(State state) {
+        this.state = state;
+    }
 
-  /**
-   * Sets the activity associated with this game.
-   * @param activity the activity to associate with this game.
-   */
-  public void setActivity(AppCompatActivity activity) {
-    this.activity = activity;
-  }
+    /**
+     * Returns the activity associated with this game.
+     *
+     * @return the activity associated with this game.
+     */
+    public AppCompatActivity getActivity() {
+        return activity;
+    }
 
-  /**
-   * Returns the width of the screen the game is being played on
-   * @return the width of the screen the game is being played on
-   */
-  public int getScreenWidth() {
-    return width;
-  }
+    /**
+     * Sets the activity associated with this game.
+     *
+     * @param activity the activity to associate with this game.
+     */
+    public void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
+    }
 
-  /**
-   * Sets the width of the screen the game is being played on
-   * @param width the screen width to set for this game
-   */
-  public void setScreenWidth(int width) {
-    this.width = width;
-  }
+    /**
+     * Returns the width of the screen the game is being played on
+     *
+     * @return the width of the screen the game is being played on
+     */
+    public int getScreenWidth() {
+        return width;
+    }
 
-  /**
-   * Returns the height of the screen the game is being played on
-   * @return the height of the screen the game is being played on
-   */
-  public int getScreenHeight() {
-    return height;
-  }
+    /**
+     * Sets the width of the screen the game is being played on
+     *
+     * @param width the screen width to set for this game
+     */
+    public void setScreenWidth(int width) {
+        this.width = width;
+    }
 
-  /**
-   * Sets the height of the screen the game is being played on
-   * @param height the screen height to set for this game
-   */
-  public void setScreenHeight(int height) {
-    this.height = height;
-  }
+    /**
+     * Returns the height of the screen the game is being played on
+     *
+     * @return the height of the screen the game is being played on
+     */
+    public int getScreenHeight() {
+        return height;
+    }
 
-  /**
-   * Returns the grid width of the screen the game is being played on
-   * @return the grid width of the screen the game is being played on
-   */
-  public int getGridWidth() {
-    return width;
-  }
+    /**
+     * Sets the height of the screen the game is being played on
+     *
+     * @param height the screen height to set for this game
+     */
+    public void setScreenHeight(int height) {
+        this.height = height;
+    }
 
-  /**
-   * Returns the grid height of the screen the game is being played on
-   * @return the grid height of the screen the game is being played on
-   */
-  public int getGridHeight() {
-    return height;
-  }
+    /**
+     * Returns the grid width of the screen the game is being played on
+     *
+     * @return the grid width of the screen the game is being played on
+     */
+    public int getGridWidth() {
+        return width;
+    }
 
-  /**
-   * Sets the music player for this game
-   * @param musicPlayer the music player to set for this game
-   */
-  public void setMusicPlayer(MediaPlayer musicPlayer) {
-    this.musicPlayer = musicPlayer;
-  }
+    /**
+     * Returns the grid height of the screen the game is being played on
+     *
+     * @return the grid height of the screen the game is being played on
+     */
+    public int getGridHeight() {
+        return height;
+    }
 
-  /**
-   * Starts playing the music for this game.
-   */
-  public void startMusic() {
-    musicPlayer.start();
-  }
+    /**
+     * Sets the music player for this game
+     *
+     * @param musicPlayer the music player for this game
+     */
+    public void setMusicPlayer(MediaPlayer musicPlayer) {
+        this.musicPlayer = musicPlayer;
+    }
 
-  /**
-   * Stops playing the music for this game.
-   */
-  public void stopMusic() {
-    musicPlayer.stop();
-    musicPlayer.release();
-  }
+    /**
+     * Starts playing the music for this game.
+     */
+    public void startMusic() {
+        musicPlayer.start();
+    }
 
-  /**
-   * Ends this game
-   */
-  public void gameOver() {
-    stopMusic();
-    state = State.STOP;
-    setChanged();
-    notifyObservers(this);
-  }
+    /**
+     * Stops playing the music for this game.
+     */
+    private void stopMusic() {
+        musicPlayer.stop();
+        musicPlayer.release();
+    }
 
-  /**
-   * Returns the duration in seconds of a single game frame
-   *
-   * @return the duration in seconds of a single game frame
-   */
-  public double getNumSeconds() {
-    return numSeconds;
-  }
+    /**
+     * Ends this game
+     */
+    public void gameOver() {
+        stopMusic();
+        state = State.STOP;
+        setChanged();
+        notifyObservers(this);
+    }
 
-  /**
-   * Sets the duration in seconds of a single game frame
-   *
-   * @param numSeconds the duration in seconds of a single game frame
-   */
-  public void setNumSeconds(double numSeconds) {
-    this.numSeconds = numSeconds;
-  }
+    /**
+     * Returns the duration in seconds of a single game frame
+     *
+     * @return the duration in seconds of a single game frame
+     */
+    public double getNumSeconds() {
+        return numSeconds;
+    }
 
-  /**
-   * Returns the number of screen taps so far in this game.
-   * @return the number of screen taps so far in this game.
-   */
-  public int getNumTaps() {
-    return numTaps;
-  }
+    /**
+     * Sets the duration in seconds of a single game frame
+     *
+     * @param numSeconds the duration in seconds of a single game frame
+     */
+    public void setNumSeconds(double numSeconds) {
+        this.numSeconds = numSeconds;
+    }
 
-  /**
-   * Sets the number of screen taps so far in this game.
-   * @param numTaps the number of screen taps to set so far in this game.
-   */
-  public void setNumTaps(int numTaps) {
-    this.numTaps = numTaps;
-  }
+    /**
+     * Returns the number of screen taps so far in this game.
+     *
+     * @return the number of screen taps so far in this game.
+     */
+    public int getNumTaps() {
+        return numTaps;
+    }
 
-  /**
-   * returns the number of stars collected by the player in this game
-   *
-   * @return the number of stars collected by the player in this game
-   */
-  public int getNumStars() {
-    return numStars;
-  }
+    /**
+     * Sets the number of screen taps so far in this game.
+     *
+     * @param numTaps the number of screen taps to set so far in this game.
+     */
+    public void setNumTaps(int numTaps) {
+        this.numTaps = numTaps;
+    }
 
-  /**
-   * sets the number of stars collected by this player
-   *
-   * @param numStars the new number to set
-   */
-  public void setNumStars(int numStars) {
-    this.numStars = numStars;
-  }
+    /**
+     * returns the number of stars collected by the player in this game
+     *
+     * @return the number of stars collected by the player in this game
+     */
+    public int getNumStars() {
+        return numStars;
+    }
 
-  /**
-   * Increments the number of taps so far in this game by 1
-   */
-  public void incrementNumTaps() {
-    numTaps += 1;
-  }
+    /**
+     * sets the number of stars collected by this player
+     *
+     * @param numStars the new number to set
+     */
+    public void setNumStars(int numStars) {
+        this.numStars = numStars;
+    }
 
-  /**
-   * Sets whether or not this game is running
-   *
-   * @param isRunning whether or not this game is running
-   */
-  public void setRunning(boolean isRunning) {
-    this.isRunning = isRunning;
-  }
+    /**
+     * Increments the number of taps so far in this game by 1
+     */
+    public void incrementNumTaps() {
+        numTaps += 1;
+    }
 
-  /**
-   * Returns whether this game is running
-   *
-   * @return whether this game is running
-   */
-  public boolean getRunning() {
-    return this.isRunning;
-  }
+    /**
+     * Sets whether or not this game is running
+     *
+     * @param isRunning whether or not this game is running
+     */
+    public void setRunning(boolean isRunning) {
+        this.isRunning = isRunning;
+    }
 
-  /**
-   * The possible states of a GameManager.
-   * */
-  public enum State {
-    START,
-    PAUSE,
-    STOP,
-    RESUME
-  }
-
+    /**
+     * Returns whether this game is running
+     *
+     * @return whether this game is running
+     */
+    public boolean getRunning() {
+        return this.isRunning;
+    }
 
 }
