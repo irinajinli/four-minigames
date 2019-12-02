@@ -3,11 +3,11 @@ package com.example.game1.presentation.model.applegame;
 import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 
-/** An apple */
+/** An apple. */
 public class Apple extends AnimatedGameItem {
 
   /**
-   * Construct an apple with specified width and height
+   * Constructs an apple with specified width and height
    *
    * @param height of this apple
    * @param width of this apple
@@ -16,13 +16,13 @@ public class Apple extends AnimatedGameItem {
     super(height, width);
   }
 
-  @Override
   /**
-   * Perform update based on the information given by the movement info
+   * Updates based on the information given by the specified MovementInfo.
    *
    * @param appleMovementInfo information needed for the apple to execute update
    * @return update result information
    */
+  @Override
   public AppleResult update(MovementInfo appleMovementInfo) {
 
     // Update x and y coordinates of this apple based on specified time period
