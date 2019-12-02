@@ -2,7 +2,7 @@ package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.Result;
 
-/** Result after apple game item perform update */
+/** A class for storing the results of the call of an apple GameItem's update method. */
 public class AppleResult extends Result {
 
   /** Indicate if apple is collected */
@@ -13,53 +13,54 @@ public class AppleResult extends Result {
   private boolean starCollected = false;
 
   /**
-   * Set if apple is collected
+   * Sets whether an Apple is collected
    *
-   * @param appleCollected
+   * @param appleCollected true if an apple was collected
    */
-  public void setAppleCollected(boolean appleCollected) {
+  void setAppleCollected(boolean appleCollected) {
     this.appleCollected = appleCollected;
   }
 
   /**
-   * Return if apple is collected
+   * Returns whether an apple is collected
    *
-   * @return if apple is collected
+   * @return true if apple is collected
    */
   public boolean isAppleCollected() {
     return appleCollected;
   }
 
   /**
-   * Set if apple is dropped
+   * Sets whether an Apple is dropped
    *
-   * @param appleDropped
+   * @param appleDropped true if an Apple is dropped
    */
-  public void setAppleDropped(boolean appleDropped) {
+  void setAppleDropped(boolean appleDropped) {
     this.appleDropped = appleDropped;
   }
 
   /**
-   * Return if apple is dropped
+   * Returns whether an Apple is dropped
    *
-   * @return
+   * @return true if Apple is dropped
    */
   public boolean isAppleDropped() {
     return appleDropped;
   }
 
   /**
-   * Set if star is collected
+   * Sets whether a Star is collected
    *
-   * @param starCollected
+   * @param starCollected whether a Star is collected
    */
-  public void setStarCollected(boolean starCollected) {
+  void setStarCollected(boolean starCollected) {
     this.starCollected = starCollected;
   }
+
   /**
-   * Return if star is collected
+   * Returns whether a Star is collected
    *
-   * @return
+   * @return true if a Star is collected
    */
   public boolean isStarCollected() {
     return starCollected;
