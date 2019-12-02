@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class Result {
   /** Items to be added. */
-  List<GameItem> newItems = new ArrayList<>();
+  private List<GameItem> newItems = new ArrayList<>();
   /** Items to be removed. */
-  List<GameItem> oldItems = new ArrayList<>();
+  private List<GameItem> oldItems = new ArrayList<>();
 
   /**
    * Return the List of game items that are to be removed
