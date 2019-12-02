@@ -39,7 +39,7 @@ public class AppleGameManager extends GameManager {
   private PointsCounter points;
   /** A lives counter in this apple game */
   private LivesCounter livesCounter;
-  /** number of stars caught in this apple game */
+  /** Number of stars caught in this apple game */
   private int numCaughtStars = 0;
 
   /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
@@ -54,7 +54,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Set the basket for this apple game
+   * Sets the basket for this apple game.
    *
    * @param basket basket
    */
@@ -63,7 +63,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Set the points counter for this apple game
+   * Sets the points counter for this apple game.
    *
    * @param pointsCounter points counter
    */
@@ -72,7 +72,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Set the lives counter for this apple game
+   * Sets the lives counter for this apple game.
    *
    * @param livesCounter lives counter
    */
@@ -92,7 +92,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Move this AppleGameManager's Basket to the specified x coordinate.
+   * Moves this AppleGameManager's Basket to the specified x coordinate.
    *
    * @param xCoordinate the x coordinate to move this Basket to
    */
@@ -101,10 +101,10 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Update the game items in this apple game by executing method update for each game item. Then
+   * Updates the game items in this apple game by executing method update for each game item. Then
    * based on the result update the statistics information of this game.
    *
-   * @return if there is still lives remaing in this game
+   * @return if there is still lives remaining in this game
    */
   public boolean update() {
     // Check if there is still lives in this game.
@@ -137,17 +137,17 @@ public class AppleGameManager extends GameManager {
     return hasLives;
   }
 
-  /** Increment points by 1 if an apple is caught */
+  /** Increments points by 1. */
   private void catchApple() {
     points.addPoints(1);
   }
 
-  /** increment num of stars caught by 1 */
+  /** Increments numStarsCaught by 1. */
   private void catchStar() {
     numCaughtStars += 1;
   }
 
-  /** spawn New game items for this apple game */
+  /** Spawns new game items. */
   private void spawnNew() {
     // get a random x-coordinate to spawn the new Apple/AppleStar
     Random randCoordinate = new Random();
@@ -165,7 +165,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Spawn a new AppleStar
+   * Spawns a new AppleStar.
    *
    * @param spawnCoordinate xCoodinate of the new AppleStar
    */
@@ -179,9 +179,9 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Spawn a new Apple
+   * Spawns a new Apple.
    *
-   * @param spawnCoordinate xCoodinate of the new Apple
+   * @param spawnCoordinate xCoordinate of the new Apple
    */
   private void spawnApple(int spawnCoordinate) {
     Apple nextItem = new Apple(appleWidth, appleHeight);
@@ -203,7 +203,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Setup width and height for each game items
+   * Sets up width and height for each game item.
    * @param appleWidth Width of apple
    * @param appleHeight Height of apple
    * @param starWidth Width of star
@@ -227,8 +227,8 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Return if there is any lives remaining in this game
-   * @return if there is any lives remaining in this game
+   * Returns whether or not there are any lives remaining in this game.
+   * @return whether there are any lives remaining in this game
    */
   public boolean checkLivesRemaining() {
     if (livesCounter.getLivesRemaining() <= 0) {
@@ -239,7 +239,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Remove all items store in oldItems list from this gameItems list
+   * Removes all items stored in oldItems from gameItems.
    * @param oldItems
    */
   public void removeOldItems(List<GameItem> oldItems) {
@@ -249,7 +249,7 @@ public class AppleGameManager extends GameManager {
   }
 
   /**
-   * Update statistics according to game item's update result
+   * Updates statistics according to game item's update result.
    * @param result
    */
   public void updateStatistics(AppleResult result) {
