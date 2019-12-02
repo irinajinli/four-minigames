@@ -201,10 +201,5 @@ public class AppleGameView extends GameView implements View.OnClickListener {
     addGameItemAppearances("AppleStar", starBmps);
   }
 
-  /** Set up PaintText */
-  public void setupPaintText() {
-    paintText = new Paint();
-    paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    paintText.setTextSize(36);
-  }
+
 }

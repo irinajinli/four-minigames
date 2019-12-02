@@ -41,12 +41,15 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
   /** Screen height. */
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-
+  /** character Color Scheme */
   private String characterColorScheme;
-
+  /** Background color scheme */
   private String backgroundColorScheme;
+  /** Background color */
   private int backgroundColor;
+  /** Dark background color */
   private int backgroundColorDark;
+  /** Light background color */
   private int backgroundColorLight;
 
   /**
@@ -62,15 +65,28 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     itemAppearances = new HashMap<>();
   }
 
+  /**
+   * Get screen width
+   *
+   * @return screen width
+   */
   public int getScreenWidth() {
     return screenWidth;
   }
 
+  /**
+   * Get screen height
+   *
+   * @return screen height
+   */
   public int getScreenHeight() {
     return screenHeight;
   }
 
   @Override
+  /**
+   * Execute tasks when a surface is created. To be overriden by the game view for each of the game
+   */
   public abstract void surfaceCreated(SurfaceHolder holder);
 
   @Override
@@ -150,17 +166,17 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
       // TODO NEW: remove * charWidth?
       canvas.drawText(
-          (String) appearance,
-          (float) xCoordinate * GameView.charWidth,
-          (float) yCoordinate * GameView.charHeight,
-          paintText);
+              (String) appearance,
+              (float) xCoordinate * GameView.charWidth,
+              (float) yCoordinate * GameView.charHeight,
+              paintText);
 
     } else if (appearance.getClass() == Bitmap.class) {
       canvas.drawBitmap(
-          (Bitmap) appearance,
-          (int) Math.round(xCoordinate),
-          (int) Math.round(yCoordinate),
-          paintText);
+              (Bitmap) appearance,
+              (int) Math.round(xCoordinate),
+              (int) Math.round(yCoordinate),
+              paintText);
     }
   }
 
@@ -174,7 +190,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     double yCoordinate = item.getYCoordinate();
 
     canvas.drawBitmap(
-        appearance, (int) Math.round(xCoordinate), (int) Math.round(yCoordinate), paintText);
+            appearance, (int) Math.round(xCoordinate), (int) Math.round(yCoordinate), paintText);
   }
 
   /**
@@ -317,12 +333,23 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return characterColorScheme;
   }
 
-  /** */
+  /**
+   * @param index
+   * @param length
+   * @return
+   */
   public int updateIndex(int index, int length) {
     index += 1;
     if (index == length) {
       index = 0;
     }
     return index;
+  }
+
+  /** Set up PaintText */
+  public void setupPaintText() {
+    paintText = new Paint();
+    paintText.setTypeface(Typeface.DEFAULT_BOLD);
+    paintText.setTextSize(36);
   }
 }

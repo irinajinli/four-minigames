@@ -208,9 +208,10 @@ public class UserManager {
     /**
      * Returns the top x users (sorted in non-increasing order) based on the given criterion.
      *
-     * @param x         the number of users to return
+     * @param x         the maximum number of users to return
      * @param criterion the criterion on which to judge the users
-     * @return the top x users based on the given criterion
+     * @return a list of x users (sorted in non-increasing order) based on the given criterion. If
+     * less than x users exist, return a list whose length equals the number of existing users.
      */
     public List<User> getTopUsers(int x, String criterion) {
         return userService.getTopUsers(x, criterion);
