@@ -27,7 +27,7 @@ import com.example.game1.presentation.view.common.GameView;
 import java.util.ArrayList;
 import java.util.List;
 
-/** An apple game view */
+/** An apple game view. */
 public class AppleGameView extends GameView implements View.OnClickListener {
   /** A list to store apple bitmap */
   private List<Bitmap> appleBmps;
@@ -69,7 +69,7 @@ public class AppleGameView extends GameView implements View.OnClickListener {
   private final int[] BASKET_RED_FILES = {R.drawable.basket_red};
 
   /**
-   * Construct an AppleGameView with the specified Context.
+   * Constructs an AppleGameView with the specified Context.
    *
    * @param context context
    */
@@ -87,8 +87,8 @@ public class AppleGameView extends GameView implements View.OnClickListener {
         };
   }
 
+  /** Sets up the view when surface is created. */
   @Override
-  /** Set up the view when surface is created */
   public void surfaceCreated(SurfaceHolder holder) {
     setupPaintText();
     // use screen height and width and activity to generate the game manager the size of the
@@ -122,22 +122,22 @@ public class AppleGameView extends GameView implements View.OnClickListener {
     this.setOnClickListener(this.listener);
   }
 
+  /** Sends statistics when surface is destroyed. */
   @Override
-  /** Send statistics when surface is destroyed */
   public void surfaceDestroyed(SurfaceHolder holder) {
     super.surfaceDestroyed(holder);
     Statistics gameStatistics = gameManager.getGame().getStatistics();
     gameStatistics.setTaps(gameStatistics.getTaps() + gameManager.getNumTaps());
   }
 
+  /** Increments number of taps when there is a click. */
   @Override
-  /** Increment number of taps when there is a click */
   public void onClick(View v) {
     gameManager.incrementNumTaps();
   }
 
+  /** Sets xCoordinate of the basket according to the position of the cursor. */
   @Override
-  /** Set xCoordinate of the basket according to the position of the cursor */
   public boolean onTouchEvent(MotionEvent event) {
     // move basket to location of tap
     double touchX = event.getX();
@@ -145,8 +145,8 @@ public class AppleGameView extends GameView implements View.OnClickListener {
     return super.onTouchEvent(event);
   }
 
+  /** Draws a GameItem on the specified Canvas. */
   @Override
-  /** Draw game item */
   public void drawItem(Canvas canvas, GameItem item) {
     double xCoordinate = item.getXCoordinate();
     double yCoordinate = item.getYCoordinate();
@@ -180,13 +180,12 @@ public class AppleGameView extends GameView implements View.OnClickListener {
   /** Extract Bitmap Files and add them to hash map */
   public void extractBmpFiles() {
     // animated items require a list of bitmaps for each of their frames
-    appleBmps = new ArrayList<Bitmap>();
-    starBmps = new ArrayList<Bitmap>();
-    basketBmps = new ArrayList<Bitmap>();
-    // TODO NEW FOR CUST
-    basketBlueBmps = new ArrayList<Bitmap>();
-    basketYellowBmps = new ArrayList<Bitmap>();
-    basketRedBmps = new ArrayList<Bitmap>();
+    appleBmps = new ArrayList<>();
+    starBmps = new ArrayList<>();
+    basketBmps = new ArrayList<>();
+    basketBlueBmps = new ArrayList<>();
+    basketYellowBmps = new ArrayList<>();
+    basketRedBmps = new ArrayList<>();
 
     generateAnimatedBmps(appleBmps, APPLE_FILES, APPLE_WIDTH, APPLE_HEIGHT);
     generateAnimatedBmps(starBmps, STAR_FILES, STAR_WIDTH, STAR_HEIGHT);

@@ -7,7 +7,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * Apple game activity
+ * Apple game's activity.
  */
 public class AppleActivity extends AppCompatActivity {
   @Override
