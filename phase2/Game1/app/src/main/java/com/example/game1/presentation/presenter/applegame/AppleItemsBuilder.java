@@ -4,40 +4,40 @@ import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
 
-/** A Apple Item Builder */
-public class AppleItemsBuilder {
-  /** Basket */
+/** A Builder for constructing items required for the apple minigame. */
+class AppleItemsBuilder {
+  /** The Basket. */
   private Basket basket;
-  /** Points Counter */
+  /** The PointsCounter */
   private PointsCounter pointsCounter;
-  /** LivesCounter */
+  /** The LivesCounter. */
   private LivesCounter livesCounter;
-  /** the width of the basket */
+  /** The width of the Basket. */
   private int basketWidth;
-  /** the height of the basket */
+  /** The height of the Basket. */
   private int basketHeight;
 
-  /** Create a basket */
-  public void createBasket() {
+  /** Creates a Basket. */
+  void createBasket() {
     this.basket = new Basket(basketHeight, basketWidth);
   }
 
-  /** Create a PointsCounter */
-  public void createPointsCounter() {
+  /** Creates a PointsCounter. */
+  void createPointsCounter() {
     this.pointsCounter = new PointsCounter();
   }
 
-  /** Create a LivesCounter */
-  public void createLivesCounter() {
+  /** Creates a LivesCounter. */
+  void createLivesCounter() {
     this.livesCounter = new LivesCounter(10);
   }
 
   /**
-   * Builds the items in the specified GameManager.
+   * Places the items in the specified AppleGameManager.
    *
-   * @param appleGameManager
+   * @param appleGameManager the AppleGameManager
    */
-  public void placeItems(AppleGameManager appleGameManager) {
+  void placeItems(AppleGameManager appleGameManager) {
 
     // basket
     appleGameManager.setBasket(basket);
@@ -59,7 +59,7 @@ public class AppleItemsBuilder {
    * @param basketWidth the width of the basket
    * @param basketHeight the height of the basket
    */
-  public void setBasketSize(int basketWidth, int basketHeight) {
+  void setBasketSize(int basketWidth, int basketHeight) {
     this.basketWidth = basketWidth;
     this.basketHeight = basketHeight;
   }
