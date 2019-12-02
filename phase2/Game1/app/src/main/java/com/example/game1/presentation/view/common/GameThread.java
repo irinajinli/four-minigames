@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 public class GameThread extends Thread {
-  public static final long TARGET_FPS = 30;
+  private static final long TARGET_FPS = 30;
   public static final long FRAME_DURATION_NS = (long) (Math.pow(10, 9) / TARGET_FPS);
   private SurfaceHolder surfaceHolder;
   private GameView gameView;

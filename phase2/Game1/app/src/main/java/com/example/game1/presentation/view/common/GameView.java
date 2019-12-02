@@ -21,11 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/** The fish tank view. */
+/** The game view. */
 public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
-
-  // TODO: make variables private where possible
-
   /** The width of a character. */
   public static float charWidth;
   /** The height of a character. */
@@ -235,11 +232,8 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-  /**
-   * Maps each item in the game to its associated bitmap images
-   */
+  /** Maps each item in the game to its associated bitmap images */
   public abstract void extractBmpFiles();
-
 
   public HashMap<String, List<Bitmap>> getItemAppearances() {
     return itemAppearances;
