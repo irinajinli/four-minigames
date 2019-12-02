@@ -1,6 +1,9 @@
 There is no special setup required to run the project.
 
 
+UML diagrams for our program will be provided at the time of our presentation.
+
+
 Work done by Luqiong Xie for phase 2 but git pushed to phase 1 folder:
 
 1. I migrated tapping game to the existing Activity-View-GameManager structure so that 
