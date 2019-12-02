@@ -3,23 +3,15 @@ package com.example.game1.presentation.view.common;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-/** Manages the thread for a minigame */
 public class GameThread extends Thread {
-  private static final long TARGET_FPS = 30;
-  /** The duration in nanoseconds of a single game frame */
+  public static final long TARGET_FPS = 30;
   public static final long FRAME_DURATION_NS = (long) (Math.pow(10, 9) / TARGET_FPS);
   private SurfaceHolder surfaceHolder;
   private GameView gameView;
   private boolean isRunning;
   private Canvas canvas;
-  // private final long FRAME_DURATION_NS = 300 * 1000000;
+  // public static final long FRAME_DURATION_NS = 300 * 1000000;
 
-  /**
-   * Constructs the thread for a new minigame
-   *
-   * @param surfaceHolder the holder holding the canvas for the game
-   * @param gameView the game view on which the game is running
-   */
   public GameThread(SurfaceHolder surfaceHolder, GameView gameView) {
     super();
     this.surfaceHolder = surfaceHolder;
@@ -27,13 +19,11 @@ public class GameThread extends Thread {
   }
 
   @Override
-  /** Runs this game thread. */
   public void run() {
     canvas = null;
-    // long startTime;
-    long frameStartTime, delay;
+    long startTime, frameStartTime, delay;
     int frameCount = 0;
-    // startTime = System.nanoTime();
+    startTime = System.nanoTime();
     while (isRunning) {
       canvas = null;
       frameStartTime = System.nanoTime();
@@ -64,10 +54,9 @@ public class GameThread extends Thread {
       }
       frameCount += 1;
       if (frameCount == TARGET_FPS) {
-        // System.out.println("FPS: " + TARGET_FPS / ((System.nanoTime() - startTime) /
-        // 1000000000));
+        System.out.println("FPS: " + TARGET_FPS / ((System.nanoTime() - startTime) / 1000000000));
         frameCount = 0;
-        // startTime = System.nanoTime();
+        startTime = System.nanoTime();
       }
 
       try {
@@ -79,11 +68,6 @@ public class GameThread extends Thread {
     }
   }
 
-  /**
-   * Sets whether or not this thread is running
-   *
-   * @param isRunning sets the thread to running iff isRunning is true
-   */
   public void setRunning(boolean isRunning) {
     this.isRunning = isRunning;
   }

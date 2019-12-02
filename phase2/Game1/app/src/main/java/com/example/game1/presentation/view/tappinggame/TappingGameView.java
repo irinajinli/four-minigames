@@ -101,21 +101,21 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     Paint paintText = new Paint();
     paintText.setTextSize(36);
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
-    setCharWidth(paintText.measureText("W"));
-    setCharHeight(-paintText.ascent() + paintText.descent());
+    charWidth = paintText.measureText("W");
+    charHeight = -paintText.ascent() + paintText.descent();
 
     gameManager =
         AppManager.getInstance()
             .buildGameManager(
                 Game.GameName.TAPPING,
-                (int) (getScreenHeight() / getCharHeight()),
-                (int) (getScreenWidth() / getCharWidth()),
+                (int) (getScreenHeight() / charHeight),
+                (int) (getScreenWidth() / charWidth),
                 activity);
     gameManager.setScreenHeight(this.getScreenHeight());
     gameManager.setScreenWidth(this.getScreenWidth());
     if (gameManager instanceof TappingGameManager){
-      ((TappingGameManager) gameManager).setGridWidthHeight((int)(getScreenWidth() / getCharWidth()),
-              (int)(getScreenHeight() / getCharHeight()));
+      ((TappingGameManager) gameManager).setGridWidthHeight((int)(getScreenWidth() / charWidth),
+              (int)(getScreenHeight() / charHeight));
     }
 
     extractBmpFiles();
@@ -139,9 +139,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
           @Override
           public void onTick(long millisUntilFinished) {
             secondLeft--;
-            if (gameManager instanceof TappingGameManager) {
-              ((TappingGameManager) gameManager).setSecondsLeft(secondLeft);
-            }
+            ((TappingGameManager) gameManager).timerDisplayer.setSecondsLeft(secondLeft);
             // display the remaining time
             long timeTillEnd = (millisUntilFinished / 1000) + 1;
             long secondsPassed = 10 - timeTillEnd;
@@ -150,6 +148,7 @@ public class TappingGameView extends GameView implements View.OnClickListener {
               speed = (int) (numTaps / secondsPassed);
               if (gameManager instanceof TappingGameManager) {
                 ((TappingGameManager) gameManager).setTappingSpeed(speed);
+                ((TappingGameManager) gameManager).setSecondsLeft(secondLeft);
               }
             }
           }
@@ -206,8 +205,8 @@ public class TappingGameView extends GameView implements View.OnClickListener {
     } else {
       canvas.drawText(
           item.getDescription(),
-          (float) xCoordinate * getCharWidth(),
-          (float) yCoordinate * getCharHeight(),
+          (float) xCoordinate * GameView.charWidth,
+          (float) yCoordinate * GameView.charHeight,
           paintText);
     }
   }

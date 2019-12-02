@@ -27,7 +27,7 @@ public class TappingGameManager extends GameManager {
   public StarDisplayer starDisplayer;
   public SpeedDisplayer speedDisplayer;
   private int secondsLeft;
-  private int tappingSpeed = 10;
+  private int tappingSpeed;
 
   @Override
   public int getGridWidth() {
