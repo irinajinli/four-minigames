@@ -119,11 +119,12 @@ public class JumpingGameManager extends GameManager {
     // oldItems list stores GameItem to be removed from gameItems
     List<GameItem> oldItems = new ArrayList<>();
     boolean gameConinue = true;
-    // Creates apple movement info to store all information needed for game items to execute update
+    // Creates jumping movement info to store all information needed for game items to execute
+    // update
     JumpingMovementInfo jumpingMovementInfo =
         new JumpingMovementInfo(
             getScreenHeight(), getScreenWidth(), this.jumper, this.terrain, getNumSeconds());
-    // Iterate through the gameItems
+    // Iterate through the gameItems and execute update for each of the game item
     for (GameItem item : getGameItems()) {
       Result result = item.update(jumpingMovementInfo);
       // Extract items to be removed from result and add them to the oldItems list so that they can
@@ -159,7 +160,7 @@ public class JumpingGameManager extends GameManager {
   /** Ends this minigame. */
   public void gameOver() {
     setRunning(false);
-    // send statistics
+    // Send statistics
     game.getStatistics().setPoints(numJumped);
     game.getStatistics().setStars(numStars);
     game.getStatistics().setTaps(getNumTaps());
