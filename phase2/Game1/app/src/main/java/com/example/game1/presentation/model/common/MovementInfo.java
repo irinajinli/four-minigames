@@ -1,10 +1,10 @@
 package com.example.game1.presentation.model.common;
 
-/** Information needed by Game Item to perform update */
+/** A class for storing information needed by GameItems to perform update. */
 public class MovementInfo {
   /**
-   * A period of time In this game it is the number of seconds used to refresh new xCoordinate,
-   * yCoordinate, xVelocity, * yVelocity based on current xAcceleration and yAcceleration. Currently
+   * The number of seconds used to refresh new xCoordinate, yCoordinate, xVelocity,
+   * yVelocity based on current xAcceleration and yAcceleration. Currently,
    * numOfSeconds = * GameThread.FRAME_DURATION_NS / 1000000000.
    */
   private double numSeconds;
@@ -18,9 +18,9 @@ public class MovementInfo {
   /**
    * Construct the MovementInfo to store information needed for a game item to perform update()
    *
-   * @param numSeconds
-   * @param screenHeight
-   * @param screenWidth
+   * @param numSeconds number of seconds
+   * @param screenHeight screen height
+   * @param screenWidth screen width
    */
   public MovementInfo(double numSeconds, int screenHeight, int screenWidth) {
     this.numSeconds = numSeconds;
@@ -53,14 +53,5 @@ public class MovementInfo {
    */
   public double getNumSeconds() {
     return numSeconds;
-  }
-
-  /**
-   * Set the number of seconds needed for coordinates update This
-   *
-   * @param numSeconds the time period needed for coordinates update
-   */
-  public void setNumSeconds(double numSeconds) {
-    this.numSeconds = numSeconds;
   }
 }
