@@ -62,7 +62,7 @@ public class FileDataManager implements DataManagerIntf {
     /**
      * Writes all the users of this application to DATA_FILE.
      *
-     * @param users the Collection of Users to write to file
+     * @param users the Collection of User objects to write to file
      */
     private void writeToFile(Collection<User> users) {
         PrintWriter out = null;
@@ -186,7 +186,7 @@ public class FileDataManager implements DataManagerIntf {
     /**
      * Adds the given user to userMap and write userMap to file.
      *
-     * @param user the User to be added to userMap
+     * @param user the User object to be added to userMap
      */
     public void createUser(User user) {
         userMap.put(user.getUserName().toLowerCase(), user);
@@ -197,7 +197,7 @@ public class FileDataManager implements DataManagerIntf {
     /**
      * Adds the given user's updated information to userMap and write userMap to file.
      *
-     * @param user the updated User to be added to userMap
+     * @param user the updated User object to be added to userMap
      */
     public void updateUser(User user) {
         updateUsersTopGameStats(user);
@@ -243,7 +243,7 @@ public class FileDataManager implements DataManagerIntf {
      * Returns the user in userMap with the given username. If no such user exists, return null.
      *
      * @param username the username of a User
-     * @return the User with the given username. If no such user exists, return null
+     * @return the User object with the given username. If no such User object exists, return null
      */
     public User getUser(String username) {
         return userMap.get(username);
@@ -278,7 +278,7 @@ public class FileDataManager implements DataManagerIntf {
     /**
      * Returns a list of users sorted (in non-decreasing order) by score
      *
-     * @return a list of users sorted (in non-decreasing order) by score
+     * @return a list of User objects sorted (in non-decreasing order) by score
      */
     public List sortUsersByScore() {
         return sortUsers(new ScoreComparator());
@@ -287,7 +287,7 @@ public class FileDataManager implements DataManagerIntf {
     /**
      * Returns a list of users sorted (in non-decreasing order) by number of points
      *
-     * @return a list of users sorted (in non-decreasing order) by number of points
+     * @return a list of User objects sorted (in non-decreasing order) by number of points
      */
     public List sortUsersByPoints() {
         return sortUsers(new PointsComparator());
@@ -296,7 +296,7 @@ public class FileDataManager implements DataManagerIntf {
     /**
      * Returns a list of users sorted (in non-decreasing order) by number of stars
      *
-     * @return a list of users sorted (in non-decreasing order) by number of stars
+     * @return a list of User objects sorted (in non-decreasing order) by number of stars
      */
     public List sortUsersByStars() {
         return sortUsers(new StarsComparator());
@@ -305,7 +305,7 @@ public class FileDataManager implements DataManagerIntf {
     /**
      * Returns a list of users sorted (in non-decreasing order) by number of taps
      *
-     * @return a list of users sorted (in non-decreasing order) by number of taps
+     * @return a list of User objects sorted (in non-decreasing order) by number of taps
      */
     public List sortUsersByTaps() {
         return sortUsers(new TapsComparator());
@@ -315,7 +315,7 @@ public class FileDataManager implements DataManagerIntf {
      * Returns a list of users sorted (in non-decreasing order) using the given comparator
      *
      * @param comparator a Comparator object
-     * @return a list of users sorted (in non-decreasing order) using the Comparator object
+     * @return a list of User objects sorted (in non-decreasing order) using the Comparator object
      */
     private List sortUsers(Comparator comparator) {
         List<User> userList = new ArrayList(userMap.values());
