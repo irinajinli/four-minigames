@@ -113,7 +113,7 @@ public class AppleGameManager extends GameManager {
     List<GameItem> oldItems = new ArrayList<>();
     // Creates apple movement info to store all information needed for game items to execute update
     AppleMovementInfo appleMovementInfo =
-            new AppleMovementInfo(getScreenWidth(), getScreenHeight(), basket, getNumSeconds());
+        new AppleMovementInfo(getScreenWidth(), getScreenHeight(), basket, getNumSeconds());
     // Iterate through the gameItems
     for (GameItem item : getGameItems()) {
       Result result = item.update(appleMovementInfo);
@@ -204,6 +204,7 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Setup width and height for each game items
+   *
    * @param appleWidth Width of apple
    * @param appleHeight Height of apple
    * @param starWidth Width of star
@@ -212,12 +213,12 @@ public class AppleGameManager extends GameManager {
    * @param basketHeight Height of basket
    */
   public void setItemSize(
-          int appleWidth,
-          int appleHeight,
-          int starWidth,
-          int starHeight,
-          int basketWidth,
-          int basketHeight) {
+      int appleWidth,
+      int appleHeight,
+      int starWidth,
+      int starHeight,
+      int basketWidth,
+      int basketHeight) {
     this.appleWidth = appleWidth;
     this.appleHeight = appleHeight;
     this.starWidth = starWidth;
@@ -228,6 +229,7 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Return if there is any lives remaining in this game
+   *
    * @return if there is any lives remaining in this game
    */
   public boolean checkLivesRemaining() {
@@ -240,6 +242,7 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Remove all items store in oldItems list from this gameItems list
+   *
    * @param oldItems
    */
   public void removeOldItems(List<GameItem> oldItems) {
@@ -250,6 +253,7 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Update statistics according to game item's update result
+   *
    * @param result
    */
   public void updateStatistics(AppleResult result) {

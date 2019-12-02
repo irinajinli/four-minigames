@@ -1,53 +1,33 @@
 package com.example.game1.presentation.presenter.applegame;
 
-
 import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
 
-/**
- * A Apple Item Builder
- */
+/** A Apple Item Builder */
 public class AppleItemsBuilder {
-  /**
-   * Basket
-   */
+  /** Basket */
   private Basket basket;
-  /**
-   * Points Counter
-   */
+  /** Points Counter */
   private PointsCounter pointsCounter;
-  /**
-   * LivesCounter
-   */
+  /** LivesCounter */
   private LivesCounter livesCounter;
-  /**
-   * the width of the basket
-   */
+  /** the width of the basket */
   private int basketWidth;
-  /**
-   * the height of the basket
-   */
+  /** the height of the basket */
   private int basketHeight;
 
-
-  /**
-   * Create a basket
-   */
+  /** Create a basket */
   public void createBasket() {
     this.basket = new Basket(basketHeight, basketWidth);
   }
 
-  /**
-   * Create a PointsCounter
-   */
+  /** Create a PointsCounter */
   public void createPointsCounter() {
     this.pointsCounter = new PointsCounter();
   }
 
-  /**
-   * Create a LivesCounter
-   */
+  /** Create a LivesCounter */
   public void createLivesCounter() {
     this.livesCounter = new LivesCounter(10);
   }
@@ -76,11 +56,10 @@ public class AppleItemsBuilder {
   }
 
   /**
-   *
    * @param basketWidth the width of the basket
    * @param basketHeight the height of the basket
    */
-  public void setBasketSize(int basketWidth, int basketHeight){
+  public void setBasketSize(int basketWidth, int basketHeight) {
     this.basketWidth = basketWidth;
     this.basketHeight = basketHeight;
   }

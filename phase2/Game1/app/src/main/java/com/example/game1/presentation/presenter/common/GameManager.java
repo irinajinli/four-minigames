@@ -31,12 +31,17 @@ public abstract class GameManager extends Observable {
   private AppCompatActivity activity;
   /* The music player of the game that this GameManager manages. */
   private MediaPlayer musicPlayer;
-
+  /** the number of taps */
   private int numTaps;
+  /** the number of star */
   private int numStars;
-
+  /**
+   * number of seconds used to refresh new xCoordinate, yCoordinate, xVelocity, * yVelocity based on
+   * current xAcceleration and yAcceleration. Currently numOfSeconds = *
+   * GameThread.FRAME_DURATION_NS / 1000000000.
+   */
   private double numSeconds;
-
+  /** if this game is running */
   private boolean isRunning;
 
   /** Constructs a GameManager with the specified height, width, game, and activity. */
@@ -73,6 +78,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the game being played
+   *
    * @param game the game being played
    */
   public void setGame(Game game) {
@@ -81,6 +87,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * returns the current state of the game
+   *
    * @return the current state of the game
    */
   public State getState() {
@@ -89,6 +96,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the current state of the game
+   *
    * @param state the state to set
    */
   public void setState(State state) {
@@ -97,6 +105,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Returns the activity associated with this game.
+   *
    * @return the activity associated with this game.
    */
   public AppCompatActivity getActivity() {
@@ -105,6 +114,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the activity associated with this game.
+   *
    * @param activity the activity to associate with this game.
    */
   public void setActivity(AppCompatActivity activity) {
@@ -113,6 +123,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Returns the width of the screen the game is being played on
+   *
    * @return the width of the screen the game is being played on
    */
   public int getScreenWidth() {
@@ -121,6 +132,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the width of the screen the game is being played on
+   *
    * @param width the screen width to set for this game
    */
   public void setScreenWidth(int width) {
@@ -129,6 +141,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Returns the height of the screen the game is being played on
+   *
    * @return the height of the screen the game is being played on
    */
   public int getScreenHeight() {
@@ -137,6 +150,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the height of the screen the game is being played on
+   *
    * @param height the screen height to set for this game
    */
   public void setScreenHeight(int height) {
@@ -145,6 +159,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Returns the grid width of the screen the game is being played on
+   *
    * @return the grid width of the screen the game is being played on
    */
   public int getGridWidth() {
@@ -153,6 +168,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Returns the grid height of the screen the game is being played on
+   *
    * @return the grid height of the screen the game is being played on
    */
   public int getGridHeight() {
@@ -161,30 +177,25 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the music player for this game
+   *
    * @param musicPlayer the music player to set for this game
    */
   public void setMusicPlayer(MediaPlayer musicPlayer) {
     this.musicPlayer = musicPlayer;
   }
 
-  /**
-   * Starts playing the music for this game.
-   */
+  /** Starts playing the music for this game. */
   public void startMusic() {
     musicPlayer.start();
   }
 
-  /**
-   * Stops playing the music for this game.
-   */
+  /** Stops playing the music for this game. */
   public void stopMusic() {
     musicPlayer.stop();
     musicPlayer.release();
   }
 
-  /**
-   * Ends this game
-   */
+  /** Ends this game */
   public void gameOver() {
     stopMusic();
     state = State.STOP;
@@ -212,6 +223,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Returns the number of screen taps so far in this game.
+   *
    * @return the number of screen taps so far in this game.
    */
   public int getNumTaps() {
@@ -220,6 +232,7 @@ public abstract class GameManager extends Observable {
 
   /**
    * Sets the number of screen taps so far in this game.
+   *
    * @param numTaps the number of screen taps to set so far in this game.
    */
   public void setNumTaps(int numTaps) {
@@ -244,9 +257,7 @@ public abstract class GameManager extends Observable {
     this.numStars = numStars;
   }
 
-  /**
-   * Increments the number of taps so far in this game by 1
-   */
+  /** Increments the number of taps so far in this game by 1 */
   public void incrementNumTaps() {
     numTaps += 1;
   }
@@ -269,15 +280,11 @@ public abstract class GameManager extends Observable {
     return this.isRunning;
   }
 
-  /**
-   * The possible states of a GameManager.
-   * */
+  /** The possible states of a GameManager. */
   public enum State {
     START,
     PAUSE,
     STOP,
     RESUME
   }
-
-
 }
