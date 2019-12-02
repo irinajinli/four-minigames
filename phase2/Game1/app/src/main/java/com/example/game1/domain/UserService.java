@@ -25,7 +25,7 @@ public class UserService implements UserServiceIntf {
      * If the given user's username is not already taken, register the given user and return true.
      * Otherwise, return false
      *
-     * @param user the user to register
+     * @param user the User object to register
      * @return true if registration was successful, and false otherwise
      */
     public boolean registerUser(User user) {
@@ -41,9 +41,9 @@ public class UserService implements UserServiceIntf {
      * If the given username and password correspond to an existing user, return the existing user.
      * Otherwise, return null
      *
-     * @param username the username of the user to login
-     * @param password the password of the user to login
-     * @return the User object with the given username and password. If such a User does not exist,
+     * @param username the username of the User object to return
+     * @param password the password of the User object to return
+     * @return the User object with the given username and password. If no such User exists,
      * return null
      */
     public User getUser(String username, String password) {
@@ -68,8 +68,8 @@ public class UserService implements UserServiceIntf {
      * Return the top score of the user with the given username. If the user does not exist,
      * return 0.
      *
-     * @param username the username of the user whose top score we want to return
-     * @return the user's top score. If the user does not exist, return 0.
+     * @param username the username of a user
+     * @return the top score of the user with the given username. If no such user exists, return 0.
      */
     public int getTopScore(String username) {
         User user = dataManager.getUser(username);
@@ -84,8 +84,9 @@ public class UserService implements UserServiceIntf {
      * Return the current score of the user with the given username. If the user does not exist,
      * return 0.
      *
-     * @param username the username of the user whose current score we want to return
-     * @return the user's current score. If the user does not exist, return 0.
+     * @param username the username of a user
+     * @return the current score of the user with the given username. If no such user exists,
+     * return 0.
      */
     public int getCurrentScore(String username) {
         User user = dataManager.getUser(username);
