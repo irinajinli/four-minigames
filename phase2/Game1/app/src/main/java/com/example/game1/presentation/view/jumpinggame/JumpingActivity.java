@@ -6,11 +6,7 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-/**
- * ADD TO NOTES
- *
- * <p>error encountered: Activity not registered with Manifest --> had to manually add it to xml
- */
+/** The Jumping Activity Class */
 public class JumpingActivity extends AppCompatActivity {
 
   @Override
