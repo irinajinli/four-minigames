@@ -33,15 +33,14 @@ public class UserMenuActivity extends AppCompatActivity {
 
     // Disable all Play buttons. Then enable the Play button corresponding to the user's next
     // level.
-    // TODO uncomment later
     Button playButton1 = findViewById(R.id.playButton1);
-//    playButton1.setEnabled(false);
+    playButton1.setEnabled(false);
     Button playButton2 = findViewById(R.id.playButton2);
-//    playButton2.setEnabled(false);
+    playButton2.setEnabled(false);
     Button playButton3 = findViewById(R.id.playButton3);
-//    playButton3.setEnabled(false);
+    playButton3.setEnabled(false);
     Button playButton4 = findViewById(R.id.playButton4);
-//    playButton4.setEnabled(false);
+    playButton4.setEnabled(false);
 
     switch (userManager.getCurrentUser().getLastCompletedLevel()) {
       case 0:
@@ -73,15 +72,14 @@ public class UserMenuActivity extends AppCompatActivity {
 
   /** Called when the user taps the Restart button */
   public void restartGame(View view) {
-    // TODO uncomment later
-//    Button playButton1 = findViewById(R.id.playButton1);
-//    playButton1.setEnabled(true);
-//    Button playButton2 = findViewById(R.id.playButton2);
-//    playButton2.setEnabled(false);
-//    Button playButton3 = findViewById(R.id.playButton3);
-//    playButton3.setEnabled(false);
-//    Button playButton4 = findViewById(R.id.playButton4);
-//    playButton4.setEnabled(false);
+    Button playButton1 = findViewById(R.id.playButton1);
+    playButton1.setEnabled(true);
+    Button playButton2 = findViewById(R.id.playButton2);
+    playButton2.setEnabled(false);
+    Button playButton3 = findViewById(R.id.playButton3);
+    playButton3.setEnabled(false);
+    Button playButton4 = findViewById(R.id.playButton4);
+    playButton4.setEnabled(false);
     userManager.restartCurrentUsersGame();
   }
 
