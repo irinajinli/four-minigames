@@ -7,100 +7,130 @@ import com.example.game1.presentation.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-/** The domain service. It implements business logic, such as user validation. */
+/**
+ * The domain service. It implements business logic, such as user validation.
+ */
 public class UserService implements UserServiceIntf {
 
-  private DataManagerIntf dataManager;
+    private DataManagerIntf dataManager;
 
-  /** Constructs a UserService object */
-  public UserService() {
-    dataManager = AppManager.getInstance().lookupDataManager();
-  }
-
-  /**
-   * If the given user's username is not already taken, register the given user and return true.
-   * Otherwise, return false
-   */
-  public boolean registerUser(User user) {
-    if (dataManager.getUser(user.getUserName()) != null) {
-      return false;
-    } else {
-      dataManager.createUser(user);
-      return true;
+    /**
+     * Constructs a UserService object
+     */
+    public UserService() {
+        dataManager = AppManager.getInstance().lookupDataManager();
     }
-  }
 
-  /**
-   * If the given username and password correspond to an existing user, return the existing user.
-   * Otherwise, return null
-   */
-  public User getUser(String username, String password) {
-    User user = dataManager.getUser(username);
-    if (user != null && user.getPassword().equals(password)) {
-      return user;
-    } else {
-      return null;
+    /**
+     * If the given user's username is not already taken, register the given user and return true.
+     * Otherwise, return false
+     *
+     * @param user the user to register
+     * @return true if registration was successful, and false otherwise
+     */
+    public boolean registerUser(User user) {
+        if (dataManager.getUser(user.getUserName()) != null) {
+            return false;
+        } else {
+            dataManager.createUser(user);
+            return true;
+        }
     }
-  }
 
-  /** Updates the given user's information */
-  public void updateUser(User user) {
-    dataManager.updateUser(user);
-  }
-
-  /**
-   * Return the top score of the user with the given username. If the user does not exist, return 0.
-   */
-  public int getTopScore(String username) {
-    User user = dataManager.getUser(username);
-    if (user != null) {
-      return dataManager.getTopScore(user);
-    } else {
-      return 0;
+    /**
+     * If the given username and password correspond to an existing user, return the existing user.
+     * Otherwise, return null
+     *
+     * @param username the username of the user to login
+     * @param password the password of the user to login
+     * @return the User object with the given username and password. If such a User does not exist,
+     * return null
+     */
+    public User getUser(String username, String password) {
+        User user = dataManager.getUser(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        } else {
+            return null;
+        }
     }
-  }
 
-  /**
-   * Return the current score of the user with the given username. If the user does not exist,
-   * return 0.
-   */
-  public int getCurrentScore(String username) {
-    User user = dataManager.getUser(username);
-    if (user != null) {
-      return dataManager.getCurrentScore(user);
-    } else {
-      return 0;
+    /**
+     * Updates the given user's information
+     *
+     * @param user the User object to update
+     */
+    public void updateUser(User user) {
+        dataManager.updateUser(user);
     }
-  }
 
-  /** Returns the top x users (sorted in non-increasing order) based on the given criterion. */
-  public List<User> getTopUsers(int x, String criterion) {
-    List<User> users;
-
-    if ("Points".equals(criterion)) {
-      users = dataManager.sortUsersByPoints();
-    } else if ("Stars".equals(criterion)) {
-      users = dataManager.sortUsersByStars();
-    } else if ("Taps".equals(criterion)) {
-      users = dataManager.sortUsersByTaps();
-    } else {
-      // "Total Score".equals(criterion)
-      users = dataManager.sortUsersByScore();
+    /**
+     * Return the top score of the user with the given username. If the user does not exist,
+     * return 0.
+     *
+     * @param username the username of the user whose top score we want to return
+     * @return the user's top score. If the user does not exist, return 0.
+     */
+    public int getTopScore(String username) {
+        User user = dataManager.getUser(username);
+        if (user != null) {
+            return dataManager.getTopScore(user);
+        } else {
+            return 0;
+        }
     }
-    return getLastXElementsReversed(users, x);
-  }
 
-  /**
-   * Return a new list containing the last x elements in the given list in reverse order. If the
-   * given list has less than x elements, simply return a copy of the given list in reverse order.
-   */
-  private List<User> getLastXElementsReversed(List<User> list, int x) {
-    List<User> newList = new ArrayList<>();
-    int sizeOfNewList = Math.min(x, list.size());
-
-    for (int i = 0; i < sizeOfNewList; i++) {
-      newList.add(list.get(list.size() - 1 - i));
+    /**
+     * Return the current score of the user with the given username. If the user does not exist,
+     * return 0.
+     *
+     * @param username the username of the user whose current score we want to return
+     * @return the user's current score. If the user does not exist, return 0.
+     */
+    public int getCurrentScore(String username) {
+        User user = dataManager.getUser(username);
+        if (user != null) {
+            return dataManager.getCurrentScore(user);
+        } else {
+            return 0;
+        }
     }
-    return newList;
-  }
+
+    /**
+     * Returns the top x users (sorted in non-increasing order) based on the given criterion.
+     *
+     * @param x         the maximum number of users to return
+     * @param criterion the criterion on which to sort the users
+     * @return a list of x users (sorted in non-increasing order) based on the given criterion. If
+     * less than x users exist, return a list whose length equals the number of existing users.
+     */
+    public List<User> getTopUsers(int x, String criterion) {
+        List<User> users;
+
+        if ("Points".equals(criterion)) {
+            users = dataManager.sortUsersByPoints();
+        } else if ("Stars".equals(criterion)) {
+            users = dataManager.sortUsersByStars();
+        } else if ("Taps".equals(criterion)) {
+            users = dataManager.sortUsersByTaps();
+        } else {
+            // "Total Score".equals(criterion)
+            users = dataManager.sortUsersByScore();
+        }
+        return getLastXElementsReversed(users, x);
+    }
+
+    /**
+     * Return a new list containing the last x elements in the given list in reverse order. If the
+     * given list has less than x elements, simply return a copy of the given list in reverse order.
+     */
+    private List<User> getLastXElementsReversed(List<User> list, int x) {
+        List<User> newList = new ArrayList<>();
+        int sizeOfNewList = Math.min(x, list.size());
+
+        for (int i = 0; i < sizeOfNewList; i++) {
+            newList.add(list.get(list.size() - 1 - i));
+        }
+        return newList;
+    }
 }
