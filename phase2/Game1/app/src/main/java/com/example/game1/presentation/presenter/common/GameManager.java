@@ -19,10 +19,8 @@ public abstract class GameManager extends Observable {
 
     /* The Game that this GameManager manages */
     public Game game;
-
-    /* The possible states of this GameManager.*/
+    /* The possible states of a GameManager. */
     public enum State {START, PAUSE, STOP, RESUME}
-
     /* The state of this GameManager. */
     private State state;
     /* The list of GameItems in this GameManager. */
@@ -35,18 +33,23 @@ public abstract class GameManager extends Observable {
     private AppCompatActivity activity;
     /* The music player of the game that this GameManager manages. */
     private MediaPlayer musicPlayer;
-
+    /* The number of taps tracked */
     private int numTaps;
+    /* The number of star tracked */
     private int numStars;
+    /** The number of seconds used to refresh new xCoordinate, yCoordinate, xVelocity, * yVelocity
+     * based on current xAcceleration and yAcceleration. Currently numOfSeconds = *
+     * GameThread.FRAME_DURATION_NS / 1000000000.
+     */
     private double numSeconds;
+    /* If the game is running */
     private boolean isRunning;
 
-    /**
-     * Constructs a GameManager with the specified height, width, game, and activity.
+    /** Constructs a GameManager with the specified height, width, game, and activity.
      *
+     * @param game     the Game class corresponding to the game that the GameManager manages
      * @param height   the height of the game display
      * @param width    the width of the game display
-     * @param game     the Game class corresponding to the game that the GameManager manages
      * @param activity the Activity class corresponding to the game that the GameManager manages
      */
     public GameManager(int height, int width, Game game, AppCompatActivity activity) {
@@ -56,17 +59,15 @@ public abstract class GameManager extends Observable {
         this.activity = activity;
     }
 
-    /**
-     * Returns gameItems.
+    /** Returns gameItems.
      *
-     * @return a list of GameItem objects
+     * @return a list of GameItem objects managed by this GameManager
      */
     public List<GameItem> getGameItems() {
         return gameItems;
     }
 
-    /**
-     * Adds the specified item to gameItems.
+    /** Adds the specified item to gameItems.
      *
      * @param item the GameItem object to be added to gameItems
      */
@@ -75,7 +76,7 @@ public abstract class GameManager extends Observable {
     }
 
     /**
-     * Returns the Game of this GameManager
+     * Returns the Game objects of this GameManager
      *
      * @return the Game object of this GameManager
      */
@@ -83,21 +84,18 @@ public abstract class GameManager extends Observable {
         return game;
     }
 
-    /**
-     * Updates this GameManager by moving all GameItems in it.
-     */
+    /** Updates this GameManager by moving all GameItems in it. */
     public abstract boolean update();
 
-    /**
-     * Removes the specified item from gameItems.
+    /** Removes the specified item from gameItems.
+     *
+     * @param item the GameItem object to be removed from gameItmes
      */
     protected void removeItem(GameItem item) {
         gameItems.remove(item);
     }
 
-    /**
-     * Creates some GameItems and adds them to this GameManager.
-     */
+    /** Creates some GameItems and adds them to this GameManager. */
     public abstract void createGameItems();
 
     /**
@@ -202,30 +200,24 @@ public abstract class GameManager extends Observable {
     /**
      * Sets the music player for this game
      *
-     * @param musicPlayer the music player for this game
+     * @param musicPlayer the music player to set for this game
      */
     public void setMusicPlayer(MediaPlayer musicPlayer) {
         this.musicPlayer = musicPlayer;
     }
 
-    /**
-     * Starts playing the music for this game.
-     */
+    /** Starts playing the music for this game. */
     public void startMusic() {
         musicPlayer.start();
     }
 
-    /**
-     * Stops playing the music for this game.
-     */
+    /** Stops playing the music for this game. */
     private void stopMusic() {
         musicPlayer.stop();
         musicPlayer.release();
     }
 
-    /**
-     * Ends this game
-     */
+    /** Ends this game */
     public void gameOver() {
         stopMusic();
         state = State.STOP;
@@ -287,9 +279,7 @@ public abstract class GameManager extends Observable {
         this.numStars = numStars;
     }
 
-    /**
-     * Increments the number of taps so far in this game by 1
-     */
+    /** Increments the number of taps so far in this game by 1 */
     public void incrementNumTaps() {
         numTaps += 1;
     }
@@ -311,5 +301,4 @@ public abstract class GameManager extends Observable {
     public boolean getRunning() {
         return this.isRunning;
     }
-
 }
