@@ -255,6 +255,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return itemAppearances;
   }
 
+  /**
+   * Adds a GameItem's image to itemAppearances.
+   * @param gameItemName the GameItem's name
+   * @param image the GameItem's image
+   */
   public void addGameItemAppearance(String gameItemName, Bitmap image) {
     if (itemAppearances.containsKey(gameItemName)) {
       itemAppearances.get(gameItemName).add(image);
@@ -265,6 +270,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Adds a GameItem's images to itemAppearances.
+   * @param gameItemName the GameItem's name
+   * @param images the GameItem's images
+   */
   public void addGameItemAppearances(String gameItemName, List<Bitmap> images) {
     if (itemAppearances.containsKey(gameItemName)) {
       for (Bitmap image : images) {
@@ -275,14 +285,25 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /**
+   * Returns a GameItem's appearances.
+   * @param key the key of the GameItem
+   * @return the GameItem's appearances
+   */
   public List<Bitmap> getAppearances(String key) {
     return itemAppearances.get(key);
   }
 
+  /**
+   * Returns a GameItem's appearance.
+   * @param key the key of the GameItem
+   * @return the GameItem's appearance
+   */
   public Bitmap getAppearance(String key) {
     return itemAppearances.get(key).get(0);
   }
 
+  /** Sets backgroundColourScheme based on gameManager's Customization. */
   public void generateBackgroundColorScheme() {
 
     Customization cust = gameManager.getGame().getCustomization();
@@ -293,6 +314,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /** Sets characterColourScheme based on gameManager's Customization. */
   public void generateCharacterColor() {
     Customization cust = gameManager.getGame().getCustomization();
     if (cust.getCharacterColour().equals(Customization.CharacterColour.BLUE)) {
@@ -304,6 +326,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
+  /** Sets backgroundColourScheme. */
   public void generateBackgroundColor() {
     generateBackgroundColorScheme();
     if (this.backgroundColorScheme.equals("Dark")) {
@@ -312,31 +335,44 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
       setScreenBackgroundColor(backgroundColorLight);
     }
   }
-
+ /** Gets backgroundColor .*/
   public int getBackgroundColor() {
     return backgroundColor;
   }
 
+  /** Sets backgroundColor to the specified color.
+   * @param backgroundColor color
+   */
   public void setScreenBackgroundColor(int backgroundColor) {
     this.backgroundColor = backgroundColor;
   }
 
+  /** Sets backgroundColorDark to the specified color.
+   * @param backgroundColorDark color
+   */
   public void setBackgroundColorDark(int backgroundColorDark) {
     this.backgroundColorDark = backgroundColorDark;
   }
 
+  /** Sets backgroundColorLight to the specified color.
+   * @param backgroundColorLight color
+   */
   public void setBackgroundColorLight(int backgroundColorLight) {
     this.backgroundColorLight = backgroundColorLight;
   }
 
+  /**
+   * Returns characterColorScheme.
+   * @return characterColorScheme
+   */
   public String getCharacterColorScheme() {
     return characterColorScheme;
   }
 
-  /**
-   * @param index
-   * @param length
-   * @return
+  /** Updates index to the specified length.
+   * @param index index
+   * @param length length
+   * @return updated index
    */
   public int updateIndex(int index, int length) {
     index += 1;
@@ -346,7 +382,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return index;
   }
 
-  /** Set up PaintText */
+  /** Sets up PaintText */
   public void setupPaintText() {
     paintText = new Paint();
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
