@@ -1,39 +1,74 @@
 package com.example.game1.presentation.model;
 
-/** The model object for the statistics of a game */
+/**
+ * The model object for the statistics of a game
+ */
 public class Statistics {
 
-  private int points;
-  private int stars;
-  private int taps;
+    private int points;
+    private int stars;
+    private int taps;
 
-  Statistics() {
-    points = 0;
-    stars = 0;
-    taps = 0;
-  }
+    /**
+     * Constructs a new Statistics object
+     */
+    Statistics() {
+        points = 0;
+        stars = 0;
+        taps = 0;
+    }
 
-  public int getPoints() {
-    return points;
-  }
+    /**
+     * Returns the number of points stored in this Statistics object
+     *
+     * @return the number of points in this Statistics object
+     */
+    public int getPoints() {
+        return points;
+    }
 
-  public void setPoints(int points) {
-    this.points = points;
-  }
+    /**
+     * Sets the number of points stored in this Statistics object
+     *
+     * @param points the new number of points
+     */
+    public void setPoints(int points) {
+        this.points = points;
+    }
 
-  public int getStars() {
-    return stars;
-  }
+    /**
+     * Returns the number of stars stored in this Statistics object
+     *
+     * @return the number of stars in this Statistics object
+     */
+    public int getStars() {
+        return stars;
+    }
 
-  public void setStars(int stars) {
-    this.stars = stars;
-  }
+    /**
+     * Sets the number of stars stored in this Statistics object
+     *
+     * @param stars the new number of stars
+     */
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
 
-  public int getTaps() {
-    return taps;
-  }
+    /**
+     * Returns the number of taps stored in this Statistics object
+     *
+     * @return the number of taps in this Statistics object
+     */
+    public int getTaps() {
+        return taps;
+    }
 
-  public void setTaps(int taps) {
-    this.taps = taps;
-  }
+    /**
+     * Sets the number of taps stored in this Statistics object
+     *
+     * @param taps the new number of taps
+     */
+    public void setTaps(int taps) {
+        this.taps = taps;
+    }
 }
