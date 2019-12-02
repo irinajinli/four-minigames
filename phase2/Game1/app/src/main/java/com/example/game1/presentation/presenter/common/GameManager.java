@@ -117,15 +117,6 @@ public abstract class GameManager extends Observable {
     }
 
     /**
-     * Sets the current state of the game
-     *
-     * @param state the state to set
-     */
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    /**
      * Returns the activity associated with this game.
      *
      * @return the activity associated with this game.
@@ -291,14 +282,5 @@ public abstract class GameManager extends Observable {
      */
     public void setRunning(boolean isRunning) {
         this.isRunning = isRunning;
-    }
-
-    /**
-     * Returns whether this game is running
-     *
-     * @return whether this game is running
-     */
-    public boolean getRunning() {
-        return this.isRunning;
     }
 }

@@ -12,8 +12,8 @@ import com.example.game1.presentation.model.applegame.Basket;
 import com.example.game1.presentation.model.applegame.LivesCounter;
 import com.example.game1.presentation.model.applegame.PointsCounter;
 import com.example.game1.presentation.model.common.GameItem;
-import com.example.game1.presentation.presenter.common.GameManager;
 import com.example.game1.presentation.model.common.Result;
+import com.example.game1.presentation.presenter.common.GameManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +42,9 @@ public class AppleGameManager extends GameManager {
   /** Number of stars caught in this apple game */
   private int numCaughtStars = 0;
 
-  /** Constructs an AppleGameManager with the specified height, width, game, and activity. */
   /**
+   * Constructs an AppleGameManager with the specified height, width, game, and activity.
+   *
    * @param height screen height
    * @param width screen width
    * @param game the game
@@ -80,8 +81,8 @@ public class AppleGameManager extends GameManager {
     this.livesCounter = livesCounter;
   }
 
-  @Override
   /** Creates GameItems required at the beginning of the minigame. */
+  @Override
   public void createGameItems() {
     AppleItemsBuilder builder = new AppleItemsBuilder();
     builder.setBasketSize(basketWidth, basketHeight);
@@ -113,7 +114,7 @@ public class AppleGameManager extends GameManager {
     List<GameItem> oldItems = new ArrayList<>();
     // Creates apple movement info to store all information needed for game items to execute update
     AppleMovementInfo appleMovementInfo =
-            new AppleMovementInfo(getScreenWidth(), getScreenHeight(), basket, getNumSeconds());
+        new AppleMovementInfo(getScreenWidth(), getScreenHeight(), basket, getNumSeconds());
     // Iterate through the gameItems
     for (GameItem item : getGameItems()) {
       Result result = item.update(appleMovementInfo);
@@ -204,6 +205,7 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Sets up width and height for each game item.
+   *
    * @param appleWidth Width of apple
    * @param appleHeight Height of apple
    * @param starWidth Width of star
@@ -212,12 +214,12 @@ public class AppleGameManager extends GameManager {
    * @param basketHeight Height of basket
    */
   public void setItemSize(
-          int appleWidth,
-          int appleHeight,
-          int starWidth,
-          int starHeight,
-          int basketWidth,
-          int basketHeight) {
+      int appleWidth,
+      int appleHeight,
+      int starWidth,
+      int starHeight,
+      int basketWidth,
+      int basketHeight) {
     this.appleWidth = appleWidth;
     this.appleHeight = appleHeight;
     this.starWidth = starWidth;
@@ -228,9 +230,10 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Returns whether or not there are any lives remaining in this game.
+   *
    * @return whether there are any lives remaining in this game
    */
-  public boolean checkLivesRemaining() {
+  private boolean checkLivesRemaining() {
     if (livesCounter.getLivesRemaining() <= 0) {
       gameOver();
       return false;
@@ -240,19 +243,21 @@ public class AppleGameManager extends GameManager {
 
   /**
    * Removes all items stored in oldItems from gameItems.
-   * @param oldItems
+   *
+   * @param oldItems the items to remove
    */
-  public void removeOldItems(List<GameItem> oldItems) {
+  private void removeOldItems(List<GameItem> oldItems) {
     for (GameItem oldItem : oldItems) {
       removeItem(oldItem);
     }
   }
 
   /**
-   * Updates statistics according to game item's update result.
-   * @param result
+   * Updates statistics according to gameItem's update result.
+   *
+   * @param result the result
    */
-  public void updateStatistics(AppleResult result) {
+  private void updateStatistics(AppleResult result) {
     if (result.isAppleCollected()) {
       catchApple();
     }

@@ -2,13 +2,13 @@ package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.MovementInfo;
 
-/** A class for passing information for apple game items to process update. */
+/** A class for passing information for use in apple game's items' update methods. */
 public class AppleMovementInfo extends MovementInfo {
   /** the basket */
-  Basket basket;
+  private Basket basket;
 
   /**
-   * Construct AppleMovementInfo to store informaton needed for apple game item to perform update
+   * Constructs an AppleMovementInfo.
    *
    * @param screenWidth width of the screen
    * @param screenHeight height of the screen
@@ -25,16 +25,7 @@ public class AppleMovementInfo extends MovementInfo {
    *
    * @return the basket
    */
-  public Basket getBasket() {
+  Basket getBasket() {
     return basket;
-  }
-
-  /**
-   * Set the basket
-   *
-   * @param basket
-   */
-  public void setBasket(Basket basket) {
-    this.basket = basket;
   }
 }
