@@ -2,16 +2,16 @@ package com.example.game1.presentation.model.applegame;
 
 import com.example.game1.presentation.model.common.GameItem;
 
-/** A counter for to shown lives remaining. */
+/** A counter for lives remaining. */
 public class LivesCounter extends GameItem {
 
   /** Lives remaining. At the begining there are 10 lives remaining. */
   private int livesRemaining;
 
   /**
-   * Constructs a LivesCounter with text description.
+   * Constructs a LivesCounter with the specified number of lives to start.
    *
-   * @param startingLives
+   * @param startingLives the number of lives to start
    */
   public LivesCounter(int startingLives) {
     super("lives: " + startingLives);
@@ -19,7 +19,7 @@ public class LivesCounter extends GameItem {
   }
 
   /**
-   * Gets the number of livesRemaining.
+   * Gets livesRemaining.
    *
    * @return number of lives remaining
    */
@@ -27,7 +27,7 @@ public class LivesCounter extends GameItem {
     return livesRemaining;
   }
 
-  /** Decrement liveRemaining by 1 in this LivesCounter. */
+  /** Decrements liveRemaining by 1. */
   public void subtractLife() {
     livesRemaining -= 1;
     setDescription("lives: " + livesRemaining);

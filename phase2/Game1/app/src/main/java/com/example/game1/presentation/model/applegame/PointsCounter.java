@@ -8,14 +8,14 @@ public class PointsCounter extends GameItem {
   /** How many points have been counted. */
   private int numPoints;
 
-  /** Construct a PointsCounter with white text. */
+  /** Constructs a PointsCounter. */
   public PointsCounter() {
     super("apples: 0");
     numPoints = 0;
   }
 
   /**
-   * Get numPoints.
+   * Returns numPoints.
    *
    * @return number of points
    */
@@ -24,7 +24,7 @@ public class PointsCounter extends GameItem {
   }
 
   /**
-   * Add the specified number of points to this PointsCounter.
+   * Adds the specified number of points to this PointsCounter.
    *
    * @param points number of points to add
    */
