@@ -6,19 +6,10 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-// public class AppleActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_apple);
-//    }
-// }
-// TODO: above is og AppleActivity; below is Fish Tank AppleActivity
-// package com.example.game1.Data;
-
+/**
+ * Apple game activity
+ */
 public class AppleActivity extends AppCompatActivity {
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
