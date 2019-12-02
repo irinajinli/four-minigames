@@ -8,6 +8,7 @@ import java.util.List;
  * This is the interface that defines the responsibilities/functions of the user service.
  */
 public interface UserServiceIntf {
+
     /**
      * If the given user's username is not already taken, register the given user and return true.
      * Otherwise, return false
