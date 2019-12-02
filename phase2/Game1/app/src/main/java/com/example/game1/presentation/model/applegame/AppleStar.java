@@ -4,7 +4,7 @@ import com.example.game1.presentation.model.common.AnimatedGameItem;
 import com.example.game1.presentation.model.common.GameItem;
 import com.example.game1.presentation.model.common.MovementInfo;
 
-/** A Star that is used in the apple game */
+/** A Star that is used in the apple game. */
 public class AppleStar extends AnimatedGameItem {
 
   /**
@@ -18,13 +18,13 @@ public class AppleStar extends AnimatedGameItem {
     super(height, width);
   }
 
-  @Override
   /**
-   * Perform update based on the information given by the movement info
+   * Updates this AppleStar based on the information given by the specified appleMovementInfo.
    *
-   * @param appleMovementInfo
-   * @return result needed by the apple game manager.
+   * @param appleMovementInfo the AppleMovementInfo
+   * @return the result needed by the apple game manager
    */
+  @Override
   public AppleResult update(MovementInfo appleMovementInfo) {
     // Update x and y coordinates of this apple based on specified time period
     updatePositionAndVelocity(((appleMovementInfo).getNumSeconds()));
