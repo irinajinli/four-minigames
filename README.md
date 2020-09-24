@@ -4,7 +4,7 @@
 This app is a collaboration between myself (Jean Li), Ashley Lu, Abdul Arif, and Melanie Luqiong Xie. It was created during September-December of 2019.
 
 ## How to Use
-You can download and install the .apk file in the repository or download the app from the Google Play Store here. Alternatively, you can use the emulator on Android Studio.
+Clone this repository and open it in Android Studio. Click "run" and the app will open in the emulator.
 
 Then, register for a local account in the app. This will automatically log you in and you can begin playing.
 
