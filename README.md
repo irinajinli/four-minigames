@@ -3,6 +3,8 @@
 ## Info
 This app is a collaboration between myself (Jean Li), Ashley Lu, Abdul Arif, and Melanie Luqiong Xie. It was created during September-December of 2019.
 
+The main purpose of this app was to learn the SOLID design principles, as well as practice using some design patterns (ex. observer, builder, factory, and strategy).
+
 ## How to Use
 Clone this repository and open it in Android Studio. Click "run" and the app will open in the emulator.
 
@@ -33,6 +35,10 @@ A recreation of the classic game. Break the bricks and don't drop the ball.
 ## Other Features
 Users can register for local accounts in the app. A user's personal high scores are visible to themselves.
 
+![personal high scores](https://i.imgur.com/8YDXu5Q.png)
+
 The scoreboard shows high scores from all registered users.
+
+![scoreboard](https://i.imgur.com/CbEvMg2.png)
 
 Users can also choose to customize character colour, colour scheme, and background music.
